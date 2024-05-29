@@ -1,0 +1,63 @@
+<app-hanh-chinh
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [patientInfoHis]='patientInfoHis'></app-hanh-chinh>
+
+<app-quan-ly-nguoi-benh
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [quanLyNguoiBenh]='quanLyNguoiBenh'></app-quan-ly-nguoi-benh>
+
+<app-chan-doan
+  [patientOutData]="patientOutData"
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [isCreatingNew]='isCreatingNew'
+  [isBenhAnNoiKhoa]="isBenhAnNoiKhoa"
+  [thongTinChanDoan]="thongTinChanDoan"
+  [chanDoan]='chanDoan'></app-chan-doan>
+
+<app-tinh-trang-ra-vien
+  [patientOutData]="patientOutData"
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'></app-tinh-trang-ra-vien>
+
+<app-ly-do-vao-vien
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [isCreatingNew]='isCreatingNew'
+  [thongTinKhamBenh]="thongTinKhamBenh"
+  [lyDoVaoVienNgoaiTru]='lyDoVaoVienNgoaiTru'></app-ly-do-vao-vien>
+
+<app-hoi-benh
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [isCreatingNew]='isCreatingNew'
+  [thongTinKhamBenh]="thongTinKhamBenh"
+  [hoibenhNgoaiTru]='hoibenhNgoaiTru'></app-hoi-benh>
+
+<app-kham-benh
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [ketquakb]='ketquakb'
+  [isCreatingNew]='isCreatingNew'
+  [thongTinKhamBenh]="thongTinKhamBenh"
+  ></app-kham-benh>
+
+<app-chan-doan-khi-vao-khoa-dieu-tri [patientInfo]='patientInfo' [tenBenhAn]='tenBenhAn' [isCreatingNew]="isCreatingNew"
+                                      [thongTinChanDoan]="thongTinChanDoan"
+                                     counter_chanDoanKhiVaoKhoaDieuTri='IV. '
+></app-chan-doan-khi-vao-khoa-dieu-tri>
+
+<app-tien-luong [patientInfo]='patientInfo' [tenBenhAn]='tenBenhAn'
+                counter_tienLuong='V. ' counter_huongDieuTri='VI. '
+                [isBenhAnNoiKhoa]="isBenhAnNoiKhoa"
+></app-tien-luong>
+
+<app-tong-ket-benh-an
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [ketquaCLS]='ketquaCLS'
+  [thongTinKhamBenh]="thongTinKhamBenh"
+  [isCreatingNew]='isCreatingNew'
+  ></app-tong-ket-benh-an>

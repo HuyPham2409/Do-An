@@ -1,0 +1,660 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <mat-tab-group>
+        <mat-tab label='PHIẾU NHẬN ĐỊNH NGƯỜI BỆNH VÀO VIỆN'>
+          <div class='row col-12' style='margin-top: 10px'>
+            <mat-form-field class='col-3' appearance='outline' style='padding-left: 0px'>
+              <mat-label>{{"giay_to_lien_quan.ho_ten_bn" | translate}}:</mat-label>
+              <input readonly matInput [(ngModel)]='patientInfo.HO_TEN'
+                     placeholder='{{"giay_to_lien_quan.ho_ten_bn" | translate}}'>
+            </mat-form-field>
+            <mat-form-field class='col-3' appearance='outline'>
+              <mat-label>{{"patient.birthday" | translate}}:</mat-label>
+              <input readonly matInput [(ngModel)]="patientInfo.NGAY_SINH">
+            </mat-form-field>
+            <mat-form-field class='col-3' appearance='outline'>
+              <mat-label>{{"emr.age" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='patientInfo.DO_TUOI' readonly>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3' style='padding-right: 0px'>
+              <mat-label>{{"giay_to_lien_quan.sex" | translate}}</mat-label>
+              <input matInput [(ngModel)]='patientInfo.GIOI_TINH.MO_TA' readonly>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3' style='padding-left: 0px'>
+              <mat-label>{{"so_ket_dieu_tri.giuong" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.SO_GIUONG'>
+            </mat-form-field>
+            <app-emr-date class='col-3' label='phieu_nhan_dinh_nb_vao_vien.thoi_gian_vao_vien' mode='datetime'
+                          [(model)]='phieuNhanDinhNguoiBenhVaoVien.THOI_GIAN_VAO_VIEN_MOMENT'
+                          [(dmModel)]='phieuNhanDinhNguoiBenhVaoVien.THOI_GIAN_VAO_VIEN'></app-emr-date>
+            <mat-form-field appearance='outline' class='col-6' style='padding-right: 0px'>
+              <mat-label>{{"benh_an_nao_pha_thai.ly_do_nhap_vien" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.LY_DO_NHAP_VIEN'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5">
+              </textarea>
+            </mat-form-field>
+          </div>
+          <div class='row col-12'>
+            <div class='col-3' style='padding-left: 0px'>- <strong>{{"phieu_nhan_dinh_nb_vao_vien.kiem_tra_giay_to_mang_theo" | translate}}</strong>:</div>
+            <div class='col-3 row'>
+              <div class='col-xl-4 col-sm-7'>+ {{"phieu_nhan_dinh_nb_vao_vien.giay_gioi_thieu" | translate}}:</div>
+              <div class='col-xl-8 col-sm-5'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.GIAY_GIOI_THIEU.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px'>
+              <div class='col-xl-4 col-sm-5'>+ {{"phieu_nhan_dinh_nb_vao_vien.bhyt" | translate}}:</div>
+              <div class='col-xl-8 col-sm-7'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BHYT.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px'>
+              <div class='col-xl-4 col-sm-5'>+ {{"phieu_nhan_dinh_nb_vao_vien.so_y_ba" | translate}}:</div>
+              <div class='col-xl-8 col-sm-7'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.SO_Y_BA.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3'></div>
+            <div class='col-3'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.GIAY_BAN_GIAO_NGUOI_BENH'>+ {{"phieu_nhan_dinh_nb_vao_vien.giay_ban_giao_nguoi_benh" | translate}}</mat-checkbox>
+            </div>
+            <div class='col-3' style='margin-left: 2px'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.GIAY_TO_KHAC'>+ {{"phieu_nhan_dinh_nb_vao_vien.giay_to_khac" | translate}}</mat-checkbox>
+            </div>
+            <div class='col-12' style='padding-left: 0px'><strong>1. {{"title.tien_su" | translate}}:</strong></div>
+            <mat-form-field appearance='outline' class='col-6' style='padding-left: 0px'>
+              <mat-label>{{"phieu_nhan_dinh_nb_vao_vien.tien_su_gia_dinh" | translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.TIEN_SU_GIA_DINH'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5">
+              </textarea>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-6' style='padding-right: 0px'>
+              <mat-label>{{"phieu_nhan_dinh_nb_vao_vien.tien_su_cua_nguoi_benh" | translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.TIEN_SU_CUA_NGUOI_BENH'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5">
+              </textarea>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3' style='padding-left: 0px'>
+              <mat-label>- {{"phieu_nhan_dinh_nb_vao_vien.dtd" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.DTD' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'year'|translate}}</div>
+            </mat-form-field>
+
+            <mat-form-field appearance='outline' class='col-3'>
+              <mat-label>- NMCT</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.NMCT' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'year'|translate}}</div>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3'>
+              <mat-label>- COPD</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.COPD' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'year'|translate}}</div>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3' style='padding-right: 0px'>
+              <mat-label>- {{"phieu_nhan_dinh_nb_vao_vien.suy_than" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.SUY_THAN' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'year'|translate}}</div>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3' style='padding-left: 0px'>
+              <mat-label>- THA</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.THA' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'year'|translate}}</div>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3'>
+              <mat-label>- {{"phieu_nhan_dinh_nb_vao_vien.henpq" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.HEN_PQ' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'year'|translate}}</div>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3'>
+              <mat-label>- {{"phieu_nhan_dinh_nb_vao_vien.lao" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.LAO' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'year'|translate}}</div>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3' style='padding-right: 0px'>
+              <mat-label>- {{"phieu_nhan_dinh_nb_vao_vien.gan" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.GAN' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'year'|translate}}</div>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-12' style='padding: 0px'>
+              <mat-label>+ {{"benh_an_phau_thuat_khuc_xa.benh_khac" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BENH_KHAC'>
+            </mat-form-field>
+            <div class='col-3 row' style='padding-left: 0px'>
+              <div class='col-xl-5 col-sm-12'>- {{"phieu_nhan_dinh_nb_vao_vien.nb_tuan_thu_dieu_tri" | translate}}:</div>
+              <div class='col-xl-7 col-sm-12'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.NB_TUAN_THU_DIEU_TRI.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px'>
+              <div class='col-xl-4 col-sm-12'>{{"phieu_nhan_dinh_nb_vao_vien.di_chung" | translate}}:</div>
+              <div class='col-xl-8 col-sm-12'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.DI_CHUNG.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px'>
+              <div class='col-xl-4 col-sm-12'>- {{"benh_an_phau_thuat_khuc_xa.tien_su_di_ung" | translate}}:</div>
+              <div class='col-xl-8 col-sm-12'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.TIEN_SU_DI_UNG.ID' (click)='reset("TIEN_SU_DI_UNG")'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px'>
+              <div class='col-xl-8 col-sm-12'>- {{"phieu_nhan_dinh_nb_vao_vien.yeu_to_dich_te_lien_quan_den_benh" | translate}}:</div>
+              <div class='col-xl-4 col-sm-12'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.YEU_TO_DICH_TE_LIEN_QUAN_DEN_BENH.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-6'></div>
+            <div class='col-3 row' *ngIf='phieuNhanDinhNguoiBenhVaoVien.TIEN_SU_DI_UNG.ID === "1"'>
+              <div class='col-xl-4 col-sm-4' style='margin-left: 13px'>{{"kham_tien_me.di_ung" | translate}}:</div>
+              <div class='col-xl-7 col-sm-8 row' style='padding-left: 11px'>
+                <mat-checkbox [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.THUOC'>{{"phieu_cham_soc_so_sinh.thuoc" | translate}}</mat-checkbox>
+                <mat-checkbox [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.THUC_AN'>{{"phieu_nhan_dinh_nb_vao_vien.thuc_an" | translate}}</mat-checkbox>
+                <mat-checkbox [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.KHAC'>{{"khac" | translate}}</mat-checkbox>
+              </div>
+            </div>
+            <div class='col-12' style='padding-left: 0px;margin: 5px 0'><strong>2. {{"phieu_nhan_dinh_nb_vao_vien.hoi_kham_quan_sat_tinh_trang_hien_tai" | translate}}:</strong></div>
+            <div class='col-6 row' style='margin-top: 5px'>
+              <div class='col-xl-1 col-sm-2' style='padding-left: 0px'>- {{"phieu_nhan_dinh_nb_vao_vien.y_thuc" | translate}}:</div>
+              <div class='col-xl-11 col-sm-10'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.Y_THUC.ID'>
+                  <mat-radio-button *ngFor='let listyt of listYThuc'
+                                    style='float: left; margin: 1px 5px'
+                                    [value]="listyt.ID">{{listyt.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <mat-form-field appearance='outline' class='col-6' style='padding-right: 0px; margin-left: 16px'>
+              <mat-label>- Glasgow</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.GLASGOW' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'points'|translate}}</div>
+            </mat-form-field>
+          </div>
+          <div class='col-12 row' style='padding-right: 0px !important;'>
+            <div class='col-12' style='padding-left: 0px'>- <strong>DHST</strong>:</div>
+            <mat-form-field appearance='outline' class='col-2' style='padding-left: 0px'>
+              <mat-label>M</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.M' type='number' min='0'>
+              <div matSuffix class='m-t-4'>1/p</div>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-2'>
+                <mat-label>T°</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.T' type='number' min='0'>
+              <div matSuffix class='m-t-4'>1/p</div>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-2'>
+              <mat-label>HA</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.HA' type='number' min='0'>
+              <div matSuffix class='m-t-4'>mmHg</div>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3'>
+              <mat-label>{{"emr.nhip_tho" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.NHIP_THO' type='number' min='0'>
+              <div matSuffix class='m-t-4'>1/p</div>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3'>
+              <mat-label>{{"emr.spo2" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.SPO2' type='number' min='0'>
+            </mat-form-field>
+            <div class='col-3 row' style='padding-left: 0px;margin-top: 10px'>
+              <div class='col-xl-2 col-sm-3'>- {{"phieu_yhct_noi_tru.da" | translate}}:</div>
+              <div class='col-xl-10 col-sm-9' style='padding-left: 14px'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.DA.ID'>
+                  <mat-radio-button *ngFor='let listDa of listDa'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listDa.ID">{{listDa.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px;margin-top: 10px'>
+              <div class='col-xl-4 col-sm-6'>{{"phieu_nhan_dinh_nb_vao_vien.niem_mac" | translate}}:</div>
+              <div class='col-xl-8 col-sm-6'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.NIEM_MAC.ID'>
+                  <mat-radio-button *ngFor='let listNiemMac of listNiemMac'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listNiemMac.ID">{{listNiemMac.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px;margin-top: 10px'>
+              <div class='col-xl-4 col-sm-3'>{{"kham_benh_mat.phu" | translate}}:</div>
+              <div class='col-xl-8 col-sm-9'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.PHU.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <mat-form-field appearance='outline' class='col-3' style='margin-left: 11px'>
+              <mat-label>{{"khac" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.TEXT_DA'>
+            </mat-form-field>
+            <div class='col-12' style='padding-left: 0px'>- <strong>{{"kham_benh.ho_hap" | translate}}</strong>:</div>
+            <div class='col-3 row' style='padding-left: 0px;margin-top: 10px'>
+              <div class='col-xl-2 col-sm-3'>{{"phieu_nhan_dinh_nb_vao_vien.tho" | translate}}:</div>
+              <div class='col-xl-10 col-sm-9' style='padding-left: 19px'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.THO.ID'>
+                  <mat-radio-button *ngFor='let listTho of listTho'
+                                    style='float: left'
+                                    [value]="listTho.ID">{{listTho.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px;margin-top: 10px'>
+              <div class='col-xl-4 col-sm-4'>{{"phieu_yhct_noi_tru.ho" | translate}}:</div>
+              <div class='col-xl-8 col-sm-8' style='padding-left: 14px'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.HO.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px;margin-top: 10px'>
+              <div class='col-xl-4 col-sm-3'>{{"phieu_nhan_dinh_nb_vao_vien.dom" | translate}}:</div>
+              <div class='col-xl-8 col-sm-9' style='padding-left: 14px'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.DOM.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <mat-form-field appearance='outline' class='col-3' style='margin-left: 11px'>
+              <mat-label>{{"khac" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.TEXT_HO_HAP'>
+            </mat-form-field>
+            <div class='col-12' style='padding-left: 0px'>- <strong>{{"hoi_benh_noi_khoa.kham_benh.tieu_hoa" | translate}}</strong>:</div>
+            <div class='col-3 row' style='padding-left: 0px;margin-top: 10px'>
+              <div class='col-xl-3 col-sm-12'>{{"phieu_cham_soc.an_uong" | translate}}:</div>
+              <div class='col-xl-9 col-sm-12'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.TIEU_HOA.ID'>
+                  <mat-radio-button *ngFor='let listAnUong of listAnUong'
+                                    style='float: left'
+                                    [value]="listAnUong.ID">{{listAnUong.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px;margin-top: 10px'>
+              <div class='col-xl-5 col-sm-12'>{{"phieu_nhan_dinh_nb_vao_vien.sonde_da_day" | translate}}:</div>
+              <div class='col-xl-7 col-sm-12'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.SONDE_DA_DAY.ID'>
+                  <mat-radio-button *ngFor='let listSondeDaDay of listSondeDaDay'
+                                    style='float: left'
+                                    [value]="listSondeDaDay.ID">{{listSondeDaDay.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-12' style='padding-left: 0px;margin-top: 10px'>- <strong>{{"phieu_nhan_dinh_nb_vao_vien.bai_tiet" | translate}}</strong>:</div>
+            <div class='col-3 row' style='padding-left: 0px;margin-top: 10px'>
+              <div class='col-xl-3 col-sm-12'>+ {{"phieu_yhct_noi_tru.tieu_tien" | translate}}:</div>
+              <div class='col-xl-9 col-sm-12'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.TIEU_TIEN.ID'>
+                  <mat-radio-button *ngFor='let listTieuTien of listTieuTien'
+                                    style='float: left'
+                                    [value]="listTieuTien.ID">{{listTieuTien.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px;margin-top: 10px'>
+              <div class='col-xl-5 col-sm-12'>+ {{"phieu_nhan_dinh_nb_vao_vien.cau_bang_quang" | translate}}:</div>
+              <div class='col-xl-7 col-sm-12'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.CAU_BANG_QUANG.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin:10px 0 10px 10px'>
+              <div class='col-xl-4 col-sm-12'>+ {{"phieu_nhan_dinh_nb_vao_vien.da_co_sonde_tieu" | translate}}:</div>
+              <div class='col-xl-8 col-sm-12'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.DA_CO_SONDE_TIEU.ID'>
+                  <mat-radio-button *ngFor='let listSondeDaDay of listSondeDaDay'
+                                    style='float: left'
+                                    [value]="listSondeDaDay.ID">{{listSondeDaDay.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <mat-form-field appearance='outline' class='col-6' style='padding-left: 0px'>
+              <mat-label>{{"phieu_yhct_noi_tru.dai_tien" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.DAI_TIEN'>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-6'>
+              <mat-label>{{"khac" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.TEXT_KHAC'>
+            </mat-form-field>
+            <div class='col-6 row' style='margin-top: 10px'>
+              <div class='col-xl-2 col-sm-4' style='padding-left: 0px'>- <strong>{{"phieu_nhan_dinh_nb_vao_vien.danh_gia_dau" | translate}}</strong>:</div>
+              <div class='col-xl-10 col-sm-8'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.DANH_GIA_DAU.ID'>
+                  <mat-radio-button *ngFor='let listDau of listDau'
+                                    style='float: left; margin: 1px 5px'
+                                    [value]="listDau.ID">{{listDau.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <mat-form-field appearance='outline' class='col-3' style='margin-left: 16px'>
+              <mat-label>{{"khac" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.TEXT_DAU'>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-3'>
+              <mat-label>+ {{"phieu_nhan_dinh_nb_vao_vien.vi_tri_dau" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.VI_TRI_DAU'>
+            </mat-form-field>
+
+            <div class='col-6 row' style='margin-top: 10px'>
+              <div class='col-xl-2 col-sm-4' style='padding-left: 0px'>- <strong>{{"phieu_nhan_dinh_nb_vao_vien.tinh_chat_dau" | translate}}</strong>:</div>
+              <div class='col-xl-10 col-sm-8'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.TINH_CHAT_DAU.ID'>
+                  <mat-radio-button *ngFor='let listTinhChatDau of listTinhChatDau'
+                                    style='float: left; margin: 1px 5px'
+                                    [value]="listTinhChatDau.ID">{{listTinhChatDau.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <mat-form-field appearance='outline' class='col-6' style='margin-left: 16px'>
+              <mat-label>{{"khac" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.TEXT_TINH_CHAT_DAU'>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-12' style='padding-left: 0px'>
+              <mat-label>{{"phieu_nhan_dinh_nb_vao_vien.nhan_dinh_khac" | translate}}</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.NHAN_DINH_KHAC'>
+            </mat-form-field>
+            <div class='col-12' style='padding-left: 0px;margin: 5px 0'><strong>3. {{"phieu_nhan_dinh_nb_vao_vien.danh_gia_nguy_co" | translate}}:</strong></div>
+            <div class='col-3 row' style='padding-left: 0px;margin-top: 10px'>
+              <div class='col-xl-4 col-sm-4'>- {{"phieu_nhan_dinh_nb_vao_vien.loet" | translate}}:</div>
+              <div class='col-xl-8 col-sm-8' style='padding-left: 16px'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.LOET.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px;margin-top: 10px'>
+              <div class='col-xl-6 col-sm-12'>{{"phieu_nhan_dinh_nb_vao_vien.nguy_co_loet" | translate}}:</div>
+              <div class='col-xl-6 col-sm-12'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.NGUY_CO_LOET.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <mat-form-field appearance='outline' class='col-6' style='margin-left: 12px'>
+              <mat-label>- {{"phieu_nhan_dinh_nb_vao_vien.diem_danh_gia" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.DIEM_DANH_GIA_LOET' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'points'|translate}}</div>
+            </mat-form-field>
+            <div class='col-6 row' style='padding-left: 0px;margin-top: 10px'>
+              <div class='col-xl-3 col-sm-7'>- {{"phieu_nhan_dinh_nb_vao_vien.nguy_co_te_nga" | translate}}:</div>
+              <div class='col-xl-9 col-sm-5' style='padding-left: 16px'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.NGUY_CO_TE_NGA.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <mat-form-field appearance='outline' class='col-6' style='margin-left: 12px'>
+              <mat-label>- {{"phieu_nhan_dinh_nb_vao_vien.diem_danh_gia" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.DIEM_DANH_GIA_NGUY_CO_TE_NGA' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'points'|translate}}</div>
+            </mat-form-field>
+            <div class='col-12' style='padding-left: 0px;margin: 5px 0'><strong>* Dùng thuốc có nguy cơ té ngã cao (chỉ cần 01 loại thuốc): Thuốc phiện. chống co giật, hạ huyết áp, lợi tiểu thuốc ngủ, nhuận tràng an thần.</strong></div>
+            <div class='col-12' style='padding-left: 0px;margin: 5px 0'><strong>* Có thể có nhiều lựa chọn.</strong></div>
+            <div class='col-6' style='padding-left: 0px'>
+              <app-select label='kham_tien_me.dieu_duong_thuc_hien' [(model)]='phieuNhanDinhNguoiBenhVaoVien.DIEU_DUONG_THUC_HIEN'
+                          category='cbyt' [resetTo]='null'></app-select>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label='BẢNG THANG ĐIỂM NHẬN ĐỊNH CƠ BẢN'>
+          <div class='col-12' style='padding-left: 0px;margin: 5px 0'><strong>{{"phieu_nhan_dinh_nb_vao_vien.tinh_trang_hien_tai" | translate}}:</strong></div>
+          <div class='row col-12' style='margin-top: 10px'>
+            <div class='col-6 row' style='margin-top: 5px'>
+              <div class='col-xl-1 col-sm-2' style='padding-left: 0px'>- {{"phieu_nhan_dinh_nb_vao_vien.y_thuc" | translate}}:</div>
+              <div class='col-xl-11 col-sm-10'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.Y_THUC.ID'>
+                  <mat-radio-button *ngFor='let listyt of listYThuc'
+                                    style='float: left; margin: 1px 5px'
+                                    [value]="listyt.ID">{{listyt.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <mat-form-field appearance='outline' class='col-6' style='padding-right: 0px; margin-left: 16px'>
+              <mat-label>- Glasgow</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.GLASGOW' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'points'|translate}}</div>
+            </mat-form-field>
+            <div class='table-container'>
+              <table style='width: 100%'>
+                <tr>
+                  <th style='width: 30%;text-align: center'>{{"hoi_benh_noi_khoa.kham_benh.mat" | translate}}</th>
+                  <th style='width: 25%;text-align: center'>{{"phieu_nhan_dinh_nb_vao_vien.loi_noi" | translate}}</th>
+                  <th style='width: 45%;text-align: center'>{{"kham_benh.van_dong" | translate}}</th>
+                </tr>
+                <tr>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.MAT.ID'>
+                      <mat-radio-button *ngFor='let listMat of listMat' (change)='calculate(1)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listMat.ID">{{listMat.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.LOI_NOI.ID'>
+                      <mat-radio-button *ngFor='let listLoiNoi of listLoiNoi' (change)='calculate(1)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listLoiNoi.ID">{{listLoiNoi.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.VAN_DONG.ID'>
+                      <mat-radio-button *ngFor='let listVanDong of listVanDong' (change)='calculate(1)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listVanDong.ID">{{listVanDong.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class='col-12' style='padding-left: 0px;margin: 5px 0'><strong>{{"phieu_nhan_dinh_nb_vao_vien.danh_gia_nguy_co" | translate}}:</strong></div>
+            <div class='col-3 row' style='padding-left: 0px;margin-top: 10px'>
+              <div class='col-xl-2 col-sm-2'>- {{"phieu_nhan_dinh_nb_vao_vien.loet" | translate}}:</div>
+              <div class='col-xl-10 col-sm-10' style='padding-left: 16px'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.LOET.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-3 row' style='margin-left: 10px;margin-top: 10px'>
+              <div class='col-xl-6 col-sm-12'>{{"phieu_nhan_dinh_nb_vao_vien.nguy_co_loet" | translate}}:</div>
+              <div class='col-xl-6 col-sm-12'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.NGUY_CO_LOET.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <mat-form-field appearance='outline' class='col-6' style='margin-left: 12px;padding-right: 0px'>
+              <mat-label>- {{"phieu_nhan_dinh_nb_vao_vien.diem_danh_gia" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.DIEM_DANH_GIA_LOET' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'points'|translate}}</div>
+            </mat-form-field>
+            <div class='table-container'>
+              <table style='width: 100%'>
+                <tr>
+                  <th style='width: 30%;text-align: center'>{{"phieu_nhan_dinh_nb_vao_vien.cam_giac_van_dong" | translate}}</th>
+                  <th style='width: 30%;text-align: center'>{{"phieu_nhan_dinh_nb_vao_vien.do_am_da" | translate}}</th>
+                  <th style='width: 20%;text-align: center'>{{"phieu_nhan_dinh_nb_vao_vien.muc_do_hoat_dong" | translate}}</th>
+                  <th style='width: 20%;text-align: center'>{{"phieu_nhan_dinh_nb_vao_vien.dinh_duong" | translate}}</th>
+                </tr>
+                <tr>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.CAM_GIAC_VAN_DONG.ID'>
+                      <mat-radio-button *ngFor='let listCamGiacVanDong of listCamGiacVanDong' (change)='calculate2(2)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listCamGiacVanDong.ID">{{listCamGiacVanDong.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.DO_AM_DA.ID'>
+                      <mat-radio-button *ngFor='let listDoAmDa of listDoAmDa' (change)='calculate2(2)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listDoAmDa.ID">{{listDoAmDa.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.MUC_DO_HOAT_DONG.ID'>
+                      <mat-radio-button *ngFor='let listMucDoHoatDong of listMucDoHoatDong' (change)='calculate2(2)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listMucDoHoatDong.ID">{{listMucDoHoatDong.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.DINH_DUONG.ID'>
+                      <mat-radio-button *ngFor='let listDinhDuong of listDinhDuong' (change)='calculate2(2)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listDinhDuong.ID">{{listDinhDuong.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class='col-6 row' style='padding-left: 0px;margin-top: 20px'>
+              <div class='col-xl-3 col-sm-7'>- {{"phieu_nhan_dinh_nb_vao_vien.nguy_co_te_nga" | translate}}:</div>
+              <div class='col-xl-9 col-sm-5' style='padding-left: 16px'>
+                <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.NGUY_CO_TE_NGA.ID'>
+                  <mat-radio-button *ngFor='let listGGT of listGGT'
+                                    style='float: left; margin: 0px 5px'
+                                    [value]="listGGT.ID">{{listGGT.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <mat-form-field appearance='outline' class='col-6' style='margin-left: 16px;padding-right: 0px;margin-top: 10px'>
+              <mat-label>- {{"phieu_nhan_dinh_nb_vao_vien.diem_danh_gia" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.DIEM_DANH_GIA_NGUY_CO_TE_NGA' type='number' min='0'>
+              <div matSuffix class='m-t-4'>{{'points'|translate}}</div>
+            </mat-form-field>
+            <div class='table-container'>
+              <table style='width: 100%'>
+                <tr>
+                  <th style='width: 30%;text-align: center'>{{"year_old" | translate}}</th>
+                  <th style='width: 30%;text-align: center'>{{"phieu_nhan_dinh_nb_vao_vien.bai_tiet" | translate}}</th>
+                  <th style='width: 20%;text-align: center'>{{"phieu_nhan_dinh_nb_vao_vien.dung_thuoc" | translate}}*</th>
+                  <th style='width: 20%;text-align: center'>{{"phieu_nhan_dinh_nb_vao_vien.di_chuyen" | translate}}**</th>
+                </tr>
+                <tr>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.TUOI.ID'>
+                      <mat-radio-button *ngFor='let listAge of listAge' (change)='calculate3(3)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listAge.ID">{{listAge.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.BAI_TIET.ID'>
+                      <mat-radio-button *ngFor='let listBaiTiet of listBaiTiet' (change)='calculate3(3)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listBaiTiet.ID">{{listBaiTiet.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.DUNG_THUOC.ID'>
+                      <mat-radio-button *ngFor='let listDungThuoc of listDungThuoc' (change)='calculate3(3)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listDungThuoc.ID">{{listDungThuoc.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.DI_CHUYEN_DI_LAI.ID'>
+                      <mat-radio-button *ngFor='let listDiChuyen of listDiChuyen' (change)='calculate3(3)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listDiChuyen.ID">{{listDiChuyen.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+                <tr>
+                  <th style='width: 30%;text-align: center'>{{"title.tien_su" | translate}}</th>
+                  <th style='width: 30%;text-align: center'>{{"phieu_nhan_dinh_nb_vao_vien.nb_co_can_thiep" | translate}}</th>
+                  <th style='width: 20%;text-align: center'>{{"phieu_nhan_dinh_nb_vao_vien.tinh_trang_the_luc" | translate}}</th>
+                  <th style='width: 20%;text-align: center'>{{"phieu_nhan_dinh_nb_vao_vien.tinh_trang_tam_than" | translate}}**</th>
+                </tr>
+                <tr>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.TIEN_SU.ID'>
+                      <mat-radio-button *ngFor='let listTienSu of listTienSu' (change)='calculate3(3)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listTienSu.ID">{{listTienSu.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.NB_CO_CAN_THIEP.ID'>
+                      <mat-radio-button *ngFor='let listNBCoCanThiep of listNBCoCanThiep' (change)='calculate3(3)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listNBCoCanThiep.ID">{{listNBCoCanThiep.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.TINH_TRANG_THE_LUC.ID'>
+                      <mat-radio-button *ngFor='let listTinhTrangTheLuc of listTinhTrangTheLuc' (change)='calculate3(3)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listTinhTrangTheLuc.ID">{{listTinhTrangTheLuc.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                  <td>
+                    <mat-radio-group [(ngModel)]='phieuNhanDinhNguoiBenhVaoVien.BTDNDCB.TINH_TRANG_TAM_THAN.ID'>
+                      <mat-radio-button *ngFor='let listTinhTrangTamThan of listTinhTrangTamThan' (change)='calculate3(3)'
+                                        style='float: left; margin: 1px 5px;width: 100%'
+                                        [value]="listTinhTrangTamThan.ID">{{listTinhTrangTamThan.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,253 @@
+<div class='row'>
+  <div class='col-12 col-lg-4'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <h2>{{"phieu_theo_doi_chuc_nang_song.list" | translate}}</h2>
+        <h1></h1>
+        <table class='v1-table list w-full tb-chuc-nang-song'>
+          <thead>
+          <tr>
+            <th style="width:40%">{{'emr.created_at'|translate}}</th>
+            <th>{{'emr.created_by'|translate}}</th>
+            <th>
+              <div fxLayoutAlign='center center'>
+                <button [disabled]="!isEdit && !isNewBloodPressure" type="button" (click)="addBloodPressure()" mat-button class="btn mat-blue-hn"
+                        [title]="'tooltip.add_tdcns' | translate">
+                  <i class="fa fa-plus "></i>
+              </button>
+              </div>
+            </th>
+          </tr>
+          </thead>
+          <tbody *ngFor='let parent of listParent; index as indexParent'>
+            <tr  class="lbl"> <td><strong style='padding-left: 5px'>{{parent.parent_name}}</strong></td></tr>
+            <tr *ngFor='let ptd of parent.listPTDCNS; index as indexPTD' (click)='selectPTDCNS(indexParent,indexPTD)' [class.bg-success]='ptd.id === selectedPTDCNSId' [ngClass]='"ptd" + ptd.id'>
+              <td>{{ptd.time_moment ? (ptd.time_moment | amDateFormat: 'DD/MM/YYYY HH:mm') : ''}}</td>
+              <td>{{ptd.created_by}}</td>
+              <td>
+                <div fxLayoutAlign='center center'>
+                  <button [disabled]="!isEdit && !isNewBloodPressure" type="button" (click)="removeBloodPressure(indexParent,indexPTD,ptd)" mat-button class="btn mat-red-hn"
+                          [title]="'tooltip.delete_tdcns' | translate">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class='col'>
+    <mat-card appearance="outlined" [class.disabled]='!isEdit && !isNewBloodPressure'>
+      <mat-card-content>
+        <h2>{{"phieu_theo_doi_chuc_nang_song.title" | translate}}</h2>
+        <div class='row align-items-center'>
+          <mat-form-field class='col-sm-6' appearance='outline'>
+            <mat-label>{{"patient.patient_fullname" | translate}}</mat-label>
+            <input matInput [(ngModel)]='patientInfo.HO_TEN' readonly
+                   placeholder='{{"patient.patient_fullname" | translate}}'>
+          </mat-form-field>
+          <mat-form-field class='col-sm-3' appearance='outline'>
+            <mat-label>{{"patient.birthday" | translate}}</mat-label>
+            <input readonly matInput [(ngModel)]='patientInfo.NGAY_SINH'>
+          </mat-form-field>
+          <div class='col-sm-3' *ngIf='patientInfo.GIOI_TINH'>
+            <span>{{"patient.sex" | translate}}: </span>
+            <mat-radio-group readonly
+                             [(ngModel)]='patientInfo.GIOI_TINH.ID'>
+              <mat-radio-button [value]="'1'"> {{"emr.male"| translate}}</mat-radio-button>
+              <mat-radio-button [value]="'2'"> {{"emr.female"| translate}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <!--  chi tiet phieu-->
+    <mat-card appearance="outlined" [class.disabled]='!isEdit && !isNewBloodPressure'>
+      <mat-card-content>
+        <div class='row'>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'emr.dieu_duong' | translate }}:</div>
+            <div class='col form-field-full p-r-0'>
+              <app-select [(model)]='selectedBloodPressure.dieu_duong' category='cbyt' [disabled]=true> </app-select>
+            </div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'emr.ngay_gio_1' | translate }}:</div>
+            <div class='col p-r-0'>
+              <app-emr-date [(model)]='selectedBloodPressure.time_moment'
+                            (dmModelChange)='
+                              selectedBloodPressure.time_date = $event.DATE;
+                              selectedBloodPressure.time_label = $event.TIME;
+                            '
+                            [(unixModel)]='selectedBloodPressure.time_unix'></app-emr-date>
+            </div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'emr.huyet_ap' | translate }}:</div>
+            <div class='col form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.huyet_ap_tam_thu" type='number' min='0' max='999' autocomplete='off'>
+              </mat-form-field>
+            </div>
+            <div>/</div>
+            <div class='col form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.huyet_ap_tam_truong" type='number' min='0' max='999' autocomplete='off'>
+              </mat-form-field>
+            </div>
+            <div class='unit'>{{'mmHg'|translate}}</div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'emr.nhip_tho' | translate }}:</div>
+            <div class='col form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.nhip_tho" type='number' min='0' max='999' autocomplete='off'>
+              </mat-form-field>
+            </div>
+            <div class='unit'>{{'bpm'|translate}}</div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'emr.spo2' | translate }}:</div>
+            <div class='col form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.spo2" type='number' min='0' max='100' autocomplete='off'>
+              </mat-form-field>
+            </div>
+            <div class='unit'>{{'%'|translate}}</div>
+          </div>
+          <div class='col'></div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'emr.mach' | translate }}:</div>
+            <div class='col form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.mach" type='number' min='0' max='999' autocomplete='off'>
+              </mat-form-field>
+            </div>
+            <div class='unit'>{{'bpm'|translate}}</div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'emr.nhiet_do' | translate }}:</div>
+            <div class='col form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.nhiet_do" type='number' min='0' max='999' autocomplete='off'>
+              </mat-form-field>
+            </div>
+            <div class='unit'>{{'deg_c'|translate}}</div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'patient.height' | translate }}:</div>
+            <div class='col form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.chieu_cao" type='number' min='0' max='999' autocomplete='off'
+                       (ngModelChangeDebounced)='calBMI(selectedBloodPressure.can_nang, $event)'>
+              </mat-form-field>
+            </div>
+            <div class='unit'>{{'cm'|translate}}</div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'patient.weight' | translate }}:</div>
+            <div class='col form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.can_nang" type='number' min='0' max='999' autocomplete='off'
+                       (ngModelChangeDebounced)='calBMI($event, selectedBloodPressure.chieu_cao)'>
+              </mat-form-field>
+            </div>
+            <div class='unit'>{{'kg'|translate}}</div>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'patient.bmi' | translate }}:</div>
+            <div class='col form-field-full'>
+              <mat-form-field>
+                <input matInput [value]='selectedBloodPressure.bmi' readonly>
+              </mat-form-field>
+            </div>
+            <div class='unit'></div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'theo_doi_chuc_nang_song.nuoc_tieu' | translate }}:</div>
+            <div class='col p-r-0 form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.nuoc_tieu">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'theo_doi_chuc_nang_song.sonde_da_day' | translate }}:</div>
+            <div class='col p-r-0 form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.sonde_da_day">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'theo_doi_chuc_nang_song.dan_luu' | translate }}:</div>
+            <div class='col p-r-0 form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.dan_luu">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col'></div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'theo_doi_chuc_nang_song.tieu_de' | translate }} 1:</div>
+            <div class='col p-r-0 form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="phieuTDCNS.tieu_de_1">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'note' | translate }} 1:</div>
+            <div class='col p-r-0 form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.ghi_chu_1">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'theo_doi_chuc_nang_song.tieu_de' | translate }} 2:</div>
+            <div class='col p-r-0 form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="phieuTDCNS.tieu_de_2">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'note' | translate }} 2:</div>
+            <div class='col p-r-0 form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.ghi_chu_2">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'theo_doi_chuc_nang_song.tieu_de' | translate }} 3:</div>
+            <div class='col p-r-0 form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="phieuTDCNS.tieu_de_3">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-6' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'note' | translate }} 3:</div>
+            <div class='col p-r-0 form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.ghi_chu_3">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>
+            <div class='title'>{{ 'note' | translate }}:</div>
+            <div class='col p-r-0 form-field-full'>
+              <mat-form-field>
+                <input matInput [(ngModel)]="selectedBloodPressure.ghi_chu">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <h2 class='col-12' fxLayout='row' style='margin-bottom: 5px'>{{"phieu_chi_dinh_dieu_tri_phcn" | translate}}</h2>
+      <div style="font-size:1.1em " class='col-12' fxLayout='row'>{{ "chi_dinh_dieu_tri_phcn.kham_chuyen_khoa_phcn" | translate }}</div>
+      <div class='col-12'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{ "chi_dinh_dieu_tri_phcn.kham_chuyen_khoa_phcn.subtitle" | translate }}</mat-label>
+          <textarea matInput
+                    [(ngModel)]='chiDinhDieuTriPHCN.KHAM_CHUYEN_KHOA_PHCN'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+      <div style="font-size:1.1em " class='col-12' fxLayout='row'>{{ "2. " + ("emr.diagnose" | translate) }}</div>
+      <div class='col-12'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <textarea matInput
+                    [(ngModel)]='chiDinhDieuTriPHCN.CHAN_DOAN'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+      <div style="font-size:1.1em " class='col-12' fxLayout='row'>{{ "chi_dinh_dieu_tri_phcn.chi_dinh" | translate }}</div>
+      <div class='col-12'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{ "chi_dinh_dieu_tri_phcn.chi_dinh.subtitle" | translate }}</mat-label>
+          <textarea matInput
+                    [(ngModel)]='chiDinhDieuTriPHCN.CHI_DINH'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

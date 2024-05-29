@@ -1,0 +1,635 @@
+<div>
+  <mat-card appearance="outlined" class="m-b-48">
+    <mat-card-content>
+      <h2 class="m-b-8 m-l-8">Hồ sơ chăm sóc người bệnh của điều dưỡng</h2>
+      <div fxLayout="row">
+        <div class='col-6'>
+          <mat-form-field *ngIf='pcs && pcs.patient_info' appearance='outline' class='full-width'>
+            <mat-label>{{"giay_chuyen_vien.khoa_dieu_tri" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pcs.patient_info.parent_name'>
+            <button type="button" mat-button *ngIf="pcs && pcs.patient_info && pcs.patient_info.parent_name" matSuffix mat-icon-button aria-label="Clear" (click)="pcs.patient_info.parent_name = ''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"emr.diagnose" | translate}}</mat-label>
+            <textarea matInput
+                      [(ngModel)]='pcs.results.diagnosis'
+                      cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div class='col-6' style='margin-top: 4px'>
+          <div style='border: 1px solid #DDDDDD;border-radius: 5px;padding: 3px 0'>
+            <div fxFlex.gt-sm='22' style='margin: 6px 0 0 10px'>
+              {{"phieu_cham_soc.kinh_te_gia_dinh" | translate}}:
+            </div>
+            <div fxLayout='row' fxFlex.gt-sm='78'>
+              <mat-radio-group [(ngModel)]='pcs.results.kinh_te_gia_dinh'>
+                <mat-radio-button *ngFor='let ktgd of listKinhTeGiaDinh' style='float: left; margin: 5px' [value]="ktgd.ID">{{ktgd.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class='col-6'>
+          <div fxFlex="40">
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"phieu_cham_soc.so_the_nguoi_ngheo" | translate}}</mat-label>
+              <input matInput [(ngModel)]='pcs.results.the_nguoi_ngheo_number'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='60' style='text-align: left' class="m-t-8 m-l-8">
+            <mat-radio-group class="radio" [(ngModel)]='pcs.results.the_nguoi_ngheo'>
+              <mat-radio-button class="option" *ngFor='let tnn of listTheNguoiNgheo' style='float: left; margin: 5px' [value]="tnn">{{tnn.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_cham_soc.so_con" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pcs.results.so_con'>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"hoi_benh_noi_khoa.kham_benh.con_thu_may" | translate}}</mat-label>
+            <input matInput placeholder='Người bệnh là con thứ mấy(với bệnh nhi)'
+                   [(ngModel)]='pcs.results.con_thu_may'>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_cham_soc.ngay_vao_vien" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pcs.date_start_moment'
+                   (ngModelChange)='onDate($event, "DATE_VAO_VIEN", undefined)'
+                   [matDatepicker]='picker2'>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_cham_soc.lich_su_benh" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pcs.results.lish_su_benh'>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"hoi_benh_noi_khoa.kham_benh.ly_do_vao_vien" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pcs.results.ly_do_vao_vien'>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_cham_soc.khai_thac_lsu_benh" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pcs.results.khai_thac_lich_su_benh'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" style='margin-bottom: 10px'>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_cham_soc.nguoi_benh_co_bi_khuyet_tat_khong" | translate}}</mat-label>
+            <mat-select [(ngModel)]='pcs.results.nguoi_benh_co_khuyet_tat'>
+              <mat-option value='1'>Có</mat-option>
+              <mat-option value='2'>Không</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class='col-6' style='margin-top: 3px'>
+          <div style='border: 1px solid #DDDDDD;border-radius: 5px;padding: 3px 0'>
+            <div fxFlex.gt-sm='15' style='margin: 6px 0 0 10px'>
+              {{"hoi_benh_san_khoa.hoi_benh.tieu_su_gia_dinh" | translate}}:
+            </div>
+            <div fxLayout='row' fxFlex.gt-sm='85'>
+              <mat-radio-group [(ngModel)]='pcs.results.gia_dinh'>
+                <mat-radio-button *ngFor='let listgd of listGiaDinh' style='float: left; margin: 5px' [value]="listgd">{{listgd.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" style='margin-bottom: 10px'>
+        <div class='col-6'>
+          <div style='border: 1px solid #DDDDDD;border-radius: 5px'>
+            <div fxFlex.gt-sm='30' style='margin: 18px 0 0 10px'>
+              {{"phieu_cham_soc.nguoi_benh_da_dieu_tri" | translate}}:
+            </div>
+            <div fxLayout='row' fxFlex.gt-sm='70'>
+              <mat-radio-group [(ngModel)]='pcs.results.da_dieu_tri'>
+                <mat-radio-button *ngFor='let ndt of listNoiDieuTri' style='width: 50%; float: left; margin: 5px 0' [value]="ndt">{{ndt.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      <div class='col-6'>
+        <div style='border: 1px solid #DDDDDD;border-radius: 5px'>
+          <div fxFlex.gt-sm='30' style='margin: 18px 0 0 10px'>
+            {{"phieu_cham_soc.phuong_tien" | translate}}:
+          </div>
+          <div fxLayout='row' fxFlex.gt-sm='70'>
+            <mat-radio-group [(ngModel)]='pcs.results.phuong_tien_den_bv'>
+              <mat-radio-button *ngFor='let ptdbv of listPhuongTienDenBenhVien' style='width: 50%; float: left; margin: 5px 0' [value]="ptdbv">{{ptdbv.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class='col-12'>
+        <div fxLayout="row" style='border: 1px solid #DDDDDD;border-radius: 5px;padding: 3px 0'>
+          <div fxFlex.gt-sm='14' style='margin: 6px 0 0 10px'>
+            {{"phieu_cham_soc.khai_thac_lien_quan" | translate}}:
+          </div>
+          <div fxLayout='row' fxFlex.gt-sm='86' style='margin-left:10px'>
+            <mat-radio-group [(ngModel)]='pcs.results.khai_thac_lien_quan'>
+              <mat-radio-button *ngFor='let ktlq of listKhaiThacLienQuan' style='float: left; margin: 5px' [value]="ktlq">{{ktlq.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div class='col-12' fxLayout='row' style='margin: 5px 0'><h2>{{"phieu_cham_soc.tien_su_di_ung" | translate}}</h2></div>
+      
+      <div fxLayout="row">
+        <div class='col-2' style='margin-top: 16px'>
+          {{"phieu_cham_soc.thuoc_khang_sinh" | translate}}
+        </div>
+        <div class='col-2'>
+          <mat-radio-group [(ngModel)]='pcs.results.thuoc_khang_sinh'>
+            <mat-radio-button *ngFor='let dutks of listDiUngThuocKhangSinh' style='float: left; margin: 15px 5px 5px 5px' [value]="dutks">{{dutks.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class='col-8'>
+          <mat-form-field appearance='outline' class='full-width m-t-8'>
+            <mat-label>{{"phieu_cham_soc.ke_ten" | translate}}</mat-label>
+            <input matInput placeholder='Nếu có kể tên KS'
+                   [(ngModel)]='pcs.results.di_ung_thuoc_khang_sinh'>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div class='col-2' style='margin-top: 16px'>
+          {{"phieu_cham_soc.thuoc_khac" | translate}}
+        </div>
+        <div class='col-2'>
+          <mat-radio-group [(ngModel)]='pcs.results.thuoc_khac'>
+            <mat-radio-button *ngFor='let listtk of listDiUngThuocKhangSinh' style='float: left; margin: 15px 5px 5px 5px' [value]="listtk">{{listtk.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class='col-8'>
+          <mat-form-field appearance='outline' class='full-width m-t-8'>
+            <mat-label>{{"phieu_cham_soc.ke_ten" | translate}}</mat-label>
+            <input matInput placeholder='Nếu có kể tên KS'
+                   [(ngModel)]='pcs.results.di_ung_thuoc_khac'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div class='col-2' style='margin-top: 16px'>
+          {{"phieu_cham_soc.di_ung_do_con_trung" | translate}}
+        </div>
+        <div class='col-2'>
+          <mat-radio-group [(ngModel)]='pcs.results.di_ung_con_trung'>
+            <mat-radio-button *ngFor='let dudct of listDiUngThuocKhangSinh' style='float: left; margin: 15px 5px 5px 5px' [value]="dudct">{{dudct.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class='col-8' style='margin-top: 8px'>
+          <div style='padding: 5px 5px 5px 10px;border: 1px solid #DDDDDD;border-radius: 5px'>
+            <div fxFlex.gt-sm='20' style='margin-top: 5px'>
+              {{"phieu_cham_soc.di_ung_do_thuc_pham" | translate}}:
+            </div>
+            <div fxLayout='row' fxFlex.gt-sm='80'>
+              <mat-checkbox [(ngModel)]='pcs.results.di_ung_thuc_pham_tom'>{{"phieu_cham_soc.tom" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='pcs.results.di_ung_thuc_pham_cua'>{{"phieu_cham_soc.cua" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='pcs.results.di_ung_thuc_pham_oc'>{{"phieu_cham_soc.oc" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='pcs.results.di_ung_thuc_pham_dua'>{{"phieu_cham_soc.dua" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='pcs.results.di_ung_thuc_pham_khac'>{{"phieu_cham_soc.khac" | translate}}</mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <div class='col-12'>
+       <div fxLayout="row"  style='margin-top: 10px;padding: 5px;border: 1px solid #DDDDDD;border-radius: 5px'>
+         <div class='col-2' style='margin-top: 4px'>{{"phieu_cham_soc.di_ung_do_yeu_to_khac" | translate}}</div>
+         <div class='col-10'>
+           <mat-checkbox [(ngModel)]='pcs.results.di_ung_thuoc_la'>{{"phieu_cham_soc.khoi_thuoc_la" | translate}}</mat-checkbox>
+           <mat-checkbox [(ngModel)]='pcs.results.di_ung_huong_khoi'>{{"phieu_cham_soc.huong_khoi_cac_loai" | translate}}</mat-checkbox>
+           <mat-checkbox [(ngModel)]='pcs.results.di_ung_phan_hoa'>{{"phieu_cham_soc.phan_hoa" | translate}}</mat-checkbox>
+           <mat-checkbox [(ngModel)]='pcs.results.di_ung_my_pham'>{{"phieu_cham_soc.my_pham" | translate}}</mat-checkbox>
+           <mat-checkbox [(ngModel)]='pcs.results.di_ung_hoa_chat'>{{"phieu_cham_soc.hoa_chat" | translate}}</mat-checkbox>
+           <mat-checkbox [(ngModel)]='pcs.results.di_ung_thoi_tiet'>{{"phieu_cham_soc.thoi_tiet" | translate}}</mat-checkbox>
+           <mat-checkbox [(ngModel)]='pcs.results.di_ung_gia_suc'>{{"phieu_cham_soc.gia_suc" | translate}}</mat-checkbox>
+         </div>
+       </div>
+     </div>
+      <h2 fxLayout='row' class='m-8'>{{"phieu_cham_soc.tinh_trang_hien_tai" | translate}}</h2>
+
+      <div fxLayout="row" style='margin-bottom: 10px'>
+        <div class='col-6' style='margin-top: 3px'>
+          <div style='border: 1px solid #DDDDDD;border-radius: 5px;padding: 3px 0'>
+            <div fxFlex.gt-sm='22' style='margin: 6px 0 0 10px'>
+              {{"phieu_cham_soc.tinh_tao_giao_tiep" | translate}}:
+            </div>
+            <div fxLayout='row' fxFlex.gt-sm='78'>
+              <mat-radio-group [(ngModel)]='pcs.results.tinh_tao_giao_tiep'>
+                <mat-radio-button *ngFor='let ttgt of listTinhTaoGiaoTiep' style='float: left; margin: 5px' [value]="ttgt">{{ttgt.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+
+        <div class='col-6 '>
+          <div style='border: 1px solid #DDDDDD;border-radius: 5px;padding: 3px 0'>
+            <div fxFlex.gt-sm='15' style='margin: 6px 0 0 10px'>
+              {{"phieu_cham_soc.van_chuyen" | translate}}:
+            </div>
+            <div fxLayout='row' fxFlex.gt-sm='85'>
+              <mat-radio-group [(ngModel)]='pcs.results.van_chuyen'>
+                <mat-radio-button *ngFor='let bnvc of listBNVanChuyen' style='float: left; margin: 5px' [value]="bnvc">{{bnvc.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <div fxLayout='row' style='margin-bottom: 5px'>
+       <div class='col-6'>
+         <div style='text-align: left;border: 1px solid #DDDDDD;padding: 10px;border-radius: 5px; ' >
+           <mat-checkbox [(ngModel)]='pcs.results.nghien_hut_thuoc'>{{"phieu_cham_soc.co_hut_thuoc" | translate}}</mat-checkbox>
+           <mat-checkbox [(ngModel)]='pcs.results.nghien_bia_ruou'>{{"phieu_cham_soc.co_nghien_ruou_bia" | translate}}</mat-checkbox>
+           <mat-checkbox [(ngModel)]='pcs.results.nghien_ma_tuy'>{{"phieu_cham_soc.co_nghien_ma_tuy" | translate}}</mat-checkbox>
+         </div>
+       </div>
+     </div>
+
+      <div class='col-12'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"phieu_cham_soc.tinh_trang_hien_tai" | translate}}</mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    [(ngModel)]='pcs.results.tinh_trang_vao_vien_cua_benh_benh'
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class='col-12'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"phieu_cham_soc.du_kien_ke_hoach_cham_soc_va_theo_doi" | translate}}</mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    [(ngModel)]='pcs.results.du_kien_ke_hoach_cham_soc'
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_cham_soc.dieu_duong_don_benh" | translate}}</mat-label>
+            <input matInput placeholder='Điều dưỡng đón nhận người bệnh'
+                   [matAutocomplete]="position5"
+                   [(ngModel)]='pcs.results.dieu_duong'
+                   (focus)="filterUser('')">
+            <mat-autocomplete [displayWith]="displayCBYT" #position5="matAutocomplete">
+              <mat-option *ngFor="let user of filteredUserCBYTs" [value]="user">
+                <span>{{ user?.user_code }} - {{ user?.user_name }}</span>
+              </mat-option>
+            </mat-autocomplete>
+            <button type="button" mat-button *ngIf="pcs.results.dieu_duong" matSuffix mat-icon-button aria-label="Clear" (click)="pcs.results.dieu_duong = resetDM">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <div class='col-6' style='margin-top: 8px'>
+          <div style='border: 1px solid #DDDDDD;margin-bottom: 10px;border-radius: 5px'>
+            <div fxFlex.gt-sm='35' style='margin: 18px 0 0 10px'>
+              {{"phieu_cham_soc.bs_cho" | translate}}:
+            </div>
+            <div fxLayout='row' fxFlex.gt-sm='65'>
+              <mat-radio-group [(ngModel)]='pcs.results.nguoi_benh_khoi_bac_si_cho'>
+                <mat-radio-button *ngFor='let bcs of listBSCho' style='width: 50%; float: left; margin: 5px 0' [value]="bcs">{{bcs.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div class='col-6' style='margin-top: 8px'>
+          <div style='border: 1px solid #DDDDDD;border-radius: 5px;padding: 3px 0'>
+            <div fxFlex.gt-sm='30' style='margin: 6px 0 0 10px'>
+              {{"phieu_cham_soc.tinh_trang_nguoi_benh" | translate}}:
+            </div>
+            <div fxLayout='row' fxFlex.gt-sm='70'>
+              <mat-radio-group [(ngModel)]='pcs.results.tinh_trang_nguoi_benh'>
+                <mat-radio-button *ngFor='let ttnb of listTinhTrangNguoiBenh' style='float: left; margin: 5px' [value]="ttnb">{{ttnb.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"phieu_cham_soc.danh_gia_tinh_trang_nguoi_benh_khi_ra_vien" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='pcs.results.danh_gia_tinh_trang'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row"  style='margin-top: 5px;'>
+        <div class='col-6' style='margin-top: 8px;'>
+          <div style='border: 1px solid #DDDDDD;border-radius: 5px;padding: 3px 10px;' class="">
+          <mat-checkbox [(ngModel)]='pcs.results.con_sonde_da_day'>{{"phieu_cham_soc.con_sonde_da_day" | translate}}</mat-checkbox>
+          <mat-checkbox [(ngModel)]='pcs.results.con_ong_mo_kq'>{{"phieu_cham_soc.con_ong_mo_kq" | translate}}</mat-checkbox>
+          <mat-checkbox [(ngModel)]='pcs.results.da_cat_chi'>{{"phieu_cham_soc.da_cat_chi" | translate}}</mat-checkbox>
+          <mat-checkbox [(ngModel)]='pcs.results.chua_cat_chi'>{{"phieu_cham_soc.chua_cat_chi" | translate}}</mat-checkbox>
+          <mat-checkbox [(ngModel)]='pcs.results.chi_tu_tieu'>{{"phieu_cham_soc.chi_tu_tieu" | translate}}</mat-checkbox>
+        </div>
+      </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_cham_soc.tinh_trang_nguoi_benh" | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      [(ngModel)]='pcs.results.tinh_trang_nguoi_benh_desc'
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>     
+      </div>
+
+      <div fxLayout="row" style='margin-top: 5px;'>
+        <div class='col-6' style='margin-top: 7px'>
+          <div style='border: 1px solid #DDDDDD;margin:3px 0 10px 0;border-radius: 5px'>
+            <label fxFlex='19' class='text-left' style='margin: 10px'>{{"phieu_cham_soc.van_chuyen" | translate}}</label>
+
+            <div fxFlex='81'>
+              <mat-radio-group [(ngModel)]='pcs.results.van_chuyen_ra_vien'>
+                <mat-radio-button *ngFor='let vc of listVanChuyen' style='width: 33.33%; float: left; margin: 5px 0' [value]="vc">{{vc.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_cham_soc.tinh_trang_van_chuyen_ra_vien" | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      [(ngModel)]='pcs.results.van_chuyen_ra_vien_desc'
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" style="position: relative;bottom:5px">
+        <div class='col-6' style='margin-top: 8px'>
+          <div style='border: 1px solid #DDDDDD;border-radius: 5px;padding: 3px 0'>
+            <div fxFlex.gt-sm='20' style='margin: 6px 0 0 10px'>
+              {{"phieu_cham_soc.phuong_tien_ve" | translate}}:
+            </div>
+            <div fxLayout='row' fxFlex.gt-sm='80'>
+              <mat-radio-group [(ngModel)]='pcs.results.phuong_tien_ve'>
+                <mat-radio-button *ngFor='let pt of listPhuongTienVe' style='float: left; margin: 5px' [value]="pt">{{pt.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_cham_soc.phuong_tien_ve" | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      [(ngModel)]='pcs.results.phuong_tien_ve_desc'
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <h2 fxLayout='row' class='m-8'>{{"phieu_cham_soc.tinh_trang_hien_tai" | translate}}</h2>
+      <div fxLayout="row">
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"phieu_cham_soc.huong_dan_ve_sinh_va_suc_khoe" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='pcs.results.hien_tai.huong_dan_ve_sinh'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"phieu_cham_soc.an_uong" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='pcs.results.hien_tai.an_uong'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"phieu_cham_soc.tap_luyen" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='pcs.results.hien_tai.tap_luyen'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"phieu_cham_soc.hen_den_kham_lai" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='pcs.results.hien_tai.hen_den_kham_lai'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"phieu_cham_soc.dieu_duong_truong_khoa" | translate}}</mat-label>
+              <input matInput
+                     [matAutocomplete]="position1"
+                     [(ngModel)]='pcs.results.dieu_duong_truong_khoa'
+                     (focus)="filterUser('')">
+              <mat-autocomplete [displayWith]="displayCBYT" #position1="matAutocomplete">
+                <mat-option *ngFor="let user of filteredUserCBYTs" [value]="user">
+                  <span>{{ user?.user_code }} - {{ user?.user_name }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="pcs.results.dieu_duong_truong_khoa" matSuffix mat-icon-button aria-label="Clear" (click)="pcs.results.dieu_duong_truong_khoa = resetDM">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"phieu_cham_soc.dieu_duong_cham_soc" | translate}}</mat-label>
+              <input matInput placeholder='Điều dưỡng chăm sóc người bệnh'
+                     [matAutocomplete]="position4"
+                     [(ngModel)]='pcs.results.dieu_duong_cham_soc'
+                     (focus)="filterUser('')">
+              <mat-autocomplete [displayWith]="displayCBYT" #position4="matAutocomplete">
+                <mat-option *ngFor="let user of filteredUserCBYTs" [value]="user">
+                  <span>{{ user?.user_code }} - {{ user?.user_name }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="pcs.results.dieu_duong_cham_soc" matSuffix mat-icon-button aria-label="Clear" (click)="pcs.results.dieu_duong_cham_soc = resetDM">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='column'>
+        <div class='col-12'>
+          <div fxFlex='20' class='m-r-16'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"phieu_cham_soc.thoi_gian_cham_soc" | translate}}</mat-label>
+                <input matInput
+                       [(ngModel)]='newChamSoc.date_chamsoc_moment'
+                       (ngModelChange)='onDate($event, "DATE_CHAM_SOC", undefined)'
+                       [ngxMatDatetimePicker]="picker3">
+                <mat-datepicker-toggle matSuffix [for]="$any(picker3)"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker3></ngx-mat-datetime-picker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex='20' class='m-r-16'>
+           <div class='form-field-full'>
+             <mat-form-field appearance='outline'>
+               <mat-label>{{"phieu_cham_soc.theo_doi_dien_bien_du_kien_cham_soc" | translate}}</mat-label>
+               <input matInput [(ngModel)]='newChamSoc.theodoi'>
+             </mat-form-field>
+           </div>
+          </div>
+          <div fxFlex='30' class='m-r-16'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"phieu_cham_soc.thuc_hien_y_lenh_cham_soc" | translate}}</mat-label>
+                <input matInput [(ngModel)]='newChamSoc.ylenh'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex='25' class='m-r-16'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"phieu_cham_soc.ten_dieu_duong" | translate}}</mat-label>
+                <input matInput [matAutocomplete]="position3"
+                       [(ngModel)]='newChamSoc.selected'
+                       (focus)="filterUser('')">
+                <mat-autocomplete [displayWith]="displayCBYT" #position3="matAutocomplete">
+                  <mat-option *ngFor="let user of filteredUserCBYTs" [value]="user">
+                    <span>{{ user?.user_code }} - {{ user?.user_name }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex='5' class='text-center'>
+            <button mat-icon-button class="btn btn-sm mat-blue-hn" (click)='createYLenh(newChamSoc)'><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <div class='col-12 m-t-8'>
+          <div class='header-table p-y-8'>
+            <div fxFlex='20' class='text-center'>{{"ivf.date" | translate}}</div>
+            <div fxFlex='20' class='text-center'>{{"phieu_cham_soc.theo_doi" | translate}}</div>
+            <div fxFlex='30' class='text-center'>{{"phieu_cham_soc.thuc_hien_y_lenh" | translate}}</div>
+            <div fxFlex='25' class='text-center'>{{"phieu_cham_soc.ten_dieu_duong" | translate}}</div>
+            <div fxFlex='5' class='text-center'></div>
+          </div>
+        </div>
+        <div class='col-12' *ngFor='let ylenh of pcs.list_re_exam; let indexOfelement = index;'>
+          <div fxFlex='20' class='text-center m-r-16'>
+           <div class='form-field-full'>
+             <mat-form-field appearance='outline'>
+               <input matInput [value]='ylenh.date_ylenh'
+                      [(ngModel)]='ylenh.date_chamsoc_moment'
+                      (ngModelChange)='onDate($event, "DATE_Y_LENH", ylenh)'
+                      [ngxMatDatetimePicker]="picker1">
+               <mat-datepicker-toggle matSuffix [for]="$any(picker1)"></mat-datepicker-toggle>
+               <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+             </mat-form-field>
+           </div>
+          </div>
+          <div fxFlex='20' class='text-center m-r-16'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <input matInput [value]='ylenh.theodoi'
+                       [(ngModel)]='ylenh.theodoi' >
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex='30' class='text-center m-r-16'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <input matInput [value]='ylenh.ylenh'
+                       [(ngModel)]='ylenh.ylenh' >
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex='25' class='text-center m-r-16'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <input matInput
+                       [matAutocomplete]="position2"
+                       [(ngModel)]='ylenh.selected'
+                       (focus)="filterUser('')">
+                <mat-autocomplete [displayWith]="displayCBYT" #position2="matAutocomplete">
+                  <mat-option *ngFor="let user of filteredUserCBYTs" [value]="user">
+                    <span>{{ user?.user_code }} - {{ user?.user_name }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex='5' class='text-center'>
+            <button mat-icon-button color="" class="btn btn-sm mat-red-hn" (click)='removeYLenh(indexOfelement)'><i class="fa fa-remove"></i></button>
+          </div>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

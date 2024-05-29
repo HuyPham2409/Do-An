@@ -1,0 +1,299 @@
+<app-menu-v3 class='emr-menu' mode='template'>
+</app-menu-v3>
+<div class='emr mainContent m-t-24'>
+  <div class='row'>
+    <div class='col-12'>
+      <app-search-reception-queue mode='giay_to'
+                                  [document_exam_form_id]='document_exam_form_id'
+                                  [patientInfo]='patientInfo'
+                                  (patientChange)='patientChange($event)'
+                                  (dataChange)='handleDataChange($event)'></app-search-reception-queue>
+    </div>
+    <div class='row col-12'>
+      <div *ngIf='template' class='col-3'>
+       <app-template-exam [loaiGiayToLienQuan]='loaiGiayToLienQuan'
+                          [saveTemplate] ='saveTemplate'
+                          (templateChange)='templategGetValue($event)'>
+       </app-template-exam>
+      </div>
+      <div [class]='(template) ? "col-9" : "col-12"' >
+        <mat-card  appearance="outlined"  *ngIf='template' [class]='(disabled) ? "disabled" : ""'>
+          <mat-card-content>
+            <div class='row align-items-center'>
+              <mat-form-field class='col-sm-3 input_form_field' appearance='outline' required>
+                <mat-label>{{"template.examination_template_code" | translate}}</mat-label>
+                <input matInput [(ngModel)]='dataTemplate.examination_template_code'
+                       placeholder='{{"template.examination_template_code" | translate}}'>
+              </mat-form-field>
+              <mat-form-field class='col-sm-9' appearance='outline' required >
+                <mat-label>{{"template.examination_template_name" | translate}}</mat-label>
+                <input matInput [(ngModel)]='dataTemplate.examination_template_name'
+                       placeholder='{{"template.examination_template_name" | translate}}'>
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <div *ngIf='loaiGiayToLienQuan.TEMPLATE !== 0 && !template && LAYOUT_CREATED === 2' class='p-l-0 p-r-0 col-sm-12'>
+          <div class='col-sm-3 pull-right' *ngIf='loaiGiayToLienQuan.ID'>
+              <app-template-exam [is_select]='true'
+                                [loaiGiayToLienQuan]='loaiGiayToLienQuan'
+                                (templateChange)='templategGetValue($event)'>
+              </app-template-exam>
+          </div>
+        </div>
+        <div class='{{(LAYOUT_CREATED === 2) ? "d-flex col-sm-12" : "col-sm-12"}}'>
+          <!-- Hiển thị danh sách phiếu đã tạo theo dạng list ngang -->
+          <div *ngIf='!template && LAYOUT_CREATED !== 2' class='p-l-0 p-r-0 col-sm-12'>
+            <mat-card appearance="outlined">
+              <mat-card-content class='row'>
+                <section   *ngIf='listLoaiGiayToSave.length > 0'
+                          class='col-sm-9 pull-left'>
+                  <label class='row col-12'> <strong>{{"document_exam.list_document_exam_saved" | translate}}:</strong></label>
+                  <mat-radio-group  [(ngModel)]='idDocumentExamCode'
+                                    (change)='selectDocumentExam($event.value)'>
+                    <mat-radio-button  class='m-r-16 m-t-8 flex' style='min-width: 320px; align-items: center' *ngFor='let document of listLoaiGiayToSave;let indexOfelement = index;'
+                                      value='{{document.code}}' (click)='selectDocumentExam(document.code, indexOfelement)'>
+                      {{document.real_created_date ? document.real_created_date : (document.updated_at * 1000 | date:"HH:mm dd/MM/yyy")}}
+                      {{document.code}}({{document.created_by}})
+                      <a (click)='removeGiayTo(document, indexOfelement)' class='text-red-500'>
+                        <i class="fa fa-times"></i>
+                      </a>
+                      <ng-container *ngIf='loaiGiayToLienQuan.IS_MULTI_PRINT'>
+                        <mat-checkbox class='m-l-8'
+                                      (change)='handleChangeMultiPrintCheckbox($event, document)'
+                                      [checked]='checkedMultiPrintByOid[idDocumentExam]?.[document.id]'></mat-checkbox>
+                      </ng-container>
+                    </mat-radio-button>
+                  </mat-radio-group>
+                  <button mat-button class='bg-blue-700 text-white m-t-8'
+                          (click)='createDocument()'>{{'nav.create' | translate}}
+                  </button>
+                </section>
+                <div class='col-sm-3 pull-right'
+                    *ngIf='loaiGiayToLienQuan.ID'>
+                  <app-template-exam [is_select]='true'
+                                    [loaiGiayToLienQuan]='loaiGiayToLienQuan'
+                                    (templateChange)='templategGetValue($event)'>
+                  </app-template-exam>
+                </div>
+                <div class='clear'></div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <!-- Hiển thị danh sách phiếu đã tạo theo dạng table list -->
+          <div *ngIf='!template && LAYOUT_CREATED == 2' class='p-l-0 p-r-0 m-r-16 col-lg-3 col-sm-3 col-xs-2'>
+            <mat-card appearance="outlined">
+              <mat-card-content class='row'>
+                <section
+                          class='col-sm-12 '>
+                  <label class='row col-12'> <strong>{{"document_exam.list_document_exam_saved" | translate}}:</strong></label>
+                  <div class="table-wrap">
+                    <table class='v1-table list w-full table-phieu-da-luu' *ngIf='listLoaiGiayToSave.length > 0'>
+                      <thead>
+                        <tr>
+                          <th style="width:8%;">
+                            <mat-checkbox class='m-l-4' [(ngModel)]='isCheckAll' (change)='handleChangeMultiPrintCheckAll($event)'
+                                          [checked]='listLoaiGiayToSave.length !== 0 && listLoaiGiayToSave.length === listLoaiGiayToSaveChecked.length'>
+                            </mat-checkbox>
+                          </th>
+                          <th style="width:50%;">{{'emr.created_at'|translate}}</th>
+                          <th style="width:35%;">{{'emr.created_by'|translate}}</th>
+                          <th style="width:7%;"></th>
+                        </tr>
+                      </thead>
+                      <tbody  *ngIf='listLoaiGiayToSave.length > 0'>
+                        <tr *ngFor='let document of listLoaiGiayToSave ;let indexOfElement = index;' (click)='selectDocumentExam(document.code, indexOfElement)' [style.background-color]="(indexOfElementInTable === indexOfElement) ? '#d39700' : ''">
+                          <td style="width:8%;"><mat-checkbox class='m-l-4'
+                            (change)='handleChangeMultiPrintCheckbox($event, document)'
+                            [checked]='listLoaiGiayToSaveChecked.indexOf(document) !== -1'></mat-checkbox></td>
+                          <td style="width:50%;">
+                            <ng-container *ngIf='($any(document)[formIdToSortKey[loaiGiayToLienQuan.ID] || defaultSortKey]) as date'>
+                              {{date * 1000 | date:"HH:mm dd/MM/yyy"}}
+                            </ng-container>
+                          </td>
+                          <td style="width:35%;">{{document.created_by}}</td>
+                          <td style="width:7%;">
+                            <a (click)='removeGiayTo(document, indexOfElement)' class='text-red-500'>
+                              <i class="fa fa-times"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+                </section>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class='p-r-0 p-l-0' class='{{ (LAYOUT_CREATED === 2 && !template) ? "col-lg-9 col-sm-9 col-xs-10" : "col-lg-12 col-sm-12 col-xs-12" }} {{ (disabled && !isEnabledOnParent) ? "disabled" : "" }}'
+              *ngIf='loaiGiayToLienQuan !== {}'>
+            <!--      <app-upload-file ng-if='loaiGiayToLienQuan != {} && loaiGiayToLienQuan.ID && patientInfo.patient_id'-->
+            <!--                       [giayto]='loaiGiayToLienQuan'-->
+            <!--                       [patientInfo]='patientInfo'-->
+            <!--      ></app-upload-file>-->
+            <app-bien-ban-hoi-chan class='full-width' *ngIf='(loaiGiayToLienQuan.ID === ID_BIEN_BAN_HOI_CHAN || loaiGiayToLienQuan.ID === ID_BIEN_BAN_HC_KHANG_SINH) &&
+                            loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                  [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                  [loaiGiayToLienQuan]=loaiGiayToLienQuan
+                                  [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                  [patientInfo]='patientInfo'
+                                  [patientInfoHis]='patientHis'>
+            </app-bien-ban-hoi-chan>
+            <app-giay-chung-nhan-phau-thuat class='full-width' *ngIf='loaiGiayToLienQuan.ID === ID_CHUNG_NHAN_PHAU_THUAT &&
+                                          loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                            [selectGiayToLienQuan]=selectGiayToLienQuan
+                                            [isCreateGiayToLienQuan]=isCreateGiayToLienQuan
+                                            [patientInfo]=patientInfo>
+            </app-giay-chung-nhan-phau-thuat>
+            <app-giay-chuyen-vien class='full-width' *ngIf='loaiGiayToLienQuan.ID === ID_GIAY_CHUYEN_VIEN &&
+                          loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                  [selectGiayToLienQuan]=selectGiayToLienQuan
+                                  [isCreateGiayToLienQuan]=isCreateGiayToLienQuan
+                                  [patientInfo]=patientInfo>
+            </app-giay-chuyen-vien>
+            <app-thu-phan-ung-thuoc class='full-width' *ngIf='loaiGiayToLienQuan.ID === ID_THU_PHAN_UNG_THUOC &&
+                            loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                    [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                    [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                    [patientInfo]='patientInfo'
+                                    [idGiayTo]='ID_THU_PHAN_UNG_THUOC'>
+            </app-thu-phan-ung-thuoc>
+            <app-ho-so-cham-soc-nguoi-benh-cua-dieu-duong class='full-width' *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_CHAM_SOC &&
+                                                  loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                                          [selectGiayToLienQuan]=selectGiayToLienQuan
+                                                          [isCreateGiayToLienQuan]=isCreateGiayToLienQuan
+                                                          [patientInfo]=patientInfo>
+            </app-ho-so-cham-soc-nguoi-benh-cua-dieu-duong>
+            <app-bien-ban-kiem-diem-tu-vong class='full-width'
+                                            *ngIf='loaiGiayToLienQuan.ID === ID_FORM_KIEM_DIEM_TU_VONG &&
+                                    loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                            [selectGiayToLienQuan]=selectGiayToLienQuan
+                                            [patientInfo]='patientInfo'>
+
+            </app-bien-ban-kiem-diem-tu-vong>
+            <app-giay-chung-nhan-thuong-tich class='full-width'
+                                            *ngIf='(loaiGiayToLienQuan.ID === ID_FORM_GIAY_CHUNG_NHAN_THUONG_TICH) &&
+                                      loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                            [selectGiayToLienQuan]=selectGiayToLienQuan
+                                            [patientInfo]='patientInfo'>
+
+            </app-giay-chung-nhan-thuong-tich>
+            <app-luong-gia-chuc-nang-va-su-tham-gia class='full-width'
+                                                    *ngIf='loaiGiayToLienQuan.ID === ID_LUONG_GIA_CHUC_NANG &&
+                                                loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                                    [selectGiayToLienQuan]='selectGiayToLienQuan'>
+            </app-luong-gia-chuc-nang-va-su-tham-gia>
+            <app-chi-dinh-dieu-tri-phcn class='full-width'
+                                        *ngIf='loaiGiayToLienQuan.ID === ID_CHI_DINH_DIEU_TRI_PHCN &&
+                                    loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                        [selectGiayToLienQuan]='selectGiayToLienQuan'>
+
+            </app-chi-dinh-dieu-tri-phcn>
+            <app-thuc-hien-ky-thuat-phcn class='full-width'
+                                        *ngIf='loaiGiayToLienQuan.ID === ID_THUC_HIEN_KY_THUAT_PHCN &&
+                                  loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                        [selectGiayToLienQuan]='selectGiayToLienQuan'>
+
+            </app-thuc-hien-ky-thuat-phcn>
+            <app-phieu-truyen-dich class='full-width'
+                                  *ngIf='loaiGiayToLienQuan.ID === ID_TRUYEN_DICH &&
+                              loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                  [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                  [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                  [listLoaiGiayToSave]="listLoaiGiayToSave"
+                                  [patientInfo]='patientInfo'>
+
+            </app-phieu-truyen-dich>
+            <app-phieu-theo-doi-truyen-dich *ngIf='loaiGiayToLienQuan.ID === ID_THEO_DOI_TRUYEN_DICH && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                            [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                            [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                            [patientInfo]='patientInfo'>
+
+            </app-phieu-theo-doi-truyen-dich>
+            <app-phieu-theo-doi-di-ung class='full-width'
+                                      *ngIf='loaiGiayToLienQuan.ID === ID_THEO_DOI_DI_UNG_THUOC &&
+                            loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                      [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                      [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                      [patientInfo]='patientInfo'>
+            </app-phieu-theo-doi-di-ung>
+            <app-phieu-khai-thac-tien-su-dung-thuoc class='full-width' *ngIf='loaiGiayToLienQuan.ID === ID_KHAI_THAC_TIEN_SU_DUNG_THUOC &&
+                                  loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                                    [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                                    [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                                    [patientInfo]='patientInfo'>
+            </app-phieu-khai-thac-tien-su-dung-thuoc>
+            <app-phieu-dem-gac-meche-dung-cu class='full-width'
+                                            *ngIf='loaiGiayToLienQuan.ID === ID_DEM_GAC && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                            [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                            [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                            [patientInfo]='patientInfo'></app-phieu-dem-gac-meche-dung-cu>
+            <app-phieu-gay-me-hoi-suc  class='full-width emr-new'
+                                      *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_GAY_ME_HOI_SUC && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                      [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                      [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                      [patientInfo]='patientInfo'></app-phieu-gay-me-hoi-suc>
+            <app-phieu-cham-soc-y-ta  class='full-width emr-new'
+                                      *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_CHAM_SOC_Y_TA && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                      [is_template]='template'
+                                      [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                      [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                      [patientInfo]='patientInfo'></app-phieu-cham-soc-y-ta>
+            <app-phieu-phau-thuat-thu-thuat-emr class='full-width' *ngIf='loaiGiayToLienQuan.ID === ID_PHAU_THUAT_THU_THUAT && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                                [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                                [patientInfo]='patientInfo' [listPPTTTE]='listPPTTTE'>
+            </app-phieu-phau-thuat-thu-thuat-emr>
+            <app-bien-ban-hoi-chan-phau-thuat *ngIf='loaiGiayToLienQuan.ID === ID_BIEN_BAN_HOI_CHAN_PHAU_THUAT && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                              [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                              [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                              [patientInfo]='patientInfo'
+                                              [patientInfoHis]='patientHis'
+                                              (save)='saveDocument()'
+            ></app-bien-ban-hoi-chan-phau-thuat>
+            <app-document-exam-list [loaiGiayToLienQuan]='loaiGiayToLienQuan'
+                                    [patientInfo]='patientInfo'
+                                    [patientInfoHis]='patientHis'
+                                    [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                    [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                    [template]='template'
+                                    [isEdit]='isEdit'
+                                    [listLoaiGiayToSave]='listLoaiGiayToSave'
+                                    (disabledChangeToParent)="handleChangeDisabledStatus($event)"
+                                    (save)='saveDocument()'></app-document-exam-list>
+            <app-giay-dong-y-thuc-hien-pttt *ngIf='loaiGiayToLienQuan.ID === ID_GIAY_DONG_Y_PTTT && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                            [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                            [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                            [patientInfo]='patientInfo'
+                                            [patientInfoHis]='patientHis'></app-giay-dong-y-thuc-hien-pttt>
+            <app-phieu-giao-duc-suc-khoe *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_GDSK_NGUOI_BENH && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                        [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                        [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                        [patientInfo]='patientInfo'
+                                        [patientInfoHis]='patientHis'></app-phieu-giao-duc-suc-khoe>
+
+            <app-phieu-cham-soc-so-sinh *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_CHAM_SOC_SO_SINH && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                        [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                        [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                        [patientInfo]='patientInfo'
+                                        [patientInfoHis]='patientHis'></app-phieu-cham-soc-so-sinh>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <mat-card appearance="outlined" class='m-b-48' *ngIf="this.loaiGiayToLienQuan?.NO_VD !== 1">
+    <mat-card-content>
+      <div class='text-right'>
+        <button mat-button class='bg-brown-100 m-r-8'
+                *ngIf='selectGiayToLienQuan && selectGiayToLienQuan.id'
+                (click)='printDocument()'>{{'nav.print' | translate}}
+        </button>
+        <button mat-button class='bg-blue-700 text-white {{(disabled) ? "disabled" : ""}}'
+                *ngIf='this.loaiGiayToLienQuan.ID !== 5008'
+                (click)='saveDocument()'>{{'nav.save' | translate}}
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

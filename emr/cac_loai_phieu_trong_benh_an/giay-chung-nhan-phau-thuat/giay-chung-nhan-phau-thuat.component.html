@@ -1,0 +1,360 @@
+<div class='cnpttt'>
+  <mat-card appearance="outlined">
+    <div fxLayout.gt-sm='row' fxLayout.lt-md='column'>
+      <div fxLayout='column' fxFlex="50" fxFlex.lt-sm="100" >
+        <h4>{{'giay_to_lien_quan.giay_chung_nhan_phau_thuat.title' | translate}}</h4>
+        <div fxFlex="row" fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <app-select category='phieu_pttt' [params]='{
+          patient_id: patientInfo.patient_id,
+          reception_queue_id: patientInfo.reception_queue_id,
+          in_patient: patientInfo.in_patient
+          }' (modelChange)='loadDataFromSelectedPttt($event)' [model]='cnpttt.PHIEU_PHAU_THUAT_THU_THUAT' label='"Chọn phiếu phẫu thuật thủ thuật"'></app-select>
+        </div>
+        {{cnpttt.exam_done_diagnosis}}
+        <div fxFlex="row" fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <mat-form-field appearance='outline'>
+            <mat-label>{{'giay_to_lien_quan.khoa' | translate}}:</mat-label>
+            <input  matInput [(ngModel)]='cnpttt.parent_name'>
+          </mat-form-field>
+        </div>
+        <div fxFlex="row" fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <mat-form-field appearance='outline' class="m-r-8" >
+            <mat-label>{{'giay_to_lien_quan.ho_ten_bn' | translate}}:</mat-label>
+            <input matInput disabled [(ngModel)]='cnpttt.patient_fullname'>
+          </mat-form-field>
+        </div>
+        <div fxFlex="row" fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label>{{'giay_to_lien_quan.dia_chi' | translate}}:</mat-label>
+            <input matInput [(ngModel)]='cnpttt.address1'>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="row" fxFlex.lt-sm="100" class="form-field-full matero-col">
+<!--          <mat-form-field appearance='outline'>-->
+<!--            <mat-label>{{'giay_to_lien_quan.ngay_vao_vien' | translate}}:</mat-label>-->
+<!--            <input matInput-->
+<!--                   [(ngModel)]='cnpttt.from_date_moment'-->
+<!--                   (ngModelChange)='onDate($event, "FROM_DATE", undefined)'-->
+<!--                   [matDatepicker]="picker1">-->
+<!--            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
+<!--            <mat-datepicker #picker1></mat-datepicker>-->
+<!--          </mat-form-field>-->
+          <app-emr-date label='giay_to_lien_quan.ngay_vao_vien' mode='date'
+                        [(model)]='cnpttt.from_date_moment'
+                        [(unixModel)]='cnpttt.from_date'></app-emr-date>
+        </div>
+        <div fxFlex="row" fxFlex.lt-sm="100" class="form-field-full matero-col">
+<!--          <mat-form-field appearance='outline'>-->
+<!--            <mat-label>{{'giay_to_lien_quan.ngay_ra_vien' | translate}}:</mat-label>-->
+<!--            <input matInput [(ngModel)]='cnpttt.to_date_moment'-->
+<!--                   (ngModelChange)='onDate($event, "TO_DATE", undefined)'-->
+<!--                   [matDatepicker]="picker2">-->
+<!--            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>-->
+<!--            <mat-datepicker #picker2></mat-datepicker>-->
+<!--          </mat-form-field>-->
+          <app-emr-date label='giay_to_lien_quan.ngay_ra_vien' mode='date'
+                        [(model)]='cnpttt.to_date_moment'
+                        [(unixModel)]='cnpttt.to_date'></app-emr-date>
+        </div>
+        <div fxFlex="row" fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <mat-form-field appearance='outline'>
+            <mat-label>{{'giay_to_lien_quan.so_luu_tru' | translate}}:</mat-label>
+            <input matInput [(ngModel)]='cnpttt.storage_number'>
+          </mat-form-field>
+        </div>
+        <div fxFlex="row" fxFlex.lt-sm="100" class="matero-col form-field-full">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label>{{'giay_to_lien_quan.chan_doan' | translate}}:</mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      [(ngModel)]='cnpttt.examining_diagnosis'
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>
+        <div fxFlex="row" fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label>{{'giay_to_lien_quan.giay_chung_nhan_phau_thuat.phau_thuat' | translate}}:</mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      [(ngModel)]='cnpttt.phau_thuat'
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="row" fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <app-select label='giay_to_lien_quan.nhom_mau' [(model)]='cnpttt.blood_types'
+                      category='blood_type' [resetTo]='null' bindLabel='name'></app-select>
+        </div>
+      </div>
+
+      <div fxLayout='column' fxFlex="50" fxFlex.lt-sm="100">
+        <h4>{{'giay_to_lien_quan.giay_chung_nhan_phau_thuat.cach_thuc_phau_thuat' | translate}}</h4>
+        <div fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label>{{'giay_to_lien_quan.giay_chung_nhan_phau_thuat.ngay_pt' | translate}}:</mat-label>
+            <input matInput [(ngModel)]='cnpttt.date_phau_thuat_moment'
+                   (ngModelChange)='onDate($event, "DATE_PHAU_THUAT", undefined)'
+                   [matDatepicker]="picker4">
+            <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+            <mat-datepicker #picker4></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex.lt-sm="100"  class="form-field-full matero-col">
+            <!-- <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>{{'giay_to_lien_quan.giay_chung_nhan_phau_thuat.phau_thuat_vien' | translate}}:</mat-label>
+              <input matInput [(ngModel)]='cnpttt.phau_thuat_vien'>
+            </mat-form-field> -->
+            <div fxFlex.lt-sm="100" class=" form-field-full matero-col">
+              <app-select label='giay_to_lien_quan.giay_chung_nhan_phau_thuat.phau_thuat_vien' [(model)]='cnpttt.phau_thuat_vien'
+                          category='cbyt' [resetTo]='null' bindLabel="fullname"></app-select>
+            </div>
+        </div>
+
+        <div fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label>{{'giay_to_lien_quan.giay_chung_nhan_phau_thuat.phuong_phap_vo_cam' | translate}}: </mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      [(ngModel)]='cnpttt.phuong_phap_vo_cam'
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label>{{'giay_to_lien_quan.giay_chung_nhan_phau_thuat.phuong_phap_phau_thuat' | translate}}: </mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      [(ngModel)]='cnpttt.phuong_phap_phau_thuat'
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label>{{'giay_to_lien_quan.tinh_trang_ra_vien' | translate}}:</mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      [(ngModel)]='cnpttt.tinh_trang_luc_ra_vien'
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex.lt-sm="100" class="form-field-full matero-col">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>{{'giay_to_lien_quan.kq_gpb' | translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='cnpttt.ket_qua_gpb'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3"></textarea>
+            </mat-form-field>
+        </div>
+
+        <div fxFlex.lt-sm="100" class="form-field-full matero-col">
+          <mat-form-field appearance='outline'>
+            <mat-label>{{'giay_to_lien_quan.ngay_ky' | translate}}:</mat-label>
+            <input matInput
+                   [(ngModel)]='cnpttt.date_ky_moment'
+                   (ngModelChange)='onDate($event, "DATE_KY", undefined)'
+                   [matDatepicker]="picker5">
+            <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+            <mat-datepicker #picker5></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex.lt-sm="100" class=" form-field-full matero-col">
+          <mat-form-field >
+          <mat-label>{{'giay_to_lien_quan.bac_si_truong_khoa' | translate}}</mat-label>
+          <mtx-select [items]='doctors' bindLabel='TEN'
+                      [(ngModel)]="cnpttt.bac_si_truong_khoa"
+                      (search)='filterDoctor($event.term, "doctors")'
+                      ></mtx-select>
+        </mat-form-field>
+        </div>
+        <div fxFlex="row" fxFlex.lt-sm="100" class=" form-field-full matero-col">
+          <app-select label='giay_to_lien_quan.yeu_to_rh' [(model)]='cnpttt.rhesus_factor'
+                      category='rhesus_factor' [resetTo]='null' bindLabel='name'></app-select>
+        </div>
+        <div fxFlex.lt-sm="100" class=" form-field-full matero-col">
+          <app-select label='giay_chung_sinh.thu_truong_don_vi' [(model)]='cnpttt.thu_truong'
+                      category='cbyt' [resetTo]='null' bindLabel="fullname"></app-select>
+        </div>
+      </div>
+    </div>
+    <mat-divider class='m-t-8'></mat-divider>
+    <div fxLayout='column'>
+      <div fxLayout='column' class=''>
+        <h4 style="margin-top: 28px;" >{{'giay_to_lien_quan.giay_chung_nhan_phau_thuat.kham_lai' | translate}}</h4>
+      </div>
+      <div style="margin-inline:9px">
+      <div fxLayout='row' class="">
+        <div fxFlex='20' class='p-r-8'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{'giay_to_lien_quan.ngay' | translate}}:</mat-label>
+            <input matInput
+                   [(ngModel)]='newKhamLai.date_khamlai_moment'
+                   (ngModelChange)='onDate($event, "DATE_KHAM_LAI", undefined)'
+                   [ngxMatDatetimePicker]="picker7">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker7)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker7></ngx-mat-datetime-picker>
+          </mat-form-field>
+
+        </div>
+        <div fxFlex='25' *ngIf='is_show_re_exam === 1' class='p-r-8'>
+          <mat-form-field appearance='outline' class=''>
+            <mat-label>{{'giay_to_lien_quan.giay_chung_nhan_phau_thuat.noi_kham' | translate}}:</mat-label>
+            <input matInput
+                   [(ngModel)]='newKhamLai.location_re_exam'>
+          </mat-form-field>
+        </div>
+        <div [fxFlex]='is_show_re_exam === 1?25:50' class='p-r-8'>
+          <mat-form-field appearance='outline' class=''>
+            <mat-label>{{'giay_to_lien_quan.ket_qua' | translate}}:</mat-label>
+            <input matInput
+                   [(ngModel)]='newKhamLai.result_re_exam'>
+          </mat-form-field>
+        </div>
+        <div fxFlex='25' class='p-r-8'>
+          <app-select label='giay_to_lien_quan.bac_si_kham' [(model)]='newKhamLai.doctor_exam'
+                      category='cbyt' [resetTo]='null'></app-select>
+        </div>
+        <div fxFlex='5' fxLayoutAlign='center center' >
+          <button (click)='createKhamLai(newKhamLai)' type='button ' style="" class="btn-xs btn mat-blue-hn">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div fxLayout='row' class='header-table m-y-8 p-y-4'>
+        <div fxFlex='20' class='text-center m-r-16'>{{'giay_to_lien_quan.ngay' | translate}}</div>
+        <div fxFlex='25' *ngIf='is_show_re_exam === 1' class='text-center m-r-16'>{{'giay_to_lien_quan.giay_chung_nhan_phau_thuat.noi_kham' | translate}}</div>
+        <div [fxFlex]='is_show_re_exam === 1?25:50' class='text-center m-r-16'>{{'giay_to_lien_quan.ket_qua' | translate}}</div>
+        <div fxFlex='25' class='text-center m-r-16'>{{'giay_to_lien_quan.bac_si_kham' | translate}}</div>
+        <div fxFlex='5' class='text-center'></div>
+      </div>
+      <div fxLayout='row' *ngFor='let khamLai of cnpttt.list_re_exam; let indexOfelement = index;'>
+        <div fxFlex='20' class='text-center p-r-8'>
+          <app-emr-date mode='datetime'
+                        [(model)]='khamLai.date_khamlai_moment'
+                        [(unixModel)]='khamLai.date_re_exam'></app-emr-date>
+        </div>
+        <div *ngIf='is_show_re_exam === 1' fxFlex='25' class='text-center p-r-8'>
+          <mat-form-field appearance='outline' class=''>
+            <input matInput [(ngModel)]='khamLai.location_re_exam'>
+          </mat-form-field>
+        </div>
+        <div [fxFlex]='is_show_re_exam === 1?25:50' class='text-center p-r-8'>
+          <mat-form-field appearance='outline' class=''>
+            <input matInput [(ngModel)]='khamLai.result_re_exam'>
+          </mat-form-field>
+        </div>
+        <div fxFlex='25' class='text-center p-r-8'>
+          <app-select label='giay_to_lien_quan.bac_si_kham' [(model)]='khamLai.doctor_exam'
+                      category='cbyt' [resetTo]='null'></app-select>
+        </div>
+        <div fxFlex='5' fxLayoutAlign='center center'>
+          <button (click)='removeKhamLai(indexOfelement)' style="position: relative; bottom: 3px;" type='button' class="btn-sm btn mat-red-hn">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+      </div>
+      </div>
+    </div>
+    <mat-divider class='m-t-8'></mat-divider>
+    <div fxLayout='column'>
+      <div fxLayout='column' class=''>
+        <h4 style="margin-top: 32px;" >{{'giay_to_lien_quan.giay_chung_nhan_phau_thuat.nhung_lan_vao_vien_sau' | translate}}</h4>
+      </div>
+      <div style="margin-inline:9px">
+
+
+      <div fxLayout='row'>
+        <div fxFlex='20' class='p-r-8'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{'giay_to_lien_quan.ngay_vao' | translate}}:</mat-label>
+            <input matInput
+                   [(ngModel)]='newNhungLanVaoVienSau.date_start_moment'
+                   (ngModelChange)='onDate($event, "DATE_VAO_VIEN", undefined)'
+                   [ngxMatDatetimePicker]="picker6">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker6)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker6></ngx-mat-datetime-picker>
+          </mat-form-field>
+        </div>
+        <div fxFlex='20' class='p-r-8'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{'giay_to_lien_quan.ngay_ra' | translate}}:</mat-label>
+            <input matInput
+                   [(ngModel)]='newNhungLanVaoVienSau.date_end_moment'
+                   (ngModelChange)='onDate($event, "DATE_RA_VIEN", undefined)'
+                   [ngxMatDatetimePicker]="picker3">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker3)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker3></ngx-mat-datetime-picker>
+          </mat-form-field>
+        </div>
+        <div fxFlex='30' class='p-r-8'>
+          <mat-form-field appearance='outline' class=''>
+            <mat-label>{{'giay_to_lien_quan.benh_vien' | translate}}:</mat-label>
+            <input matInput [(ngModel)]='newNhungLanVaoVienSau.hospital'>
+          </mat-form-field>
+        </div>
+        <div fxFlex='25' class='p-r-8'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{'giay_to_lien_quan.ghi_chu' | translate}}:</mat-label>
+            <input matInput [(ngModel)]='newNhungLanVaoVienSau.note'>
+          </mat-form-field>
+        </div>
+        <div fxFlex='5' fxLayoutAlign='center center'>
+          <button (click)='createVaoVienLanSau(newNhungLanVaoVienSau)' type='button' class="btn-sm btn mat-blue-hn">
+            <i class="fa fa-plus" ></i>
+          </button>
+        </div>
+      </div>
+
+
+
+    <div fxLayout='row' class='header-table m-y-8 p-y-4'>
+      <div fxFlex='20' class='text-center'>{{'giay_to_lien_quan.ngay_vao' | translate}}</div>
+      <div fxFlex='20' class='text-center'>{{'giay_to_lien_quan.ngay_ra' | translate}}</div>
+      <div fxFlex='30' class='text-center'>{{'giay_to_lien_quan.benh_vien' | translate}}</div>
+      <div fxFlex='25' class='text-center'>{{'giay_to_lien_quan.ghi_chu' | translate}}</div>
+      <div fxFlex='5' class='text-center'></div>
+    </div>
+
+
+
+    <div fxLayout='row' *ngFor='let vaovien of cnpttt.list_hospital_next; let indexOfelement = index;'>
+      <div fxFlex='20' class='text-center p-r-8'>
+        <app-emr-date mode='datetime'
+                      [(model)]='vaovien.date_start_moment'
+                      [(unixModel)]='vaovien.date_start'></app-emr-date>
+      </div>
+      <div fxFlex='20' class='text-center p-r-8'>
+        <app-emr-date mode='datetime'
+                      [(model)]='vaovien.date_end_moment'
+                      [(unixModel)]='vaovien.date_end'></app-emr-date>
+      </div>
+      <div fxFlex='30' class='text-center p-r-8'>
+        <mat-form-field appearance='outline' class=''>
+          <input matInput [value]='vaovien.hospital'
+                 [(ngModel)]='vaovien.hospital' >
+        </mat-form-field>
+      </div>
+      <div fxFlex='25' class='text-center p-r-8'>
+        <mat-form-field appearance='outline'>
+          <input matInput
+                 [value]='vaovien.note'
+                 [(ngModel)]='vaovien.note'>
+        </mat-form-field>
+      </div>
+      <div fxFlex='5' fxLayoutAlign='center center' >
+        <button (click)='removeVaoVienLanSau(indexOfelement)' type='button' class="btn-sm btn mat-red-hn">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </mat-card>
+</div>

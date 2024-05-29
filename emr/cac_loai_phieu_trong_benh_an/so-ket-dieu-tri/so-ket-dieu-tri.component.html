@@ -1,0 +1,161 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content *ngIf='patientInfo'>
+      <div class='row'>
+        <div class='col-6'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.ho_ten_nguoi_benh" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.HO_TEN}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3' >
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.tuoi" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.DO_TUOI}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3' >
+          <mat-form-field class='w-full' *ngIf='patientInfo.GIOI_TINH'>
+            <mat-label>{{ "so_ket_dieu_tri.gioi_tinh" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.GIOI_TINH.MO_TA }}" readonly>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-12'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.dia_chi" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.address1}}" readonly>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-6'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.khoa" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.parent_name}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.buong" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.room_name}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.giuong" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.in_patient_bed_name}}" readonly>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-6'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.chan_doan" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.examining_diagnosis}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "phieu_dieu_tri.bac_si_dieu_tri" | translate}}</mat-label>
+            <input matInput value="{{skdt.results.bac_si_dieu_tri}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <app-select label='bien_ban_hoi_chan_phau_thuat.truong_khoa' [(model)]='skdt.results.truong_khoa'
+                      category='cbyt'></app-select>
+        </div>
+      </div>
+    </mat-card-content>
+<hr/>
+    <mat-card-content>
+
+      <div class='m-r-8' style='margin-bottom: 20px'>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <mat-label fxLayout='row' class='text-left'><strong>{{ "so_ket_dieu_tri.dien_bien_lam_sang" | translate}}:</strong></mat-label>
+          <ckeditor [editor]="editor" [(ngModel)]='skdt.results.clinical_developments'></ckeditor>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <mat-label fxLayout='row' class='text-left'><strong>{{ "so_ket_dieu_tri.xet_nghiem_cls" | translate}}:</strong></mat-label>
+          <ckeditor [editor]="editor" [(ngModel)]='skdt.results.laboratory_testing'></ckeditor>
+        </div>
+      </div>
+
+      <div class='m-r-8' style='margin-bottom: 20px'>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <mat-label fxLayout='row' class='text-left'><strong>{{ "hoi_benh_noi_khoa.tong_ket_benh_an.qua_trinh_dieu_tri" | translate}}:</strong></mat-label>
+          <ckeditor [editor]="editor" [(ngModel)]='skdt.results.treatment_process'></ckeditor>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <mat-label fxLayout='row' class='text-left'><strong>{{ "so_ket_dieu_tri.danh_gia_ket_qua" | translate}}:</strong></mat-label>
+          <ckeditor [editor]="editor" [(ngModel)]='skdt.results.tinh_trang_nguoi_benh_ravien'></ckeditor>
+        </div>
+      </div>
+
+
+<!-- Checkbox Thủ thuật phẫu thuật-->
+      <div class='m-r-8'>
+<!--        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">-->
+<!--          <div class='m-r-8' style='margin-bottom: 16px'>-->
+<!--            <form #isPTTTForm=ngForm>-->
+<!--              <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">-->
+<!--                <mat-checkbox [(ngModel)]='skdt.results.isPhauThuat' name='isPhauThuat'>{{ "so_ket_dieu_tri.phau_thuat" | translate}}</mat-checkbox>-->
+<!--              </div>-->
+<!--              <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">-->
+<!--                <mat-checkbox [(ngModel)]='skdt.results.isThuThuat' name='isThuThuat'>{{ "so_ket_dieu_tri.thu_thuat" | translate}}</mat-checkbox>-->
+<!--              </div>-->
+<!--            </form>-->
+<!--          </div>-->
+
+<!--          <div fxLayout='column'>-->
+<!--            <table class='pttt text-left'>-->
+<!--              <tr>-->
+<!--                <th>{{'so_ket_dieu_tri.gio_ngay'|translate}}</th>-->
+<!--                <th>{{'label.pp_phau_thuat'|translate}}</th>-->
+<!--                <th>{{'emr.bs_pt'|translate}}</th>-->
+<!--                <th>{{'emr.bs_gay_me'|translate}}</th>-->
+<!--              </tr>-->
+<!--              <ng-container *ngFor='let phauthuat of (skdt.results.listPhauThuatThuThuat || [])'>-->
+<!--                <tr *ngFor='let pt of phauthuat.results'>-->
+<!--                  <td>{{pt?.used_at | amFromUnix | amDateFormat: 'HH:mm DD/MM/YYYY'}}</td>-->
+<!--                  <td>{{pt?.operate_info?.operate_method?.anesthetic_method_name}}</td>-->
+<!--                  <td>{{pt?.operate_staff?.[0]?.user?.fullname}}</td>-->
+<!--                  <td>{{pt?.operate_staff?.[2]?.user?.fullname}}</td>-->
+<!--                </tr>-->
+<!--              </ng-container>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div style='margin-bottom: 20px'>
+            <mat-label fxLayout='row' class='text-left'><strong>{{"so_ket_dieu_tri.huong_dieu_tri_tiep_va_tien_luong" | translate}}:</strong></mat-label>
+            <ckeditor [editor]="editor" [(ngModel)]='skdt.results.huong_dieu_tri_va_che_do_tieptheo'></ckeditor>
+          </div>
+          <div>
+<!--            <table style="width:100%">-->
+<!--              <tr>-->
+<!--                <th colspan="2" style='padding: 10px'><strong>{{"hoi_benh_noi_khoa.tong_ket_benh_an.ho_so_phim_anh" | translate}}</strong></th>-->
+<!--              </tr>-->
+
+<!--              <tr>-->
+<!--                <th style="width:70%;padding: 10px"><strong >{{"hoi_benh_noi_khoa.tong_ket_benh_an.loai" | translate}}</strong></th>-->
+<!--                <th style="width:30%;padding: 10px"><strong>{{"hoi_benh_noi_khoa.tong_ket_benh_an.so_to" | translate}}</strong></th>-->
+<!--              </tr>-->
+
+<!--              <tr *ngFor='let item of skdt.results.listFileImage'>-->
+<!--                <td style="width: 70%; text-align: center">{{item.file_name}}</td>-->
+<!--                <td style="width: 30%; text-align: center">-->
+<!--                  <mat-form-field appearance='outline'>-->
+<!--                    <input style='text-align: center' matInput type="number" [value]='item' [(ngModel)]='item.page_number'>-->
+<!--                  </mat-form-field>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--            </table>-->
+          </div>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,507 @@
+<mat-card appearance="outlined" class='m-b-16'>
+  <mat-card-content class='m-b-24'>
+    <div class='row align-items-center'>
+      <div class='col-lg-9 col-sm-8 col-xs-8 f-w-600'>
+        I. {{"document_exam.yeu_cau_sd_ks.noi_dung_tai_khoa_lam_sang" | translate}}
+      </div>
+      <div class='col-lg-3 col-sm-4 col-xs-4 form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{"document_exam.yeu_cau_sd_ks.day_month_year" | translate}}</mat-label>
+          <input matInput [matDatepicker]='picker_ngay_thuc_hien'
+                 (ngModelChange)="onDate($event,'ngay_thuc_hien')"
+                 [(ngModel)]='ngay_thuc_hien'
+                 placeholder='{{"document_exam.yeu_cau_sd_ks.day_month_year" | translate}}'
+          >
+          <mat-datepicker-toggle matSuffix [for]='picker_ngay_thuc_hien'></mat-datepicker-toggle>
+          <mat-datepicker #picker_ngay_thuc_hien></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class='row align-items-center'>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"patient.patient_fullname" | translate}}</mat-label>
+        <input matInput [(ngModel)]='patientInfo.patient_fullname' readonly
+               placeholder='{{"patient.patient_fullname" | translate}}'>
+      </mat-form-field>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"patient.parent_name" | translate}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.parent_name'
+               placeholder='{{"patient.parent_name" | translate}}'>
+      </mat-form-field>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.reception_queue_id" | translate}}</mat-label>
+        <input matInput [(ngModel)]='patientInfo.reception_queue_id' readonly
+               placeholder='{{"yeu_cau_sd_ks.reception_queue_id" | translate}}'>
+      </mat-form-field>
+      <div class='col-sm-3'>
+        <span>{{"patient.sex" | translate}}: </span>
+        <mat-radio-group disabled *ngIf='patientInfo.GIOI_TINH'
+                         [(ngModel)]='patientInfo.GIOI_TINH.ID'>
+          <mat-radio-button [value]="'1'"> {{"emr.male"| translate}}</mat-radio-button>
+          <mat-radio-button [value]="'2'"> {{"emr.female"| translate}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+<!--    tesstttttttttttttttttt-->
+<!--    {{patientInfo}}-->
+
+    <div class='row align-items-center'>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"patient.age" | translate}}</mat-label>
+        <input matInput [(ngModel)]='patientInfo.DO_TUOI' readonly
+               placeholder='{{"patient.age" | translate}}'>
+      </mat-form-field>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"patient.height" | translate}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.CHIEU_CAO'
+               placeholder='{{"patient.height" | translate}}'>
+        <div matSuffix class='m-t-5'>cm</div>
+      </mat-form-field>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"patient.weight" | translate}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.CAN_NANG' type='number'
+               placeholder='{{"patient.weight" | translate}}'>
+        <div matSuffix class='m-t-5'>kg</div>
+      </mat-form-field>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.di_ung" | translate}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.DI_UNG'
+               placeholder='{{"document_exam.yeu_cau_sd_ks.di_ung" | translate}}'>
+      </mat-form-field>
+    </div>
+    <div class='row p-y-4'>
+      <div class='col-sm-3'>
+        <span class='f-w-600'>{{"document_exam.yeu_cau_sd_ks.chan_doan_nhiem_khuan" | translate}}:</span>
+      </div>
+      <div class='col-sm-9'>
+        <mtx-checkbox-group class='row' [items]='YEUCAU_SDKS_UTQL.nhiem_khuan'
+                            bindLabel='nhiem_khuan_name'
+                            bindValue='nhiem_khuan_id'
+                            [(ngModel)]="benh_nhiem_khuan">
+        </mtx-checkbox-group>
+      </div>
+    </div>
+    <div class='row p-y-4'>
+      <div class='col-sm-3'>
+        <span class='f-w-600'>{{"document_exam.yeu_cau_sd_ks.duong_vao" | translate}}:</span>
+      </div>
+      <div class='col-sm-9'>
+        <mtx-checkbox-group class='row' [items]='YEUCAU_SDKS_UTQL.duong_vao'
+                            bindLabel='duong_vao_name'
+                            bindValue='duong_vao_id'
+                            [(ngModel)]="duong_vao">
+        </mtx-checkbox-group>
+      </div>
+    </div>
+    <div class='row form-field-full'>
+      <mat-form-field appearance='outline' class='col-sm-12'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.benh_kem_khac" | translate}}</mat-label>
+        <textarea matInput [(ngModel)]='yeu_cau_sd_ks_ql.benh_kem_khac'
+                  placeholder='{{"document_exam.yeu_cau_sd_ks.benh_kem_khac" | translate}}'>
+        </textarea>
+      </mat-form-field>
+    </div>
+    <label fxLayout='row' style='margin: 5px 0'><strong>{{"document_exam.yeu_cau_sd_ks.tinh_trang_lam_sang_khi_hoi_chan" | translate}}:</strong></label>
+    <div class='row form-field-full'>
+      <mat-form-field appearance='outline' class='col-sm-12'>
+<!--        <mat-label>{{"document_exam.yeu_cau_sd_ks.tinh_trang_lam_sang_khi_hoi_chan" | translate}}</mat-label>-->
+        <textarea matInput [(ngModel)]='yeu_cau_sd_ks_ql.tinh_trang_lam_sang_khi_hoi_chan'
+                  placeholder='{{"document_exam.yeu_cau_sd_ks.tinh_trang_lam_sang_khi_hoi_chan" | translate}}'>
+        </textarea>
+      </mat-form-field>
+    </div>
+    <div class='row form-field-full'>
+      <mat-form-field appearance='outline' class='col-sm-12 w-full'>
+        <div class='row'>
+          <span class='col-1'>
+          <i class='btn btn-warning btn-sm fas fa-sigma' style='max-height: 25px' (click)='openSyntheticCls()'></i>
+            </span>
+          <textarea class='col-11' matInput [(ngModel)]='yeu_cau_sd_ks_ql.ket_qua_cls_gan_nhat'
+                    placeholder='|{{"document_exam.yeu_cau_sd_ks.ket_qua_cls_gan_nhat" | translate}}'></textarea>
+        </div>
+      </mat-form-field>
+    </div>
+    <div class='row'>
+      <mat-form-field appearance='outline' class='col-sm-3'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.nhiet_do" | translate}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.nhiet_do' type='number'
+               placeholder='{{"document_exam.yeu_cau_sd_ks.nhiet_do" | translate}}'>
+        <div matSuffix class='m-t-5'>°C </div>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-sm-3'>
+        <mat-label *ngIf='bach_cau.length == 0'>{{"document_exam.yeu_cau_sd_ks.bach_cau" | translate}}</mat-label>
+        <mat-label *ngIf='bach_cau.length != 0'>{{"document_exam.yeu_cau_sd_ks.bach_cau" | translate}}: {{bach_cau}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.bach_cau'
+               placeholder='{{"document_exam.yeu_cau_sd_ks.bach_cau" | translate}} + {{bach_cau}}'>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-sm-3'>
+        <mat-label *ngIf='crp.length != 0'>{{"document_exam.yeu_cau_sd_ks.crp" | translate}}: {{crp}}</mat-label>
+        <mat-label *ngIf='crp.length == 0'>{{"document_exam.yeu_cau_sd_ks.crp" | translate}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.crp'
+               placeholder='{{"document_exam.yeu_cau_sd_ks.crp" | translate}}'>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-sm-3'>
+        <mat-label *ngIf='pct.length != 0'>{{"document_exam.yeu_cau_sd_ks.pct" | translate}}: {{pct}}</mat-label>
+        <mat-label *ngIf='pct.length == 0'>{{"document_exam.yeu_cau_sd_ks.pct" | translate}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.pct'
+               placeholder='{{"document_exam.yeu_cau_sd_ks.pct" | translate}}'>
+      </mat-form-field>
+    </div>
+    <div class='row form-field-full'>
+      <mat-form-field appearance='outline' class='col-sm-12'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.ket_qua_khac" | translate}}</mat-label>
+        <textarea matInput [(ngModel)]='yeu_cau_sd_ks_ql.ket_qua_khac'
+                  placeholder='{{"document_exam.yeu_cau_sd_ks.ket_qua_khac" | translate}}'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='row align-center'>
+      <mat-form-field appearance='outline' class='col-sm-6'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.nong_do_creatinin" | translate}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.nong_do_creatinin' type='number'
+               placeholder='{{"document_exam.yeu_cau_sd_ks.nong_do_creatinin" | translate}}'>
+        <div matSuffix class='m-t-5'>ml/ph</div>
+      </mat-form-field>
+      <div class='col-sm-6'>
+        <div class='row'>
+          <label class='col-4'>{{"document_exam.yeu_cau_sd_ks.loc_mau_hd" | translate}}:</label>
+          <mat-radio-group [(ngModel)]='yeu_cau_sd_ks_ql.loc_mau_hd'>
+            <mat-radio-button value='1'>{{"document_exam.yeu_cau_sd_ks.yes" | translate}}</mat-radio-button>
+            <mat-radio-button value='0'>{{"document_exam.yeu_cau_sd_ks.no" | translate}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+    <div class='row align-center'>
+      <mat-form-field appearance='outline' class='col-sm-6'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.muc_loc_cau_than" | translate}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.muc_loc_cau_than' type='text'
+               placeholder='{{"document_exam.yeu_cau_sd_ks.muc_loc_cau_than" | translate}}'>
+      </mat-form-field>
+      <div class='col-sm-6'>
+        <div class='row' style='margin-top: 5px'>
+          <label class='col-4'>{{"document_exam.yeu_cau_sd_ks.loc_mau_lien_tuc" | translate}}:</label>
+          <mat-radio-group [(ngModel)]='yeu_cau_sd_ks_ql.loc_mau_lien_tuc'>
+            <mat-radio-button value='1'>{{"document_exam.yeu_cau_sd_ks.yes" | translate}}</mat-radio-button>
+            <mat-radio-button value='0'>{{"document_exam.yeu_cau_sd_ks.no" | translate}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+    <label fxLayout='row'><strong>{{"document_exam.yeu_cau_sd_ks.xet_nghiem_vi_sinh" | translate}}:</strong></label>
+    <div class='row form-field-full'>
+      <mat-form-field appearance='outline' class='col-sm-12'>
+<!--        <mat-label>{{"document_exam.yeu_cau_sd_ks.xet_nghiem_vi_sinh" | translate}}</mat-label>-->
+        <textarea matInput [(ngModel)]='yeu_cau_sd_ks_ql.xet_nghiem_vi_sinh'
+                  placeholder='{{"document_exam.yeu_cau_sd_ks.xet_nghiem_vi_sinh" | translate}}'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='box-border m-t-16'>
+      <div class='row align-items-center'>
+        <mat-form-field class='col-sm-3' appearance='outline'>
+          <mat-label>{{"document_exam.yeu_cau_sd_ks.benh_pham" | translate}}</mat-label>
+          <input matInput [(ngModel)]='BenhPham.benh_pham'>
+        </mat-form-field>
+        <mat-form-field appearance='outline' class='col-sm-2'>
+          <mat-label>{{"document_exam.yeu_cau_sd_ks.ngay_cay" | translate}}</mat-label>
+          <input matInput [matDatepicker]='picker'
+                 [(ngModel)]='BenhPham.ngay_cay'
+                 (ngModelChange)="onDate($event,'ngay_cay')"
+                 placeholder='{{"document_exam.yeu_cau_sd_ks.ngay_cay" | translate}}'
+          >
+          <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance='outline' class='col-sm-2'>
+          <mat-label>{{"document_exam.yeu_cau_sd_ks.ngay_tra" | translate}}</mat-label>
+          <input matInput [matDatepicker]='ngay_tra'
+                 [(ngModel)]='BenhPham.ngay_tra'
+                 (ngModelChange)="onDate($event,'ngay_tra')"
+                 placeholder='{{"document_exam.yeu_cau_sd_ks.ngay_tra" | translate}}'
+          >
+          <mat-datepicker-toggle matSuffix [for]="$any(ngay_tra)"></mat-datepicker-toggle>
+          <mat-datepicker #ngay_tra></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance='outline' class='col-sm-4'>
+          <mat-label>{{"document_exam.yeu_cau_sd_ks.ket_qua" | translate}}</mat-label>
+          <input matInput [(ngModel)]='BenhPham.ket_qua'
+                 placeholder='{{"document_exam.yeu_cau_sd_ks.ket_qua" | translate}}'>
+        </mat-form-field>
+        <div class='col-sm-1 text-center m-t-8'>
+          <button mat-button type='button ' class="btn-sm  mat-blue-hn" (click)='createBenhPham(BenhPham)'>
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class='row align-items-center'
+           *ngFor='let diung of yeu_cau_sd_ks_ql.benh_pham; let indexOfelement = index;'>
+        <mat-form-field class='col-sm-3' appearance='outline'>
+          <mat-label>{{"document_exam.yeu_cau_sd_ks.benh_pham" | translate}}</mat-label>
+          <input matInput [(ngModel)]='diung.benh_pham'>
+        </mat-form-field>
+        <mat-form-field appearance='outline' class='col-sm-2'>
+          <mat-label>{{"document_exam.yeu_cau_sd_ks.ngay_cay" | translate}}</mat-label>
+          <input matInput [matDatepicker]='picker'
+                 [(ngModel)]='diung.ngay_cay'
+                 (ngModelChange)="onDate($event,'ngay_cay', indexOfelement)"
+                 placeholder='{{"document_exam.yeu_cau_sd_ks.ngay_cay" | translate}}'
+          >
+          <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance='outline' class='col-sm-2'>
+          <mat-label>{{"document_exam.yeu_cau_sd_ks.ngay_tra" | translate}}</mat-label>
+          <input matInput [matDatepicker]='ngay_tra' readonly
+                 [(ngModel)]='diung.ngay_tra'
+                 (ngModelChange)="onDate($event,'ngay_tra', indexOfelement)"
+                 placeholder='{{"document_exam.yeu_cau_sd_ks.ngay_tra" | translate}}'
+          >
+          <mat-datepicker-toggle matSuffix  [for]="$any(ngay_tra)"></mat-datepicker-toggle>
+          <mat-datepicker #ngay_tra></mat-datepicker>
+        </mat-form-field>
+        <div class='col-sm-4 form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{"document_exam.yeu_cau_sd_ks.ket_qua" | translate}}</mat-label>
+            <input matInput [(ngModel)]='diung.ket_qua'
+                   placeholder='{{"document_exam.yeu_cau_sd_ks.ket_qua" | translate}}'>
+          </mat-form-field>
+        </div>
+        <div class='col-sm-1 text-center'>
+          <button  type='button' class="btn-sm m-t-8 mat-red-hn" (click)='removeBenhPham(indexOfelement)'>
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class='box-border m-t-16'>
+      <div class='row align-items-center'>
+        <div class='col-sm-6'>
+          <span class='f-w-600'>{{"document_exam.yeu_cau_sd_ks.phac_do_ks_dang_dieu_tri" | translate}}:</span>
+          <span>({{"document_exam.yeu_cau_sd_ks.ngay_dieu_tri" | translate}})</span>
+        </div>
+        <div class='col-sm-6'>
+          {{"document_exam.yeu_cau_sd_ks.phac_do_ks_ly_do" | translate}}
+        </div>
+      </div>
+      <div class='row align-items-center'
+           *ngFor='let phac_do_ks of YEUCAU_SDKS_UTQL.phac_do; let indexOfelement = index;'>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"document_exam.yeu_cau_sd_ks.phac_do_ks_dang_dieu_tri" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phac_do_ks.phac_do_ks_name'>
+        </mat-form-field>
+        <div class='col-sm-6' *ngIf='phac_do_ks.phac_do_ks_id === 4'>
+          <div class='row align-items-center m-l-0 m-r-0'>
+            <mat-checkbox class='col-auto' [(ngModel)]='phac_do_ks.checked'>
+            </mat-checkbox>
+            <mat-form-field appearance='outline' class='col'>
+              <input matInput [(ngModel)]='phac_do_ks.phac_do_ks_ly_do'
+                     [disabled]='(phac_do_ks.checked == true) ? false: true'>
+            </mat-form-field>
+          </div>
+        </div>
+        <section class="col-sm-6" *ngIf='phac_do_ks.phac_do_ks_id !== 4'>
+          <mat-checkbox [(ngModel)]='phac_do_ks.checked'>{{phac_do_ks.phac_do_ks_ly_do}}</mat-checkbox>
+        </section>
+      </div>
+    </div>
+    <div class='row align-items-center m-t-16'>
+      <span class='f-w-600 col-sm-12'>{{"document_exam.yeu_cau_sd_ks.phac_do_ks_yeucau" | translate}}</span>
+    </div>
+    <div class='m-b-50 box-border'>
+      <div class='row align-items-center'
+           *ngFor='let pharma of pharma_to_update; let indexOfelement = index;'>
+
+        <mat-form-field appearance='outline' class='col-6'>
+          <mat-label>{{"medicament.pharma_name_and_dosage" | translate}}</mat-label>
+          <input matInput [value]='(pharma.pharma_name + " - " + pharma.pharma_dosage)'
+                 placeholder='{{"medicament.pharma_name_and_dosage" | translate}}' readonly>
+        </mat-form-field>
+        <div class='col-sm-3'>
+          <div class='row'>
+            <mat-form-field appearance='outline' class='col-sm-3'>
+              <mat-label>{{"medicament.morning" | translate}}</mat-label>
+              <input matInput [(ngModel)]='pharma.number_morning' min='0'
+                     type='number' placeholder='{{"medicament.morning" | translate}}'>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-sm-3'>
+              <mat-label>{{"medicament.noon" | translate}}</mat-label>
+              <input matInput [(ngModel)]='pharma.number_noon' min='0'
+                     type='number'
+                     placeholder='{{"medicament.noon" | translate}}'>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-sm-3'>
+              <mat-label>{{"medicament.afternoon" | translate}}</mat-label>
+              <input matInput [(ngModel)]='pharma.number_afternoon' min='0'
+                     type='number'
+                     placeholder='{{"medicament.afternoon" | translate}}'>
+            </mat-form-field>
+            <mat-form-field appearance='outline' class='col-sm-3'>
+              <mat-label>{{"medicament.night" | translate}}</mat-label>
+              <input matInput [(ngModel)]='pharma.number_night' min='0'
+                     type='number'
+                     placeholder='{{"medicament.night" | translate}}'>
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-form-field appearance='outline' class='col-sm-1'>
+          <mat-label>{{"medicament.number_day" | translate}}</mat-label>
+          <input matInput [(ngModel)]='pharma.number_day' type='number' min='0'
+                 placeholder='{{"medicament.number_day" | translate}}'>
+        </mat-form-field>
+        <mat-form-field appearance='outline' class='col-sm-2'>
+          <mat-label>{{"medicament.quantity" | translate}}</mat-label>
+          <input matInput [(ngModel)]='pharma.quantity' type='number' min='0'
+                 placeholder='{{"medicament.quantity" | translate}}'>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class='row'style='margin-top: 10px'>
+      <mat-form-field appearance='outline' class='col-sm-4'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.bac_si_dieu_tri" | translate}}</mat-label>
+        <input matInput
+               [matAutocomplete]='position2'
+               [(ngModel)]='yeu_cau_sd_ks_ql.bac_si_dieu_tri'
+               (focus)="filterUser('', 0)"
+               (ngModelChange)='filterUser(yeu_cau_sd_ks_ql.bac_si_dieu_tri, 0)'>
+        <mat-autocomplete [displayWith]='displayUser'
+                          #position2='matAutocomplete'
+                          class='box-search-user'
+                          classList='box-search-user'>
+          <mat-option *ngFor='let user of filteredUsers' [value]='user'>
+            <span>{{ user?.TEN }}</span>
+          </mat-option>
+        </mat-autocomplete>
+        <button type='button' mat-button *ngIf='yeu_cau_sd_ks_ql.bac_si_dieu_tri' matSuffix mat-icon-button
+                aria-label='Clear' (click)='yeu_cau_sd_ks_ql.bac_si_dieu_tri = resetUser'>
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-sm-4'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.lanh_dao_khoa_lam_sang" | translate}}</mat-label>
+        <input matInput
+               [matAutocomplete]='position3'
+               [(ngModel)]='yeu_cau_sd_ks_ql.lanh_dao_khoa_lam_sang'
+               (focus)="filterUser('', 0)"
+               (ngModelChange)='filterUser(yeu_cau_sd_ks_ql.lanh_dao_khoa_lam_sang, 0)'>
+        <mat-autocomplete [displayWith]='displayUser'
+                          #position3='matAutocomplete'
+                          class='box-search-user'
+                          classList='box-search-user'>
+          <mat-option *ngFor='let user of filteredUsers' [value]='user'>
+            <span>{{ user?.TEN }}</span>
+          </mat-option>
+        </mat-autocomplete>
+        <button type='button' mat-button *ngIf='yeu_cau_sd_ks_ql.lanh_dao_khoa_lam_sang'
+                matSuffix mat-icon-button aria-label='Clear'
+                (click)='yeu_cau_sd_ks_ql.lanh_dao_khoa_lam_sang = resetUser'>
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-sm-4'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.nguoi_duoc_ban_qlsdks_phan_cong" | translate}}</mat-label>
+        <input matInput
+               [matAutocomplete]='position3'
+               [(ngModel)]='yeu_cau_sd_ks_ql.nguoi_duoc_ban_qlsdks_phan_cong'
+               (focus)="filterUser('', 0)"
+               (ngModelChange)='filterUser(yeu_cau_sd_ks_ql.nguoi_duoc_ban_qlsdks_phan_cong, 0)'>
+        <mat-autocomplete [displayWith]='displayUser'
+                          #position3='matAutocomplete'
+                          class='box-search-user'
+                          classList='box-search-user'>
+          <mat-option *ngFor='let user of filteredUsers' [value]='user'>
+            <span>{{ user?.TEN }}</span>
+          </mat-option>
+        </mat-autocomplete>
+        <button type='button' mat-button *ngIf='yeu_cau_sd_ks_ql.nguoi_duoc_ban_qlsdks_phan_cong'
+                matSuffix mat-icon-button aria-label='Clear'
+                (click)='yeu_cau_sd_ks_ql.nguoi_duoc_ban_qlsdks_phan_cong = resetUser'>
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class='row align-items-center'>
+      <div class='col-lg-9 col-sm-8 col-xs-8 f-w-600'>
+        II. {{"document_exam.yeu_cau_sd_ks.y_kien_ban_qlsdks" | translate}}
+      </div>
+      <div class='col-lg-3 col-sm-4 col-xs-4 form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{"document_exam.yeu_cau_sd_ks.day_month_year" | translate}}</mat-label>
+          <input matInput [matDatepicker]='picker_ngay_y_kien'
+                 [(ngModel)]='ngay_y_kien'
+                 (ngModelChange)="onDate($event,'ngay_y_kien')"
+                 placeholder='{{"document_exam.yeu_cau_sd_ks.day_month_year" | translate}}'
+          >
+          <mat-datepicker-toggle matSuffix [for]='picker_ngay_y_kien'></mat-datepicker-toggle>
+          <mat-datepicker #picker_ngay_y_kien></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance='outline' class='col-sm-4'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.y_kien_khoa_duoc" | translate}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.y_kien_khoa_duoc'
+              max="2000"
+              placeholder='{{"document_exam.yeu_cau_sd_ks.y_kien_khoa_duoc" | translate}}'>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-sm-4'>
+        <mat-label>{{"document_exam.yeu_cau_sd_ks.y_kien_duoc_lam_san" | translate}}</mat-label>
+        <input matInput [(ngModel)]='yeu_cau_sd_ks_ql.y_kien_duoc_lam_san'
+              max="2000"
+              placeholder='{{"document_exam.yeu_cau_sd_ks.y_kien_duoc_lam_san" | translate}}'>
+      </mat-form-field>
+    </div>
+<!--    <div class='row align-items-center'>-->
+<!--      <div class='col-sm-6'>-->
+<!--        <section class='row'>-->
+<!--          <label class='col-12 p-b-4'>{{"document_exam.yeu_cau_sd_ks.thong_nhat_su_dung_ks" | translate}}:</label>-->
+<!--          <mat-radio-group class='col' [(ngModel)]='yeu_cau_sd_ks_ql.thong_nhat_su_dung_ks'>-->
+<!--            <mat-radio-button class='example-margin'-->
+<!--                              value='1'>{{"document_exam.yeu_cau_sd_ks.yes" | translate}}</mat-radio-button>-->
+<!--            <mat-radio-button class='example-margin'-->
+<!--                              value='0'>{{"document_exam.yeu_cau_sd_ks.no" | translate}}</mat-radio-button>-->
+<!--          </mat-radio-group>-->
+<!--        </section>-->
+<!--      </div>-->
+<!--      <mat-form-field appearance='outline' class='col-sm-6'>-->
+<!--        <mat-label>{{"document_exam.yeu_cau_sd_ks.y_kien_khac" | translate}}</mat-label>-->
+<!--        <textarea matInput [(ngModel)]='yeu_cau_sd_ks_ql.y_kien_khac'-->
+<!--                  placeholder='{{"document_exam.yeu_cau_sd_ks.y_kien_khac" | translate}}'></textarea>-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
+    <!-- <div>
+      <mat-form-field appearance='outline' class='col-sm-3'>
+        <mat-label>{{"medicament.morning" | translate}}</mat-label>
+        <input matInput [(ngModel)]='' min='0'
+               type='number' placeholder='{{"medicament.morning" | translate}}'>
+      </mat-form-field>
+    </div> -->
+    <!-- [disabled]='!(pharma_to_update | checkStatus : null)' -->
+    <div class='button' *ngIf='currentTab === 1 || currentTab === 0'>
+      <div class='luuToa' *ngIf='currentTab === 0'>
+        <button class='button-save'
+                [disabled]='false'
+                [class.button-disable]='!(pharma_to_update | checkStatus : null)'
+                mat-button (click)='save(1)'>Lưu phiếu</button>
+        <button class='button-save m-l-8'
+                [disabled]='!object_id'
+                [class.button-disable]='!object_id'
+                mat-button (click)='printPhieu()'>In phiếu</button>
+      </div>
+      <div class='row'>
+        <div class='duyetToa' *ngIf='currentTab === 1'>
+          <button class='button-approve'
+                  [disabled]='!((pharma_to_update | checkStatus : 1) || (pharma_to_update | checkStatus : 3))'
+                  [class.button-disable]='!((pharma_to_update | checkStatus : 1) || (pharma_to_update | checkStatus : 3))'
+                  mat-button (click)='save(2)'>Đồng ý sử dụng</button>
+        </div>
+        <div class='duyetToa m-l-8' *ngIf='currentTab === 1'>
+          <button class='button-denied'
+                  [disabled]='!((pharma_to_update | checkStatus : 1) || (pharma_to_update | checkStatus : 2))'
+                  [class.button-disable]='!((pharma_to_update | checkStatus : 1) || (pharma_to_update | checkStatus : 2))'
+                  mat-button (click)='save(3)'>Không đồng ý</button>
+          <button class='button-save m-l-8'
+                  [disabled]='!object_id'
+                  [class.button-disable]='!object_id'
+                  mat-button (click)='printPhieu()'>In phiếu</button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

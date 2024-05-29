@@ -1,0 +1,558 @@
+<div class='matero-row chan-doan' fxLayout='row wrap' *ngIf='showField?.CHAN_DOAN !== false'>
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div class='row'>
+          <div class='col-12'>
+            <h2 fxLayout='row'>III. CHẨN ĐOÁN</h2>
+          </div>
+          <div class='col-12' *ngIf='showField?.CHAN_DOAN_YHCT_NOI_TRU === true'>
+            <div fxLayout='row'>
+              <div fxFlex.gt-sm='29'>
+                <div fxLayout='row' style='text-align: left'><strong>1.
+                    {{"phieu_yhct_noi_tru.chan_doan_theo_yhhd" | translate}}:</strong></div>
+                <div fxLayout='row' class='form-field-full'>
+                  <app-select label='1.1. {{"phieu_yhct_noi_tru.khi_vao_khoa_dieu_tri" | translate}}'
+                              [(model)]='chandoan.BENH_AN_YHCT_NOI_TRU.KHI_VAO_KHOA_DIEU_TRI'
+                              category='icd'></app-select>
+                </div>
+                <div fxLayout='row'>1.2. {{"phieu_yhct_noi_tru.ra_vien" | translate}}:</div>
+                <div fxLayout='row' class='form-field-full'>
+                  <app-select label='emr.main_disease'
+                              [(model)]='chandoan.BENH_AN_YHCT_NOI_TRU.BENH_CHINH'
+                              category='icd'></app-select>
+                </div>
+                <div fxLayout='row' class='form-field-full'>
+                  <app-multi-select
+                                    class='w-full'
+                                    label='phieu_yhct_noi_tru.benh_kem_theo'
+                                    [items]='chandoan.BENH_AN_YHCT_NOI_TRU.BENH_KEM_THEO'
+                                    category='icd'
+                                    [displayWith]='displayDMICD'></app-multi-select>
+                </div>
+              </div>
+
+              <div fxFlex.gt-sm='1' style='border-right: 1px solid black;'></div>
+              <div fxFlex.gt-sm='1'></div>
+              <div fxFlex.gt-sm='69'>
+                <div fxLayout='row' style='text-align: left'><strong>2.
+                    {{"phieu_yhct_noi_tru.chan_doan_theo_yhct" | translate}}</strong></div>
+                <div fxLayout='row'>2.2. {{"phieu_yhct_noi_tru.vao_khoa" | translate}}:</div>
+                <div fxLayout='row' class='form-field-full'>
+                  <mat-form-field appearance='outline'>
+                    <mat-label><strong>2.2.1. {{"phieu_yhct_noi_tru.benh_danh" |
+                        translate}}:</strong></mat-label>
+                    <input matInput [(ngModel)]='chandoan.BENH_AN_YHCT_NOI_TRU.BENH_DANH'>
+                  </mat-form-field>
+                </div>
+                <div fxLayout='row' class='form-field-full'>
+                  <mat-form-field appearance='outline'>
+                    <mat-label><strong>2.2.2. {{"phieu_yhct_noi_tru.bat_cuong" |
+                        translate}}:</strong></mat-label>
+                    <input matInput [(ngModel)]='chandoan.BENH_AN_YHCT_NOI_TRU.BAT_CUONG'>
+                  </mat-form-field>
+                </div>
+                <div fxLayout='row'
+                     style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px'>
+                  <mat-radio-group [(ngModel)]='chandoan.BENH_AN_YHCT_NOI_TRU.LIST_BAT_CUONG.ID'>
+                    <mat-radio-button *ngFor='let lbc of listBatCuong'
+                                      style='width: 25%; float: left; margin: 5px 0'
+                                      [value]="lbc.ID">{{lbc.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div
+                     style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+                  <div fxLayout='row' style='margin-top: 5px; text-align: left'><strong>2.2.3.
+                      {{"phieu_yhct_noi_tru.tang_phu" | translate}}:</strong></div>
+                  <div fxLayout='row'>
+                    <mat-radio-group [(ngModel)]='chandoan.BENH_AN_YHCT_NOI_TRU.LIST_TANG_PHU.ID'>
+                      <mat-radio-button *ngFor='let ltp of listTangPhu'
+                                        style='width: 25%; float: left; margin: 5px 0'
+                                        [value]="ltp.ID">{{ltp.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+                <div
+                     style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+                  <div fxLayout='row' style='margin-top: 5px; text-align: left'><strong>2.2.4.
+                      {{"phieu_yhct_noi_tru.kinh_mach" | translate}}:</strong></div>
+                  <div fxLayout='row'>
+                    <mat-radio-group [(ngModel)]='chandoan.BENH_AN_YHCT_NOI_TRU.LIST_KINH_MACH.ID'>
+                      <mat-radio-button *ngFor='let lkm of listKinhMach'
+                                        style='width: 25%; float: left; margin: 5px 0'
+                                        [value]="lkm.ID">{{lkm.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+                <div fxLayout='row'
+                     style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+                  <div fxFlex='35' style='margin-top: 2px; text-align: left'><strong>2.2.5.
+                      {{"phieu_yhct_noi_tru.dinh_vi_benh_theo" | translate}}:</strong></div>
+                  <div fxFlex='65'>
+                    <mat-radio-group style='display: flex; justify-content: space-around'
+                                     [(ngModel)]='chandoan.BENH_AN_YHCT_NOI_TRU.DINH_VI_BENH_THEO.ID'>
+                      <mat-radio-button *ngFor='let ldvbt of listDinhViBenhTheo' style='float: left'
+                                        [value]="ldvbt.ID">{{ldvbt.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+
+                <div
+                     style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+                  <div fxLayout='row' style='margin: 2px 0 5px 0; text-align: left'><strong>2.2.6.
+                      {{"phieu_yhct_noi_tru.nguyen_nhan" | translate}}:</strong></div>
+                  <div fxLayout='row'>
+                    <mat-radio-group [(ngModel)]='chandoan.BENH_AN_YHCT_NOI_TRU.NGUYEN_NHAN.ID'
+                                     style='display: flex; justify-content: space-around; width: 100%'>
+                      <mat-radio-button *ngFor='let lnn of listNguyenNhan'
+                                        [value]="lnn.ID">{{lnn.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+                <div fxLayout='row' class='form-field-full' style='margin-top: 5px'>
+                  <mat-form-field appearance='outline'>
+                    <mat-label>2.2.7. {{"phieu_yhct_noi_tru.chan_doan_ra_vien" |
+                      translate}}:</mat-label>
+                    <input matInput [(ngModel)]='chandoan.BENH_AN_YHCT_NOI_TRU.CHAN_DOAN_RA_VIEN'>
+                  </mat-form-field>
+                </div>
+              </div>
+
+            </div>
+            <div fxLayout='row' style='margin: 5px 0'><strong>IV.
+                {{"phieu_yhct_noi_tru.ket_qua_dieu_tri" | translate}}:</strong></div>
+            <div fxLayout='row'
+                 style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px'>
+              <mat-radio-group [(ngModel)]='chandoan.BENH_AN_YHCT_NOI_TRU.KET_QUA_DIEU_TRI.ID'
+                               style='display: flex; width: 100%; justify-content: space-around'>
+                <mat-radio-button *ngFor='let lkqdt of listKetQuaDieuTri'
+                                  [value]="lkqdt.ID">{{lkqdt.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-6'>
+            <div class='row'>
+              <div class='col-12 form-field-full'
+                   *ngIf='showField?.CHAN_DOAN_NOI_CHUYEN_DEN !== false'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>Nơi chuyển đến:</mat-label>
+                  <input matInput
+                         [matAutocomplete]='position'
+                         [(ngModel)]='chandoan.CHAN_DOAN_NOI_CHUYEN_DEN'
+                         (focus)="filterICD('')"
+                         (ngModelChange)='filterICD(chandoan.CHAN_DOAN_NOI_CHUYEN_DEN)'>
+                  <mat-autocomplete [displayWith]='displayDMICD' #position='matAutocomplete'>
+                    <mat-option *ngFor='let icd of filteredICDs' [value]='icd'>
+                      <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                  <button type='button' mat-button *ngIf='chandoan.CHAN_DOAN_NOI_CHUYEN_DEN'
+                          matSuffix mat-icon-button
+                          aria-label='Clear' (click)='chandoan.CHAN_DOAN_NOI_CHUYEN_DEN = resetDM'>
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class='col-12 form-field-full' *ngIf='showField?.CHAN_DOAN_VAO_VIEN !== false'>
+                <!-- Nếu là bệnh án nội khoa thì đổi thành multi select -->
+                <app-multi-select
+                                  label='KKB, Cấp cứu'
+                                  [items]='chandoan.CHAN_DOAN_VAO_VIEN_LIST'
+                                  category='icd'
+                                  (itemsChange)="handleChangeListChanDoan($event)"
+                                  [displayWith]='displayDMICD'></app-multi-select>
+                <mat-form-field appearance='outline' *ngIf="isBenhAnNoiKhoa === false">
+                  <mat-label>KKB, Cấp cứu</mat-label>
+                  <input matInput
+                         [matAutocomplete]='position'
+                         [(ngModel)]='chandoan.CHAN_DOAN_VAO_VIEN'
+                         (focus)="filterICD('')"
+                         (ngModelChange)='filterICD(chandoan.CHAN_DOAN_VAO_VIEN)'>
+                  <mat-autocomplete [displayWith]='displayDMICD' #position='matAutocomplete'>
+                    <mat-option *ngFor='let icd of filteredICDs' [value]='icd'>
+                      <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                  <button type='button' mat-button *ngIf='chandoan.CHAN_DOAN_VAO_VIEN'
+                          matSuffix mat-icon-button
+                          aria-label='Clear' (click)='chandoan.CHAN_DOAN_VAO_VIEN = resetDM'>
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class='col-12 form-field-full'
+                   *ngIf='showField?.DIEU_TRI_CHAN_DOAN_BENH_CHINH !== false'>
+                <!-- Nếu là bệnh án nội khoa thì đổi thành multi select -->
+                <app-multi-select
+                                  label='Khi vào khoa điều trị'
+                                  [items]='chandoan.CHAN_DOAN_DIEU_TRI.CHAN_DOAN_BENH_CHINH_LIST'
+                                  category='icd'
+                                  (itemsChange)="handleChangeListChanDoan($event)"
+                                  [displayWith]='displayDMICD'></app-multi-select>
+                <mat-form-field appearance='outline' *ngIf="isBenhAnNoiKhoa === false">
+                  <mat-label>Khi vào khoa điều trị</mat-label>
+                  <input matInput
+                         [matAutocomplete]='position'
+                         [(ngModel)]='chandoan.CHAN_DOAN_DIEU_TRI.CHAN_DOAN_BENH_CHINH'
+                         (focus)="filterICD('')"
+                         (ngModelChange)='filterICD(chandoan.CHAN_DOAN_DIEU_TRI.CHAN_DOAN_BENH_CHINH)'>
+                  <mat-autocomplete [displayWith]='displayDMICD' #position='matAutocomplete'>
+                    <mat-option *ngFor='let icd of filteredICDs' [value]='icd'>
+                      <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                  <button type='button' mat-button *ngIf='chandoan.CHAN_DOAN_DIEU_TRI.CHAN_DOAN_BENH_CHINH'
+                          matSuffix mat-icon-button
+                          aria-label='Clear' (click)='chandoan.CHAN_DOAN_DIEU_TRI.CHAN_DOAN_BENH_CHINH = resetDM'>
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+
+              <!-- Bệnh án sản khoa -->
+              <ng-container *ngIf='showField?.CHAN_DOAN_SAN_KHOA === true'>
+                <div class='col-12'>
+                  <app-emr-date label='chan_doan_san_khoa.ngay_de' mode='date'
+                                [(model)]='chandoan.ngay_de'
+                                [(dmModel)]='chandoan.NGAY_DE'></app-emr-date>
+                </div>
+                <div class='col-12'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"chan_doan_san_khoa.ngoi_thai" | translate}}</mat-label>
+                    <input matInput type='text' [(ngModel)]="chandoan.NGOI_THAI">
+                  </mat-form-field>
+                </div>
+                <div class='col-12'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"chan_doan_san_khoa.cach_thuc_de" | translate}}</mat-label>
+                    <input matInput type='text' [(ngModel)]="chandoan.CACH_THUC_DE">
+                  </mat-form-field>
+                </div>
+                <div class='col-12'>
+                  <div class='row' fxLayoutAlign='start center'>
+                    <div class='col'>
+                      <mat-form-field appearance='outline' class='full-width'>
+                        <mat-label>{{"chan_doan_san_khoa.kiem_soat_tu_cung" |
+                          translate}}</mat-label>
+                        <input matInput type='text' [(ngModel)]="chandoan.MO_TA_KIEM_SOAT_TU_CUNG">
+                      </mat-form-field>
+                    </div>
+                    <div class='col-auto'>
+                      <mat-checkbox labelPosition='before' [(ngModel)]='chandoan.KIEM_SOAT_TU_CUNG'>
+                      </mat-checkbox>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+              <app-t-m-n-giai-doan class='col-12' *ngIf='showField?.TMN_GIAI_DOAN === true'
+                                   [TNMGiaiDoan]='chandoan.TNM_GIAI_DOAN_A'>
+              </app-t-m-n-giai-doan>
+
+
+              <!-- Tai biến / biến chứng -->
+              <div class='col-12' *ngIf="showField?.CHECKBOX_TAI_BIEN_BIEN_CHUNG === true">
+                <div class=' m-x-auto m-y-8 row'>
+                  <mat-checkbox class="col-6 m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.tai_bien">+ Tai biến</mat-checkbox>
+                  <mat-checkbox class="col-6 m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.bien_chung">+ Biến chứng</mat-checkbox>
+                </div>
+              </div>
+              <!-- Nguyên nhân tai biến / biến chứng -->
+              <div class='col-12'
+                   *ngIf="showField?.CHECKBOX_NGUYEN_NHAN_KHI_VAO_KHOA_DIEU_TRI === true">
+                <div class=' m-x-auto m-y-8 row'>
+                  <mat-checkbox class="col m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.do_phau_thuat">1.Do phẫu thuật</mat-checkbox>
+                  <mat-checkbox class="col m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.do_gay_me">2. Do gây mê</mat-checkbox>
+                  <mat-checkbox class="col m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.do_nhiem_khuan">3. Do nhiễm
+                    khuẩn</mat-checkbox>
+                  <mat-checkbox class="col m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.do_nguyen_nhan_khac">4. Khác</mat-checkbox>
+                </div>
+              </div>
+              <!--              //////////////////////////////////////////////-->
+              <div class='col-12'
+                   *ngIf="showField?.CHECKBOX_THU_THUAT_PHAU_THUAT_SAU_SINH === true">
+                <div class=' m-x-auto m-y-8 row'>
+                  <mat-checkbox class="col m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.thu_thuat_sau_sinh">+
+                    {{"emr.thu_thuat_sau_sinh" | translate}}</mat-checkbox>
+                  <mat-checkbox class="col m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.phau_thuat_sau_sinh">+
+                    {{"emr.phau_thuat_sau_sinh" | translate}}</mat-checkbox>
+                </div>
+              </div>
+
+
+              <ng-container *ngIf="showField?.TONG_SO_NGAY_DTSPT === true">
+                <div class='col-12 form-field-full'>
+                  <mat-form-field appearance='outline'>
+                    <mat-label>Tổng số ngày điều trị sau phẫu thuật</mat-label>
+                    <input matInput name="SongayDT" [(ngModel)]="chandoan.TONG_SO_NGAY_DTSPT"
+                           placeholder="Tổng số ngày điều trị sau phẫu thuật" type='number' min='0'>
+
+                  </mat-form-field>
+                </div>
+              </ng-container>
+              <ng-container *ngIf='showField?.TONG_SO_LAN_PT === true'>
+                <div class='col-12 form-field-full'>
+                  <mat-form-field appearance='outline'>
+                    <mat-label>Tổng số lần phẫu thuật</mat-label>
+                    <input matInput name="SolanPT" [(ngModel)]="chandoan.TONG_SO_LAN_PT"
+                           placeholder="Tổng số lần phẫu thuật" type='number' min='0'>
+                  </mat-form-field>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class='col-6'>
+            <div class='row'>
+              <div class='col-12' *ngIf='showField?.RA_VIEN !== false'>
+                <label class='w-full m-t-4 m-b-12' fxLayout='row'>Ra viện:</label>
+              </div>
+              <div class='col-12 form-field-full'
+                   *ngIf='showField?.CHAN_DOAN_RA_VIEN_BENH_CHINH !== false'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>{{'emr.main_disease'|translate}}</mat-label>
+                  <input matInput
+                         [matAutocomplete]="position"
+                         [(ngModel)]="chandoan.CHAN_DOAN_RA_VIEN.CHAN_DOAN_BENH_CHINH"
+                         (focus)="filterICD('')"
+                         (ngModelChange)="filterICD(chandoan.CHAN_DOAN_RA_VIEN.CHAN_DOAN_BENH_CHINH)">
+                  <mat-autocomplete [displayWith]="displayDMICD" #position="matAutocomplete">
+                    <mat-option *ngFor="let icd of filteredICDs" [value]="icd">
+                      <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                  <button type="button" mat-button
+                          *ngIf="chandoan.CHAN_DOAN_RA_VIEN.CHAN_DOAN_BENH_CHINH" matSuffix
+                          mat-icon-button aria-label="Clear"
+                          (click)="chandoan.CHAN_DOAN_RA_VIEN.CHAN_DOAN_BENH_CHINH = resetDM">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <app-t-m-n-giai-doan class='col-12' *ngIf='showField?.TMN_GIAI_DOAN === true'
+                                   [TNMGiaiDoan]='chandoan.TNM_GIAI_DOAN_B'>
+              </app-t-m-n-giai-doan>
+              <div class='col-12 form-field-full'
+                   *ngIf='showField?.CHAN_DOAN_RA_VIEN_BENH_PHU !== false'>
+                <app-multi-select
+                                  label='Bệnh kèm theo (nếu có)'
+                                  [items]='chandoan.CHAN_DOAN_RA_VIEN.CHAN_DOAN_BENH_PHU'
+                                  category='icd'
+                                  (itemsChange)="handleChangeListChanDoan($event)"
+                                  [displayWith]='displayDMICD'></app-multi-select>
+              </div>
+              <div class='col-12' *ngIf="showField?.CHECKBOX_CHAN_DOAN === true">
+                <div class=' m-x-auto m-y-8 row'>
+                  <mat-checkbox *ngIf="showField?.CHECKBOX_CHAN_DOAN_TAI_BIEN !== false"
+                                class="col-6 m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.tai_bien">+ Tai biến</mat-checkbox>
+                  <mat-checkbox *ngIf="showField?.CHECKBOX_CHAN_DOAN_BIEN_CHUNG !== false"
+                                class="col-6 m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.bien_chung">+ Biến chứng</mat-checkbox>
+                </div>
+              </div>
+
+              <!-- Tình hình phẫu thuật -->
+              <div class='col-12' *ngIf='showField?.CHAN_DOAN_SAN_KHOA === true'>
+                <div class='row bordered'>
+                  <div class='col-5' fxLayoutAlign='start center'>{{
+                    'title.title_tinh_hinh_phau_thuat' | translate }}:</div>
+                  <div class='col-7'>
+                    <mat-radio-group class='row' [(ngModel)]='chandoan.TINH_HINH_PHAU_THUAT.ID'>
+                      <mat-radio-button labelPosition='before' class='col-6 m-r-0 p-y-4'
+                                        *ngFor='let item of list_TINH_HINH_PHAU_THUAT'
+                                        [value]="item.ID">{{item.MO_TA|
+                        translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+
+              <ng-container *ngIf="showField?.NGUYEN_NHAN_TAI_BIEN === true">
+                <div class='col-12 form-field-full'>
+                  <mat-form-field appearance='outline'>
+                    <mat-label>Nguyên nhân</mat-label>
+                    <input matInput
+                           [matAutocomplete]="position"
+                           [(ngModel)]="chandoan.CHAN_DOAN_RA_VIEN.CHAN_DOAN_NGUYEN_NHAN"
+                           (focus)="filterICD('')"
+                           (ngModelChange)="filterICD(chandoan.CHAN_DOAN_RA_VIEN.CHAN_DOAN_NGUYEN_NHAN)">
+                    <mat-autocomplete [displayWith]="displayDMICD" #position="matAutocomplete">
+                      <mat-option *ngFor="let icd of filteredICDs" [value]="icd">
+                        <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+                      </mat-option>
+                    </mat-autocomplete>
+                    <button type="button" mat-button
+                            *ngIf="chandoan.CHAN_DOAN_RA_VIEN.CHAN_DOAN_NGUYEN_NHAN" matSuffix
+                            mat-icon-button aria-label="Clear"
+                            (click)="chandoan.CHAN_DOAN_RA_VIEN.CHAN_DOAN_NGUYEN_NHAN = resetDM">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </div>
+              </ng-container>
+              <div class='col-12' *ngIf="showField?.CHECK_BOX_RA_VIEN === true">
+                <div class=' m-x-auto m-y-8 row'>
+                  <mat-checkbox class='col' *ngIf="showField?.CHECKBOX_CHAN_DOAN_TAI_BIEN !== false"
+                                class="col-6 m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.tai_bien">+ Tai biến</mat-checkbox>
+                  <mat-checkbox class='col'
+                                *ngIf="showField?.CHECKBOX_CHAN_DOAN_BIEN_CHUNG !== false"
+                                class="col-6 m-r-0 d-flex example-margin"
+                                [(ngModel)]="chandoan.bien_chung">+ Biến chứng</mat-checkbox>
+                </div>
+              </div>
+              <ng-container *ngIf="showField?.TONG_SO_NGAY_DTSPT === true">
+                <ng-container *ngIf="showField?.TONG_SO_NGAY_DTSPT !== false">
+                  <div class='col-12 form-field-full'>
+                    <mat-form-field appearance='outline'>
+                      <mat-label *ngIf="showField?.CHAN_DOAN_TRUOC_PTTT !== false">+ Chẩn đoán trước
+                        phẫu thuật:</mat-label>
+                      <mat-label *ngIf="showField?.CHAN_DOAN_BENH_VAO_VIEN === true">+ Chẩn đoán vào
+                        viện:</mat-label>
+                      <input matInput [matAutocomplete]="position"
+                             [(ngModel)]="chandoan.CHAN_DOAN_TRUOC_PTTT" (focus)="filterICD('')"
+                             (ngModelChange)="filterICD(chandoan.CHAN_DOAN_TRUOC_PTTT)" />
+                      <mat-autocomplete [displayWith]="displayDMICD" #position="matAutocomplete">
+                        <mat-option *ngFor="let icd of filteredICDs" [value]="icd">
+                          <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+                        </mat-option>
+                      </mat-autocomplete>
+                      <button type="button" mat-button *ngIf="chandoan.CHAN_DOAN_TRUOC_PTTT"
+                              matSuffix mat-icon-button aria-label="Clear"
+                              (click)="chandoan.CHAN_DOAN_TRUOC_PTTT = resetDM">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="showField?.TONG_SO_LAN_PT === true">
+                  <div class='col-12 form-field-full'>
+                    <mat-form-field appearance='outline'>
+                      <mat-label *ngIf="showField?.CHAN_DOAN_SAU_PTTT !== false">+ Chẩn đoán sau
+                        phẫu thuật:</mat-label>
+                      <mat-label *ngIf="showField?.CHAN_DOAN_BENH_RA_VIEN === true">+ Chẩn đoán ra
+                        viện:</mat-label>
+                      <input matInput
+                             [matAutocomplete]="position"
+                             [(ngModel)]="chandoan.CHAN_DOAN_SAU_PTTT"
+                             (focus)="filterICD('')"
+                             (ngModelChange)="filterICD(chandoan.CHAN_DOAN_SAU_PTTT)">
+                      <mat-autocomplete [displayWith]="displayDMICD" #position="matAutocomplete">
+                        <mat-option *ngFor="let icd of filteredICDs" [value]="icd">
+                          <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+                        </mat-option>
+                      </mat-autocomplete>
+                      <button type="button" mat-button *ngIf="chandoan.CHAN_DOAN_SAU_PTTT" matSuffix
+                              mat-icon-button aria-label="Clear"
+                              (click)="chandoan.CHAN_DOAN_SAU_PTTT = resetDM">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                  </div>
+                </ng-container>
+              </ng-container>
+
+              <!-- Phương pháp phẫu thuật -->
+              <div class='col-12' *ngIf='showField?.CHAN_DOAN_SAN_KHOA === true'>
+                <mat-form-field appearance='outline' class='w-full'>
+                  <mat-label>{{"chan_doan_san_khoa.pppt" | translate}}</mat-label>
+                  <input matInput type='text' [(ngModel)]="chandoan.PHUONG_PHAP_PHAU_THUAT">
+                </mat-form-field>
+              </div>
+              <!-- Bệnh án sản khoa -->
+              <div class='col-12' *ngIf='showField?.CHAN_DOAN_SAN_KHOA === true'>
+                <div class='row bordered'>
+                  <div class='col-10' fxLayoutAlign='start center'>{{
+                    'chan_doan_san_khoa.tre_so_sinh' | translate }}:</div>
+                  <div class='col-2' fxLayoutAlign='end start'>
+                    <button type="button" (click)="addTreSoSinh()" mat-button
+                            class="btn-sm mat-blue-hn"
+                            [title]="'tooltip.add_tre_so_sinh' | translate">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                  </div>
+                  <div class='col-12 p-t-4'
+                       *ngFor='let treSoSinh of chandoan.TRE_SO_SINH; index as i'>
+                    <div class='row bordered'>
+                      <div class='col-10'>
+                        <div class='row tre-so-sinh text-left'>
+                          <div class='col-12'>
+                            <mat-radio-group class='row' [(ngModel)]='treSoSinh.GIOI_TINH.ID'>
+                              <mat-radio-button labelPosition='before'
+                                                class='col-6 col-xl-2 m-r-0 p-y-4'
+                                                *ngFor='let item of list_GIOI_TINH'
+                                                [value]="item.ID">{{item.MO_TA |
+                                translate}}</mat-radio-button>
+                            </mat-radio-group>
+                          </div>
+                          <div class='col-12'>
+                            <mat-radio-group class='row' [(ngModel)]='treSoSinh.TINH_TRANG_TRE.ID'>
+                              <mat-radio-button labelPosition='before'
+                                                class='col-6 col-xl-2 m-r-0 p-y-4'
+                                                *ngFor='let item of list_TINH_TRANG_TRE'
+                                                [value]="item.ID">{{item.MO_TA |
+                                translate}}</mat-radio-button>
+                            </mat-radio-group>
+                          </div>
+                          <div class='col-6'>
+                            <mat-form-field appearance='outline' class='w-full'>
+                              <mat-label>{{"chan_doan_san_khoa.di_tat" | translate}}</mat-label>
+                              <input matInput [(ngModel)]="treSoSinh.DI_TAT_BAM_SINH">
+                            </mat-form-field>
+                          </div>
+                          <div class='col-6'>
+                            <mat-form-field appearance='outline' class='w-full'>
+                              <mat-label>{{"patient.weight" | translate}}</mat-label>
+                              <input matInput [(ngModel)]='treSoSinh.CAN_NANG_KHI_SINH'
+                                     type='number' min='0' max='99' autocomplete='off' />
+                              <div matSuffix class='m-t-16'>gram</div>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                      </div>
+                      <div class='col-2' fxLayoutAlign='end start'>
+                        <button type="button" (click)="chandoan.TRE_SO_SINH.splice(i, 1)" mat-button
+                                class="btn-sm mat-red-hn"
+                                [title]="'tooltip.delete_tre_so_sinh' | translate">
+                          <i class="fa fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='col-12' *ngIf="showField?.CHECKBOX_THU_THUAT_PHAU_THUAT === true">
+            <div class=' m-x-auto m-y-8 row'>
+              <mat-checkbox *ngIf="showField?.CHECKBOX_CHAN_DOAN_THU_THUAT !== false"
+                            class="col-3 m-r-0 d-flex example-margin"
+                            [(ngModel)]="chandoan.thu_thuat">+
+                {{'emr.thu_thuat'|translate}}</mat-checkbox>
+              <mat-checkbox *ngIf="showField?.CHECKBOX_CHAN_DOAN_PHAU_THUAT !== false"
+                            class="col-3 m-r-0 d-flex example-margin"
+                            [(ngModel)]="chandoan.phau_thuat">+
+                {{'emr.phau_thuat'|translate}}</mat-checkbox>
+              <mat-checkbox *ngIf="showField?.CHECKBOX_CHAN_DOAN_TAI_BIEN === true"
+                            class="col-3 m-r-0 d-flex example-margin"
+                            [(ngModel)]="chandoan.tai_bien">+
+                {{'emr.tai_bien'|translate}}</mat-checkbox>
+              <mat-checkbox *ngIf="showField?.CHECKBOX_CHAN_DOAN_BIEN_CHUNG === true"
+                            class="col-3 m-r-0 d-flex example-margin"
+                            [(ngModel)]="chandoan.bien_chung">+
+                {{'emr.bien_chung'|translate}}</mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

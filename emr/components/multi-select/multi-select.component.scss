@@ -1,0 +1,10 @@
+:host {
+  display: block;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+::ng-deep.mat-mdc-chip.mat-mdc-standard-chip{
+  color: inherit;
+}

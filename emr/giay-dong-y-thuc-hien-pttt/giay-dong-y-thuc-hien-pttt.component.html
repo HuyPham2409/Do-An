@@ -1,0 +1,245 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class='row'>
+      <div class='col-12'>
+        <h2 fxLayout='row' class='m-8'>A. {{"giay_to_lien_quan.nguoi_benh" | translate}}</h2>
+      </div>
+      <div class='col-4'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>1. {{"giay_to_lien_quan.ho_ten_nguoi_benh" | translate}} :</mat-label>
+          <input matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.BENH_NHAN.HO_TEN'>
+        </mat-form-field>
+      </div>
+      <div class='col-3'>
+        <app-emr-date label='patient.birthday' mode='date'
+                      [(model)]='GIAY_DONG_Y_THUC_HIEN_PTTT.BENH_NHAN.ngay_sinh'
+                      [(dmModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.BENH_NHAN.NGAY_SINH'></app-emr-date>
+      </div>
+      <div class='col-5 p-y-4'>
+        <div class='col-12 h-full' fxLayoutAlign='start center'
+             style='border: 1px solid #CCCCCC;border-radius: 5px;min-height: 35px'>
+          <div class='col-4 text-left p-x-0'>{{"patient.sex" |translate}}:</div>
+          <div class='col-8'>
+            <mat-radio-group class='row'
+                             (ngModelChange)='changeRadioSex($event)'
+                             [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.BENH_NHAN.GIOI_TINH.ID'>
+              <mat-radio-button class='col-6 m-r-0 p-b-4' [value]="'1'"> {{"emr.male"| translate}}</mat-radio-button>
+              <mat-radio-button class='col-6 m-r-0 p-b-4' [value]="'2'"> {{"emr.female"| translate}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div class='col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"giay_to_lien_quan.dia_chi" | translate}} :</mat-label>
+          <input matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.BENH_NHAN.DIA_CHI'>
+        </mat-form-field>
+      </div>
+      <div class='col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"giay_to_lien_quan.so_cccd" | translate}} :</mat-label>
+          <input matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.BENH_NHAN.SO_CCCD'>
+        </mat-form-field>
+      </div>
+      <ng-container *ngIf='site === "app_67"'>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"giay_to_lien_quan.khoa" | translate}} :</mat-label>
+            <input matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.BENH_NHAN.KHOA'>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <app-select category='phieu_pttt' [model]='GIAY_DONG_Y_THUC_HIEN_PTTT.BENH_NHAN.CHI_DINH_DV_PT'
+                      [params]='patientInfoHis && {
+          patient_id: patientInfoHis.patient_id?patientInfoHis.patient_id:"",
+          reception_queue_id: patientInfoHis.reception_queue_id?patientInfoHis.reception_queue_id:"",
+          in_patient: patientInfoHis.in_patient?patientInfoHis.in_patient:""
+          }'
+                      (modelChange)='loadDataFromSelectedPttt($event)'
+                      label='giay_to_lien_quan.chi_dinh_pttt'></app-select>
+        </div>
+        <div class='col-3'>
+          <app-emr-date label='patient.ngay_vao_vien' mode='date'
+                        [(model)]='GIAY_DONG_Y_THUC_HIEN_PTTT.BENH_NHAN.NGAY_NHAP_VIEN'
+                        [(unixModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.BENH_NHAN.ngay_nhap_vien'></app-emr-date>
+        </div>
+        <div class='col-9'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"giay_to_lien_quan.chan_doan" | translate}} :</mat-label>
+            <input matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.BENH_NHAN.CHAN_DOAN'>
+          </mat-form-field>
+        </div>
+      </ng-container>
+      <div class='col-12'>
+        <h3 fxLayout='row'>{{"giay_to_lien_quan.thong_tin_nguoi_than" | translate}}:</h3>
+      </div>
+      <div class='col-4'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>2. Họ tên người thân bệnh nhân:</mat-label>
+          <input matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.NGUOI_THAN.HO_TEN'>
+        </mat-form-field>
+      </div>
+      <div class='col-3'>
+        <app-emr-date label='patient.birthday' mode='date'
+                      [(model)]='GIAY_DONG_Y_THUC_HIEN_PTTT.NGUOI_THAN.ngay_sinh'
+                      [(dmModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.NGUOI_THAN.NGAY_SINH'></app-emr-date>
+      </div>
+      <div class='col-5 p-y-4'>
+        <div class='col-12 h-full' fxLayoutAlign='start center'
+             style='border: 1px solid #CCCCCC;border-radius: 5px;min-height: 35px'>
+          <div class='col-4 text-left p-x-0'>{{"patient.sex" |translate}}:</div>
+          <div class='col-8'>
+            <mat-radio-group class='row'
+                             (ngModelChange)='changeRadioSexNguoithan($event)'
+                             [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.NGUOI_THAN.GIOI_TINH.ID'>
+              <mat-radio-button class='col-6 m-r-0 p-b-4' [value]="'1'"> {{"emr.male"| translate}}</mat-radio-button>
+              <mat-radio-button class='col-6 m-r-0 p-b-4' [value]="'2'"> {{"emr.female"| translate}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div class='col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"giay_to_lien_quan.dia_chi" | translate}} :</mat-label>
+          <input matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.NGUOI_THAN.DIA_CHI'>
+        </mat-form-field>
+      </div>
+      <div class='col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"giay_to_lien_quan.so_cccd" | translate}} :</mat-label>
+          <input matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.NGUOI_THAN.SO_CCCD'>
+        </mat-form-field>
+      </div>
+      <div class='col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"giay_to_lien_quan.sdt_lien_he" | translate}} :</mat-label>
+          <input matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.NGUOI_THAN.SO_DT'>
+        </mat-form-field>
+      </div>
+      <div class='col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"giay_to_lien_quan.quan_he_voi_nguoi_benh" | translate}} :</mat-label>
+          <input matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.NGUOI_THAN.QUAN_HE_VOI_BENH_NHAN'>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card appearance="outlined" *ngIf='site !== "app_67"'>
+  <mat-card-content>
+    <div class='row'>
+      <div class='col-2'>
+        <h2 fxLayout='row' class='m-8'>B. {{"giay_to_lien_quan.khoa" | translate}}:</h2>
+      </div>
+      <div class='col-10'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <input matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.KHOA'>
+        </mat-form-field>
+      </div>
+      <div class='col-6'>
+        <!--        <mat-form-field appearance='outline' class='full-width'>-->
+        <!--          <mat-label>{{"giay_to_lien_quan.ho_ten_bac_si_pt" | translate}} :</mat-label>-->
+        <!--          <input matInput type='text' [(ngModel)]="GIAY_DONG_Y_THUC_HIEN_PTTT.HO_TEN_BSPT">-->
+        <!--        </mat-form-field>-->
+        <app-select label='giay_to_lien_quan.ho_ten_bac_si_pt' [(model)]='GIAY_DONG_Y_THUC_HIEN_PTTT.BSPT'
+                    category='cbyt'></app-select>
+      </div>
+      <div class='col-6'>
+        <app-emr-date label='giay_to_lien_quan.ngay_dong_y_thc_hien_pt' mode='date'
+                      [(model)]='GIAY_DONG_Y_THUC_HIEN_PTTT.ngay_dong_y_th_pttt'
+                      [(dmModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.NGAY_DONG_Y_TH_PTTT'></app-emr-date>
+      </div>
+    </div>
+    <div class='col-12 p-x-0'>
+      <h3 fxLayout='row'>{{"giay_to_lien_quan.thong_tin_qua_trinh_dieu_tri_pttt" | translate}}:</h3>
+    </div>
+    <div class='col-12 p-x-0'>
+      <mat-form-field appearance='outline' class='full-width'>
+        <mat-label>{{"giay_to_lien_quan.chan_doan_truoc_pt" | translate}} :</mat-label>
+        <textarea matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.CHAN_DOAN_TRUOC_PT'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='col-12 p-x-0'>
+      <mat-form-field appearance='outline' class='full-width'>
+        <mat-label>{{"giay_to_lien_quan.phuong_phap_pt" | translate}} :</mat-label>
+        <textarea matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.PPPT'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='col-12 p-x-0'>
+      <h3 fxLayout='row'>{{"giay_to_lien_quan.trieu_chung_bien_chung.title" | translate}}:</h3>
+    </div>
+    <div class='w-full row' style='text-align: left'>
+      <mat-checkbox class='col-6 m-0'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.TRIEU_CHUNG_BIEN_CHUNG.SUNG'>{{"giay_to_lien_quan.trieu_chung_bien_chung.sung" | translate}}</mat-checkbox>
+      <mat-checkbox class='col-6 m-0'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.TRIEU_CHUNG_BIEN_CHUNG.HAN_CHE_VAN_DONG_HAM'>{{"giay_to_lien_quan.trieu_chung_bien_chung.han_che_van_dong_ham" | translate}}</mat-checkbox>
+      <mat-checkbox class='col-6 m-0'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.TRIEU_CHUNG_BIEN_CHUNG.DAU'>{{"giay_to_lien_quan.trieu_chung_bien_chung.dau" | translate}}</mat-checkbox>
+      <mat-checkbox class='col-6 m-0'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.TRIEU_CHUNG_BIEN_CHUNG.CHAM_LANH_THUONG'>{{"giay_to_lien_quan.trieu_chung_bien_chung.cham_lanh_thuong" | translate}}</mat-checkbox>
+      <mat-checkbox class='col-6 m-0'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.TRIEU_CHUNG_BIEN_CHUNG.CHAY_MAU'>{{"giay_to_lien_quan.trieu_chung_bien_chung.chay_mau" | translate}}</mat-checkbox>
+      <mat-checkbox class='col-6 m-0'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.TRIEU_CHUNG_BIEN_CHUNG.TE_DI_CAM'>{{"giay_to_lien_quan.trieu_chung_bien_chung.te_di_cam_mo" | translate}}</mat-checkbox>
+      <mat-checkbox class='col-6 m-0'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.TRIEU_CHUNG_BIEN_CHUNG.NHIEM_TRUNG'>{{"giay_to_lien_quan.trieu_chung_bien_chung.nhiem_trung" | translate}}</mat-checkbox>
+      <mat-checkbox class='col-6 m-0'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.TRIEU_CHUNG_BIEN_CHUNG.LIET_TAM_THOI'>{{"giay_to_lien_quan.trieu_chung_bien_chung.liet_tam_thoi" | translate}}</mat-checkbox>
+      <mat-checkbox class='col-6 m-0'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.TRIEU_CHUNG_BIEN_CHUNG.DI_UNG_VAT_LIEU'>{{"giay_to_lien_quan.trieu_chung_bien_chung.di_ung_vat_lieu" | translate}}</mat-checkbox>
+      <mat-checkbox class='col-6 m-0'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.TRIEU_CHUNG_BIEN_CHUNG.LIET_CAM_GIAC'>{{"giay_to_lien_quan.trieu_chung_bien_chung.Liet_cam_giac" | translate}}</mat-checkbox>
+    </div>
+    <div class='col-12 p-x-0'>
+      <mat-form-field appearance='outline' class='full-width'>
+        <mat-label>{{"giay_to_lien_quan.trieu_chung_bien_chung.bien_chung_khac" | translate}} :</mat-label>
+        <textarea matInput type='text' [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.MOT_SO_BIEN_CHUNG_KHAC'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='col-12 p-x-0'>
+      <h3 fxLayout='row'>{{"giay_to_lien_quan.sau_khi_nghe_giai_thich" | translate}}:</h3>
+    </div>
+    <div class='col-12 p-x-0'>
+      <h3 fxLayout='row'>{{"giay_to_lien_quan.quyet_dinh_cua_nguoi_benh" | translate}}:</h3>
+    </div>
+    <div class='row' style='text-align: left'>
+      <mat-checkbox class='col-12'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.DONG_Y_LAM_CAC_XN'>{{"giay_to_lien_quan.dong_y_lam_cac_xet_nghiem" | translate}}</mat-checkbox>
+      <mat-checkbox class='col-12'
+                    [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.DONG_Y_CHO_SD_HINH_ANH'>{{"giay_to_lien_quan.dong_y_cho_sd_hinh_anh" | translate}}</mat-checkbox>
+    </div>
+    <div class='col-12 p-x-0'>
+      <h3 fxLayout='row'>{{"giay_to_lien_quan.lua_chon_lam_pttt" | translate}}:</h3>
+    </div>
+    <div class='col-12 p-x-0'>
+      <mat-radio-group class='w-full'
+                       (ngModelChange)='changeRadioPT($event)'
+                       [(ngModel)]='GIAY_DONG_Y_THUC_HIEN_PTTT.XAC_NHAN_PTTT.ID'>
+        <mat-radio-button *ngFor='let luachon of luaChonLamPhauThuat' class='w-full'
+                          [value]='luachon.ID'>{{luachon.MO_TA}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined" *ngIf='site === "app_67"'>
+  <mat-card-content>
+    <div class='row'>
+      <div fxLayout='row'>
+        <h2>B. {{"giay_to_lien_quan.nd_cam_doan" | translate}}:</h2>
+      </div>
+      <div fxLayout='row'>
+        <p>
+          Qua tìm hiểu quy định của pháp luật về y tế, Luật Khám chữa bệnh, Luật Bảo hiểm y tế cũng như quy định của
+          Bệnh viện; tôi đã hiểu quyền và nghĩa vụ của người bệnh, quyền và nghĩa vụ của đội ngũ y, bác sĩ.
+          Sau khi được bác sỹ tư vấn tận tình về tình hình sức khỏe của bệnh nhân cũng như những rủi ro trong quá trình
+          áp dụng phẫu thuật, thủ thuật, gây mê hồi sức tôi đề nghị: <br />
+          Xin được áp dụng và thực hiện các biện pháp phẫu thuật, thủ thuật và gây mê hồi sức. Tôi xin chịu trách nhiệm
+          về lựa chọn của mình và cam đoan không khiếu nại, thắc mắc gì bệnh viện.<br />
+          <strong><em>Xin chân thành cảm ơn đội ngũ y, bác sỹ và Bệnh viện.</em></strong>
+        </p>
+      </div>
+
+    </div>
+  </mat-card-content>
+</mat-card>

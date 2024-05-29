@@ -1,0 +1,242 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div fxLayout='row col-12'>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.patient_fullname" | translate}}</mat-label>
+            <input matInput [(ngModel)]='patientInfo.HO_TEN' readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"benh_an_iui.nam_sinh" | translate}}</mat-label>
+            <input matInput value="{{ patientInfo.birthday * 1000  | amDateFormat: 'YYYY'}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.patient_id" | translate}}</mat-label>
+            <input matInput [(ngModel)]="patientInfo.patient_id" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.height" | translate}}</mat-label>
+            <input matInput [(ngModel)]='tdGiamDauSauMo.height' type='number'>
+            <div matSuffix class='m-t-16'>cm</div>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.weight" | translate}}</mat-label>
+            <input matInput [(ngModel)]='tdGiamDauSauMo.weight' type='number'>
+            <div matSuffix class='m-t-16'>kg</div>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width' *ngIf='patientInfo.NGHE_NGHIEP'>
+            <mat-label>{{"emr.job"| translate}}</mat-label>
+            <input matInput value="{{patientInfo.NGHE_NGHIEP.MO_TA}}">
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"title.chan_doan" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='tdGiamDauSauMo.CHAN_DOAN'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"so_ket_dieu_tri.phau_thuat" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='tdGiamDauSauMo.PHAU_THUAT'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"label.pp_vo_cam" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='tdGiamDauSauMo.PP_VO_CAM'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.pp_giam_dau" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='tdGiamDauSauMo.PP_GIAM_DAU'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.vtri_choc_kim" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='tdGiamDauSauMo.VI_TRI_CHOC_KIM'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.kcach_da" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='tdGiamDauSauMo.KHOANG_CACH_DA'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.do_dai_catheter" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='tdGiamDauSauMo.DO_DAI_CATHETER'>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-divider style='margin: 10px 0'></mat-divider>
+      <div class='row'>
+        <div class='col-12 col-lg-4'>
+          <mat-card appearance="outlined">
+            <mat-card-content>
+              <h2>{{"phieu_theo_doi_giam_dau_sau_mo.list" | translate}}</h2>
+              <div class='scroll-container w-full'>
+                <table class='v1-table list w-full'>
+                  <tr>
+                    <th>{{'tiem_chung.template.number'|translate}}</th>
+                    <th>{{'emr.created_at'|translate}}</th>
+                    <th>{{'emr.created_by'|translate}}</th>
+                    <th>
+                      <div fxLayoutAlign='center center'>
+                        <button type="button" (click)="addBloodPressure()" mat-button class="btn-xs mat-blue-hn"
+                                [title]="'tooltip.add_tdcns' | translate">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                    </th>
+                  </tr>
+                  <tr *ngFor='let bp of displayListTDGDSM; index as i'
+                      [class.bg-success]='bloodPressureSelect.isSelected(bp.id)'
+                      (click)='selectBloodPressure(bp.id)'>
+                    <td>T{{ i}}</td>
+                    <td>{{bp.time_moment ? (bp.time_moment | amDateFormat: 'DD/MM/YYYY HH:mm:ss') : ''}}</td>
+                    <td>{{bp.created_by}}</td>
+                    <td>
+                      <div fxLayoutAlign='center center'>
+                        <button type="button" (click)="removeBloodPressure(bp.id)" mat-button class="btn-xs mat-red-hn"
+                                [title]="'tooltip.delete_tdcns' | translate">
+                          <i class="fa fa-times"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class='col'>
+          <mat-card appearance="outlined" [class.disabled]='!TheoDoiGiamDauSauMo.id'>
+            <mat-card-content>
+              <h2>{{"phieu_theo_doi_giam_dau_sau_mo.title" | translate}}</h2>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"kham_benh.toan_trang.label" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.TOAN_TRANG'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.diem_vas" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.DIEM_VAS'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_truyen_dich.toc_do_truyen" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.TOC_DO_TRUYEN'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.mach" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.MACH'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.huyet_ap" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.HUYET_AP'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.nhip_tho" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.NHIP_THO'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.spo2" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.SPO2'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.buon_non" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.BUON_NON'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.run" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.RUN'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.ngua" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.NGUA'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.vd_chi_duoi" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.VD_CHI_DUOI'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.cg_chi_duoi" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.CG_CHI_DUOI'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.bi_tieu" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.BI_TIEU'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.td_phu_khac" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.TD_PHU_KHAC'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class='col-12'>
+                <mat-form-field appearance='outline' class='full-width'>
+                  <mat-label>{{"phieu_theo_doi_giam_dau_sau_mo.dd_ky" | translate}}</mat-label>
+                  <input matInput [(ngModel)]='TheoDoiGiamDauSauMo.DD_KY'>
+                </mat-form-field>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<!--<div class='col-lg-4 col-6'></div>-->

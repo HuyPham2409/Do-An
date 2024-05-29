@@ -1,0 +1,704 @@
+<div>
+  <mat-card appearance="outlined" class="m-b-48">
+    <mat-card-content [style.display]="template ? 'none' : 'block'">
+      <div class="phieu_cham_soc_filter_container">
+        <mat-form-field class="col">
+          <mat-label>
+            Điều dưỡng
+          </mat-label>
+          <input [(ngModel)]="ten_dieu_duong"
+                 [disabled]="true"
+                 matInput>
+        </mat-form-field>
+        <mat-form-field class='col'>
+          <mat-label>Ngày</mat-label>
+          <input matInput [(ngModel)]="currentDate" [ngxMatDatetimePicker]='picker2' (ngModelChange)="handleChangeDate($event)">
+          <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker2></ngx-mat-datetime-picker>
+        </mat-form-field>
+
+        <mat-form-field class='col'>
+          <mat-label>Phiếu điều trị</mat-label>
+          <mtx-select [items]="listYLenh"
+                      bindLabel='datetime'
+                      [(ngModel)]="selectedPDT"
+                      [disabled]="!isEnabledForm"
+                      (change)="onPDTSelectionChange()">
+          </mtx-select>
+        </mat-form-field>
+
+        <button color="primary" mat-flat-button [disabled]="selectedPDT?.current_day_time === '' || selectedPDT === undefined " (click)="handleViewPDT()">
+          Xem phiếu điều trị
+        </button>
+        <div fxLayout='row'>
+          <mat-radio-group [(ngModel)]="pcs.type">
+            <mat-radio-button *ngFor="let mauPhieu of listMauPhieu" name="mau_phieu_cham_soc"
+                              [value]="mauPhieu.value"
+                              [name]="mauPhieu.label"
+                              [disabled]="!isEnabledForm"
+                              (change)="handleSelectMauPhieu($event)"
+                              class="radio-item">{{mauPhieu.label}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+      </div>
+    </mat-card-content>
+
+    <mat-card-content>
+      <mat-tab-group [selectedIndex]='template ? "1" : "0"'>
+        <mat-tab [disabled]="template" label="Thông tin chăm sóc" fxLayout='row'>
+          <fieldset class="thong_tin_cham_soc row" [disabled]="!isEnabledForm">
+            <div class="tri_giac col-12 row comment-field-height" fxLayout='row wrap'>
+              <span class="radio-label col-2">
+                Tri giác
+              </span>
+              <div class="row col-10">
+
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('tri_giac', 'tri_giac', 'Tỉnh hoàn toàn', pcs.tri_giac.tinh_hoan_toan)"
+                              [(ngModel)]="pcs.tri_giac.tinh_hoan_toan">Tỉnh hoàn
+                  toàn</mat-checkbox>
+                <mat-checkbox class="col" [(ngModel)]="pcs.tri_giac.lo_mo"
+                              (change)="handleSelectCheckbox('tri_giac', 'tri_giac',  'Lơ mơ', pcs.tri_giac.lo_mo)">Lơ
+                  mơ</mat-checkbox>
+                <mat-checkbox class="col" [(ngModel)]="pcs.tri_giac.vat_va"
+                              (change)="handleSelectCheckbox('tri_giac', 'tri_giac',  'Vật vã, kích thích', pcs.tri_giac.vat_va)">Vật
+                  vã, kích
+                  thích</mat-checkbox>
+                <mat-checkbox class="col" [(ngModel)]="pcs.tri_giac.hon_me"
+                              (change)="handleSelectCheckbox('tri_giac', 'tri_giac',  'Hôn mê', pcs.tri_giac.hon_me)">Hôn
+                  mê</mat-checkbox>
+              </div>
+            </div>
+
+            <div class="kha_nang_nghe col-12 row comment-field-height" *ngIf="pcs.type != '2'"
+                 fxLayout='row wrap'>
+              <span class="radio-label col-2">
+                Khả năng nghe
+              </span>
+              <div class="row col-10">
+                <mat-checkbox class="col" [(ngModel)]="pcs.kha_nang_nghe.tot"
+                              (change)="handleSelectCheckbox('kha_nang_nghe', 'kha_nang_nghe', 'Tốt', pcs.kha_nang_nghe.tot)">Tốt</mat-checkbox>
+                <mat-checkbox class="col" [(ngModel)]="pcs.kha_nang_nghe.kem"
+                              (change)="handleSelectCheckbox('kha_nang_nghe', 'kha_nang_nghe', 'Kém', pcs.kha_nang_nghe.kem)"
+                              [(ngModel)]="pcs.kha_nang_nghe.kem">Kém</mat-checkbox>
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('kha_nang_nghe', 'kha_nang_nghe', 'Dụng cụ trợ thính', pcs.kha_nang_nghe.dung_cu_tro_thinh)"
+                              [(ngModel)]="pcs.kha_nang_nghe.dung_cu_tro_thinh">Dụng cụ trợ
+                  thính</mat-checkbox>
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('kha_nang_nghe', 'kha_nang_nghe', 'Khó xác định', pcs.kha_nang_nghe.kho_xac_dinh)"
+                              [(ngModel)]="pcs.kha_nang_nghe.kho_xac_dinh">Khó xác
+                  định</mat-checkbox>
+
+              </div>
+            </div>
+
+            <div class="col-12 row comment-field-height" *ngIf="pcs.type != '2'">
+              <span class="radio-label col-2">
+                Khả năng nhìn
+              </span>
+              <div class="row col-10">
+                <mat-checkbox class="col-3" style="margin: 0"
+                              (change)="handleSelectCheckbox('kha_nang_nhin', 'kha_nang_nhin', 'Tốt', pcs.kha_nang_nhin.tot)"
+                              [(ngModel)]="pcs.kha_nang_nhin.tot">Tốt</mat-checkbox>
+                <mat-checkbox class="col-3" style="margin: 0"
+                              (change)="handleSelectCheckbox('kha_nang_nhin', 'kha_nang_nhin', 'Kém', pcs.kha_nang_nhin.kem)"
+                              [(ngModel)]="pcs.kha_nang_nhin.kem">Kém</mat-checkbox>
+                <mat-checkbox class="col-3" style="margin: 0"
+                              (change)="handleSelectCheckbox('kha_nang_nhin', 'kha_nang_nhin', 'Khó xác định', pcs.kha_nang_nhin.kho_xac_dinh)"
+                              [(ngModel)]="pcs.kha_nang_nhin.kho_xac_dinh">Khó xác
+                  định</mat-checkbox>
+                <div class="col-3 d-flex">
+                  <mat-checkbox
+                                [(ngModel)]="pcs.kha_nang_nhin.khac"
+                                (change)="handleSelectCheckbox('kha_nang_nhin', 'kha_nang_nhin', 'Khác', pcs.kha_nang_nhin.khac)">Khác</mat-checkbox>
+                  <ng-container>
+                    <mat-form-field>
+                      <input matInput [(ngModel)]="pcs.kha_nang_nhin.description">
+                    </mat-form-field>
+                  </ng-container>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="kha_nang_nuot col-12 row comment-field-height" *ngIf="pcs.type != '2'"
+                 fxLayout='row wrap'>
+              <span class="radio-label col-2">
+                Khả năng nuốt
+              </span>
+              <div class="row col-10">
+                <div class="col"
+                     [(ngModel)]="pcs.kha_nang_nhin.kha_nang_nhin">
+                  <div class="row">
+                    <mat-checkbox class="col" style="margin: 0"
+                                  (change)="handleSelectCheckbox('kha_nang_nuot', 'kha_nang_nuot', 'Tốt', pcs.kha_nang_nuot.tot)"
+                                  [(ngModel)]="pcs.kha_nang_nuot.tot">Tốt</mat-checkbox>
+                    <mat-checkbox class="col" style="margin: 0"
+                                  (change)="handleSelectCheckbox('kha_nang_nuot', 'kha_nang_nuot', 'Hạn chế', pcs.kha_nang_nuot.han_che)"
+                                  [(ngModel)]="pcs.kha_nang_nuot.han_che">Hạn chế</mat-checkbox>
+                    <mat-checkbox class="col" style="margin: 0"
+                                  (change)="handleSelectCheckbox('kha_nang_nuot', 'kha_nang_nuot', 'Khó khăn', pcs.kha_nang_nuot.kho_khan)"
+                                  [(ngModel)]="pcs.kha_nang_nuot.kho_khan">Khó khăn</mat-checkbox>
+                    <div class="d-flex col">
+                      <mat-checkbox
+                                    (change)="handleSelectCheckbox('kha_nang_nuot', 'kha_nang_nuot', 'Khác', pcs.kha_nang_nuot.khac)"
+                                    [(ngModel)]="pcs.kha_nang_nuot.khac">Khác</mat-checkbox>
+                      <ng-container>
+                        <mat-form-field>
+                          <input matInput>
+                        </mat-form-field>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-12 row comment-field-height" *ngIf="pcs.type != '2'"
+                 fxLayout='row wrap'>
+              <span class="radio-label col-2">
+                Khả năng nói
+              </span>
+              <div class="row col-10">
+                <mat-checkbox class="col" [(ngModel)]="pcs.kha_nang_noi.binh_thuong"
+                              (change)="handleSelectCheckbox('kha_nang_noi', 'kha_nang_noi', 'Bình thường', pcs.kha_nang_noi.binh_thuong)">Bình
+                  thường</mat-checkbox>
+                <mat-checkbox class="col" [(ngModel)]="pcs.kha_nang_noi.han_che"
+                              (change)="handleSelectCheckbox('kha_nang_noi', 'kha_nang_noi', 'Hạn chế', pcs.kha_nang_noi.han_che)">Hạn
+                  chế</mat-checkbox>
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('kha_nang_noi', 'kha_nang_noi', 'Khó khăn', pcs.kha_nang_noi.kho_khan)"
+                              [(ngModel)]="pcs.kha_nang_noi.kho_khan">Khó khăn</mat-checkbox>
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('kha_nang_noi', 'kha_nang_noi', 'Khó đánh giá', pcs.kha_nang_noi.kho_danh_gia)"
+                              [(ngModel)]="pcs.kha_nang_noi.kho_danh_gia">Khó đánh
+                  giá</mat-checkbox>
+              </div>
+            </div>
+
+            <div class="col-12 row comment-field-height" *ngIf="pcs.type != '2'">
+              <span class="radio-label col-2">
+                Răng miệng
+              </span>
+              <div class="row col-10">
+                <mat-checkbox class="col-3 margin-0"
+                              (change)="handleSelectCheckbox('rang_mieng', 'rang_mieng', 'Sạch', pcs.rang_mieng.sach)"
+                              [(ngModel)]="pcs.rang_mieng.sach">Sạch</mat-checkbox>
+                <mat-checkbox class="col-3 margin-0"
+                              (change)="handleSelectCheckbox('rang_mieng', 'rang_mieng', 'Vệ sinh kém', pcs.rang_mieng.ve_sinh_kem)"
+                              [(ngModel)]="pcs.rang_mieng.ve_sinh_kem">Vệ
+                  sinh kém</mat-checkbox>
+                <mat-checkbox class="col-3 margin-0"
+                              (change)="handleSelectCheckbox('rang_mieng', 'rang_mieng', 'Răng giả', pcs.rang_mieng.rang_gia)"
+                              [(ngModel)]="pcs.rang_mieng.rang_gia">Răng
+                  giả</mat-checkbox>
+              </div>
+            </div>
+
+            <div class="col-12 row comment-field-height">
+              <span class="radio-label col-2">
+                Tuần hoàn ngoại vi
+              </span>
+
+              <div class="col-10 row">
+                <div class="d-flex col-3">
+                  <span style="margin-right: 8px">
+                    Da
+                  </span>
+                  <mat-form-field style="width: 100%;" name="da" label="Da">
+                    <mtx-select placeholder="Chọn tình trạng da"
+                                [items]="listDa"
+                                [(ngModel)]="pcs.tuan_hoan_ngoai_vi.da"
+                                bindLabel='name'
+                                class="custom-width-select"
+                                [disabled]="!isEnabledForm"
+                                >
+                    </mtx-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-1">
+
+                </div>
+                <div class="d-flex col-5">
+                  <span style="margin-right: 8px">
+                    Niêm mạc
+                  </span>
+                  <mat-form-field name="da" label="Da">
+                    <mtx-select placeholder="Chọn tình trạng niêm mạc" [items]="listNiemMac"
+                                [(ngModel)]="pcs.tuan_hoan_ngoai_vi.niem_mac"
+                                bindLabel='name'
+                                [disabled]="!isEnabledForm"
+                                class="custom-width-select">
+                    </mtx-select>
+                  </mat-form-field>
+                </div>
+                <div class="d-flex col-2">
+                  <span style="margin-right: 8px">
+                    Khác
+                  </span>
+                  <mat-form-field>
+                    <mat-label>Khác</mat-label>
+                    <input [(ngModel)]="pcs.tuan_hoan_ngoai_vi.description" matInput>
+                  </mat-form-field>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-12 row comment-field-height">
+              <span class="radio-label col-2">
+                Tình trạng toàn vẹn của da
+              </span>
+              <div class="row col-10">
+                <mat-checkbox class="col-3 margin-0"
+                              (change)="handleSelectCheckbox('tinh_trang_toan_ven_cua_da', 'tinh_trang_toan_ven_cua_da', 'Nguyên vẹn', pcs.tinh_trang_toan_ven_cua_da.nguyen_ven)"
+                              [(ngModel)]="pcs.tinh_trang_toan_ven_cua_da.nguyen_ven">Nguyên
+                  vẹn</mat-checkbox>
+                <mat-checkbox class="col-3 margin-0"
+                              (change)="handleSelectCheckbox('tinh_trang_toan_ven_cua_da', 'tinh_trang_toan_ven_cua_da', 'Xuất huyết dưới da', pcs.tinh_trang_toan_ven_cua_da.xuat_huyet_duoi_da)"
+                              [(ngModel)]="pcs.tinh_trang_toan_ven_cua_da.xuat_huyet_duoi_da">Xuất
+                  huyết dưới da
+                </mat-checkbox>
+                <mat-checkbox class="col-3 margin-0"
+                              (change)="handleSelectCheckbox('tinh_trang_toan_ven_cua_da', 'tinh_trang_toan_ven_cua_da', 'Không lành lặn', pcs.tinh_trang_toan_ven_cua_da.khong_lanh_lan)"
+                              [(ngModel)]="pcs.tinh_trang_toan_ven_cua_da.khong_lanh_lan">Không lành
+                  lặn</mat-checkbox>
+              </div>
+            </div>
+
+            <div class="col-12 row comment-field-height" *ngIf="pcs.type != '2'">
+              <span class="radio-label col-2">
+                Vết thương bỏng
+              </span>
+              <div class="row col-10">
+                <mat-checkbox class="col-3 margin-0"
+                              [(ngModel)]="pcs.vet_thuong_bong.khong"
+                              (change)="handleSelectCheckbox('vet_thuong_bong', 'vet_thuong_bong', 'Không', pcs.vet_thuong_bong.khong)">Không</mat-checkbox>
+                <mat-checkbox class="col-3 margin-0" [(ngModel)]="pcs.vet_thuong_bong.co"
+                              (change)="handleSelectCheckbox('vet_thuong_bong', 'vet_thuong_bong', 'Có', pcs.vet_thuong_bong.co)">Có</mat-checkbox>
+
+                <mat-form-field class="col-3 margin-0">
+                  <mat-label>Mô tả</mat-label>
+                  <input [(ngModel)]="pcs.vet_thuong_bong.description" matInput>
+                </mat-form-field>
+              </div>
+
+            </div>
+
+            <div class="col-12 row comment-field-height" *ngIf="pcs.type != '2'">
+              <span class="radio-label col-2">
+                Loét do tỳ đè
+              </span>
+              <div class="row col-10">
+                <mat-checkbox class="col" [(ngModel)]="pcs.loet_do_ty_de.khong_loet"
+                              (change)="handleSelectCheckbox('loet_do_ty_de', 'loet_do_ty_de', 'Không loét', pcs.loet_do_ty_de.khong_loet)">Không
+                  loét</mat-checkbox>
+                <mat-checkbox class="col" [(ngModel)]="pcs.loet_do_ty_de.loet_do_I"
+                              (change)="handleSelectCheckbox('loet_do_ty_de', 'loet_do_ty_de', 'Loét độ I', pcs.loet_do_ty_de.loet_do_I)">Loét
+                  độ I</mat-checkbox>
+                <mat-checkbox class="col" [(ngModel)]="pcs.loet_do_ty_de.loet_do_II"
+                              (change)="handleSelectCheckbox('loet_do_ty_de', 'loet_do_ty_de', 'Loét độ II', pcs.loet_do_ty_de.loet_do_II)">Loét
+                  độ
+                  II</mat-checkbox>
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('loet_do_ty_de', 'loet_do_ty_de', 'Loét độ III', pcs.loet_do_ty_de.loet_do_III)"
+                              [(ngModel)]="pcs.loet_do_ty_de.loet_do_III">Loét độ
+                  III</mat-checkbox>
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('loet_do_ty_de', 'loet_do_ty_de', 'Loét độ IV', pcs.loet_do_ty_de.loet_do_IV)"
+                              [(ngModel)]="pcs.loet_do_ty_de.loet_do_IV">Loét độ
+                  IV</mat-checkbox>
+              </div>
+            </div>
+
+            <div class="col-12 row comment-field-height">
+              <span class="radio-label col-2">
+                Hô hấp
+              </span>
+              <div class="row col-10">
+                <mat-checkbox class="col-3 margin-0" [(ngModel)]="pcs.ho_hap.tho_deu"
+                              (change)="handleSelectCheckbox('ho_hap', 'ho_hap', 'Thở đều', pcs.ho_hap.tho_deu)">Thở
+                  đều</mat-checkbox>
+                <mat-checkbox class="col-3 margin-0"
+                              (change)="handleSelectCheckbox('ho_hap', 'ho_hap', 'Khó thở', pcs.ho_hap.kho_tho)"
+                              [(ngModel)]="pcs.ho_hap.kho_tho">Khó thở</mat-checkbox>
+                <mat-checkbox class="col-3 margin-0"
+                              (change)="handleSelectCheckbox('ho_hap', 'ho_hap', 'Ho', pcs.ho_hap.ho)"
+                              [(ngModel)]="pcs.ho_hap.ho">Ho</mat-checkbox>
+                <div class="d-flex col-3 margin-0">
+                  <mat-checkbox [(ngModel)]="pcs.ho_hap.khac"
+                                (change)="handleSelectCheckbox('ho_hap', 'ho_hap', 'Khác', pcs.ho_hap.khac)">Khác</mat-checkbox>
+                  <ng-container>
+                    <mat-form-field>
+                      <input matInput [(ngModel)]="pcs.ho_hap.description">
+                    </mat-form-field>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+
+            <div class="row col-12">
+              <div class="col-2" style="display: flex; align-items: flex-start; height: 100%;">
+                <span class="radio-label" id="he_tieu_hoa_label">
+                  Hệ tiêu hoá
+                </span>
+              </div>
+
+              <div class="row col-10 comment-field-height">
+                <div class="col-12 row">
+                  <div class="col-2 label-on-top" style="margin-top: -20px;">
+                    <span class="radio-label">
+                      Tình trạng bụng
+                    </span>
+                  </div>
+                  <div class="row col-10 comment-field-height tinh_trang_bung_container">
+                    <mat-checkbox class="col"
+                                  (change)="handleSelectCheckbox('tinh_trang_bung', 'tinh_trang_bung', 'Bụng mềm', pcs.tinh_trang_bung.bung_mem)"
+                                  [(ngModel)]="pcs.tinh_trang_bung.bung_mem">Bụng mềm</mat-checkbox>
+                    <mat-checkbox class="col" [(ngModel)]="pcs.tinh_trang_bung.bung_cung"
+                                  (change)="handleSelectCheckbox('tinh_trang_bung', 'tinh_trang_bung', 'Bụng cứng', pcs.tinh_trang_bung.bung_cung)">Bụng
+                      cứng</mat-checkbox>
+                    <mat-checkbox class="col" [(ngModel)]="pcs.tinh_trang_bung.dau_bung"
+                                  (change)="handleSelectCheckbox('tinh_trang_bung', 'tinh_trang_bung', 'Đau bụng', pcs.tinh_trang_bung.dau_bung)">Đau
+                      bụng</mat-checkbox>
+                    <mat-checkbox class="col"
+                                  (change)="handleSelectCheckbox('tinh_trang_bung', 'tinh_trang_bung', 'Buồn nôn', pcs.tinh_trang_bung.buon_non)"
+                                  [(ngModel)]="pcs.tinh_trang_bung.buon_non">Buồn
+                      nôn</mat-checkbox>
+                    <mat-checkbox class="col"
+                                  [(ngModel)]="pcs.tinh_trang_bung.non"
+                                  (change)="handleSelectCheckbox('tinh_trang_bung', 'tinh_trang_bung', 'Nôn', pcs.tinh_trang_bung.non)">Nôn</mat-checkbox>
+                    <mat-checkbox class="col"
+                                  (change)="handleSelectCheckbox('tinh_trang_bung', 'tinh_trang_bung', 'Có sonde dd', pcs.tinh_trang_bung.co_sonde_dd)"
+                                  [(ngModel)]="pcs.tinh_trang_bung.co_sonde_dd">Có sonde
+                      dd</mat-checkbox>
+                    <mat-checkbox class="col" [(ngModel)]="pcs.tinh_trang_bung.mo_thong_dd"
+                                  (change)="handleSelectCheckbox('tinh_trang_bung', 'tinh_trang_bung', 'Mở thông dd', pcs.tinh_trang_bung.mo_thong_dd)">Mở
+                      thông dd</mat-checkbox>
+                    <mat-checkbox class="col"
+                                  (change)="handleSelectCheckbox('tinh_trang_bung', 'tinh_trang_bung', 'Có HMNT', pcs.tinh_trang_bung.co_hmnt)"
+                                  [(ngModel)]="pcs.tinh_trang_bung.co_hmnt">Có HMNT</mat-checkbox>
+                    <div class="col d-flex" style="align-items: flex-start;">
+                      <mat-checkbox
+                                    (change)="handleSelectCheckbox('tinh_trang_bung', 'tinh_trang_bung', 'Khác', pcs.tinh_trang_bung.khac)"
+                                    [(ngModel)]="pcs.tinh_trang_bung.khac">Khác</mat-checkbox>
+                      <div style="margin-top: -6px;">
+                        <ng-container>
+                          <mat-form-field>
+                            <input matInput [(ngModel)]="pcs.tinh_trang_bung.description">
+                          </mat-form-field>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 row comment-field-height">
+                  <span class="radio-label col-2">
+                    Đại tiện
+                  </span>
+
+                  <div class="row col-10">
+                    <mat-checkbox class="col margin-0"
+                                  (change)="handleSelectCheckbox('dai_tien', 'dai_tien', 'Tự chủ', pcs.dai_tien.tu_chu)"
+                                  [(ngModel)]="pcs.dai_tien.tu_chu">Tự chủ</mat-checkbox>
+                    <mat-checkbox class="col margin-0"
+                                  (change)="handleSelectCheckbox('dai_tien', 'dai_tien', 'Dùng thuốc nhuận tràng', pcs.dai_tien.dung_thuoc_nhuan_trang)"
+                                  [(ngModel)]="pcs.dai_tien.dung_thuoc_nhuan_trang">Dùng thuốc nhuận
+                      tràng</mat-checkbox>
+
+                    <div class="col margin-0 d-flex">
+                      <mat-checkbox
+                                    (change)="handleSelectCheckbox('dai_tien', 'dai_tien', 'Khác', pcs.dai_tien.khac)"
+                                    [(ngModel)]="pcs.dai_tien.khac">Khác</mat-checkbox>
+                      <ng-container>
+                        <mat-form-field>
+                          <input matInput [(ngModel)]="pcs.dai_tien.description">
+                        </mat-form-field>
+                      </ng-container>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row col-12 comment-field-height">
+              <div class="col-2" style="display: flex; align-items: flex-start; height: 100%;">
+                <span class="radio-label col-12" style="padding:0 ; margin-top: 8px !important">
+                  Dinh dưỡng
+                </span>
+              </div>
+
+              <div class="row col-10">
+                <div class="col-12 row comment-field-height">
+                  <span class="radio-label col-2">
+                    Cảm giác khi ăn
+                  </span>
+                  <div class="row col-10">
+                    <mat-checkbox class="col" [(ngModel)]="pcs.cam_giac_khi_an.ngon_mieng"
+                                  (change)="handleSelectCheckbox('cam_giac_khi_an', 'cam_giac_khi_an', 'Ngon miệng', pcs.cam_giac_khi_an.ngon_mieng)">
+                      Ngon miệng
+                    </mat-checkbox>
+                    <mat-checkbox class="col"
+                                  (change)="handleSelectCheckbox('cam_giac_khi_an', 'cam_giac_khi_an', 'Bình thường', pcs.cam_giac_khi_an.binh_thuong)"
+                                  [(ngModel)]="pcs.cam_giac_khi_an.binh_thuong">
+                      Bình thường
+                    </mat-checkbox>
+                    <mat-checkbox class="col" [(ngModel)]="pcs.cam_giac_khi_an.chan_an"
+                                  (change)="handleSelectCheckbox('cam_giac_khi_an', 'cam_giac_khi_an', 'Chán ăn', pcs.cam_giac_khi_an.chan_an)">
+                      Chán ăn
+                    </mat-checkbox>
+                  </div>
+                </div>
+
+                <div class="col-12 row comment-field-height">
+                  <span class="radio-label col-2">
+                    Nuôi dưỡng
+                  </span>
+                  <div class="row col-10">
+                    <mat-checkbox class="col"
+                                  (change)="handleSelectCheckbox('nuoi_duong', 'nuoi_duong', 'Đường miệng', pcs.nuoi_duong.duong_mieng)"
+                                  [(ngModel)]="pcs.nuoi_duong.duong_mieng">
+                      Đường miệng
+                    </mat-checkbox>
+                    <mat-checkbox class="col"
+                                  (change)="handleSelectCheckbox('nuoi_duong', 'nuoi_duong', 'Ăn qua sonde', pcs.nuoi_duong.an_qua_sonde)"
+                                  [(ngModel)]="pcs.nuoi_duong.an_qua_sonde">
+                      Ăn qua sonde
+                    </mat-checkbox>
+                    <mat-checkbox class="col"
+                                  (change)="handleSelectCheckbox('nuoi_duong', 'nuoi_duong', 'Tĩnh mạch', pcs.nuoi_duong.tinh_mach)"
+                                  [(ngModel)]="pcs.nuoi_duong.tinh_mach">
+                      Tĩnh mạch
+                    </mat-checkbox>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 row comment-field-height">
+              <span class="radio-label col-2">
+                Hệ tiết niệu
+              </span>
+
+              <div class="row col-10">
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('he_tiet_nieu', 'he_tiet_nieu', 'Tự chủ', pcs.he_tiet_nieu.tu_chu)"
+                              [(ngModel)]="pcs.he_tiet_nieu.tu_chu">Tự chủ</mat-checkbox>
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('he_tiet_nieu', 'he_tiet_nieu', 'Không tự chủ', pcs.he_tiet_nieu.khong_tu_chu)"
+                              [(ngModel)]="pcs.he_tiet_nieu.khong_tu_chu">Không tự
+                  chủ</mat-checkbox>
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('he_tiet_nieu', 'he_tiet_nieu', 'Ống thông tiểu', pcs.he_tiet_nieu.ong_thong_tieu)"
+                              [(ngModel)]="pcs.he_tiet_nieu.ong_thong_tieu">Ống thông
+                  tiểu</mat-checkbox>
+                <div class="col d-flex">
+                  <mat-checkbox
+                                (change)="handleSelectCheckbox('he_tiet_nieu', 'he_tiet_nieu', 'Khác', pcs.he_tiet_nieu.khac)"
+                                [(ngModel)]="pcs.he_tiet_nieu.khac">Khác</mat-checkbox>
+                  <mat-form-field>
+                    <input matInput [(ngModel)]="pcs.he_tiet_nieu.description">
+                  </mat-form-field>
+                </div>
+                <mat-form-field class="col">
+                  <mat-label>Màu sắc</mat-label>
+                  <input matInput [(ngModel)]="pcs.he_tiet_nieu.mau_sac">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="col-12 row comment-field-height" *ngIf="pcs.type != '2'">
+              <span class="radio-label col-2">
+                Hệ xương khớp vận động
+              </span>
+
+              <div class="col-10 row">
+                <mat-checkbox class="col-3 margin-0"
+                              (change)="handleSelectCheckbox('he_xuong_khop_van_dong', 'he_xuong_khop_van_dong', 'Tốt', pcs.he_xuong_khop_van_dong.tot)"
+                              [(ngModel)]="pcs.he_xuong_khop_van_dong.tot">Tốt</mat-checkbox>
+                <mat-checkbox class="col-3 margin-0"
+                              (change)="handleSelectCheckbox('he_xuong_khop_van_dong', 'he_xuong_khop_van_dong', 'Giảm vận động', pcs.he_xuong_khop_van_dong.giam_van_dong)"
+                              [(ngModel)]="pcs.he_xuong_khop_van_dong.giam_van_dong">Giảm vận
+                  động</mat-checkbox>
+                <div class="d-flex col margin-0">
+                  <mat-checkbox
+                                (change)="handleSelectCheckbox('he_xuong_khop_van_dong', 'he_xuong_khop_van_dong', 'Liệt', pcs.he_xuong_khop_van_dong.liet)"
+                                [(ngModel)]="pcs.he_xuong_khop_van_dong.liet">Liệt</mat-checkbox>
+                  <mat-form-field>
+                    <input matInput [(ngModel)]="pcs.he_xuong_khop_van_dong.liet_description">
+                  </mat-form-field>
+                </div>
+                <div class="d-flex col margin-0">
+                  <mat-checkbox [(ngModel)]="pcs.he_xuong_khop_van_dong.khac"
+                                (change)="handleSelectCheckbox('he_xuong_khop_van_dong', 'he_xuong_khop_van_dong', 'Khác', pcs.he_xuong_khop_van_dong.khac)">Khác</mat-checkbox>
+                  <mat-form-field>
+                    <input matInput [(ngModel)]="pcs.he_xuong_khop_van_dong.khac_description">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 row comment-field-height">
+              <span class="radio-label col-2">
+                Giấc ngủ
+              </span>
+
+              <div class="col-10 row">
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('giac_ngu', 'giac_ngu', 'Ngủ đủ', pcs.giac_ngu.ngu_du)"
+                              [(ngModel)]="pcs.giac_ngu.ngu_du">
+                  Ngủ đủ
+                </mat-checkbox>
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('giac_ngu', 'giac_ngu', 'Ngủ ít', pcs.giac_ngu.ngu_it)"
+                              [(ngModel)]="pcs.giac_ngu.ngu_it">
+                  Ngủ ít
+                </mat-checkbox>
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('giac_ngu', 'giac_ngu', 'Mất ngủ', pcs.giac_ngu.mat_ngu)"
+                              [(ngModel)]="pcs.giac_ngu.mat_ngu">
+                  Mất ngủ
+                </mat-checkbox>
+                <mat-checkbox class="col"
+                              (change)="handleSelectCheckbox('giac_ngu', 'giac_ngu', 'Sử dụng thuốc an thần', pcs.giac_ngu.su_dung_thuoc_an_than)"
+                              [(ngModel)]="pcs.giac_ngu.su_dung_thuoc_an_than">
+                  Sử dụng thuốc an thần
+                </mat-checkbox>
+              </div>
+            </div>
+            <div class="col-12 row comment-field-height">
+              <span class="radio-label col-2">
+                Đau
+              </span>
+              <div class="col-10 row">
+                <mat-checkbox class="col-3 margin-0"
+                              (change)="handleSelectCheckbox('dau', 'dau', 'Không đau', pcs.dau.khong_dau)"
+                              [(ngModel)]="pcs.dau.khong_dau">
+                  Không đau
+                </mat-checkbox>
+                <div class="d-flex col-3 margin-0">
+                  <mat-checkbox
+                                (change)="handleSelectCheckbox('dau', 'dau', 'Đau', pcs.dau.co_dau)"
+                                [(ngModel)]="pcs.dau.co_dau">Đau</mat-checkbox>
+                  <mat-form-field>
+                    <mat-label >Mô tả</mat-label>
+                    <input [(ngModel)]="pcs.dau.description" matInput>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 row">
+              <div class="col-2">
+                <strong>Tiền sử bệnh
+                  <app-field-template *ngIf="isEnabledForm" form_id='6068' name="Tiền sử bệnh" mau_phieu="pcs"
+                                      [(model)]="pcs.tien_su_benh"></app-field-template></strong>
+              </div>
+              <mat-form-field class="col-10" [(ngModel)]="pcs.tien_su_benh">
+                <textarea rows="3" matInput [(ngModel)]="pcs.tien_su_benh"></textarea>
+                <!-- <input matInput [(ngModel)]="pcs.tien_su_benh"> -->
+              </mat-form-field>
+            </div>
+            <div class="col-12 row">
+              <div class="col-2">
+                <strong>Diễn biến bệnh
+                  <app-field-template *ngIf="isEnabledForm" form_id='6069' name="Diễn biến bệnh" mau_phieu="pcs"
+                                      [(model)]="pcs.dien_bien_benh"></app-field-template></strong>
+              </div>
+              <mat-form-field class="col-10" [(ngModel)]="pcs.dien_bien_benh">
+                <textarea rows="3" matInput [(ngModel)]="pcs.dien_bien_benh"></textarea>
+                <!-- <input matInput [(ngModel)]="pcs.dien_bien_benh"> -->
+              </mat-form-field>
+            </div>
+            <div class="col-12 row">
+              <div class="col-2">
+                <strong>Nhận định khác
+                  <app-field-template *ngIf="isEnabledForm" form_id='6070' name="Nhận định khác" mau_phieu="pcs"
+                                      [(model)]="pcs.nhan_dinh_khac"></app-field-template></strong>
+              </div>
+              <mat-form-field class="col-10">
+                <textarea rows="3" matInput [(ngModel)]="pcs.nhan_dinh_khac"></textarea>
+                <!-- <input matInput [(ngModel)]="pcs.nhan_dinh_khac"> -->
+              </mat-form-field>
+            </div>
+          </fieldset>
+        </mat-tab>
+
+        <!-- TAB CHAM SOC BENH NHAN -->
+        <mat-tab label="Chăm sóc bệnh nhân" fxLayout='row'>
+          <fieldset [disabled]="!isEnabledForm" class="row cham_soc_benh_nhan">
+            <div class="col-12 row" [style.display]="template ? 'none' : 'flex'">
+              <strong class="col-2">
+                Mẫu phiếu
+              </strong>
+              <div class="col-3">
+                <mat-form-field class='full-width' appearance='outline'>
+                  <mtx-select [items]='listTemplate' bindLabel='examination_template_name'
+                              placeholder="Chọn mẫu phiếu"
+                              [(ngModel)]="templateSelect"
+                              [disabled]="!isEnabledForm"
+                              (change)='choiceTemplate($event)'
+                              (search)='getTemplateGiayTo($event.term)'></mtx-select>
+                </mat-form-field>
+              </div>
+
+            </div>
+            <div class="col-12 row">
+              <div class="col-2">
+                <strong>Chẩn đoán CS
+                  <app-field-template *ngIf="isEnabledForm" form_id='6071' name="Chẩn đoán CS" mau_phieu="pcs"
+                                      [(model)]="pcs.chan_doan_cs"></app-field-template></strong>
+              </div>
+              <mat-form-field class="col-10">
+                <textarea rows="5" matInput [(ngModel)]="pcs.chan_doan_cs"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-12 row">
+              <div class="col-2">
+                <strong>Lập KHCS
+                  <app-field-template form_id='6072'
+                                      [(model)]="pcs.lap_khcs"
+                                      mau_phieu="pcs"
+                                      *ngIf="isEnabledForm"
+                                      name="Lập KHCS"></app-field-template></strong>
+              </div>
+              <mat-form-field class="col-10">
+                <textarea rows="5" matInput [(ngModel)]="pcs.lap_khcs"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-12 row">
+              <div class="col-2">
+                <strong>Thực hiện KHCS
+                  <app-field-template form_id='6073'
+                                      [(model)]="pcs.thuc_hien_khcs"
+                                      mau_phieu="pcs"
+                                      *ngIf="isEnabledForm"
+                                      name="Thực hiện KHCS"></app-field-template></strong>
+              </div>
+              <mat-form-field class="col-10">
+                <textarea rows="12" matInput [(ngModel)]="pcs.thuc_hien_khcs"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-12 row">
+              <div class="col-2">
+                <strong>Đánh giá
+                  <app-field-template form_id='6074'
+                                      [(model)]="pcs.danh_gia"
+                                      mau_phieu="pcs"
+                                      *ngIf="isEnabledForm"
+                                      name="Đánh giá"></app-field-template></strong>
+              </div>
+              <mat-form-field class="col-10">
+                <textarea rows="5" [(ngModel)]="pcs.danh_gia" matInput></textarea>
+              </mat-form-field>
+            </div>
+          </fieldset>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,2473 @@
+<div class='khamBenh '>
+  <mat-card appearance="outlined">
+    <div *ngIf='showField?.TITLE_KHAM_BENH !== false' fxLayout='row' class='m-t-4'>
+      <ul *ngIf='ID_BENH_AN !== 27' class="p-l-0">
+        <li class="m-l-16">
+          <h3 class="m-b-0"
+              style="font-size:18px; font-family: Arial, Helvetica, sans-serif; font-weight: 600;">
+            {{"hoi_benh_noi_khoa.kham_benh.title" | translate}}:</h3>
+        </li>
+      </ul>
+      <h3 style=" text-transform: uppercase;" class="m-b-4" *ngIf='ID_BENH_AN === 27' fxLayout='row'>IV. Khám bệnh</h3>
+    </div>
+    <mat-card-content class="m-l-8">
+      <app-kham-mat [patientInfo]='patientInfo'
+                    [ID_BENH_AN]='ID_BENH_AN'
+                    [tenBenhAn]='tenBenhAn'></app-kham-mat>
+      <div *ngIf='showField?.CHUC_DANH_NGUOI_CHUYEN_S0_SINH === true' fxLayout='row' class='form-field-full' style='margin-top: 10px'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{"benh_an_so_sinh.ho_ten_nguoi_chuyen_so_sinh" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='khamBenh.HO_TEN_NGUOI_CHUYEN_SO_SINH'>
+        </mat-form-field>
+      </div>
+
+      <app-kham-mat-phaco *ngIf='showField?.KHAM_MAT_CHI_TIET === true' [patientInfo]='patientInfo'></app-kham-mat-phaco>
+
+      <div>
+        <div fxFlex="78" fxFlex.lt-sm="100" fxLayout='column'>
+          <ng-container *ngIf="showField?.KHAM_TOAN_THAN !== false">
+            <div fxLayout='row' class='m-t-4'>
+              <strong *ngIf="showField?.KHAM_TOAN_THAN_1 !== false || showField?.BENH_AN_NGOAI_TRU_HAM_MAT === true">1. {{"hoi_benh_noi_khoa.kham_benh.toan_than" | translate}}:
+                <app-field-template form_id='6030' [(model)]='khamBenh.KHAM_TOAN_THAN.TOAN_TRANG' name='Toàn thân'></app-field-template></strong>
+            </div>
+
+            <div *ngIf="showField?.TOAN_TRANG !== false" class="form-field-full" fxFlex fxLayout='column'>
+              <mat-form-field appearance='outline' class="m-r-8 toan-trang">
+                <mat-label>
+                  <ng-container *ngIf="showField?.LABEL_TOAN_TRANG === true">
+                    + {{'kham_benh.toan_trang.label' | translate}}:
+                  </ng-container>
+                </mat-label>
+
+                <textarea matInput [(ngModel)]="khamBenh.KHAM_TOAN_THAN.TOAN_TRANG" name="TOAN_TRANG"
+                          [placeholder]="'kham_benh.toan_trang.placeholder' | translate"></textarea>
+              </mat-form-field>
+            </div>
+            <div *ngIf="showField?.BENH_AN_NGOAI_TRU_HAM_MAT === true">
+              <div fxLayout='row'>
+                <mat-checkbox class='col-6' style='text-align: left' [(ngModel)]='khamBenh.HUYET_AP'>1. {{"phieu_truyen_dich.huyet_ap" | translate}}</mat-checkbox>
+                <mat-checkbox class='col-6' style='text-align: left' [(ngModel)]='khamBenh.BENH_THAN_KINH'>7.{{"benh_an_ngoai_tru_ham_mat.benh_than_kinh" | translate}}</mat-checkbox>
+              </div>
+              <div fxLayout='row'>
+                <mat-checkbox class='col-6' style='text-align: left' [(ngModel)]='khamBenh.BENH_TIM_MACH'>2.{{"benh_an_ngoai_tru_ham_mat.benh_tim_mach" | translate}}</mat-checkbox>
+                <mat-checkbox class='col-6' style='text-align: left' [(ngModel)]='khamBenh.BENH_HO_HAP'>8.{{"benh_an_ngoai_tru_ham_mat.benh_ho_hap" | translate}}</mat-checkbox>
+              </div>
+              <div fxLayout='row'>
+                <mat-checkbox class='col-6' style='text-align: left' [(ngModel)]='khamBenh.TIEU_DUONG'>3.{{"benh_an_ngoai_tru_ham_mat.tieu_duong" | translate}}</mat-checkbox>
+                <mat-checkbox class='col-6' style='text-align: left' [(ngModel)]='khamBenh.THAI_KINH_NGUYET'>9.{{"benh_an_ngoai_tru_ham_mat.thai_kinh_nguyet" | translate}}</mat-checkbox>
+              </div>
+              <div fxLayout='row'>
+                <mat-checkbox class='col-6' style='text-align: left' [(ngModel)]='khamBenh.ROI_LOAN_DONG_MAU'>4. {{"benh_an_ngoai_tru_ham_mat.roi_loan_dong_mau" | translate}}</mat-checkbox>
+              </div>
+              <div fxLayout='row'>
+                <mat-checkbox class='col-6' style='text-align: left' [(ngModel)]='khamBenh.BENH_GAN'>5. {{"benh_an_ngoai_tru_ham_mat.benh_gan" | translate}}</mat-checkbox>
+              </div>
+              <div fxLayout='row'>
+                <mat-checkbox class='col-6' style='text-align: left' [(ngModel)]='khamBenh.DI_UNG_THUOC'>6. {{"benh_an_ngoai_tru_ham_mat.di_ung_thuoc" | translate}}</mat-checkbox>
+              </div>
+              <div fxLayout='row' style='margin-top: 5px'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>10.{{"benh_an_ngoai_tru_ham_mat.benh_dang_dieu_tri" | translate}}:</mat-label>
+                    <input matInput [(ngModel)]='khamBenh.BENH_DANG_DIEU_TRI'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>11.{{"title.kham_chuyen_khoa" | translate}}:</mat-label>
+                    <input matInput [(ngModel)]='khamBenh.KHAM_CHUYEN_KHOA'>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+              <div fxLayout='row'></div>
+            <mat-checkbox *ngIf="showField?.PHU === true" [(ngModel)]='khamBenh.KHAM_TOAN_THAN.PHU' fxLayout='row'>
+              {{'kham_benh.phu'|translate}}
+            </mat-checkbox>
+            <div *ngIf='showField?.BENH_AN_CHAN_TAY_MIENG === true'>
+              <div fxLayout='row'>
+                <div fxFlex='15' style='text-align: left'>
+                  <mat-checkbox style='margin-top: 10px' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.TIM' (click)="reset('TIM')">{{"hoi_benh_chan_tay_mieng.tim" | translate}}</mat-checkbox>
+                </div>
+                <div fxFlex='15' class='form-field-full' *ngIf='khamBenh.BENH_AN_CHAN_TAY_MIENG.TIM'>
+                  <mat-form-field appearance='outline'>
+                    <mat-label>{{"hoi_benh_chan_tay_mieng.spo2" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.SPO2' type='number'>
+                    <div matSuffix class='m-t-16'>%</div>
+                  </mat-form-field>
+                </div>
+                <div fxFlex='5'></div>
+                <div fxFlex='65'>
+                  <div fxLayout='row'>
+                    <div fxFlex='15' style='text-align: left;margin-top: 7px'>{{"hoi_benh_chan_tay_mieng.tri_giac" | translate}}:</div>
+                    <div fxFlex='85'>
+                      <mat-radio-group [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.LIST_TRI_GIAC.ID'>
+                        <mat-radio-button *ngFor='let listtrigiac of listTriGiac' style='float: left; margin: 5px' [value]="listtrigiac.ID">{{listtrigiac.MO_TA}}</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-checkbox fxLayout='row' style='margin: 5px 0' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.LOET_MIENG'>{{"hoi_benh_chan_tay_mieng.loet_mieng" | translate}}</mat-checkbox>
+              <mat-checkbox fxLayout='row' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.PHAT_BAN'>{{"hoi_benh_chan_tay_mieng.phat_ban_2" | translate}}</mat-checkbox>
+              <div fxLayout='row' class='form-field-full' >
+                <mat-form-field appearance='outline'>
+                  <mat-label></mat-label>
+                  <textarea matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.GHI_CHU'></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </ng-container>
+
+          <!--              Cân đối các bộ phận -->
+          <div *ngIf='showField?.CAN_DOI_CAC_BO_PHAN === true' class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>{{"kham_benh.can_doi_cac_bo_phan" | translate}}</mat-label>
+              <input matInput [(ngModel)]="khamBenh.KHAM_TOAN_THAN.CAN_DOI_CAC_BO_PHAN" name="CAN_DOI_CAC_BO_PHAN">
+            </mat-form-field>
+          </div>
+
+          <!--              Các khuyết tật đặc biệt-->
+          <div *ngIf='showField?.CAC_KHUYET_TAT_DAC_BIET === true' class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>{{"kham_benh.cac_khuyet_tat_dac_biet" | translate}}</mat-label>
+              <input matInput [(ngModel)]="khamBenh.KHAM_TOAN_THAN.CAC_KHUYET_TAT_DAC_BIET" name="CAC_KHUYET_TAT_DAC_BIET">
+            </mat-form-field>
+          </div>
+
+          <!-- <div *ngIf="showField?.BENH_NGOAI_KHOA === true" >
+            <div fxLayout='row' class='m-t-4' >
+              <strong>{{"hoi_benh_noi_khoa.kham_benh.benh_ngoai_khoa" | translate}}:</strong>
+            </div>
+            <div class="form-field-full">
+              <mat-form-field appearance='outline' class="m-r-8">
+                <mat-label></mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.BENH_NGOAI_KHOA" name="BENH_NGOAI_KHOA"
+                          placeholder=""></textarea>
+              </mat-form-field>
+            </div>
+          </div> -->
+
+<!--          <div *ngIf="showField?.BENH_CHUYEN_KHOA === true" >-->
+<!--            <div fxLayout='row' class='m-t-4' >-->
+<!--              <strong>{{"hoi_benh_noi_khoa.kham_benh.benh_chuyen_khoa" | translate}}:</strong>-->
+<!--            </div>-->
+<!--            <div class="form-field-full">-->
+<!--              <mat-form-field appearance='outline' class="m-r-8">-->
+<!--                <mat-label></mat-label>-->
+<!--                <textarea matInput [(ngModel)]="khamBenh.BENH_CHUYEN_KHOA" name="BENH_CHUYEN_KHOA"-->
+<!--                          placeholder=""></textarea>-->
+<!--              </mat-form-field>-->
+<!--            </div>-->
+<!--          </div>-->
+          <div *ngIf="showField?.TRIEU_CHUNG_CO_NANG === true" >
+            <div fxLayout='row' class='m-t-4' >
+              <strong>{{"hoi_benh_noi_khoa.kham_benh.trieu_chung_co_nang" | translate}}:</strong>
+            </div>
+            <div class="form-field-full">
+              <mat-form-field appearance='outline' class="m-r-8">
+                <mat-label></mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.CO_NANG" name="TRIEU_CHUNG_CO_NANG"
+                          placeholder=""></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+
+<!--            Khám toàn thân bệnh án sơ sinh-->
+            <div *ngIf='showField?.KHAM_TOAN_THAN_SO_SINH === true'>
+              <div fxLayout='row' style='text-align: left'>
+                <mat-checkbox labelPosition='before' [(ngModel)]='khamBenh.DI_TAT_BAM_SINH' style='width: 40%'>- Dị tật bẩm sinh:</mat-checkbox>
+                <mat-checkbox labelPosition='before' [(ngModel)]='khamBenh.CO_HAU_MON'>- Có hậu môn:</mat-checkbox>
+              </div>
+
+              <div fxLayout='row' class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>{{"benh_an_so_sinh.cu_the_di_tat" | translate}}:</mat-label>
+                  <input matInput [(ngModel)]='khamBenh.CU_THE_DI_TAT'>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout='row' class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>- {{"benh_an_so_sinh.tinh_hinh_so_sinh_khi_vao_khoa" | translate}}:</mat-label>
+                  <input matInput [(ngModel)]='khamBenh.TINH_HINH_SO_SINH_KHI_VAO_KHOA'>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout='row' class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>+ {{"benh_an_so_sinh.tinh_trang_toan_than" | translate}}:</mat-label>
+                  <input matInput [(ngModel)]='khamBenh.TINH_TRANG_TOAN_THAN'>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout='row'
+                   style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 5px'>
+                <div  fxFlex='20' style='margin-top: 1px; text-align: left;padding-left: 4px'>+ {{"benh_an_so_sinh.mau_sac_da" | translate}}:</div>
+                <div fxFlex='80'>
+                  <mat-radio-group [(ngModel)]='khamBenh.MAU_DA.ID'>
+                    <mat-radio-button *ngFor='let mauda of listMauDa' style='float: left' [value]="mauda.ID">{{mauda.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+
+
+          </div>
+
+          <div>
+            <div *ngIf="showField?.TON_THUONG_CAN_BAN === true">
+              <div fxLayout='row'>
+                <strong>{{"hoi_benh_noi_khoa.kham_benh.ton_thuong_can_ban" | translate}}:</strong>
+              </div>
+              <div class="form-field-full">
+                <mat-form-field appearance='outline' class="m-r-8">
+                  <mat-label></mat-label>
+                  <textarea *ngIf="showField?.TON_THUONG_CAN_BAN_PLACEHOLDER === true" matInput [(ngModel)]="khamBenh.THUONG_TON" name="TON_THUONG_CAN_BAN"
+                            [placeholder]="'kham_benh.ton_thuong_can_ban.placeholder' | translate"></textarea>
+                  <textarea *ngIf="showField?.TON_THUONG_CAN_BAN_NOT_PLACEHOLDER !== false" matInput [(ngModel)]="khamBenh.THUONG_TON" name="TON_THUONG_CAN_BAN"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div *ngIf="showField?.KHAM_VU === true">
+              <div>
+                <div class="form-field-full">
+                  <mat-form-field appearance='outline' class="m-r-8">
+                    <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.vu" | translate}}:</mat-label>
+                    <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_VU" name="KHAM_VU"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="showField?.KHAM_HACH === true">
+              <div>
+                <div class="form-field-full">
+                  <mat-form-field appearance='outline' class="m-r-8">
+                    <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.hach" | translate}}:</mat-label>
+                    <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HACH" name="KHAM_HACH"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <!--              Tinh thần của người bệnh-->
+            <div fxLayout='row' class='form-field-full' *ngIf="showField?.TINH_THAN_CUA_NGUOI_BENH === true">
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.tinh_than_cua_nguoi_benh" | translate}}:</mat-label>
+                <input matInput [(ngModel)]="khamBenh.KHAM_TOAN_THAN.TINH_THAN_CUA_NGUOI_BENH" name="TINH_THAN_CUA_NGUOI_BENH">
+              </mat-form-field>
+            </div>
+
+            <div fxLayout='row' class='form-field-full' *ngIf="showField?.HINH_DANG_TU_THE === true">
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.hinh_dang_tu_the" | translate}}:</mat-label>
+                <input matInput [(ngModel)]="khamBenh.KHAM_TOAN_THAN.HINH_DANG_TU_THE" name="HINH_DANG_TU_THE">
+              </mat-form-field>
+            </div>
+            <div fxLayout='row' class='form-field-full' *ngIf="showField?.DA_NIEM_MAC === true">
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.da_niem_mac" | translate}}:</mat-label>
+                <input matInput [(ngModel)]="khamBenh.KHAM_TOAN_THAN.DA_DIEM_MAC" name="DA_NIEM_MAC">
+              </mat-form-field>
+            </div>
+            <div fxLayout='row' class='form-field-full' *ngIf="showField?.TRIEU_CHUNG_XUAT_HUYET === true">
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.trieu_chung_xuat_huyet" | translate}}:</mat-label>
+                <input matInput [(ngModel)]="khamBenh.KHAM_TOAN_THAN.TRIEU_CHUNG_XUAT_HUYET" name="TRIEU_CHUNG_XUAT_HUYET">
+              </mat-form-field>
+            </div>
+            <div fxLayout='row' class='form-field-full' *ngIf="showField?.HE_THONG_LONG_TOC_MONG === true">
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.he_thong_long_toc_mong" | translate}}:</mat-label>
+                <input matInput [(ngModel)]="khamBenh.KHAM_TOAN_THAN.HE_THONG_LONG_TOC_MONG" name="HE_THONG_LONG_TOC_MONG">
+              </mat-form-field>
+            </div>
+            <div fxLayout='row' class='form-field-full' *ngIf="showField?.TRIEU_CHUNG_PHU === true">
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.trieu_chung_phu" | translate}}:</mat-label>
+                <input matInput [(ngModel)]="khamBenh.KHAM_TOAN_THAN.TRIEU_CHUNG_PHU" name="TRIEU_CHUNG_PHU">
+              </mat-form-field>
+            </div>
+            <div fxLayout='row' class='form-field-full' *ngIf="showField?.TUYEN_GIAP === true">
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.tuyen_giap" | translate}}:</mat-label>
+                <input matInput [(ngModel)]="khamBenh.KHAM_TOAN_THAN.TUYEN_GIAP" name="TUYEN_GIAP">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div *ngIf='showField?.KHAM_BENH_LY === true'>
+            <div *ngIf='showField?.TITLE_TOAN_THAN !== false' fxLayout='row'  class='m-t-4'>
+              <strong>{{"hoi_benh_noi_khoa.kham_benh.toan_than" | translate}}:</strong>
+            </div>
+            <div *ngIf='showField?.TITLE_KB_TOAN_THAN === true' fxLayout='row' class='m-t-4'>
+              <strong>2. {{"title.kham_benh_toan_than" | translate}}:</strong>
+            </div>
+            <div class='matero-col'>
+              <mat-radio-group class='row' [(ngModel)]="khamBenh.KHAM_TOAN_THAN.KHAM_BENH_LY.BENH_LY" (click)="reset('BENH_LY_TOAN_THAN')">
+                <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.chua_thay_bieu_hien_benh_ly'|translate}}</mat-radio-button>
+                <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.benh_ly'|translate}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div *ngIf='khamBenh.KHAM_TOAN_THAN.KHAM_BENH_LY.BENH_LY === 1' class='col-12'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                <textarea matInput [(ngModel)]='khamBenh.KHAM_TOAN_THAN.KHAM_BENH_LY.TEN_BENH_LY'></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!--        Chỉ số sinh tồn-->
+        <div  *ngIf="showField?.CHI_SO_SINH_TON !== false" fxFlex="22" fxFlex.lt-sm="100" class="p-l-8">
+         <div style='margin-top: 21px'>
+
+           <!--             Chiều cao-->
+           <div *ngIf='showField?.CHIEU_CAO === true'>
+             <div class="form-field-full">
+               <mat-form-field appearance='outline' class="m-r-8">
+                 <mat-label><i>{{"st_chieu_cao" | translate}}</i></mat-label>
+                 <input matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.CHIEU_CAO" name="CHIEU_CAO" placeholder="cm">
+               </mat-form-field>
+             </div>
+           </div>
+
+           <div *ngIf='showField?.CAN_NANG !== false'>
+             <div class="form-field-full">
+               <mat-form-field appearance='outline' class="m-r-8">
+                 <mat-label *ngIf='showField?.CAN_NANG_KG !== false'><i>{{"st_can_nang" | translate}}</i></mat-label>
+                 <mat-label *ngIf='showField?.CAN_NANG_Gr === true'><i>{{"st_can_nang_gr" | translate}}</i></mat-label>
+                 <input *ngIf='showField?.CAN_NANG_KG !== false' matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.CAN_NANG" name="CAN_NANG" placeholder="kg">
+                 <input *ngIf='showField?.CAN_NANG_Gr === true' matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.CAN_NANG" name="CAN_NANG" placeholder="gr">
+               </mat-form-field>
+             </div>
+           </div>
+
+           <div *ngIf='showField?.CHIEU_DAI === true'>
+             <div class="form-field-full">
+               <mat-form-field appearance='outline' class="m-r-8">
+                 <mat-label><i>{{"st_chieu_dai" | translate}}</i></mat-label>
+                 <input matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.CHIEU_DAI" name="CHIEU_DAI" placeholder="cm">
+               </mat-form-field>
+             </div>
+           </div>
+
+           <div *ngIf='showField?.VONG_NGUC === true'>
+             <div class="form-field-full">
+               <mat-form-field appearance='outline' class="m-r-8">
+                 <mat-label><i>{{"st_vong_nguc" | translate}}</i></mat-label>
+                 <input matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.VONG_NGUC" name="VONG_NGUC" placeholder="cm">
+               </mat-form-field>
+             </div>
+           </div>
+
+           <div *ngIf='showField?.VONG_DAU === true'>
+             <div class="form-field-full">
+               <mat-form-field appearance='outline' class="m-r-8">
+                 <mat-label><i>{{"st_vong_dau" | translate}}</i></mat-label>
+                 <input matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.VONG_DAU" name="VONG_DAU" placeholder="cm">
+               </mat-form-field>
+             </div>
+           </div>
+
+           <div *ngIf='showField?.MACH !== false'>
+             <div class="form-field-full">
+               <mat-form-field appearance='outline' class="m-r-8">
+                 <mat-label><i>{{"st_mach" | translate}}</i></mat-label>
+                 <input matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.MACH" name="MACH" placeholder="lần/ph">
+               </mat-form-field>
+             </div>
+           </div>
+
+           <div *ngIf='showField?.NHIET_DO !== false' >
+             <div class="form-field-full">
+               <mat-form-field appearance='outline' class="m-r-8">
+                 <mat-label><i>{{"st_nhiet_do" | translate}}</i></mat-label>
+                 <input matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.NHIET_DO" name="NHIET_DO" placeholder="°C">
+               </mat-form-field>
+             </div>
+           </div>
+
+           <div *ngIf='showField?.HUYET_AP !== false'>
+             <mat-form-field *ngIf='showField?.HUYET_AP_THUONG === true' appearance='outline' fxFlex="100">
+               <mat-label><i>{{"st_huyet_ap" | translate}}</i></mat-label>
+               <input matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.HUYET_AP.HUYET_AP" name="HUYET_AP"
+                      placeholder='{{ "st_huyet_ap" | translate}}'>
+             </mat-form-field>
+             <mat-form-field *ngIf='showField?.HA_TAM_THU !== false' appearance='outline' fxFlex="48" [title]="'tam_thu' | translate">
+               <mat-label><i>{{"st_ha_tam_thu" | translate}}</i></mat-label>
+               <input matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.HUYET_AP.TAM_THU" name="TAM_THU"
+                      placeholder='{{ "st_ha_tam_thu" | translate}}'>
+             </mat-form-field>
+             <div *ngIf='showField?.HA_TAM_THU !== false' fxFlex="4"></div>
+             <mat-form-field *ngIf='showField?.HA_TAM_TRUONG !== false' appearance='outline' fxFlex="48" [title]="'tam_truong' | translate">
+               <mat-label><i>{{"st_ha_tam_truong" | translate}}</i></mat-label>
+               <input matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.HUYET_AP.TAM_TRUONG" name="TAM_TRUONG"
+                      placeholder='{{ "st_ha_tam_truong" | translate}}'>
+             </mat-form-field>
+           </div>
+
+           <div *ngIf='showField?.NHIP_THO !== false'>
+             <div class="form-field-full">
+               <mat-form-field appearance='outline' class="m-r-8">
+                 <mat-label><i>{{"st_nhip_tho" | translate}}</i></mat-label>
+                 <input matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.NHIP_THO" name="NHIP_THO" placeholder="lần/ph">
+               </mat-form-field>
+             </div>
+           </div>
+           <div *ngIf='showField?.CHI_SO_BMI === true'>
+             <div class="form-field-full">
+               <mat-form-field appearance='outline' class="m-r-8">
+                 <mat-label><i>{{"st_bmi" | translate}}</i></mat-label>
+                 <input matInput [(ngModel)]="khamBenh.CHI_SO_SINH_TON.BMI">
+               </mat-form-field>
+             </div>
+           </div>
+
+         </div>
+        </div>
+      </div>
+<!--      Bệnh chuyên khoa-->
+      <div *ngIf="showField?.BENH_CHUYEN_KHOA === true" >
+        <div fxLayout='row' class='m-t-4' >
+          <strong>{{"hoi_benh_noi_khoa.kham_benh.benh_chuyen_khoa" | translate}}:</strong>
+        </div>
+        <div class="form-field-full">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label></mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.BENH_CHUYEN_KHOA" name="BENH_CHUYEN_KHOA"
+                      placeholder=""></textarea>
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='m-t-4' *ngIf="showField?.HINH_VE_MO_TA_TON_THUONG_KHI_VV_TMH === true">
+          <strong>{{"kham_benh.hinh_ve_mo_ta_khi_vv" | translate}}:</strong>
+        </div>
+        <div class='form-field-full' *ngIf="showField?.HINH_VE_MO_TA_TON_THUONG_KHI_VV_TMH === true">
+          <div class='row m-t-8'>
+            <div class="col-3">
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_benh.mang_nhi_phai" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.MO_TA_TON_THUONG_KHI_VAO_VIEN.MANG_NHI_PHAI" name="MANG_NHI_PHAI" ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_benh.mang_nhi_trai" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.MO_TA_TON_THUONG_KHI_VAO_VIEN.MANG_NHI_TRAI" name="MANG_NHI_TRAI" ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_benh.mui_truoc" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.MO_TA_TON_THUONG_KHI_VAO_VIEN.MUI_TRUOC" name="MUI_TRUOC" ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_benh.mui_sau" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.MO_TA_TON_THUONG_KHI_VAO_VIEN.MUI_SAU" name="MUI_SAU" ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_benh.thanh_quan" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.MO_TA_TON_THUONG_KHI_VAO_VIEN.THANH_QUAN" name="THANH_QUAN" ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_benh.hong" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.MO_TA_TON_THUONG_KHI_VAO_VIEN.HONG" name="HONG" ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_benh.co_nghieng_phai" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.MO_TA_TON_THUONG_KHI_VAO_VIEN.CO_NGHIENG_PHAI" name="CO_NGHIENG_PHAI" ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_benh.co_nghieng_trai" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.MO_TA_TON_THUONG_KHI_VAO_VIEN.CO_NGHIENG_TRAI" name="CO_NGHIENG_TRAI" ></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+<!--      Bệnh ngoại khoa-->
+      <div *ngIf="showField?.BENH_NGOAI_KHOA === true" >
+        <div fxLayout='row' class='m-t-4' >
+          <strong>{{"hoi_benh_noi_khoa.kham_benh.benh_ngoai_khoa" | translate}}:</strong>
+        </div>
+        <div class="form-field-full">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label></mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.BENH_NGOAI_KHOA" name="BENH_NGOAI_KHOA"
+                      placeholder=""></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--  Bộ phận tổn thương-->
+      <div *ngIf='showField?.KHAM_BO_PHAN_TON_THUONG === true'>
+        <div fxLayout='row col-12' class='m-t-4'>
+          <h2>2. {{"kham_benh.bo_phan_ton_thuong" | translate}}:</h2>
+        </div>
+        <div class="form-field-full">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_TON_THUONG.BO_PHAN_TON_THUONG" name="BO_PHAN_TON_THUONG"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="form-field-full">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label>+ {{"kham_benh.hinh_ve_anh" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_TON_THUONG.HINH_VE_ANH" name="HINH_VE_ANH"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="form-field-full">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label>+ {{"kham_benh.mo_ta_ton_thuong" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_TON_THUONG.MO_TA_TON_THUONG" name="MO_TA_TON_THUONG"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout='row' *ngIf="showField?.BENH_CHUYEN_KHOA === true">
+        <strong>{{"title.hinh_ve_mo_ta_ton_thuong" | translate}}</strong>
+      </div>
+      <div fxLayout='row' *ngIf="showField?.BENH_CHUYEN_KHOA === true" style='margin-top: 200px'>
+        <div fxFlex='15' style='text-align: left'>{{"kham_benh.phai" | translate}}</div>
+        <div fxFlex='15' style='text-align: left'>{{"kham_benh.thang" | translate}}</div>
+        <div fxFlex='15' style='text-align: left'>{{"kham_benh.trai" | translate}}</div>
+        <div fxFlex='20' style='text-align: left'>{{"kham_benh.ham_tren_va_hong" | translate}}</div>
+        <div fxFlex='15' style='text-align: left'>{{"kham_benh.ham_duoi" | translate}}</div>
+        <div fxFlex='20' style='text-align: left'>{{"kham_benh.phan_loai_khe_ho_moi_vom_mieng" | translate}}</div>
+      </div>
+<!--      Tổn thương bỏng-->
+      <div *ngIf="showField?.TON_THUONG_BONG === true">
+        <div fxLayout='row'>
+          <strong>{{"hoi_benh_noi_khoa.kham_benh.ton_thuong_bong" | translate}}:</strong>
+        </div>
+        <div class="form-field-full">
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]="khamBenh.TON_THUONG_BONG" name="TON_THUONG_BONG">
+          </mat-form-field>
+        </div>
+      </div>
+<!--  Khám các cơ quan    -->
+      <div fxLayout='row' *ngIf="showField?.KHAM_CAC_BO_PHAN_KHAC === true">
+        <strong>{{"kham_benh.kham_cac_bo_phan_khac" | translate}}:</strong>
+      </div>
+
+      <div *ngIf="showField?.KHAM_CAC_CO_QUAN === true">
+        <div fxLayout='row' class='m-t-4'>
+          <strong>{{"kham_benh.cac_co_quan" | translate}}:</strong>
+        </div>
+        <div *ngIf="showField?.CAC_CO_QUAN === true" class="form-field-full">
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_CAC_CO_QUAN" name="KHAM_CAC_CO_QUAN"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--        Khám tuyến giáp col-12-->
+      <div *ngIf="showField?.KHAM_TUYEN_GIAP === true">
+        <div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.tuyen_giap" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_TUYEN_GIAP" name="TUYEN_GIAP"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!--  Khám các cơ quan (Bệnh án chân tay miệng)    -->
+      <div *ngIf="showField?.BENH_AN_CHAN_TAY_MIENG === true">
+        <div class='row m-y-8'>
+          <div class='col-3 col-xl-2' style='text-align: left;justify-content: center'>+ {{"hoi_benh_chan_tay_mieng.tuan_hoan" | translate}}:</div>
+          <div class='col-6 col-xl-4'>
+            <mat-radio-group class='row' style='float: left' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.TIENG_TIM.ID' (click)="reset('TIENG_TIM')">
+              <mat-radio-button class='col' *ngFor='let listtiengtim of listTiengTim' [value]="listtiengtim.ID">{{listtiengtim.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-3 col-xl-6 form-field-full' *ngIf='khamBenh.BENH_AN_CHAN_TAY_MIENG.TIENG_TIM.ID === "4"'>
+            <mat-form-field appearance='outline'>
+              <mat-label></mat-label>
+              <textarea matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.AM_THOI'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row'>
+          <mat-checkbox fxFlex='30' style='text-align: left;margin-top: 10px' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.DAU_HIEU_TINH_MACH_CO_NOI'>{{"hoi_benh_chan_tay_mieng.dau_hieu_tinh_mach_co_noi" | translate}}</mat-checkbox>
+          <mat-form-field fxFlex='30' appearance='outline' class="form-field-full">
+            <mat-label>{{'hoi_benh_chan_tay_mieng.thoi_gian_do_day_mao_mach' | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.THOi_GIAN_DO_DAY_MAO_MACH'
+                   type='number' min='0' />
+            <div matSuffix class='m-t-16'>giây</div>
+          </mat-form-field>
+          <mat-checkbox fxFlex='20' style='text-align: center;margin-top: 10px' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.VA_MO_HOI'>{{"hoi_benh_chan_tay_mieng.va_mo_hoi" | translate}}</mat-checkbox>
+          <mat-checkbox fxFlex='20' style='text-align: center;margin-top: 10px' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.DA_NOI_BONG'>{{"hoi_benh_chan_tay_mieng.da_noi_bong" | translate}}</mat-checkbox>
+        </div>
+        <div fxLayout='row' class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{"hoi_benh_chan_tay_mieng.dau_hieu_khac" | translate}}</mat-label>
+            <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.DAU_HIEU_KHAC_TUAN_HOAN'>
+          </mat-form-field>
+        </div>
+        <div fxLayout='row'>
+          <div fxFlex='10' style='text-align: left;margin-top: 16px'>+ {{"kham_benh.ho_hap" | translate}}:</div>
+          <div fxFlex='90'>
+            <mat-radio-group style='float: left;margin-top: 10px' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.LIST_HO_HAP.ID'>
+              <mat-radio-button *ngFor='let listthohap of listHoHap' style='float: left; margin: 5px 5px 5px 5px' [value]="listthohap.ID">{{listthohap.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxLayout='row'>
+          <mat-checkbox fxFlex='30' style='text-align: left;margin-top: 10px' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.RAN_PHOI' (click)="reset('RAN_PHOI')">{{"hoi_benh_chan_tay_mieng.ran_phoi" | translate}}:</mat-checkbox>
+          <div fxFlex='70' class='form-field-full' *ngIf='khamBenh.BENH_AN_CHAN_TAY_MIENG.RAN_PHOI'>
+            <mat-form-field appearance='outline'>
+              <mat-label></mat-label>
+              <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.TEXT_RAN_PHOI'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row' class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{"hoi_benh_chan_tay_mieng.dau_hieu_khac" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.DAU_HIEU_KHAC_HO_HAP'>
+          </mat-form-field>
+        </div>
+        <div fxLayout='row'>
+          <div fxFlex='30'>
+            <div fxFlex='33.33' style='text-align: left;margin-top: 13px'>+ {{"hoi_benh_noi_khoa.kham_benh.tieu_hoa" | translate}}:</div>
+            <mat-checkbox fxFlex='66.67' style='text-align: left;margin-top: 10px' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.GAN_TO' (click)="reset('GAN_TO')">{{"hoi_benh_chan_tay_mieng.gan_to" | translate}}</mat-checkbox>
+          </div>
+          <div fxFlex='29.5' class='form-field-full' *ngIf='khamBenh.BENH_AN_CHAN_TAY_MIENG.GAN_TO'>
+            <mat-form-field appearance='outline'>
+              <mat-label></mat-label>
+              <input matInput type='number' min='0' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.TEXT_GAN_TO'>
+              <div matSuffix class='m-t-16'>cm</div>
+            </mat-form-field>
+          </div>
+          <div fxFlex='0.5'></div>
+          <div fxFlex='40' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"hoi_benh_chan_tay_mieng.dbs_dac_diem" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.DBS_DAC_DIEM'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row' class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{"hoi_benh_chan_tay_mieng.dau_hieu_khac" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.DAU_HIEU_KHAC_TIEU_HOA'>
+          </mat-form-field>
+        </div>
+        <div fxLayout='row'>
+          <div fxFlex='19.5' style='text-align: left;margin-top: 13px'>+ {{"kham_benh_tam_than.title_than_kinh" | translate}}:</div>
+          <div fxFlex='40' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.dong_tu" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.DONG_TU' min='0' type='number'>
+              <div matSuffix class='m-t-16'>mm</div>
+            </mat-form-field>
+          </div>
+          <div fxFlex='0.5'></div>
+          <div fxFlex='40' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"hoi_benh_chan_tay_mieng.pxas" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.PXAS'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div style='text-align: left'>
+          <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.CO_GUONG'>{{"hoi_benh_chan_tay_mieng.co_guong" | translate}}</mat-checkbox>
+          <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.GIAT_MINH_LUC_KHAM_THAN_KINH'>{{"hoi_benh_chan_tay_mieng.giat_minh_luc_kham" | translate}}</mat-checkbox>
+          <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.LIET_TK_SO'>{{"hoi_benh_chan_tay_mieng.liet_tk_so" | translate}}</mat-checkbox>
+          <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.RUNG_GIAT_NHAN_CAU_KTK'>{{"hoi_benh_chan_tay_mieng.rung_giat_nhan_cau" | translate}}</mat-checkbox>
+          <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.LE'>{{"hoi_benh_chan_tay_mieng.le" | translate}}</mat-checkbox>
+          <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.YEU_CHI_LIET_MEM_CAP'>{{"hoi_benh_chan_tay_mieng.yeu_chi_liet_mem_cap" | translate}}</mat-checkbox>
+          <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.THAT_DIEU_THAN_KINH'>{{"hoi_benh_chan_tay_mieng.that_dieu" | translate}}</mat-checkbox>
+          <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.NGU_GA'>{{"hoi_benh_chan_tay_mieng.ngu_ga" | translate}}</mat-checkbox>
+        </div>
+        <div fxLayout='row' class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{"hoi_benh_chan_tay_mieng.dau_hieu_khac" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.DAU_HIEU_KHAC_THAN_KINH'>
+          </mat-form-field>
+        </div>
+      </div>
+<!--  Khám các cơ quan (Bệnh án huyết học - truyền máu)    -->
+      <ng-container *ngIf="showField?.KHAM_GAN_CHI_TIET === true">
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.KICH_THUOC_GAN === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.gan_kich_thuoc" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_GAN_CHI_TIET.KICH_THUOC' name="KICH_THUOC_GAN">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.MAT_DO_GAN === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.mat_do" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_GAN_CHI_TIET.MAT_DO' name="MAT_DO_GAN">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.BO === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.bo" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_GAN_CHI_TIET.BO' name="BO">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.MAT_GAN === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.mat_gan" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_GAN_CHI_TIET.MAT_GAN' name="MAT_GAN">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.DAU === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.dau" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_GAN_CHI_TIET.DAU' name="DAU">
+          </mat-form-field>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showField?.KHAM_LACH_CHI_TIET === true">
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.KICH_THUOC_LACH === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.lach_kich_thuoc" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_LACH_CHI_TIET.KICH_THUOC' name="KICH_THUOC_LACH">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.MAT_DO_LACH === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.mat_do" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_LACH_CHI_TIET.MAT_DO' name="MAT_DO_LACH">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.BO === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.bo" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_LACH_CHI_TIET.BO' name="BO">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.MAT_GAN === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.mat_gan" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_LACH_CHI_TIET.MAT_GAN' name="MAT_GAN">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.DAU === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.dau" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_LACH_CHI_TIET.DAU' name="DAU">
+          </mat-form-field>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showField?.KHAM_HACH_CHI_TIET === true">
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.VI_TRI_HACH === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.hach_vi_tri" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_HACH_CHI_TIET.VI_TRI' name="VI_TRI_HACH">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.KICH_THUOC_HACH === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.kich_thuoc" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_HACH_CHI_TIET.KICH_THUOC' name="KICH_THUOC_HACH">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.SO_LUONG === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"phieu_truyen_dich.so_luong" | translate}}:</mat-label>
+            <input type='number' min='0' matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_HACH_CHI_TIET.SO_LUONG' name="SO_LUONG">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.DO_DI_DONG === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.do_di_dong" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_HACH_CHI_TIET.DO_DI_DONG' name="DO_DI_DONG">
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='form-field-full' *ngIf="showField?.DAU === true">
+          <mat-form-field appearance='outline'>
+            <mat-label>- {{"hoi_benh_noi_khoa.kham_benh.dau" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_BO_PHAN.KHAM_HACH_CHI_TIET.DAU' name="DAU">
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <div *ngIf="showField?.KHAM_TAM_THAN_THAN_KINH === true">
+        <div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.tam_than_than_kinh" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_TAM_THAN_THAN_KINH" name="KHAM_TAM_THAN_THAN_KINH"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!-- Tuần hoàn -->
+      <div *ngIf="showField?.KHAM_HE_TUAN_HOAN === true">
+        <div class='has-template'>
+          <app-field-template form_id='6038' [(model)]='khamBenh.KHAM_BO_PHAN.KHAM_HE_TUAN_HOAN' name='Tuần hoàn'></app-field-template>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.tuan_hoan" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_TUAN_HOAN" name="KHAM_HE_TUAN_HOAN"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- Khám hệ tuần hoàn chi tiết. Sử dụng với các bệnh án ghi tiết các thành phần hệ toàn hoàn  -->
+      <div class='row' *ngIf="showField?.KHAM_HE_TUAN_HOAN_CHI_TIET === true">
+        <mat-label class='col-12' style='text-align: left'>+ {{"hoi_benh_noi_khoa.kham_benh.tuan_hoan" | translate}}:</mat-label>
+        <div  *ngIf="showField?.NHIP_TIM !==false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.nhip_tim" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_TUAN_HOAN_CHI_TIET.NHIP_TIM" name="NHIP_TIM"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="showField?.TIENG_TIM !==false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.tieng_tim" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_TUAN_HOAN_CHI_TIET.TIENG_TIM" name="TIENG_TIM"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div  *ngIf="showField?.ROI_LOAN_CN_TIM_MACH !==false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.roi_loan_cn_tim" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_TUAN_HOAN_CHI_TIET.ROI_LOAN_CHUC_NANG_TIM" name="ROI_LOAN_CN_TIM_MACH"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div *ngIf="showField?.KHAM_HE_HO_HAP !== false">
+        <div class='has-template'>
+          <app-field-template form_id='6055' [(model)]='khamBenh.KHAM_BO_PHAN.KHAM_HE_HO_HAP' name='Hô hấp'></app-field-template>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_san_khoa.kham_benh.ho_hap" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_HO_HAP" name="KHAM_HE_HO_HAP"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='row' *ngIf="showField?.KHAM_HE_HO_HAP_CHI_TIET === true">
+        <mat-label class='col-12' style='text-align: left'>+ {{"kham_benh.ho_hap" | translate}}:</mat-label>
+        <div  *ngIf="showField?.LONG_NGUC !==false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.long_nguc" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_HO_HAP_CHI_TIET.LONG_NGUC" name="LONG_NGUC"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="showField?.THE_TICH_KHI !==false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.the_tich_khi" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_HO_HAP_CHI_TIET.THE_TICH_KHI" name="THE_TICH_KHI"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div  *ngIf="showField?.TINH_TRANG_BENH_LY_HO_HAP !==false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.tt_benh_ly" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_HO_HAP_CHI_TIET.TINH_TRANG_BENH_LY_HO_HAP" name="TINH_TRANG_BENH_LY_HO_HAP"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div  *ngIf="showField?.ROI_LOAN_CHUC_NANG_HO_HAP !==false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.roi_loan_cnhh" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_HO_HAP_CHI_TIET.ROI_LOAN_CHUC_NANG_HO_HAP" name="ROI_LOAN_CHUC_NANG_HO_HAP"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div *ngIf="showField?.KHAM_HE_TIEU_HOA !== false">
+        <div class='has-template'>
+          <app-field-template form_id='6056' [(model)]='khamBenh.KHAM_BO_PHAN.KHAM_HE_TIEU_HOA' name='Tiêu hóa'></app-field-template>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.tieu_hoa" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_TIEU_HOA" name="KHAM_HE_TIEU_HOA"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='row' *ngIf="showField?.KHAM_HE_TIEU_HOA_CHI_TIET === true">
+        <mat-label class='col-12' style='text-align: left'>+ {{"hoi_benh_noi_khoa.kham_benh.tieu_hoa" | translate}}:</mat-label>
+        <div  *ngIf="showField?.TINH_TRANG_BENH_LY_TIEU_HOA !==false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.tt_benh_ly" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_TIEU_HOA_CHI_TIET.TINH_TRANG_BENH_LY_TIEU_HOA" name="TINH_TRANG_BENH_LY_TIEU_HOA"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="showField?.ROI_LOAN_CHUC_NANG_TIEU_HOA !==false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.roi_loan_chuc_nang" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_TIEU_HOA_CHI_TIET.ROI_LOAN_CHUC_NANG_TIEU_HOA" name="ROI_LOAN_CHUC_NANG_TIEU_HOA"></textarea>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <!--          Khám hệ tiết niệu-->
+      <div *ngIf="showField?.KHAM_HE_TIET_NIEU === true">
+        <div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"kham_benh.tiet_nieu" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_TIET_NIEU" name="KHAM_HE_TIET_NIEU"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!--          Khám hệ Sinh dục-->
+      <div *ngIf="showField?.KHAM_HE_SINH_DUC === true">
+        <div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label *ngIf="showField?.LABEL_SINH_DUC !== false">+ {{"kham_benh.sinh_duc" | translate}}:</mat-label>
+              <mat-label *ngIf="showField?.LABEL_BO_PHAN_SINH_DUC === true">+ {{"kham_benh.bo_phan_sinh_duc" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_SINH_DUC" name="KHAM_HE_TIET_NIEU"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!--          Khám hệ Thận - Tiết niệu-->
+      <div *ngIf="showField?.KHAM_THAN_TIET_NIEU === true">
+        <div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"kham_benh.than_tiet_nieu" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_THAN_TIET_NIEU" name="KHAM_HE_TIET_NIEU"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!--          Khám hệ Thận -Tiết niệu - Sinh dục-->
+      <div *ngIf="showField?.KHAM_THAN_TIET_NIEU_SINH_DUC === true">
+        <div class='has-template'>
+          <app-field-template form_id='6057' [(model)]='khamBenh.KHAM_BO_PHAN.KHAM_THAN_TIET_NIEU_SINH_DUC' name='Thận - Tiết niệu - Sinh dục'></app-field-template>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.than_tiet_nieu_sinh_duc" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_THAN_TIET_NIEU_SINH_DUC" name="KHAM_HE_TIET_NIEU"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!--          Khám hệ Tiết niệu-sinh dục-->
+      <div *ngIf="showField?.KHAM_TIET_NIEU_SINH_DUC === true">
+        <div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"kham_benh.tiet_nieu_sinh_duc" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_TIET_NIEU_SINH_DUC" name="KHAM_TIET_NIEU_SINH_DUC"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!--      Khám hệ Thần kinh-->
+
+      <div *ngIf="showField?.KHAM_THAN_KINH_NGOAI_BIEN === true" class="form-field-full">
+        <mat-form-field appearance='outline' class="m-r-8">
+          <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.than_kinh_ngoai_bien" | translate}}:</mat-label>
+          <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_THAN_KINH_NGOAI_BIEN"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="showField?.KHAM_HE_THAN_KINH === true">
+        <div class='has-template'>
+          <app-field-template form_id='6058' [(model)]='khamBenh.KHAM_BO_PHAN.KHAM_HE_THAN_KINH' name='Thần kinh'></app-field-template>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.than_kinh" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_THAN_KINH" name="KHAM_HE_THAN_KINH"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!--            Khám hệ thần kinh chi tiết. Sử dụng với các bệnh án ghi tiết các thành phần hệ thần kinh  -->
+      <div class='row' *ngIf="showField?.KHAM_HE_THAN_KINH_CHI_TIET === true">
+        <mat-label class='col-12' style='text-align: left'>+ {{"hoi_benh_noi_khoa.kham_benh.than_kinh" | translate}}:</mat-label>
+        <div  *ngIf="showField?.VAN_DONG !== false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.van_dong" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_THAN_KINH_CHI_TIET.VAN_DONG" name="VAN_DONG"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="showField?.CAM_GIAC !== false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.cam_giac" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_THAN_KINH_CHI_TIET.CAM_GIAC" name="CAM_GIAC"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div  *ngIf="showField?.PHAN_XA !== false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.phan_xa" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_THAN_KINH_CHI_TIET.PHAN_XA" name="PHAN_XA"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div  *ngIf="showField?.CO_TRON !== false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.co_tron" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_THAN_KINH_CHI_TIET.CO_TRON" name="CO_TRON"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div  *ngIf="showField?.THAN_KINH_SO_NAO !== false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.than_kinh_so_nao" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_THAN_KINH_CHI_TIET.THAN_KINH_SO_NAO" name="THAN_KINH_SO_NAO"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div  *ngIf="showField?.ROI_LOAN_CHUC_NANG !== false" class="form-field-full col-6">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label class='full-w'>- {{"kham_benh.roi_loan_chuc_nang" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_THAN_KINH_CHI_TIET.ROI_LOAN_CHUC_NANG" name="ROI_LOAN_CHUC_NANG"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--      Khám Tâm thần, thần kinh-->
+      <div *ngIf="showField?.KHAM_HE_TAM_THAN_THAN_KINH === true">
+        <div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.tam_than_than_kinh" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_TAM_THAN_THAN_KINH" name="KHAM_HE_TAM_THAN_THAN_KINH"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="showField?.KHAM_DA_MO_DUOI_DA_2 === true">
+        <div class="form-field-full">
+          <mat-form-field appearance='outline' class="m-r-8">
+            <mat-label>+ {{"kham_benh.da_mo_duoi_da" | translate}}:</mat-label>
+            <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_DA_MO_DUOI_DA" name="KHAM_DA_MO_DUOI_DA"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--          Khám da và mô dưới da-->
+      <div *ngIf="showField?.KHAM_DA_MO_DUOI_DA === true">
+          <div class="form-field-full">
+            <label *ngIf="showField?.LABEL_KHAM_DA_MO_DUOI_DA === true" class='row col' style='text-align: left'>+ {{"kham_benh.da_mo_duoi_da" | translate}}:</label>
+            <mat-form-field appearance='outline'>
+              <mat-label *ngIf="showField?.MAT_LABEL_KHAM_DA_MO_DUOI_DA !== false">+ {{"kham_benh.da_mo_duoi_da" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_DA_MO_DUOI_DA" name="KHAM_DA_MO_DUOI_DA"></textarea>
+            </mat-form-field>
+          </div>
+      </div>
+      <div fxLayout='row' *ngIf="showField?.KHAM_TIM_MACH === true" class="form-field-full">
+        <mat-form-field appearance='outline'>
+          <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.tim_mach" | translate}}:</mat-label>
+          <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_TIM_MACH" name="KHAM_TIM_MACH"></textarea>
+        </mat-form-field>
+      </div>
+      <div *ngIf="showField?.KHAM_CO_XUONG_KHOP !== false">
+        <div class='has-template'>
+          <app-field-template form_id='6059' [(model)]='khamBenh.KHAM_BO_PHAN.KHAM_CO_XUONG_KHOP' name='Cơ - Xương - Khớp'></app-field-template>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.co_xuong_khop" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_CO_XUONG_KHOP"
+                        name="KHAM_CO_XUONG_KHOP"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!--          Khám hệ Tiết niệu-sinh dục-->
+      <div *ngIf="showField?.KHAM_HE_TIET_NIEU_SINH_DUC === true">
+        <div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"kham_benh.tiet_nieu_sinh_duc" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_HE_TIET_NIEU_SINH_DUC" name="KHAM_HE_TIET_NIEU_SINH_DUC"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!--          Khám khớp-->
+      <div *ngIf="showField?.KHAM_KHOP === true">
+        <div>
+          <div *ngIf="showField?.KHAM_KHOP_DON !==false" class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"kham_benh.kham_khop" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_KHOP.KHAM_KHOP_DON" name="KHAM_KHOP_DON"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class='row' *ngIf="showField?.KHAM_KHOP_CHI_TIET === true">
+          <mat-label class='col-12' style='text-align: left'>+ {{"kham_benh.kham_khop" | translate}}:</mat-label>
+          <div  *ngIf="showField?.HINH_THE_CAC_KHOP !==false" class="form-field-full col-6">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label class='full-w'>- {{"kham_benh.hinh_the_cac_khop" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_KHOP.HINH_THE_CAC_KHOP" name="HINH_THE_CAC_KHOP"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="showField?.KHAM_KHOP_LUC_VAO_VIEN !==false" class="form-field-full col-6">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label class='full-w'>- {{"kham_benh.tam_hd_khop_luc_vv" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_KHOP.LUC_VAO_VIEN" name="KHAM_KHOP_LUC_VAO_VIEN"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="showField?.KHAM_KHOP_LUC_RA_VIEN !==false" class="form-field-full col-6">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label class='full-w'>- {{"kham_benh.tam_hd_khop_luc_rv" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_KHOP.LUC_RA_VIEN" name="KHAM_KHOP_LUC_RA_VIEN"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="showField?.KHAM_TAI_MUI_HONG === true">
+        <div class='has-template'>
+          <app-field-template form_id='6060' [(model)]='khamBenh.KHAM_BO_PHAN.KHAM_TAI_MUI_HONG' name='Tai - Mũi - Họng'></app-field-template>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.tai_mui_hong" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_TAI_MUI_HONG" name="KHAM_TAI_MUI_HONG"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showField?.KHAM_RANG_HAM_MAT === true">
+        <div class='has-template'>
+          <app-field-template form_id='6061' [(model)]='khamBenh.KHAM_BO_PHAN.KHAM_RANG_HAM_MAT' name='Răng - Hàm - Mặt'></app-field-template>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.rang_ham_mat" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_RANG_HAM_MAT" name="KHAM_RANG_HAM_MAT"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showField?.KHAM_MAT === true">
+        <div class='has-template'>
+          <app-field-template form_id='6062' [(model)]='khamBenh.KHAM_BO_PHAN.KHAM_MAT' name='Mắt'></app-field-template>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"hoi_benh_noi_khoa.kham_benh.mat" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_MAT" name="KHAM_MAT"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!--          Khám cơ-->
+      <div *ngIf="showField?.KHAM_CO === true">
+        <div>
+          <div *ngIf="showField?.KHAM_CO_DON !==false" class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"kham_benh.kham_co" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_CO.KHAM_CO_DON" name="KHAM_CO_DON"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class='row' *ngIf="showField?.KHAM_CO_CHI_TIET === true">
+          <mat-label class='col-12' style='text-align: left'>+ {{"kham_benh.kham_co" | translate}}:</mat-label>
+          <div  *ngIf="showField?.TINH_TRANG_BENH_LY_CO !==false" class="form-field-full col-6">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label class='full-w'>- {{"kham_benh.tt_benh_ly" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_CO.TINH_TRANG_BENH_LY_CO" name="TINH_TRANG_BENH_LY_CO"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="showField?.ROI_LOAN_CHUC_NANG_CO !==false" class="form-field-full col-6">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label class='full-w'>- {{"kham_benh.roi_loan_chuc_nang" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_CO.ROI_LOAN_CHUC_NANG_CO" name="ROI_LOAN_CHUC_NANG_CO"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="showField?.CO_DUOC_THU !==false" class="form-field-full col-6">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label class='full-w'>- {{"kham_benh.co_duoc_thu" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_CO.CO_DUOC_THU" name="CO_DUOC_THU"></textarea>
+            </mat-form-field>
+          </div>
+          <div *ngIf="showField?.BAC_CO_THU !==false" class="form-field-full col-6 p-t-8">
+            <label class='row col-12'>- {{"kham_benh.bac_thu_co" | translate}}:</label>
+            <div class='w-radio-container m-y-8 col-12'>
+              <mat-radio-group class='row' [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_CO.BAC_THU_CO.ID">
+                <mat-radio-button class='col m-r-0 p-b-4' *ngFor='let dt of listBacCO' [value]="dt.ID">{{dt.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!--          Khám cột sống-->
+        <div *ngIf="showField?.KHAM_COT_SONG === true">
+          <div>
+            <div *ngIf="showField?.KHAM_COT_SONG_DON !==false" class="form-field-full">
+              <mat-form-field appearance='outline' class="m-r-8">
+                <mat-label>+ {{"kham_benh.kham_cot_song" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_COT_SONG.KHAM_CS_DON" name="KHAM_CS_DON"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='row' *ngIf="showField?.KHAM_COT_SONG_CHI_TIET === true">
+            <mat-label class='col-12' style='text-align: left'>+ {{"kham_benh.kham_cot_song" | translate}}:</mat-label>
+            <div  *ngIf="showField?.TINH_TRANG_BENH_LY_COT_SONG !== false" class="form-field-full col-6">
+              <mat-form-field appearance='outline' class="m-r-8">
+                <mat-label class='full-w'>- {{"kham_benh.tt_benh_ly" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_COT_SONG.TINH_TRANG_BENH_LY_COT_SONG" name="TINH_TRANG_BENH_LY_COT_SONG"></textarea>
+              </mat-form-field>
+            </div>
+            <div *ngIf="showField?.SCHOBER !== false" class="form-field-full col-6">
+              <mat-form-field appearance='outline' class="m-r-8">
+                <mat-label class='full-w'>- {{"kham_benh.schboer" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_COT_SONG.SCHOBER" name="SCHOBER"></textarea>
+              </mat-form-field>
+            </div>
+            <div *ngIf="showField?.STIBOR !== false" class="form-field-full col-6">
+              <mat-form-field appearance='outline' class="m-r-8">
+                <mat-label class='full-w'>- {{"kham_benh.stibor" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_COT_SONG.STIBOR" name="STIBOR"></textarea>
+              </mat-form-field>
+            </div>
+            <div *ngIf="showField?.ROI_LOAN_CHUC_NANG_COT_SONG !== false" class="form-field-full col-6">
+              <mat-form-field appearance='outline' class="m-r-8">
+                <mat-label class='full-w'>- {{"kham_benh.roi_loan_chuc_nang" | translate}}:</mat-label>
+                <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_COT_SONG.ROI_LOAN_CHUC_NANG_COT_SONG" name="ROI_LOAN_CHUC_NANG_COT_SONG"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+      <!-- Khám cơ quan khác -->
+      <div *ngIf="showField?.KHAM_CO_QUAN_KHAC === true">
+        <div class='has-template'>
+          <app-field-template form_id='6063' [(model)]='khamBenh.KHAM_BO_PHAN.KHAM_CO_QUAN_KHAC' name='Các cơ quan khác'></app-field-template>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label *ngIf='showField?.KHAC === true'>+ {{"khac" | translate}}:</mat-label>
+              <mat-label *ngIf='showField?.NT_DD_CAC_BENH_LY_KHAC !== false'>+ {{"hoi_benh_noi_khoa.kham_benh.noi_tiet_dinh_duong" | translate}}:</mat-label>
+              <mat-label *ngIf='showField?.TMH_RHM_MAT_NT_DD_CAC_BENH_LY_KHAC === true'>+ {{"hoi_benh_noi_khoa.kham_benh.tmh_rhm_mat_noi_tiet_dinh_duong" | translate}}:</mat-label>
+              <mat-label *ngIf='showField?.LABEL_CAC_BO_PHAN_KHAC === true'>+ {{"kham_benh.cac_bo_phan" | translate}}:</mat-label>
+              <mat-label *ngIf='showField?.TITLE_CAC_CO_QUAN_KHAC === true'>+ {{"kham_benh.cac_co_quan_khac" | translate}}:</mat-label>
+              <mat-label *ngIf='showField?.LABEL_CAC_CO_QUAN_KHAC === true'>+ {{"kham_benh.cac_co_quan" | translate}}:</mat-label>
+              <mat-label *ngIf="showField?.LABEL_BO_PHAN_KHAC === true">+ {{"kham_benh.bo_phan_khac" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.KHAM_CO_QUAN_KHAC" name="KHAM_CO_QUAN_KHAC"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!-- Mô tả chi tiết cơ quan bệnh lý -->
+      <div *ngIf="showField?.MO_TA_CO_QUAN_BENH_LY === true">
+        <div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' class="m-r-8">
+              <mat-label>+ {{"title.mo_ta_co_quan_benh_ly" | translate}}:</mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.KHAM_BO_PHAN.MO_TA_CO_QUAN_BENH_LY"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+<!--      Khám cơ quan khác bệnh án sơ sinh-->
+      <app-kham-benh-co-quan-khac-so-sinh *ngIf='showField?.CO_QUAN_KHAC_SO_SINH === true'
+                                          [patientInfo]='patientInfo'>
+      </app-kham-benh-co-quan-khac-so-sinh>
+
+<!--      Khám sản phụ khoa-->
+      <div *ngIf="showField?.KHAM_SAN_PHU_KHOA === true">
+        <label fxLayout='row'><strong>{{"title.kham_chuyen_khoa" | translate}}:</strong></label>
+
+        <div>
+          <label fxLayout='row'><strong><i>a. {{"hoi_benh_noi_khoa.kham_benh.kham_phu_khoa"|translate}}:</i></strong></label>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_SPK.KHAM_PHU_KHOA"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+<!--      Khám phụ khoa-->
+      <div *ngIf="showField?.KHAM_PHU_KHOA === true">
+        <label fxLayout='row' class='m-b-16'><strong>{{'title.kham_chuyen_khoa' | translate}}:</strong></label>
+        <label fxLayout='row'><strong><i>a. {{ 'title.kham_ngoai' | translate }}</i></strong></label>
+        <div class='col-12'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label><i>- {{'hoi_benh_san_khoa.kham_benh.cac_dau_hieu_sinh_duc_thu_phat'|translate}}:</i>
+              </mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_PHU_KHOA.KHAM_NGOAI.DAU_HIEU"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-12'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label><i>- {{'hoi_benh_san_khoa.kham_benh.moi_lon'|translate}}:</i></mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_PHU_KHOA.KHAM_NGOAI.KHAM_MOI_LON"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-12'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label><i>- {{'hoi_benh_san_khoa.kham_benh.moi_be'|translate}}:</i></mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_PHU_KHOA.KHAM_NGOAI.KHAM_MOI_BE"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-12'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label><i>- {{'hoi_benh_san_khoa.kham_benh.am_vat'|translate}}:</i></mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_PHU_KHOA.KHAM_NGOAI.KHAM_AM_VAT"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-12'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label><i>- {{'kham_benh.am_ho'|translate}}:</i></mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_PHU_KHOA.KHAM_NGOAI.KHAM_AM_HO"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-12'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label><i>- {{'hoi_benh_san_khoa.kham_benh.mang_trinh'|translate}}:</i></mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_PHU_KHOA.KHAM_NGOAI.KHAM_MANG_TRINH"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-12'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label><i>- {{'kham_benh.san_khoa.tang_sinh_mon'|translate}}:</i></mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_PHU_KHOA.KHAM_NGOAI.KHAM_TANG_SINH_MON"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- Khám sản khoa -->
+      <div *ngIf="showField?.KHAM_SAN_KHOA === true" class='row'>
+        <label class='col-12' fxLayout='row'><strong>{{ 'title.kham_ngoai' | translate }}</strong></label>
+        <div class='col-6' fxLayoutAlign='start center'>
+          <mat-checkbox labelPosition='before' [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_NGOAI.SEO'>
+            {{'kham_benh.san_khoa.bung_seo_pt_cu'|translate}}
+          </mat-checkbox>
+        </div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.hinh_dang_tc' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_NGOAI.HINH_DANG_TU_CUNG'>
+                </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.tu_the' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_NGOAI.TU_THE_TU_CUNG'>
+                </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.chieu_cao_tc' | translate}}</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_NGOAI.CHIEU_CAO_TU_CUNG'
+                   type='number' min='0' autocomplete='off'/>
+            <div matSuffix class='m-t-16'>cm</div>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.vong_bung' | translate}}</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_NGOAI.VONG_BUNG'
+                   type='number' min='0' autocomplete='off'/>
+            <div matSuffix class='m-t-16'>cm</div>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.con_co_tc' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_NGOAI.CON_CO_TU_CUNG'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.tim_thai' | translate}}</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_NGOAI.TIM_THAI'
+                   type='number' min='0' autocomplete='off'/>
+            <div matSuffix class='m-t-16'>{{'bpm'|translate}}</div>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.vu' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_NGOAI.KHAM_VU'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <label class='col-12 m-b-8' fxLayout='row'><strong>{{ 'title.kham_trong' | translate }}</strong></label>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.chi_so_bishop' | translate}}</mat-label>
+            <input matInput [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.CHI_SO_BISHOP'
+                   type='number' min='0' autocomplete='off'/>
+            <div matSuffix class='m-t-16'>{{'points'|translate}}</div>
+          </mat-form-field>
+        </div>
+        <div class='col-6'></div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.am_ho' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.KHAM_AM_HO'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.am_dao' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.KHAM_AM_DAO'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.tang_sinh_mon' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.KHAM_TANG_SINH_MON'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.co_tu_cung' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.KHAM_CO_TU_CUNG'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.phan_phu' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.KHAM_PHAN_PHU'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <div class='row bordered m-t-4'>
+            <label class='col-12 col-xl-2 m-b-4' fxLayout='row'>{{ 'kham_benh.san_khoa.tinh_trang_oi' | translate }}:</label>
+            <div class='col-12 col-xl-7'>
+              <mat-radio-group class='row radio-w-full text-left' [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.TINH_TRANG_OI.ID'>
+                <mat-radio-button labelPosition='before' class='col-4 m-r-0 p-y-4' *ngFor='let item of list_TINH_TRANG_OI' [value]="item.ID"> {{item.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class='col-6'>
+          <app-emr-date label='kham_benh.san_khoa.thoi_gian_vo_oi'
+                        [(model)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.thoi_diem_vo_oi'
+                        [(dmModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.THOI_DIEM_VO_OI'></app-emr-date>
+        </div>
+        <div class='col-6'>
+          <div class='row bordered m-t-4'>
+            <label class='col-12 col-xl-2 m-b-4' fxLayout='row'>{{ 'kham_benh.san_khoa.oi_vo' | translate }}:</label>
+            <div class='col-12 col-xl-7'>
+              <mat-radio-group class='row radio-w-full text-left' [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.TINH_TRANG_OI_VO.ID'>
+                <mat-radio-button labelPosition='before' class='col-4 m-r-0 p-y-4' *ngFor='let item of list_TINH_TRANG_OI_VO' [value]="item.ID"> {{item.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.mau_sac_oi' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.MAU_SAC_NUOC_OI'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.nuoc_oi_nhieu_it' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.SO_LUONG_NUOC_OI'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.ngoi' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.NGOI_THAI'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.the' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.THE'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.kieu_the' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.KIEU_THE'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-6 m-b-8'>
+          <div class='row bordered m-t-4'>
+            <label class='col-12 col-xl-2 m-b-4' fxLayout='row'>{{ 'kham_benh.san_khoa.do_lot' | translate }}:</label>
+            <div class='col-12 col-xl-7'>
+              <mat-radio-group class='row radio-w-full text-left' [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.DO_LOT.ID'>
+                <mat-radio-button labelPosition='before' class='col-3 m-r-0 p-y-4' *ngFor='let item of list_DO_LOT' [value]="item.ID"> {{item.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'kham_benh.san_khoa.duong_kinh_nho' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamBenh.KHAM_SAN_KHOA.SK_TRONG.DUONG_KINH_NHO_HA_VE'>
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+<!--      Khám trong-->
+      <ng-container *ngIf="showField?.KHAM_TRONG === true" class='col-12 m-r-8'>
+        <label fxLayout='row'><strong><i>b. {{'title.kham_trong'|translate}}:</i></strong></label>
+          <div>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'hoi_benh_san_khoa.kham_benh.am_dao'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_SPK.KHAM_AM_DAO"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'hoi_benh_san_khoa.kham_benh.co_tu_cung'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_SPK.KHAM_CO_TU_CUNG"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'hoi_benh_san_khoa.kham_benh.than_tu_cung'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_SPK.KHAM_THAN_TU_CUNG"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'hoi_benh_san_khoa.kham_benh.phan_phu'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_SPK.KHAM_PHAN_PHU"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        <div>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'hoi_benh_san_khoa.kham_benh.cac_tui_cung'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_SPK.KHAM_CAC_TUI_CUNG"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+        </div>
+      </ng-container>
+
+<!--      Kết quả siêu âm-->
+      <ng-container *ngIf="showField?.KET_QUA_SIEU_AM === true" class='col-12'>
+        <label fxLayout='row'><strong><i>c. {{'title.ket_qua_sieu_am'|translate}}:</i></strong></label>
+        <div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_SPK.KET_QUA_SIEU_AM"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- TungVS -->
+      <div *ngIf="showField?.KHAM_TAM_THAN=== true">
+        <label fxLayout='row' class='m-b-16'><strong>3. {{ 'kham_benh_tam_than.title_kham' | translate}}:</strong></label>
+        <label fxLayout='row'><strong><i>a. {{ 'kham_benh_tam_than.title_than_kinh' | translate }}</i></strong></label>
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>- {{'kham_benh_tam_than.kham_benh.day_than_kinh_so_nao'|translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.THAN_KINH.THAN_KINH_SO_NAO"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>- {{'kham_benh_tam_than.kham_benh.day_mat'|translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.THAN_KINH.DAY_MAT"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>- {{'kham_benh_tam_than.kham_benh.van_dong'|translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.THAN_KINH.VAN_DONG"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>- {{'kham_benh_tam_than.kham_benh.truong_luc_co'|translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.THAN_KINH.TRUONG_LUC_CO"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>- {{'kham_benh_tam_than.kham_benh.cam_giac'|translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.THAN_KINH.DANH_GIA_CAM_GIAC"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>- {{'kham_benh_tam_than.kham_benh.phan_xa'|translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.THAN_KINH.KHA_NANG_PHAN_XA"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <ng-container *ngIf="showField?.KHAM_TAM_THAN === true">
+        <label fxLayout='row'><strong><i>b. {{'kham_benh_tam_than.title_tam_than'|translate}}:</i></strong></label>
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>- {{'kham_benh_tam_than.kham_benh.bieu_hien_chung'|translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.BIEU_HIEN_CHUNG"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <label fxLayout='row'><strong><i>{{'kham_benh_tam_than.kham_benh.y_thuc_dinh_huong_luc'|translate}}
+          :</i></strong></label>
+        <!-- Khong gian -->
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>- {{'kham_benh_tam_than.kham_benh.khong_gian'|translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.KHA_NANG_DINH_HUONG_Y_THUC.DINH_HUONG_VE_KHONG_GIAN"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- Thoi gian -->
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>- {{'kham_benh_tam_than.kham_benh.thoi_gian'|translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.KHA_NANG_DINH_HUONG_Y_THUC.DINH_HUONG_VE_THOI_GIAN"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- Ban than -->
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>- {{'kham_benh_tam_than.kham_benh.ban_than'|translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.KHA_NANG_DINH_HUONG_Y_THUC.DINH_HUONG_VE_BAN_THAN"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+
+        <!--__________________________________________________________________-->
+<!--        Tình cảm, cảm xúc-->
+        <label fxLayout='row'><strong><i>{{'kham_benh_tam_than.kham_benh.tinh_cam_cam_xuc'|translate}}:</i></strong></label>
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.KHA_NANG_DINH_HUONG_CAM_XUC"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+<!--        Tri giác-->
+        <label fxLayout='row'><strong><i>{{'kham_benh_tam_than.kham_benh.tri_giac'|translate}}:</i></strong></label>
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>({{'kham_benh_tam_than.kham_benh.placeholder_tri_giac'|translate}}):</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.KHA_NANG_NHAN_THUC_TRI_GIAC"
+                        cdkAutosizeMaxRows="5"
+              ></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- Tu duy -->
+        <label fxLayout='row'><strong><i>{{'kham_benh_tam_than.kham_benh.tu_duy'|translate}}:</i></strong></label>
+        <div fxLayout='row'>
+          <div fxFlex.gt-sm='50' class='p-r-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'kham_benh_tam_than.kham_benh.hinh_thuc'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.KHA_NANG_NHAN_THUC_TU_DUY.NHAN_THUC_VE_HINH_THUC"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='50' class='p-l-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'kham_benh_tam_than.kham_benh.noi_dung'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.KHA_NANG_NHAN_THUC_TU_DUY.NHAN_THUC_VE_NOI_DUNG"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hanh vi tac phong -->
+        <label fxLayout='row'><strong><i>{{'kham_benh_tam_than.kham_benh.hanh_vi_tac_phong'|translate}}
+          :</i></strong></label>
+        <div fxLayout='row'>
+          <div fxFlex.gt-sm='50' class='p-r-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'kham_benh_tam_than.kham_benh.hoat_dong_co_y_chi'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.DANH_GIA_HANH_VI_TAC_PHONG.KHA_NANG_HANH_DONG_Y_CHI"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='50' class='p-l-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'kham_benh_tam_than.kham_benh.hoat_dong_ban_nang'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.DANH_GIA_HANH_VI_TAC_PHONG.KHA_NANG_VAN_DONG_BAN_NANG"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tri nho -->
+        <label fxLayout='row'><strong><i>{{'kham_benh_tam_than.kham_benh.tri_nho'|translate}}:</i></strong></label>
+        <div fxLayout='row'>
+          <div fxFlex.gt-sm='50' class='p-r-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'kham_benh_tam_than.kham_benh.nho_may_moc'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.DANH_GIA_KHA_NANG_TRI_NHO.KHA_NANG_NHO_MAY_MOC"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='50' class='p-l-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'kham_benh_tam_than.kham_benh.nho_thong_hieu'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.DANH_GIA_KHA_NANG_TRI_NHO.KHA_NANG_THONG_HIEU"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tri nang -->
+        <label fxLayout='row'><strong><i>{{'kham_benh_tam_than.kham_benh.tri_nang'|translate}}:</i></strong></label>
+        <div fxLayout='row'>
+          <div fxFlex.gt-sm='50' class='p-r-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'kham_benh_tam_than.kham_benh.kha_nang_phan_tich'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.DANH_GIA_KHA_NANG_TRI_NANG.KHA_NANG_PHAN_TICH"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='50' class='p-l-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{'kham_benh_tam_than.kham_benh.kha_nang_tong_hop'|translate}}:</mat-label>
+                <textarea matInput cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.DANH_GIA_KHA_NANG_TRI_NANG.KHA_NANG_TONG_HOP"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chu y -->
+        <label fxLayout='row'><strong><i>{{'kham_benh_tam_than.kham_benh.chu_y'|translate}}:</i></strong></label>
+        <div class='col-12' style='padding: 0px'>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.DANH_GIA_KHA_NANG_CHU_Y"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- ___________End____________ -->
+
+<!--      <ng-container *ngIf="showField?.KET_QUA_SIEU_AM === true">-->
+<!--        <div class='col-12 m-r-8'>-->
+<!--          <div class="form-field-full">-->
+<!--            <mat-form-field appearance='outline'>-->
+<!--              <mat-label><strong><i>c. {{'title.ket_qua_sieu_am'|translate}}:</i></strong></mat-label>-->
+<!--              <textarea matInput cdkTextareaAutosize-->
+<!--                        cdkAutosizeMinRows="1"-->
+<!--                        [(ngModel)]="khamBenh.KHAM_SPK.KET_QUA_SIEU_AM"-->
+<!--                        cdkAutosizeMaxRows="5"></textarea>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </ng-container>-->
+      <!--Bệnh án nạo phá thai-->
+      <div *ngIf="showField?.BENH_AN_NAO_PHA_THAI === true">
+        <div fxLayout='row'><strong>{{"benh_an_nao_pha_thai.kham_phu_khoa" | translate}}</strong></div>
+
+        <div fxLayout='row'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <app-emr-date label='benh_an_nao_pha_thai.ngay_dau_ky_kinh_cuoi_cung' mode='date'
+                          [(model)]='khamBenh.KHAM_PHU_KHOA.ngay_dau_ky_kinh_cuoi_cung'
+                          [(dmModel)]='khamBenh.KHAM_PHU_KHOA.NGAY_DAU_KY_KINH_CUOI_CUNG'></app-emr-date>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"benh_an_nao_pha_thai.tuoi_thai" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khamBenh.KHAM_PHU_KHOA.TUOI_THAI' min='0' type='number'>
+              <div matSuffix class='m-t-16'>tuần</div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_benh.am_ho" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khamBenh.KHAM_PHU_KHOA.AM_HO'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"hoi_benh_san_khoa.kham_benh.am_dao" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khamBenh.KHAM_PHU_KHOA.AM_DAO'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"hoi_benh_san_khoa.kham_benh.co_tu_cung" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khamBenh.KHAM_PHU_KHOA.CO_TU_CUNG'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"hoi_benh_san_khoa.kham_benh.tu_cung" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khamBenh.KHAM_PHU_KHOA.TU_CUNG'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"hoi_benh_san_khoa.kham_benh.phan_phu_phai" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khamBenh.KHAM_PHU_KHOA.PHAN_PHU_PHAI'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"hoi_benh_san_khoa.kham_benh.phan_phu_trai" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khamBenh.KHAM_PHU_KHOA.PHAN_PHU_TRAI'>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <!--        Hình vẽ mô tả tổn thương khi vào viện-->
+        <div *ngIf="showField?.HINH_VE_MO_TA_TON_THUONG_KHI_VV === true">
+          <div fxLayout='row' class='m-t-4'>
+            <strong>{{"kham_benh.hinh_ve_mo_ta_khi_vao_vien" | translate}}:</strong>
+          </div>
+        </div>
+
+        <div *ngIf="showField?.BENH_AN_NGOAI_TRU_HAM_MAT === true">
+          <div fxLayout='row'><strong>2. {{"hoi_benh_noi_khoa.kham_benh.benh_chuyen_khoa" | translate}}:</strong></div>
+          <mat-form-field appearance='outline' class='full-width'>
+            <input matInput [(ngModel)]='khamBenh.BENH_CHUYEN_KHOA_NT'>
+          </mat-form-field>
+          <div fxLayout='row' style='margin: 5px 0' *ngIf="showField?.HINH_VE_MO_TA_TON_THUONG === true"><strong>3. {{"benh_an_ngoai_tru_ham_mat.so_do_kham_rang" | translate}}:</strong>
+          </div>
+          <div fxLayout='row' style='justify-content: space-evenly; height: 6em; margin-top: 2em' *ngIf="showField?.HINH_VE_MO_TA_TON_THUONG === true">
+            <div>
+              <button class='button-container' style='float:right;'  *ngFor='let n of (11 | rangeLoop: 8)' (click)="choiceTooth(n)" mat-icon-button>
+                <span class='label-in-button'>{{n}}</span>
+                <mat-icon class='tooth-icon' *ngIf='this.KHAMRANG.rang_ham.indexOf(n) > -1' svgIcon='tooth-rh'></mat-icon>
+                <mat-icon class='tooth-icon' *ngIf='this.KHAMRANG.rang_ham.indexOf(n) === -1' svgIcon='tooth-rt'></mat-icon>
+              </button>
+            </div>
+            <div>
+              <button class='button-container' *ngFor='let n of (21 | rangeLoop: 8)' (click)="choiceTooth(n)" mat-icon-button>
+                <span class='label-in-button'>{{n}}</span>
+                <mat-icon class='tooth-icon' *ngIf='this.KHAMRANG.rang_ham.indexOf(n) > -1' svgIcon='tooth-rh'></mat-icon>
+                <mat-icon class='tooth-icon' *ngIf='this.KHAMRANG.rang_ham.indexOf(n) === -1' svgIcon='tooth-rt'></mat-icon>
+              </button>
+            </div>
+          </div>
+          <div fxLayout='row' style='justify-content: space-evenly; height: 5em' *ngIf="showField?.HINH_VE_MO_TA_TON_THUONG === true">
+            <div>
+              <button style='float:right;' class='button-container' *ngFor='let n of (41 | rangeLoop: 8)' (click)="choiceTooth(n)" mat-icon-button >
+                <span class='label-in-button'>{{n}}</span>
+                <mat-icon class='tooth-icon' *ngIf='this.KHAMRANG.rang_ham.indexOf(n) > -1' svgIcon='tooth-rh'></mat-icon>
+                <mat-icon class='tooth-icon' *ngIf='this.KHAMRANG.rang_ham.indexOf(n) === -1' svgIcon='tooth-rt'></mat-icon>
+              </button>
+            </div>
+            <div>
+              <button class='button-container' *ngFor='let n of (31 | rangeLoop: 8)' (click)="choiceTooth(n)" mat-icon-button>
+                <span class='label-in-button'>{{n}}</span>
+                <mat-icon class='tooth-icon' *ngIf='this.KHAMRANG.rang_ham.indexOf(n) > -1' svgIcon='tooth-rh'></mat-icon>
+                <mat-icon class='tooth-icon' *ngIf='this.KHAMRANG.rang_ham.indexOf(n) === -1' svgIcon='tooth-rt'></mat-icon>
+              </button>
+            </div>
+          </div>
+          <h2 class='f-s-14 f-w-800' fxLayout='row' *ngIf="showField?.HINH_VE_MO_TA_TON_THUONG === true">
+            Răng số: {{numberToothChoice}}
+          </h2>
+          <div fxLayout='row' *ngIf="showField?.HINH_VE_MO_TA_TON_THUONG === true">
+            <div class='col-4 text-left'>
+              <div class='col-12' *ngFor='let tinhTrangRang of tinh_trang_rang, let i = index'>
+                <mat-checkbox class='col-12' (ngModelChange)='editChanDoanRang(numberToothChoice, i, 1, $event)' [(ngModel)]="listToothSelect[numberToothChoice].tinh_trang_rang[i].value">{{tinhTrangRang.name}}</mat-checkbox>
+              </div>
+            </div>
+            <div class='col-4 text-left'>
+              <div *ngFor='let matRang of mat_rang, let i = index'>
+                <mat-checkbox class='col-12' (ngModelChange)='editChanDoanRang(numberToothChoice, i, 2, $event)' [(ngModel)]="listToothSelect[numberToothChoice].mat_rang[i].value">{{matRang.name}}</mat-checkbox>
+              </div>
+            </div>
+            <div class='col-4 text-left'>
+              <div *ngFor='let ncdt of nhu_cau_dieu_tri, let i = index'>
+                <mat-checkbox class='col-12' (ngModelChange)='editChanDoanRang(numberToothChoice, i, 3, $event)' [(ngModel)]="listToothSelect[numberToothChoice].nhu_cau_dieu_tri[i].value">{{ncdt.name}}</mat-checkbox>
+              </div>
+            </div>
+          </div>
+          <div fxLayout='row' style='margin: 5px 0' *ngIf="showField?.SO_DO_KHAM_RANG === true"><strong>3. {{"title.hinh_ve_mo_ta_ton_thuong" | translate}}:</strong></div>
+          <div fxLayout='row'><strong>4. {{"benh_an_ngoai_tru_ham_mat.chi_dinh_x_quang" | translate}}:</strong></div>
+          <div fxLayout='row'>
+            <div class='col-4' style='text-align: left'>
+              <mat-checkbox fxFlex='40' [(ngModel)]='khamBenh.QUANH_CHOP' (click)="reset('QUANH_CHOP')">{{"benh_an_ngoai_tru_ham_mat.quanh_chop" | translate}}:</mat-checkbox>
+              <div fxFlex='60' class='form-field-full' *ngIf='khamBenh.QUANH_CHOP'>
+                <mat-form-field appearance='outline'>
+                  <mat-label></mat-label>
+                  <input matInput [(ngModel)]='khamBenh.TEXT_QUANH_CHOP'>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class='col-4' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khamBenh.PANORAMA'>{{"benh_an_ngoai_tru_ham_mat.panorama" | translate}}</mat-checkbox>
+            </div>
+            <div class='col-4' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khamBenh.CT_SCAN'>{{"benh_an_ngoai_tru_ham_mat.ct_scan" | translate}}</mat-checkbox>
+            </div>
+          </div>
+          <div fxLayout='row'>
+            <div class='col-4' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khamBenh.MAT_NHAI'>{{"benh_an_ngoai_tru_ham_mat.mat_nhai" | translate}}</mat-checkbox>
+            </div>
+            <div class='col-4' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khamBenh.CEPHALOMETRY'>{{"benh_an_ngoai_tru_ham_mat.cephalometry" | translate}}</mat-checkbox>
+            </div>
+            <div class='col-4' style='text-align: left'>
+              <mat-checkbox fxFlex='40' [(ngModel)]='khamBenh.KHAC' (click)="reset('KHAC')">{{"khac" | translate}}:</mat-checkbox>
+              <div fxFlex='60' class='form-field-full' *ngIf='khamBenh.KHAC'>
+                <mat-form-field appearance='outline'>
+                  <mat-label></mat-label>
+                  <input matInput [(ngModel)]='khamBenh.TEXT_KHAC'>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <label fxLayout='row'><strong>5. {{"title.cls_can_lam" | translate}}<app-field-template form_id='6031' [(model)]='khamBenh.XET_NGHIEM_CAN_LAM' name='Các XN CLS cần làm'></app-field-template></strong></label>
+          <mat-form-field appearance='outline' class='full-width'>
+            <input matInput [(ngModel)]='khamBenh.XET_NGHIEM_CAN_LAM'>
+          </mat-form-field>
+          <label fxLayout='row'><strong>6. {{"giay_to_lien_quan.chan_doan" | translate}}</strong></label>
+          <mat-form-field appearance='outline' class='full-width'>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      [(ngModel)]='khamBenh.CHAN_DOAN'
+                      cdkAutosizeMaxRows="10"></textarea>
+          </mat-form-field>
+          <label fxLayout='row'><strong>7. {{"benh_an_ngoai_tru_ham_mat.ke_hoach_dieu_tri" | translate}}</strong></label>
+          <mat-form-field appearance='outline' class='full-width'>
+            <input matInput [(ngModel)]='khamBenh.KE_HOACH_DIEU_TRI'>
+          </mat-form-field>
+          <div fxLayout='row'>
+            <div class='col-3' style='text-align: left;padding-left: 0px !important;margin-top: 4px'><strong>8.{{"benh_an_ngoai_tru_ham_mat.chi_dinh_nhap_vien" | translate}}:</strong></div>
+            <div class='col-9'>
+              <mat-radio-group [(ngModel)]='khamBenh.CHI_DINH_NHAP_VIEN.ID'>
+                <mat-radio-button *ngFor='let cdnv of listChiDinhNhapVien' style='width: 25%; float: left; margin: 5px 0' [value]="cdnv.ID">{{cdnv.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div fxLayout='row' style='margin: 5px 0'>
+            <strong>9. {{"benh_an_ngoai_tru_ham_mat.chuyen_chuyen_khoa" | translate}}:</strong>
+          </div>
+          <div fxLayout='row' class='col-12'>
+            <mat-radio-group [(ngModel)]='khamBenh.CHUYEN_CHUYEN_KHOA.ID'>
+              <mat-radio-button *ngFor='let cck of listChuyenChuyenKhoa' style='width: 20%; float: left; margin: 5px 0' [value]="cck.ID">{{cck.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <app-select label='benh_an_ngoai_tru_ham_mat.bs_kham_benh' [(model)]='khamBenh.BAC_SI'
+                        category='cbyt'></app-select>
+          </div>
+        </div>
+        <div>
+<!--          <mat-radio-group [(ngModel)]='khamBenh.CHUYEN_CHUYEN_KHOA.ID'>-->
+<!--            <mat-radio-button *ngFor='let cck of listChuyenChuyenKhoa' style='width: 25%; float: left; margin: 5px 0' [value]="cck.ID">{{cck.MO_TA}}</mat-radio-button>-->
+<!--          </mat-radio-group>-->
+          <div fxLayout='row' *ngIf="showField?.XET_NGHIEM !== false">
+            <strong *ngIf="showField?.CLS_CAN_LAM !== false">2. {{"title.cls_can_lam" | translate}}:<app-field-template form_id='6031' [(model)]='khamBenh.XET_NGHIEM' name='Các XN CLS cần làm'></app-field-template></strong>
+            <strong *ngIf="showField?.CLS === true">{{"benh_an_phau_thuat_khuc_xa.cls" | translate}}:</strong>
+          </div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline' *ngIf="showField?.XET_NGHIEM_CAN_LAM !== false">
+              <mat-label></mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.XET_NGHIEM" name="XET_NGHIEM"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="showField?.KQ_CLS === true">
+          <strong fxLayout='row'>{{"benh_an_ngoai_tru_phcn.kq_cls" | translate}}:</strong>
+          <mat-form-field appearance='outline' class='full-width'>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      [(ngModel)]="khamBenh.KQ_CLS"
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>
+        <div *ngIf="showField?.CHAN_DOAN_BAN_DAU === true">
+          <strong fxLayout='row'>{{"benh_an_ngoai_tru_phcn.cd_ban_dau" | translate}}:</strong>
+          <mat-form-field appearance='outline' class='full-width'>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      [(ngModel)]="khamBenh.CHAN_DOAN_BAN_DAU"
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="showField?.BENH_AN_NAO_PHA_THAI === true">
+          <div fxLayout='row'><strong>{{"hoi_benh_san_khoa.kham_benh.ket_luan" | translate}}</strong></div>
+          <div class='col-6 form-field-full' style='padding: 0px'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"benh_an_nao_pha_thai.chan_doan_tuoi_thai" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khamBenh.KET_LUAN_BA_NAO_PHA_THAI.TUOI_THAI' min='0' type='number'>
+              <div matSuffix class='m-t-16'>tuần</div>
+            </mat-form-field>
+          </div>
+          <div class='col-12 form-field-full' style='padding: 0px'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"benh_an_nao_pha_thai.phuong_phap_pha_thai" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khamBenh.KET_LUAN_BA_NAO_PHA_THAI.PHUONG_PHAP_PHA_THAI'>
+            </mat-form-field>
+          </div>
+        </div>
+
+<!--    Xét nghiệm CLS (BA huyết học - truyền máu)    -->
+        <div fxLayout='row' *ngIf="showField?.CAC_XET_NGHIEM_LAM_SANG_CAN_LAM === true">
+          <div fxFlex='50'>
+           <table style='width: 100%;margin: 5px 0; border-left: none'>
+             <tr style='width: 100%'>
+               <th style='width: 55%'>{{"hoi_benh_noi_khoa.kham_benh.huyet_hoc" | translate}}</th>
+               <th style='width: 45%'></th>
+             </tr>
+             <tr style='width: 100%' *ngFor='let item of listXNCLSCanLam; index as i'>
+               <td style='padding-top: 15px; width: 55%;'>{{item.TEN}}</td>
+               <td style='width: 45%'>
+                <div class='form-field-full'>
+                  <mat-form-field appearance='outline'>
+                    <input matInput type="text" [(ngModel)]='item.NOI_DUNG' min='0' autocomplete='off'>
+                  </mat-form-field>
+                </div>
+               </td>
+             </tr>
+           </table>
+          </div>
+          <div fxFlex='50'>
+           <table class='xncl' style='width: 100%;margin-top: 5px'>
+             <tr style='width: 100%'>
+               <th style='width: 55%'>{{"hoi_benh_noi_khoa.kham_benh.truyen_mau" | translate}}</th>
+               <th style='width: 45%'></th>
+             </tr>
+             <tr style='width: 100%' *ngFor='let item of listXNCLSCanLam2; index as i'>
+               <td style='padding-top: 15px; width: 55%'>{{item.TEN}}</td>
+               <td style='width: 45%'>
+                 <div class='form-field-full'>
+                   <mat-form-field appearance='outline'>
+                     <input matInput type="text" [(ngModel)]='item.NOI_DUNG' min='0' autocomplete='off'>
+                   </mat-form-field>
+                 </div>
+               </td>
+             </tr>
+             <tr style='height: 47px;width: 100%'>
+               <td style='padding-top: 15px;width: 55%'><strong><u>{{"hoi_benh_noi_khoa.kham_benh.cac_xet_nghiem_lien_quan" | translate}}:</u></strong></td>
+               <td style='width: 45%'></td>
+             </tr>
+             <tr style='width: 100%' *ngFor='let item of listXNCLSCanLam3; index as i'>
+               <td style='padding-top: 15px;width: 55%'>{{item.TEN}}</td>
+               <td style='width: 45%'>
+                 <div class='form-field-full'>
+                   <mat-form-field appearance='outline'>
+                     <input matInput type="text" [(ngModel)]='item.NOI_DUNG' min='0' autocomplete='off'>
+                   </mat-form-field>
+                 </div>
+               </td>
+             </tr>
+           </table>
+          </div>
+        </div>
+
+<!-- Xét nghiệm CLS (BA Ngoại trú thận nhân tạo) -->
+        <div *ngIf="showField?.CAC_XET_NGHIEM_CHI_TIET === true">
+          <div style='font-weight: bold; float: left'>{{"title.cls" | translate}}</div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>-{{"hoi_benh_noi_khoa.kham_benh.huyet_hoc" | translate}}:</mat-label>
+              <input matInput [(ngModel)]="khamBenh.XET_NGHIEM_CHI_TIET.HUYET_HOC" name="CAC_XET_NGHIEM_KHAC">
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>-{{"hoi_benh_noi_khoa.kham_benh.sinh_hoa" | translate}}:</mat-label>
+              <input matInput [(ngModel)]="khamBenh.XET_NGHIEM_CHI_TIET.SINH_HOA" name="CAC_XET_NGHIEM_KHAC">
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>-{{"hoi_benh_noi_khoa.kham_benh.vi_sinh" | translate}}:</mat-label>
+              <input matInput [(ngModel)]="khamBenh.XET_NGHIEM_CHI_TIET.VI_SINH" name="CAC_XET_NGHIEM_KHAC">
+            </mat-form-field>
+          </div>
+
+
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>-TBH,GPB:</mat-label>
+              <input matInput [(ngModel)]="khamBenh.XET_NGHIEM_CHI_TIET.TBH_GPB" name="CAC_XET_NGHIEM_KHAC">
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>-{{"hoi_benh_noi_khoa.kham_benh.xa_hinh" | translate}}:</mat-label>
+              <input matInput [(ngModel)]="khamBenh.XET_NGHIEM_CHI_TIET.XA_HINH" name="CAC_XET_NGHIEM_KHAC">
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>-{{"hoi_benh_noi_khoa.kham_benh.sieu_am" | translate}}:</mat-label>
+              <input matInput [(ngModel)]="khamBenh.XET_NGHIEM_CHI_TIET.SIEU_AM" name="CAC_XET_NGHIEM_KHAC">
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>-{{"hoi_benh_noi_khoa.kham_benh.x-quang" | translate}}:</mat-label>
+              <input matInput [(ngModel)]="khamBenh.XET_NGHIEM_CHI_TIET.X_QUANG" name="CAC_XET_NGHIEM_KHAC">
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>-CT:</mat-label>
+              <input matInput [(ngModel)]="khamBenh.XET_NGHIEM_CHI_TIET.CT" name="CAC_XET_NGHIEM_KHAC">
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>-MRI:</mat-label>
+              <input matInput [(ngModel)]="khamBenh.XET_NGHIEM_CHI_TIET.MRI" name="CAC_XET_NGHIEM_KHAC">
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>-{{"hoi_benh_noi_khoa.kham_benh.dien-tim" | translate}}:</mat-label>
+              <input matInput [(ngModel)]="khamBenh.XET_NGHIEM_CHI_TIET.DIEN_TIM" name="CAC_XET_NGHIEM_KHAC">
+            </mat-form-field>
+          </div>
+        </div>
+
+
+<!--    Các XN khác    -->
+        <div *ngIf="showField?.CAC_XET_NGHIEM_KHAC === true">
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label><strong>{{"hoi_benh_noi_khoa.kham_benh.cac_xet_nghiem_khac" | translate}}:</strong></mat-label>
+              <input matInput [(ngModel)]="khamBenh.CAC_XET_NGHIEM_KHAC" name="CAC_XET_NGHIEM_KHAC">
+            </mat-form-field>
+          </div>
+        </div>
+
+<!--        Tóm tắt bệnh án-->
+        <div *ngIf="showField?.TOM_TAT_BENH_AN === true">
+          <div fxLayout='row' class='m-t-4'>
+            <strong>{{"hoi_benh_noi_khoa.kham_benh.tom_tat_benh_an" | translate}}:<app-field-template form_id='6032' [(model)]='khamBenh.TOM_TAT_BENH_AN' name='Tóm tắt bệnh án'></app-field-template></strong>
+          </div>
+          <div class="form-field-full" *ngIf="showField?.TEXT_TOM_TAT_BENH_AN !== false">
+            <mat-form-field appearance='outline'>
+              <mat-label></mat-label>
+              <textarea matInput [(ngModel)]="khamBenh.TOM_TAT_BENH_AN" name="TOM_TAT_BENH_AN"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div *ngIf='showField?.BENH_AN_CHAN_TAY_MIENG === true'>
+          <div fxLayout='row' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"hoi_benh_chan_tay_mieng.ngay_benh" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.NGAY_BENH' type='number'>
+            </mat-form-field>
+          </div>
+          <div style='text-align: left'>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.SUY_HO_HAP'>{{"hoi_benh_chan_tay_mieng.suy_ho_hap" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.SOC'>{{"hoi_benh_chan_tay_mieng.soc" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.PHU_PHOI_CAP'>{{"hoi_benh_chan_tay_mieng.phu_phoi_cap" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.ROI_LOAN_HO_HAP'>{{"hoi_benh_chan_tay_mieng.roi_loan_ho_hap" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.MACH_NHANH'>{{"hoi_benh_chan_tay_mieng.mach_nhanh" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.TANG_HA'>{{"hoi_benh_chan_tay_mieng.tang_ha" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.GONG_CHI_HON_ME'>{{"hoi_benh_chan_tay_mieng.gong_chi_hon_me" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.VA_MO_HOI_2'>{{"hoi_benh_chan_tay_mieng.va_mo_hoi_2" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.THAT_DIEU_2'>{{"hoi_benh_chan_tay_mieng.that_dieu_2" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.RUNG_GIAT_NHAN_CAU'>{{"hoi_benh_chan_tay_mieng.rgnc" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.YEU_CHI_LIET_MEM'>{{"hoi_benh_chan_tay_mieng.yeu_chi_liet_mem" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.LIET_TK_SO_2'>{{"hoi_benh_chan_tay_mieng.liet_tk_so_2" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.GIAT_MINH_LUC_KHAM_2'>{{"hoi_benh_chan_tay_mieng.giat_minh_luc_kham" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.BENH_SU_GIAT_MINH'>{{"hoi_benh_chan_tay_mieng.benh_su_giat_minh" | translate}}</mat-checkbox>
+          </div>
+          <div fxLayout='row' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"hoi_benh_chan_tay_mieng.bieu_hien_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khamBenh.BENH_AN_CHAN_TAY_MIENG.BIEU_HIEN_KHAC'>
+            </mat-form-field>
+          </div>
+        </div>
+
+<!--        Đã xử lý-->
+        <div *ngIf="showField?.DA_XU_LY === true">
+          <div fxLayout='row' class='m-t-4'>
+            <strong>{{"hoi_benh_noi_khoa.kham_benh.da_xu_ly" | translate}}:</strong>
+          </div>
+          <div class="form-field-full">
+            <mat-form-field class="m-r-8" appearance='outline'>
+              <input matInput [(ngModel)]="khamBenh.DA_XU_LY" name="DA_XU_LY">
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="showField?.CHAN_DOAN_RA_VIEN === true">
+          <strong fxLayout='row'>{{"benh_an_ngoai_tru_phcn.cd_khi_ra_vien" | translate}}:</strong>
+         <div fxLayout='row'>
+           <div class='col-9' style='padding-left: 0 !important;'>
+             <mat-form-field appearance='outline' class='full-width'>
+               <input matInput [(ngModel)]='khamBenh.CHAN_DOAN_RA_VIEN'>
+             </mat-form-field>
+           </div>
+           <div class='col-3' style='padding: 0 !important;'>
+             <mat-form-field appearance='outline' class='full-width'>
+               <mat-label>{{"benh_an_ngoai_tru_phcn.ma" | translate}}</mat-label>
+               <input matInput [(ngModel)]='khamBenh.MA' type='number'>
+             </mat-form-field>
+           </div>
+         </div>
+        </div>
+
+        <div *ngIf="showField?.TIME_DIEU_TRI_NT === true">
+          <strong fxLayout='row'>{{"emr.dieu_tri_ngoai_tru" | translate}}:</strong>
+          <app-emr-date-range [(fromModel)]='khamBenh.tu_ngay'
+                              [(dmFromModel)]='khamBenh.TU_NGAY'
+                              [(toModel)]='khamBenh.den_ngay'
+                              [(dmToModel)]="khamBenh.DEN_NGAY"></app-emr-date-range>
+        </div>
+        <div fxLayout='row' *ngIf="showField?.NT_PHCN === true">
+          <div class='col-6' style='padding: 0 !important;'>
+            <app-select label='{{"giay_chung_nhan_thuong_tich.giam_doc_benh_vien" | translate}}' [(model)]='khamBenh.GIAM_DOC_BENH_VIEN'
+                        category='cbyt' [resetTo]='null'></app-select>
+          </div>
+          <div class='col-6' style='padding-right: 0 !important;'>
+            <app-select label='{{"benh_an_ngoai_tru_ham_mat.bs_kham_benh" | translate}}' [(model)]='khamBenh.BAC_SI_KHAM_BENH'
+                        category='cbyt' [resetTo]='null'></app-select>
+          </div>
+        </div>
+<!--        Chỉ định theo dõi-->
+        <div *ngIf='showField?.CHI_DINH_THEO_DOI === true'>
+          <div fxLayout='row' class='m-t-4'>
+            <strong>{{"benh_an_so_sinh.chi_dinh_theo_doi" | translate}}:</strong>
+          </div>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline' class="m-r-8">
+              <input matInput [(ngModel)]='khamBenh.CHI_DINH_THEO_DOI'>
+            </mat-form-field>
+          </div>
+        </div>
+
+<!--    Tóm tắt triệu chứng và hội chứng    -->
+        <ng-container *ngIf="showField?.TOM_TAT_TRIEU_CHUNG_HOI_CHUNG === true">
+          <div fxLayout='row' class='m-t-4'>
+            <strong>{{"kham_benh_tam_than.title_tom_tat_trieu_chung_va_hoi_chung" | translate}}:</strong>
+          </div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <input matInput [(ngModel)]="khamBenh.KHAM_TAM_THAN.TAM_THAN.TOM_TAT_CAC_TRIEU_CHUNG_VA_HOI_CHAN">
+            </mat-form-field>
+          </div>
+        </ng-container>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+

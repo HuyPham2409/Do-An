@@ -1,0 +1,172 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class="col-12">
+        <div class='text-center'>
+          <app-select label='emr.operation_list'
+                      [(model)]='phieuPhauThuatThuThuatEmr' (modelChange)='fillDataPPTTTE($event)'
+                      [listItems]='listPPTTTE'
+                      category='pttt' [resetTo]='resetPhieuPTTTEMR'></app-select>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div class='col-6 m-r-4 b-r-1'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_phau_thuat_thu_thuat_emr.datetime" | translate}}</mat-label>
+            <input matInput [ngxMatDatetimePicker]="picker"
+                   [(ngModel)]="phieuPhauThuatThuThuatEmr.Ngaygio"
+                   (ngModelChange)='onDate($event, "NGAY_PHAU_THUAT")'>
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+          </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col form-field-full m-l-4'></div>
+      </div>
+
+      <div fxLayout='row'>
+        <div class='col-6 m-r-4 b-r-1'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_phau_thuat_thu_thuat_emr.ma" | translate}}</mat-label>
+            <input matInput type='text' [(ngModel)]="phieuPhauThuatThuThuatEmr.Ma">
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_phau_thuat_thu_thuat_emr.pppt" | translate}}</mat-label>
+            <input matInput [(ngModel)]="phieuPhauThuatThuThuatEmr.Phuongphap">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div class='col-6 m-r-4 b-r-1'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_phau_thuat_thu_thuat_emr.bs_phau_thuat" | translate}}</mat-label>
+            <input matInput
+                   [matAutocomplete]="select1"
+                   [(ngModel)]="phieuPhauThuatThuThuatEmr.BSThuchien"
+                   (focus)="filterUser('', 0)"
+                   (ngModelChange)="filterUser(phieuPhauThuatThuThuatEmr.BSThuchien, 0)">
+            <mat-autocomplete [displayWith]="displayBSi" #select1="matAutocomplete">
+              <mat-option *ngFor="let user of filteredUsers" [value]="user">
+                <span>{{ user?.TEN }}</span>
+              </mat-option>
+            </mat-autocomplete>
+            <button type="button" mat-button *ngIf="phieuPhauThuatThuThuatEmr.BSThuchien" matSuffix mat-icon-button aria-label="Clear" (click)="phieuPhauThuatThuThuatEmr.BSThuchien = resetUser">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"hoi_benh_san_khoa.td_buong_de.bs_gay_me" | translate}}</mat-label>
+            <input matInput
+                   [matAutocomplete]="select2"
+                   [(ngModel)]="phieuPhauThuatThuThuatEmr.BSGayme"
+                   (focus)="filterUser('', 0)"
+                   (ngModelChange)="filterUser(phieuPhauThuatThuThuatEmr.BSGayme, 0)">
+            <mat-autocomplete [displayWith]="displayBSi" #select2="matAutocomplete">
+              <mat-option *ngFor="let user of filteredUsers" [value]="user">
+                <span>{{ user?.TEN }}</span>
+              </mat-option>
+            </mat-autocomplete>
+            <button type="button" mat-button *ngIf="phieuPhauThuatThuThuatEmr.BSGayme" matSuffix mat-icon-button aria-label="Clear" (click)="phieuPhauThuatThuThuatEmr.BSGayme = resetUser">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div class='col-6 m-r-4 b-r-1'>
+          <p style="text-align: left; font-weight: 600;">Thông tin phẫu thuật chung</p>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div class='col-6 m-r-4 b-r-1'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"hoi_benh_san_khoa.td_buong_de.chan_doan_truoc_pt" | translate}}</mat-label>
+            <input matInput
+                   [matAutocomplete]="position"
+                   [(ngModel)]="phieuPhauThuatThuThuatEmr.CDtruoc_Code"
+                   (focus)="filterICD('')"
+                   (ngModelChange)="filterICD(phieuPhauThuatThuThuatEmr.CDtruoc_Code)">
+            <mat-autocomplete [displayWith]="displayDMICD" #position="matAutocomplete">
+              <mat-option *ngFor="let icd of filteredICDs" [value]="icd">
+                <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+              </mat-option>
+            </mat-autocomplete>
+            <button type="button" mat-button *ngIf="phieuPhauThuatThuThuatEmr.CDtruoc_Code" matSuffix mat-icon-button aria-label="Clear" (click)="phieuPhauThuatThuThuatEmr.CDtruoc_Code = resetDM">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_phau_thuat_thu_thuat_emr.chi_dinh" | translate}}</mat-label>
+            <input matInput [(ngModel)]="phieuPhauThuatThuThuatEmr.Chidinh">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div class='col-6 m-r-4 b-r-1'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_phau_thuat_thu_thuat_emr.cdtruoc_mota" | translate}}</mat-label>
+            <input matInput [(ngModel)]="phieuPhauThuatThuThuatEmr.CDtruoc_Mota">
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_phau_thuat_thu_thuat_emr.pp_vo_cam" | translate}}</mat-label>
+            <input matInput [(ngModel)]="phieuPhauThuatThuThuatEmr.PPVocam">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div class='col-6 m-r-4 b-r-1'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"hoi_benh_san_khoa.td_buong_de.chan_doan_sau_pt" | translate}}</mat-label>
+            <input matInput
+                   [matAutocomplete]="position1"
+                   [(ngModel)]="phieuPhauThuatThuThuatEmr.CDSau_Code"
+                   (focus)="filterICD('')"
+                   (ngModelChange)="filterICD(phieuPhauThuatThuThuatEmr.CDSau_Code)">
+            <mat-autocomplete [displayWith]="displayDMICD" #position1="matAutocomplete">
+              <mat-option *ngFor="let icd of filteredICDs" [value]="icd">
+                <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+              </mat-option>
+            </mat-autocomplete>
+            <button type="button" mat-button *ngIf="phieuPhauThuatThuThuatEmr.CDSau_Code" matSuffix mat-icon-button aria-label="Clear" (click)="phieuPhauThuatThuThuatEmr.CDSau_Code = resetDM">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_phau_thuat_thu_thuat_emr.luoc_do" | translate}}</mat-label>
+            <input matInput [(ngModel)]="phieuPhauThuatThuThuatEmr.Luocdo">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div class='col-6 m-r-4 b-r-1'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_phau_thuat_thu_thuat_emr.cdsau_mota" | translate}}</mat-label>
+            <input matInput [(ngModel)]="phieuPhauThuatThuThuatEmr.CDSau_Mota">
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_phau_thuat_thu_thuat_emr.trinh_tu" | translate}}</mat-label>
+            <input matInput [(ngModel)]="phieuPhauThuatThuThuatEmr.Trinhtu">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

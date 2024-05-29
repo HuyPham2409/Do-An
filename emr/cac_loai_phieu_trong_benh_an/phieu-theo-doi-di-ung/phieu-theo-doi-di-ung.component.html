@@ -1,0 +1,144 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div fxLayout='row'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.patient_fullname" | translate}}</mat-label>
+            <input matInput [(ngModel)]='patientInfo.HO_TEN' disabled>
+          </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"giay_to_lien_quan.sex" | translate}}</mat-label>
+            <input matInput [(ngModel)]='patientInfo.GIOI_TINH.MO_TA' disabled>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field class='full-width' appearance='outline'>
+              <mat-label>{{"emr.age" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='patientInfo.DO_TUOI' disabled>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>Số CMND hoặc thẻ căn cước hoặc số định danh công dân</mat-label>
+              <input matInput [(ngModel)]='td_di_ung_thuoc.SO_CMND'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class='col-12'>
+        <div fxLayout='column' style='border: 1px solid #B9B9B9;margin: 10px 0;padding: 0 8px;border-radius: 5px'>
+          <div fxLayout='row' style='margin-top: 5px'>
+            <div fxFlex='32' class='m-r-16'>
+              <div class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>Dị nguyên/thuốc</mat-label>
+                  <input matInput [(ngModel)]='Diung.DI_NGUYEN_THUOC'>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxFlex='30' class='m-r-16 m-y-12'>
+              <mat-radio-group [(ngModel)]='Diung.SELECT'>
+                <mat-radio-button value='1'>Nghi ngờ</mat-radio-button>
+                <mat-radio-button value='2'>Chắc chắn</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div fxFlex='32' class='m-r-16'>
+              <div class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>Biểu hiện lâm sàng</mat-label>
+                  <input matInput [(ngModel)]='Diung.BIEU_HIEN_LAM_SANG'>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxFlex='6' style='text-align: left;margin-top: 3px'>
+              <button class="btn mat-blue-hn" color="primary" (click)='createDiUng(Diung)'> <i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+
+          <div fxLayout='row' *ngFor='let diung of td_di_ung_thuoc.LIST_DI_UNG; let indexOfelement = index;'>
+            <div fxFlex='32' class='m-r-16'>
+              <div class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>Dị nguyên/thuốc</mat-label>
+                  <input matInput [(ngModel)]='diung.DI_NGUYEN_THUOC'>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxFlex='30' class='m-r-16' style='margin-top: 16px'>
+              <mat-radio-group [(ngModel)]='diung.SELECT'>
+                <mat-radio-button value='1'>Nghi ngờ</mat-radio-button>
+                <mat-radio-button value='2'>Chắc chắn</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div fxFlex='32' class='m-r-16'>
+              <div class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>Biểu hiện lâm sàng</mat-label>
+                  <input matInput [(ngModel)]='diung.BIEU_HIEN_LAM_SANG'>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxFlex='6' style='text-align: left;margin-top: 3px'>
+              <button class="btn mat-red-hn" color="primary" (click)='removeDiung(indexOfelement)'><i class="fas fa-trash"></i></button></div>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>Bác sĩ xác nhận chẩn đoán ký:</mat-label>
+              <input matInput
+                     [matAutocomplete]="position2"
+                     [(ngModel)]='td_di_ung_thuoc.BAC_SI_KY'
+                     (focus)="filterUser('', 0)"
+                     (ngModelChange)="filterUser(td_di_ung_thuoc.BAC_SI_KY, 0)">
+              <mat-autocomplete [displayWith]="displayDMICD" #position2="matAutocomplete">
+                <mat-option *ngFor="let user of filteredUsers" [value]="user">
+                  <span>{{ user?.TEN }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="td_di_ung_thuoc.BAC_SI_KY" matSuffix mat-icon-button aria-label="Clear" (click)="td_di_ung_thuoc.BAC_SI_KY = resetUser">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>ĐT</mat-label>
+              <input matInput [(ngModel)]='td_di_ung_thuoc.DT'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>Họ và tên:</mat-label>
+              <input matInput [(ngModel)]='td_di_ung_thuoc.HO_VA_TEN'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <app-emr-date label='ngay_cap_the' mode='date'
+                        [(model)]='td_di_ung_thuoc.NGAY_CAP_THE'
+                        [(unixModel)]='td_di_ung_thuoc.ngay_cap_the'></app-emr-date>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

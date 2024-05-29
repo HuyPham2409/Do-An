@@ -1,0 +1,13 @@
+.ly-do-vao-vien {
+  .full-width {
+    width: 100%;
+  }
+  h1, p {
+     font-size: 15px;
+   }
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+  }
+}

@@ -1,0 +1,138 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div fxLayout='column'>
+        <h2 fxLayout='row' *ngIf='patientInfo'>
+          Phiếu điều trị {{patientInfo.in_patient === 1 ? "nội trú" : "ngoại trú"}}
+        </h2>
+        <div fxLayout='row'>
+          <div fxLayout='40' class='form-field-full'>
+            <mat-form-field>
+              <mat-label>Khoa</mat-label>
+              <input matInput
+                     [matAutocomplete]="room"
+                     [(ngModel)]="newKhoaDieuTri"
+                     (focus)="filterRoom('')"
+                     (ngModelChange)="filterRoom(newKhoaDieuTri)">
+              <mat-autocomplete [displayWith]="displayDMKDT" #room="matAutocomplete">
+                <mat-option *ngFor="let room of filteredRooms" [value]="room">
+                  <span>{{ room?.TEN_KHOA_PHONG }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="newKhoaDieuTri && newKhoaDieuTri.TEN_KHOA_PHONG" matSuffix mat-icon-button aria-label="Clear" (click)="newKhoaDieuTri = resetKDT">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div fxLayout='10'>
+            <button class='m-t-16 m-b-16 m-l-24' mat-raised-button color="warn">Ký số</button>
+          </div>
+        </div>
+        <div fxLayout='row'>
+          <div fxFlex="20" fxFlex.lt-sm="100" class="matero-col">
+            <div class='form-field-full'>
+              <mat-form-field>
+                <mat-label>{{ "hoi_benh_san_khoa.td_buong_de.pt_ngay_gio" | translate}}</mat-label>
+                <input matInput
+                       [(ngModel)]='phieuDieuTri.USED_AT_ACTION'
+                       (ngModelChange)='onDate($event, "DATE_DIEU_TRI", undefined)'
+                       [ngxMatDatetimePicker]='picker1'>
+                <mat-datepicker-toggle matSuffix [for]="$any(picker1)"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+            <div class='form-field-full'>
+              <mat-label>{{ "phieu_dieu_tri.dien_bien" | translate}}</mat-label>
+              <ckeditor [editor]="editor" [(ngModel)]='phieuDieuTri.Dienbien'></ckeditor>
+            </div>
+          </div>
+          <div fxFlex="20" fxFlex.lt-sm="100" class="matero-col">
+            <div class='form-field-full'>
+              <mat-form-field>
+                <mat-label>{{ "phieu_dieu_tri.y_lenh" | translate}}</mat-label>
+                <input matInput [value]='phieuDieuTri.Ylenh'
+                       [(ngModel)]='phieuDieuTri.Ylenh'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex="20" fxFlex.lt-sm="100" class="matero-col">
+            <div class='form-field-full'>
+              <mat-form-field>
+                <mat-label>{{ "phieu_dieu_tri.bac_si_dieu_tri" | translate}}</mat-label>
+                <input matInput [value]='phieuDieuTri.BSDieutri'
+                       [(ngModel)]='phieuDieuTri.BSDieutri' >
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex='10' class='text-center'>
+            <button mat-icon-button color="primary" (click)='createDieuTri(phieuDieuTri, newKhoaDieuTri)'><mat-icon>add</mat-icon></button>
+          </div>
+        </div>
+
+        <div fxLayout='column' *ngFor='let emr of pdt.emr; let indexOfelementParent = index;' class='m-t-16'>
+          <div fxLayout='row'>
+            <mat-form-field class='full-width'>
+              <mat-label>Khoa</mat-label>
+              <input matInput
+                     [matAutocomplete]="room"
+                     [(ngModel)]="emr.DT_Khoa"
+                     (focus)="filterRoom('')"
+                     (ngModelChange)="filterRoom(emr.DT_Khoa)">
+              <mat-autocomplete [displayWith]="displayDMKDT" #room="matAutocomplete">
+                <mat-option *ngFor="let room of filteredRooms" [value]="room">
+                  <span>{{ room?.TEN_KHOA_PHONG }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="emr.DT_Khoa && emr.DT_Khoa.TEN_KHOA_PHONG" matSuffix mat-icon-button aria-label="Clear" (click)="emr.DT_Khoa = resetKDT">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div fxLayout='row' *ngFor='let dieutri of emr.DT_Noidung; let indexOfelement = index;' class='m-t-16'>
+            <div fxFlex="20" fxFlex.lt-sm="100" class="matero-col">
+              <div class="form-field-full">
+                <mat-form-field>
+                  <input matInput [value]='dieutri.USED_AT_ACTION'
+                         [(ngModel)]='dieutri.USED_AT_ACTION'
+                         (ngModelChange)='onDate($event, "DATE_DIEU_TRI", dieutri)'
+                         [ngxMatDatetimePicker]="picker2">
+                  <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+                  <ngx-mat-datetime-picker #picker2></ngx-mat-datetime-picker>
+                </mat-form-field></div>
+            </div>
+            <div fxFlex='30' fxFlex.lt-sm="100" class="matero-col">
+              <div class='form-field-full'>
+                <!--              <mat-form-field>-->
+                <!--                <input matInput [value]='dieutri.pharmas_note'-->
+                <!--                       [(ngModel)]='dieutri.DT_Noidung.Dienbien'>-->
+                <ckeditor [editor]="editor" [(ngModel)]='dieutri.Dienbien'></ckeditor>
+                <!--              </mat-form-field>-->
+              </div>
+            </div>
+            <div fxFlex='20' fxFlex.lt-sm="100" class="matero-col">
+              <div class='form-field-full'>
+                <mat-form-field>
+                  <input matInput [value]='dieutri.Ylenh'
+                         [(ngModel)]='dieutri.Ylenh'>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxFlex='20' fxFlex.lt-sm="100" class="matero-col">
+              <div class='form-field-full'>
+                <mat-form-field>
+                  <input matInput [value]='dieutri.BSDieutri'
+                         [(ngModel)]='dieutri.BSDieutri'>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxFlex='10' class='text-center'>
+              <button mat-icon-button color="primary" (click)='removeDieuTri(indexOfelement, indexOfelementParent)'><mat-icon>delete</mat-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

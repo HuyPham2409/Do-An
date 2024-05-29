@@ -1,0 +1,93 @@
+.phieu_cham_soc_filter_container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+
+.input-field-container {
+  align-items: center;
+  label {
+      margin-right: 8px;
+  }
+}
+
+#xem_phieu_cham_soc_btn {
+  background-color: #dddddd;
+  width: max-content;
+  height: auto;
+  cursor: pointer;
+}
+
+.thong_tin_cham_soc, .cham_soc_benh_nhan {
+  padding: 20px 0px 20px 0px;
+  width: 100%;
+}
+
+.thong_tin_cham_soc {
+  div {
+    align-items:center;
+    .radio-label {
+      font-weight: bold;
+      margin: 0 !important;
+    }
+    .radio-item {
+        margin: 8px !important;
+    }
+  }
+}
+
+.card-template-selector {
+  .mat-mdc-form-field{
+    /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+    /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+    .mat-form-field-wrapper {
+      height: 100%;
+    }
+  }
+}
+
+.margin-0 {
+  margin: 0;
+}
+
+.comment-field-height {
+  min-height: 37.5px;
+  margin-bottom: 12px;
+}
+
+.label-stick-on-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version. */
+/* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version. */
+.custom-width-select .mat-select-trigger {
+  // width: 40px !important;
+  // min-width: 40px !important;
+  width: 100%;
+}
+
+#he_tieu_hoa_label {
+  margin-top: 4px !important;
+}
+
+@media screen and (max-width: 1666px) {
+  .label-on-top {
+    margin-top: -90px !important
+  }
+  .tinh_trang_bung_container {
+    .col{
+      min-height: 37.5px;
+      margin-bottom: 12px;
+    }
+  }
+
+  #he_tieu_hoa_label {
+    margin-top: 0px !important
+  }
+}

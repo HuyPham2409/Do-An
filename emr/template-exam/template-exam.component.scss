@@ -1,0 +1,8 @@
+.mtx-grid {
+    .mat-header-cell-inner {
+     text-align: left;
+
+    }
+  }.mat-mdc-cell:first-of-type:not(:only-of-type) {
+    padding-left: 10px !important;
+}

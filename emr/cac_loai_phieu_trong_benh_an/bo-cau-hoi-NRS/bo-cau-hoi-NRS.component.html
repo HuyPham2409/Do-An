@@ -1,0 +1,153 @@
+<mat-card>
+<!-- Thông tin cơ bản -->
+  <section>
+    <h3 style='font-weight: bolder'>BỘ CÂU HỎI</h3>
+    <div class='row'>
+      <div class='col-sm-4'>
+        <div class='row' style='align-items: center'>
+          <div class='col-sm-8 col-md-4 p-x-4'>
+            {{boCauHoi.thongTin[0].canNang_label}}
+          </div>
+          <mat-form-field  class='col-sm-4 col-md p-l-4' appearance='outline'>
+            <input type='number' matInput [(ngModel)]='boCauHoi.thongTin[0].canNang' (change)='calculate(0)'>
+          </mat-form-field>
+        </div>
+        <div class='row' style='align-items: center'>
+          <div class='col-sm-8 col-md-4 p-x-4' style='align-items: center'>
+            Chiều cao hiện tại
+          </div>
+          <mat-form-field  class='col-sm-4 col-md  p-l-4' appearance='outline'>
+            <input type='number' matInput [(ngModel)]='boCauHoi.chieuCao' (change)='calculate(0)'>
+          </mat-form-field>
+        </div>
+        <div class='row' style='align-items: center'>
+          <div class='col-sm-8 col-md-4 p-x-4' >
+            BMI hiện tại:
+          </div>
+          <mat-form-field  class='col-sm-4 col-md  p-l-4' appearance='outline'>
+            <input matInput disabled [(ngModel)]='boCauHoi.thongTin[0].bmi'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='col-sm-8'>
+        <div class='row' style='align-items: center' *ngFor='let thongTin of boCauHoi.thongTin.slice(1)'>
+          <div class='col-3 p-r-4'>
+            {{thongTin.canNang_label}}
+          </div>
+          <mat-form-field  class='col-2 p-l-4' appearance='outline'>
+            <input type='number' matInput [(ngModel)]='thongTin.canNang'  (change)='calculate(thongTin.id)'>
+          </mat-form-field>
+          <div class='col-1 p-r-4'>
+            BMI:
+          </div>
+          <mat-form-field  class='col-2 p-l-4' appearance='outline'>
+            <input type='number' matInput [(ngModel)]='thongTin.bmi' disabled>
+          </mat-form-field>
+          <div class='col-2 p-r-4'>
+            %Giảm cân:
+          </div>
+          <mat-form-field  class='col-2 p-l-4' appearance='outline'>
+            <input type='number' matInput [(ngModel)]='thongTin.giamCan' disabled>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- Lượng ăn trong 1 tuần qua -->
+  <section>
+      <div class='row m-t-8' style='align-items: center'>
+        <div class='p-l-4 col-2'>
+          <b>Lượng ăn trong 1 tuần qua:</b>
+        </div>
+        <div class='col-5'>
+          <mat-radio-group class='row' style="align-items: center;" [(ngModel)]='boCauHoi.luongAn'>
+            <mat-radio-button class='col-md-3 col' [value]="1">Không giảm</mat-radio-button>
+            <mat-radio-button class='col-md-4 col' [value]="2">Giảm 50% --> 70%</mat-radio-button>
+            <mat-radio-button class='col-md-3 col' [value]="3">Giảm > 70%</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+  </section>
+<!-- Bệnh nhân có đi lại bình thường hay không -->
+  <section>
+    <div class='row m-t-8' style='align-items: center'>
+      <div class='p-l-4 col-2'>
+        <b>Bệnh nhân có đi lại bình thường không:</b>
+      </div>
+      <div class='col-5'>
+        <mat-radio-group class='row' style="align-items: center;" [(ngModel)]='boCauHoi.diLaiBinhThuong'>
+          <mat-radio-button class='col-3' [value]="1">Có</mat-radio-button>
+          <mat-radio-button class='col-3' [value]="2">Không</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </section>
+<!-- Bệnh lý -->
+  <section>
+    <div class='row m-t-8 p-l-4'>
+      <b>Bệnh lý:</b>
+    </div>
+    <div class='row p-l-4'>
+      <div class='col-4' *ngFor='let benhLy of boCauHoi.benhLy'>
+        <div class='row p-l-8'>
+          <span class='col-4' style='font-weight: 550'>-{{benhLy.ten}}:</span>
+          <mat-checkbox *ngIf='benhLy.loai == 0' class='col-2 p-0' (click)='clear();setBenhLy(benhLy.id)'
+            [(ngModel)]='benhLy.coBenh'></mat-checkbox>
+        </div>
+        <div class='row p-l-12'>
+          <!-- Text -->
+          <div class='col-12' *ngIf='benhLy.loai == 0'>
+            <mat-form-field style='width: 100%;'>
+              <textarea matInput [(ngModel)]='benhLy.thongTin' [disabled]='!benhLy.coBenh'></textarea>
+            </mat-form-field>
+          </div>
+          <!--radio-->
+          <div class='col-12' *ngIf='benhLy.loai == 1'>
+            <div class='row' *ngFor='let thongTin of benhLy.thongTin'>
+              <span class='col-4'>
+                +{{thongTin.noiDung}}:
+              </span>
+              <div class='col-6'>
+                <mat-radio-group class='row' style="align-items: center;" [(ngModel)]='thongTin.value'>
+                  <mat-radio-button class='col-3' [value]="1" (click)='setBenhLy(benhLy.id)'>Có</mat-radio-button>
+                  <mat-radio-button class='col-3' [value]="2" (click)='setBenhLy(benhLy.id)'>Không</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- NRS -->
+  <hr>
+  <section>
+    <div class='m-t-8'>
+      <div>
+        <b>Dành cho NRS:</b>
+      </div>
+      <div class='row p-l-4'>
+        <div class='col-8'>
+          <mat-radio-group class='row  m-l-8' [(ngModel)]='boCauHoi.nrsValue'>
+            <div class='align-items-center p-x-8 col' style='border: 1px solid #999999' *ngFor='let nrs of boCauHoi.NRS'>
+              <mat-radio-button value='{{nrs.giaTri}}'>{{nrs.ten}}</mat-radio-button>
+              <br/>
+              <span class='m-t-4'>{{nrs.noiDung}}</span>
+            </div>
+          </mat-radio-group>
+        </div>
+        <div class='col-4'>
+          <div class='row'>
+            <span class='col-3'><b>Bệnh nhân lớn tuổi</b></span>
+            <div class='col-6'>
+              <mat-radio-group class='row' style="align-items: center;" [(ngModel)]='boCauHoi.benhNhanLonTuoi'>
+                <mat-radio-button class='col-4' [value]="1"> <70 tuổi </mat-radio-button>
+                <mat-radio-button class='col-4' [value]="2"> >= 70 tuổi </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</mat-card>

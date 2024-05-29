@@ -1,0 +1,430 @@
+<div class='matero-row hoi-benh-glocom' fxLayout='row'>
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div class='col-12' fxLayout='row'>
+          <div><strong>A. {{"emr.exam" | translate}}:</strong></div>
+        </div>
+        <div class='row col-12'>
+          <div class='col-lg-2 col-3' style='text-align: left'>
+            <strong>I. {{"benh_an_mat_glocom.ly_do_di_kham.title" | translate}}:</strong>
+          </div>
+          <div class='col-lg-10 col-9' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.LY_DO_DI_KHAM.ID' class='radio-group'>
+              <mat-radio-button labelPosition='before' *ngFor='let llddk of listLyDoDiKham' class='radio-box' style='width: 15%' [value]="llddk.ID">{{llddk.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxLayout='row col-12' style='margin-top: 5px'>
+          <div class='col-lg-2 col-12' style='text-align: left'>
+            1. {{"benh_an_mat_glocom.ly_do_di_kham.nhuc_mat" | translate}}:
+          </div>
+          <div class='col-lg-10 col-12' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.NHUC_MAT.ID' class='radio-group'>
+              <mat-radio-button *ngFor='let lnm of listNhucMat' class='radio-box' style='width: 20%' [value]="lnm.ID">{{lnm.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxLayout='row col-12' style='margin-top: 5px'>
+          <div class='col-lg-2 col-12' style='text-align: left'>
+            2. {{"benh_an_mat_glocom.ly_do_di_kham.nhin" | translate}}:
+          </div>
+          <div class='col-lg-10 col-12' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.NHIN.ID' class='radio-group'>
+              <mat-radio-button *ngFor='let ln of listNhin' class='radio-box' style='width: 20%' [value]="ln.ID">{{ln.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxLayout='row' style='margin-top: 5px'>
+          <div class='col-xl-2 col-lg-4 col-5' style='text-align: left'>
+            3. {{"benh_an_mat_glocom.ly_do_di_kham.so_anh_sang" | translate}}:
+          </div>
+          <div class='col-xl-10 col-lg-8 col-7' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.SO_ANH_SANG.ID' class='radio-group'>
+              <mat-radio-button *ngFor='let list of list' class='radio-box' style='width: 20%' [value]="list.ID">{{list.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxLayout='row' style='margin-top: 5px'>
+          <div class='col-lg-2 col-5' style='text-align: left'>
+            4. {{"benh_an_mat_glocom.ly_do_di_kham.do_mat" | translate}}:
+          </div>
+          <div class='col-lg-10 col-7' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.DO_MAT.ID' class='radio-group'>
+              <mat-radio-button *ngFor='let list of list' class='radio-box' style='width: 20%' [value]="list.ID">{{list.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxLayout='row col-12' style='margin-top: 5px'>
+          <div class='col-lg-2 col-12' style='text-align: left'>
+            5. {{"benh_an_mat_glocom.ly_do_di_kham.toan_than" | translate}}:
+          </div>
+          <div class='col-lg-10 col-12' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.TOAN_THAN.ID' class='radio-group'>
+              <mat-radio-button *ngFor='let ltt of listToanThan' class='radio-box' style='width: 20%' [value]="ltt.ID">{{ltt.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class='col-12' fxLayout='row' style='margin-top: 5px'>
+          6. {{"benh_an_mat_glocom.ly_do_di_kham.cac_trieu_chung_khac" | translate}}:
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='hoiBenh.CAC_TRIEU_CHUNG_KHAC'></textarea>
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' class='col-12' style='margin-top: 5px'>
+          <strong>II. {{"benh_an_mat_glocom.qua_trinh_benh_ly.title" | translate}}</strong>
+        </div>
+        <div class='col-12' fxLayout='row' style='margin-top: 5px'>
+          1. {{"benh_an_mat_glocom.qua_trinh_benh_ly.thoi_gian_xuat_hien_benh" | translate}}:
+        </div>
+        <div class='col-12'>
+          <app-emr-date [(model)]='hoiBenh.thoi_gian_xuat_hien_benh'
+                        [(dmModel)]='hoiBenh.THOI_GIAN_XUAT_HIEN_BENH'></app-emr-date>
+        </div>
+        <div fxLayout='row col-12' style='margin-top: 5px'>
+          <div class='col-xl-3 col-lg-4 col-12' style='text-align: left'>
+            2. {{"benh_an_mat_glocom.qua_trinh_benh_ly.co_so_y_te_da_kham" | translate}}:
+          </div>
+          <div class='col-xl-9 col-lg-8 col-12' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.CSYT_DA_KHAM.ID' class='radio-group'>
+              <mat-radio-button *ngFor='let listCSYT of listCoSoYTe' class='radio-box' style='width: 20%' [value]="listCSYT.ID">{{listCSYT.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxLayout='row col-12' style='margin-top: 5px'>
+          <div class='col-xl-3 col-lg-4 col-12' style='text-align: left'>
+            3. {{"benh_an_mat_glocom.qua_trinh_benh_ly.ppdt" | translate}}:
+          </div>
+          <div class='col-xl-9 col-lg-8 col-12' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.PPDT.ID' class='radio-group'>
+              <mat-radio-button *ngFor='let listPPDT of listPPDT' class='radio-box' style='width: 20%' [value]="listPPDT.ID">{{listPPDT.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxLayout='row' class='col-12' style='margin-top: 5px'>
+          4. {{"benh_an_mat_glocom.qua_trinh_benh_ly.pttt_da_thuc_hien" | translate}}:
+        </div>
+        <table style='width: 100%'>
+          <tr>
+            <td rowspan='2' style='width: 20%'></td>
+            <td colspan='4' style='width: 40%'>{{"kham_benh_mat.mat_phai" |translate}}</td>
+            <td colspan='4' style='width: 40%'>{{"kham_benh_mat.mat_trai" |translate}}</td>
+          </tr>
+          <tr>
+            <td style='width: 10%'><i>{{"benh_an_mat_glocom.qua_trinh_benh_ly.lan_1" |translate}}</i></td>
+            <td style='width: 10%'><i>{{"benh_an_mat_glocom.qua_trinh_benh_ly.lan_2" |translate}}</i></td>
+            <td style='width: 10%'><i>{{"benh_an_mat_glocom.qua_trinh_benh_ly.lan_3" |translate}}</i></td>
+            <td style='width: 10%'><i>{{"benh_an_mat_glocom.qua_trinh_benh_ly.lan_4" |translate}}</i></td>
+            <td style='width: 10%'><i>{{"benh_an_mat_glocom.qua_trinh_benh_ly.lan_1" |translate}}</i></td>
+            <td style='width: 10%'><i>{{"benh_an_mat_glocom.qua_trinh_benh_ly.lan_2" |translate}}</i></td>
+            <td style='width: 10%'><i>{{"benh_an_mat_glocom.qua_trinh_benh_ly.lan_3" |translate}}</i></td>
+            <td style='width: 10%'><i>{{"benh_an_mat_glocom.qua_trinh_benh_ly.lan_4" |translate}}</i></td>
+          </tr>
+          <tr>
+            <td rowspan='2'><i>{{"benh_an_mat_glocom.qua_trinh_benh_ly.loai_pttt" |translate}}</i></td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_PHAI.LOAI_PT_LAN_1' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_PHAI.LOAI_PT_LAN_2' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_PHAI.LOAI_PT_LAN_3' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_PHAI.LOAI_PT_LAN_4' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_TRAI.LOAI_PT_LAN_1' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_TRAI.LOAI_PT_LAN_2' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_TRAI.LOAI_PT_LAN_3' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_TRAI.LOAI_PT_LAN_4' type='number'min='0'>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr style='text-align: left'>
+            <td colspan='8'><strong>1. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.cat_be_cgm" |translate}} <strong>2. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.cat_be_cch" |translate}} <strong>3. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.cat_cms" |translate}} <strong>4. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.cms_cch" |translate}} <strong>5. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.mm_ngoai_vi" |translate}} <strong>6. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.van_dan_luu" |translate}} <strong>7. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.quang_dong" |translate}} <strong>8. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.lanh_dong" |translate}} <strong>9. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.sua_seo_bong" |translate}} <strong>10. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.ket_cung_mac" |translate}} <strong>11. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.laser_mm_ngoai_vi" |translate}} <strong>12. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.laser_tao_hinh_mm" |translate}} <strong>13. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.laser_tao_hinh_be" |translate}} <strong>14. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.khac..." |translate}}</td>
+          </tr>
+          <tr>
+            <td style='width: 20%'><i>{{"benh_an_mat_glocom.qua_trinh_benh_ly.thoi_diem_pt" |translate}}</i></td>
+            <td style='width: 10%'>
+              <app-emr-date [(model)]='hoiBenh.MAT_PHAI.thoi_diem_pt_lan_1'
+                            [(dmModel)]='hoiBenh.MAT_PHAI.THOI_DIEM_PT_LAN_1'></app-emr-date>
+            </td>
+            <td style='width: 10%'>
+              <app-emr-date [(model)]='hoiBenh.MAT_PHAI.thoi_diem_pt_lan_2'
+                            [(dmModel)]='hoiBenh.MAT_PHAI.THOI_DIEM_PT_LAN_2'></app-emr-date>
+            </td>
+            <td style='width: 10%'>
+              <app-emr-date [(model)]='hoiBenh.MAT_PHAI.thoi_diem_pt_lan_3'
+                            [(dmModel)]='hoiBenh.MAT_PHAI.THOI_DIEM_PT_LAN_3'></app-emr-date>
+            </td>
+            <td style='width: 10%'>
+              <app-emr-date [(model)]='hoiBenh.MAT_PHAI.thoi_diem_pt_lan_4'
+                            [(dmModel)]='hoiBenh.MAT_PHAI.THOI_DIEM_PT_LAN_4'></app-emr-date>
+            </td>
+            <td style='width: 10%'>
+              <app-emr-date [(model)]='hoiBenh.MAT_TRAI.thoi_diem_pt_lan_1'
+                            [(dmModel)]='hoiBenh.MAT_TRAI.THOI_DIEM_PT_LAN_1'></app-emr-date>
+            </td>
+            <td style='width: 10%'>
+              <app-emr-date [(model)]='hoiBenh.MAT_TRAI.thoi_diem_pt_lan_2'
+                            [(dmModel)]='hoiBenh.MAT_TRAI.THOI_DIEM_PT_LAN_2'></app-emr-date>
+            </td>
+            <td style='width: 10%'>
+              <app-emr-date [(model)]='hoiBenh.MAT_TRAI.thoi_diem_pt_lan_3'
+                            [(dmModel)]='hoiBenh.MAT_TRAI.THOI_DIEM_PT_LAN_3'></app-emr-date>
+            </td>
+            <td style='width: 10%'>
+              <app-emr-date [(model)]='hoiBenh.MAT_TRAI.thoi_diem_pt_lan_4'
+                            [(dmModel)]='hoiBenh.MAT_TRAI.THOI_DIEM_PT_LAN_4'></app-emr-date>
+            </td>
+          </tr>
+          <tr>
+            <td rowspan='2'><i>{{"benh_an_mat_glocom.qua_trinh_benh_ly.noi_pt" |translate}}</i></td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_PHAI.NOI_PT_LAN_1' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_PHAI.NOI_PT_LAN_2' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_PHAI.NOI_PT_LAN_3' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_PHAI.NOI_PT_LAN_4' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_TRAI.NOI_PT_LAN_1' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_TRAI.NOI_PT_LAN_2' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_TRAI.NOI_PT_LAN_3' type='number' min='0'>
+              </mat-form-field>
+            </td>
+            <td style='width: 10%'>
+              <mat-form-field>
+                <input matInput [(ngModel)]='hoiBenh.MAT_TRAI.NOI_PT_LAN_4' type='number'min='0'>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr style='text-align: left'>
+            <td colspan='8'><strong>1. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.bv_huyen" |translate}} <strong>2. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.bv_tinh" |translate}} <strong>3. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.bv_tu" |translate}} <strong>4. </strong>{{"benh_an_mat_glocom.qua_trinh_benh_ly.noi_khac" |translate}}</td>
+          </tr>
+        </table>
+        <div fxLayout='row col-12' style='margin-top: 10px'>
+          <div class='col-xl-2 col-lg-4 col-12' style='text-align: left'>5. {{"benh_an_mat_glocom.qua_trinh_benh_ly.thuoc_ha_nhan_ap_da_dung" |translate}}:</div>
+          <div class='col-xl-10 col-lg-8 col-12'>
+            <div style='text-align: left'>
+              <mat-radio-group [(ngModel)]='hoiBenh.THUOC_HA_NHAN_AP.ID' class='radio-group'>
+                <mat-radio-button *ngFor='let listTHNA of listThuocHaNhanApDaDung' class='radio-box' style='width: 20%' [value]="listTHNA.ID">{{listTHNA.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div style='text-align: left;margin-top: 5px'>
+              <mat-radio-group [(ngModel)]='hoiBenh.SO_THUOC.ID' class='radio-group'>
+                <mat-radio-button *ngFor='let listST of listSoThuoc' class='radio-box' style='width: 20%' [value]="listST.ID">{{listST.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <table style='width: 100%;margin-top: 5px'>
+          <thead>
+            <th style='width: 5%'>{{"stt" | translate}}</th>
+            <th style='width: 25%'>{{"benh_an_mat_glocom.qua_trinh_benh_ly.ten_thuoc" | translate}}</th>
+            <th style='width: 20%'>{{"benh_an_mat_glocom.qua_trinh_benh_ly.duong_dung" | translate}}</th>
+            <th style='width: 15%'>{{"benh_an_mat_glocom.qua_trinh_benh_ly.lieu_dung" | translate}}</th>
+            <th style='width: 15%'>{{"benh_an_mat_glocom.qua_trinh_benh_ly.time_da_dung" | translate}}</th>
+            <th style='width: 15%'>{{"benh_an_mat_glocom.qua_trinh_benh_ly.ghi_chu" | translate}}</th>
+            <th style='width: 5%' class="button-container">
+              <button style='margin-top: 5px' type="button" (click)="addPharmaTest()" mat-button class="btn-sm mat-blue-hn"
+                      [title]="'tooltip.add_pharma_test' | translate">
+                <i class="fa fa-plus"></i>
+              </button>
+            </th>
+          </thead>
+            <tr *ngFor='let element of listNewTestControl; let index = index'>
+              <td>{{ listNewTestControl.indexOf(element) + 1 }}</td>
+              <td>
+                <app-select [(model)]='element.pharma'
+                            category='pharma' [resetTo]='null'></app-select>
+              </td>
+              <td>
+                <app-select [(model)]='element.duong_dung'
+                            category='way_to_use' [resetTo]='null'></app-select>
+              </td>
+              <td>
+                <mat-form-field>
+                  <input matInput [(ngModel)]='element.lieu_dung'>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field>
+                  <input matInput [(ngModel)]='element.thoi_gian_da_dung'>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field>
+                  <input matInput [(ngModel)]='element.note'>
+                </mat-form-field>
+              </td>
+              <td class="button-container">
+                <button type="button" (click)="deletePharmaTest(index)" mat-button class="btn-sm mat-red-hn"
+                        [title]="'tooltip.delete_pharma_test' | translate">
+                  <i class="fa fa-times"></i>
+                </button>
+              </td>
+            </tr>
+        </table>
+        <div class='col-12' fxLayout='row' style='margin-top: 5px'>
+          6. {{"benh_an_mat_glocom.qua_trinh_benh_ly.cac_thuoc_khac" | translate}}:
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='hoiBenh.CAC_THUOC_KHAC'></textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-12' fxLayout='row' style='margin-top: 5px'>
+          7. {{"benh_an_mat_glocom.qua_trinh_benh_ly.tien_trinh_dieu_tri" | translate}}:
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='hoiBenh.TIEN_TRINH_DIEU_TRI'></textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout='row' style='margin-top: 5px'>
+          <div class='col-xl-3 col-lg-4 col-5' style='text-align: left'><strong>III. {{"benh_an_mat_glocom.tien_su_benh.title" |translate}}:</strong></div>
+          <div class='col-xl-9 col-lg-8 col-7' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.TIEN_SU_BENH_MAT.ID' class='radio-group'>
+              <mat-radio-button *ngFor='let list of list' class='radio-box' style='width: 20%' [value]="list.ID">{{list.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxLayout='row col-12' style='text-align: left'>
+          <mat-checkbox class='col-lg-3 col-4' style='margin-right: 0px !important' [(ngModel)]='hoiBenh.CAN_THI'>{{"benh_an_mat_glocom.tien_su_benh.can_thi" |translate}}</mat-checkbox>
+          <mat-checkbox class='col-lg-3 col-5' style='margin-right: 0px !important' [(ngModel)]='hoiBenh.VIEN_THI'>{{"benh_an_mat_glocom.tien_su_benh.vien_thi" |translate}}</mat-checkbox>
+          <mat-checkbox class='col-lg-3 col-3' style='margin-right: 0px !important' [(ngModel)]='hoiBenh.CHAN_THUONG'>{{"benh_an_mat_glocom.tien_su_benh.chan_thuong" |translate}}</mat-checkbox>
+          <mat-checkbox class='col-lg-3 col-4' style='margin-right: 0px !important' [(ngModel)]='hoiBenh.VIEM_MANG_BO_DAO'>{{"benh_an_mat_glocom.tien_su_benh.viem_mang" |translate}}</mat-checkbox>
+          <mat-checkbox class='col-lg-3 col-5' style='margin-right: 0px !important' [(ngModel)]='hoiBenh.VIEM_PHAN_TRUOC_NHAN_CAU'>{{"benh_an_mat_glocom.tien_su_benh.viem_phan_nhan_cau_truoc" |translate}}</mat-checkbox>
+          <mat-checkbox class='col-lg-3 col-3' style='margin-right: 0px !important' [(ngModel)]='hoiBenh.TAC_TMTTVM'>{{"benh_an_mat_glocom.tien_su_benh.tac_tmttvm" |translate}}</mat-checkbox>
+          <div class='row col-lg-6 col-12' style='padding-right: 0px !important'>
+            <mat-checkbox class=' col-lg-3 col-2' style='margin: 0px !important' [(ngModel)]='hoiBenh.DA_PT_MAT' (click)="reset('DA_PT_MAT')">{{"benh_an_mat_glocom.tien_su_benh.da_pt_mat" |translate}}</mat-checkbox>
+            <mat-form-field class='col-lg-9 col-10 full-width' style='padding-right: 0px !important' appearance='outline' *ngIf='hoiBenh.DA_PT_MAT'>
+              <input matInput [(ngModel)]='hoiBenh.TEXT_PT_MAT'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='row col-12' style='text-align: left;padding-right: 0px !important'>
+          <mat-checkbox class='col-xl-1 col-lg-2 col-2' style='margin: 0px !important' [(ngModel)]='hoiBenh.BENH_KHAC' (click)="reset('BENH_KHAC')">{{"benh_an_mat_glocom.tien_su_benh.benh_khac" |translate}}</mat-checkbox>
+          <mat-form-field class='col-xl-11 col-lg-10 col-10 full-width' style='padding-right: 0px !important' appearance='outline' *ngIf='hoiBenh.BENH_KHAC'>
+            <input matInput [(ngModel)]='hoiBenh.TEXT_BENH_KHAC'>
+          </mat-form-field>
+        </div>
+        <div class='row col-12' style='text-align: left;padding-right: 0px !important'>
+          <mat-checkbox class='col-xl-3 col-lg-4 col-6' style='margin: 0px !important' [(ngModel)]='hoiBenh.TIEN_SU_DUNG_CORTICOSTEROID' (click)="reset('TIEN_SU_DUNG_CORTICOSTEROID')">{{"benh_an_mat_glocom.tien_su_benh.corticosteroid" |translate}}.</mat-checkbox>
+          <div class='col-xl-9 col-lg-8 col-6' style='padding-right: 0px !important'>
+            <app-select *ngIf='hoiBenh.TIEN_SU_DUNG_CORTICOSTEROID' label='pharma.ten_thuoc' [(model)]='hoiBenh.TEXT_TIEN_SU_DUNG_CORTICOSTEROID'
+                        category='pharma' [resetTo]='null'></app-select>
+          </div>
+        </div>
+        <div class='col-12' fxLayout='row' style='margin-top: 5px'>
+          - {{"benh_an_mat_glocom.tien_su_benh.thoi_gian_sd" | translate}}:
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='hoiBenh.THOI_GIAN_SU_DUNG'></textarea>
+          </mat-form-field>
+        </div>
+        <div class='row col-12' style='margin-top: 5px'>
+          <div class='col-xl-1 col-lg-2 col-3' style='text-align: left'>
+            - {{"benh_an_mat_glocom.tien_su_benh.duong_dung" | translate}}:
+          </div>
+          <div class='col-xl-11 col-lg-10 col-9' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.DUONG_DUNG.ID' class='radio-group'>
+              <mat-radio-button *ngFor='let ldd of listDuongDung' class='radio-box' class='col-lg-2 col-3' [value]="ldd.ID">{{ldd.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class='col-12' style='text-align: left;margin-top: 5px;padding-left: 0px !important;'>
+          <mat-radio-group [(ngModel)]='hoiBenh.CACH_DUNG_THUOC.ID' class='radio-group'>
+            <mat-radio-button labelPosition='before' *ngFor='let lcdt of listCachDungThuoc' class='radio-box' class='col-lg-3 col-5' [value]="lcdt.ID">{{lcdt.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div fxLayout='row' style='margin-top: 5px'>
+          <div class='col-lg-3 col-4' style='text-align: left'><strong>IV. {{"benh_an_mat_glocom.tien_su_benh.ts_benh_tt" |translate}}:</strong></div>
+          <div class='col-lg-9 col-8' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.TIEN_SU_BENH_TOAN_THAN.ID' class='radio-group'>
+              <mat-radio-button *ngFor='let list of list' class='radio-box' style='width: 20%' [value]="list.ID">{{list.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-checkbox class='col-lg-3 col-2' [(ngModel)]='hoiBenh.TIM_MACH'>{{"benh_an_mat_glocom.tien_su_benh.tim_mach" |translate}}</mat-checkbox>
+          <mat-checkbox class='col-lg-3 col-4' [(ngModel)]='hoiBenh.HUYET_AP'>{{"benh_an_mat_glocom.tien_su_benh.huyet_ap" |translate}}</mat-checkbox>
+          <mat-checkbox class='col-lg-3 col-6' [(ngModel)]='hoiBenh.DAI_DUONG'>{{"benh_an_mat_glocom.tien_su_benh.dai_duong" |translate}}</mat-checkbox>
+        </div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-checkbox class='col-6' [(ngModel)]='hoiBenh.THONG_DONG_MACH_CANH'>{{"benh_an_mat_glocom.tien_su_benh.thong_dong_mach" |translate}}</mat-checkbox>
+          <mat-checkbox class='col-xl-1 col-lg-2 col-2' style='margin-left: 7px' [(ngModel)]='hoiBenh.BENH_KHAC_TT' (click)="reset('BENH_KHAC_TT')">{{"benh_an_mat_glocom.tien_su_benh.benh_khac" |translate}}:</mat-checkbox>
+          <div class='col-xl-5 col-lg-4 col-4'>
+            <mat-form-field appearance='outline' class='full-width' *ngIf='hoiBenh.BENH_KHAC_TT'>
+              <input matInput [(ngModel)]='hoiBenh.TEXT_BENH_KHAC_TT'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row' style='margin-top: 5px'>
+          <div class='col-xl-3 col-lg-4 col-6' style='text-align: left'><strong>V. {{"benh_an_mat_glocom.tien_su_benh.ts_glocom_gd" |translate}}:</strong></div>
+          <div class='col-xl-9 col-lg-8 col-6' style='text-align: left'>
+            <mat-radio-group [(ngModel)]='hoiBenh.TIEN_SU_BENH_GLOCOM.ID' class='radio-group' (click)="reset('TIEN_SU_BENH_GLOCOM')">
+              <mat-radio-button *ngFor='let list of list' class='radio-box' style='width: 20%' [value]="list.ID">{{list.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-checkbox class='col-3' [(ngModel)]='hoiBenh.ONG_BA'>{{"benh_an_mat_glocom.tien_su_benh.ong_ba" |translate}}</mat-checkbox>
+          <mat-checkbox class='col-3' [(ngModel)]='hoiBenh.BO_ME'>{{"benh_an_mat_glocom.tien_su_benh.bo_me" |translate}}</mat-checkbox>
+          <mat-checkbox class='col-3' [(ngModel)]='hoiBenh.ANH_CHI_EM'>{{"benh_an_mat_glocom.tien_su_benh.ace" |translate}}</mat-checkbox>
+          <mat-checkbox class='col-3' [(ngModel)]='hoiBenh.CO_DI_CHU_BAC'>{{"benh_an_mat_glocom.tien_su_benh.co_di" |translate}}</mat-checkbox>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

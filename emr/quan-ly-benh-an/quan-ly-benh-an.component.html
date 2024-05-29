@@ -1,0 +1,9 @@
+<breadcrumb></breadcrumb>
+
+<mat-card appearance='outlined'>
+  <mat-card-content>
+    <formio src='https://formio.smarthos.vn/form/662b5567aaf20090bf8466a4' [submission]='{data: {token: token}}'
+            (change)='onChange($event)'
+    ></formio>
+  </mat-card-content>
+</mat-card>

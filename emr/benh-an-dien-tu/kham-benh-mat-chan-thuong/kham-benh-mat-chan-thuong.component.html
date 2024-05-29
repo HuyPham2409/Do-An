@@ -1,0 +1,603 @@
+<div class='kham-mat-chan-thuong text-left'>
+  <div>
+    <strong>III.{{"title.kham_mat" | translate}}:</strong>
+  </div>
+<div>1. Khám chuyên khoa:</div>
+  <app-thi-luc class='col-12 p-x-0'
+               [patientInfo]='patientInfo'
+               [tenBenhAn]='tenBenhAn'
+  ></app-thi-luc>
+
+  <table class='w-full'>
+    <tr>
+      <th></th>
+      <th>{{'kham_benh_mat.mat_phai'|translate}}</th>
+      <th>{{'kham_benh_mat.mat_trai'|translate}}</th>
+    </tr>
+<!-- Mi mắt -->
+    <tr>
+      <th>{{'kham_benh_mat.mi_mat'|translate}}</th>
+      <ng-template #miMat let-field>
+          <mat-radio-group class="row" style="align-items: center; margin-top: 3px;" [(ngModel)]="field.TINH_TRANG">
+            <mat-radio-button class="col-6 m-r-0" [value]="1">{{'kham_benh_mat.binh_thuong'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-6 m-r-0" [value]="2">{{'kham_benh_mat.tu_mau_xung_ne'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-6 m-r-0" [value]="3">{{'kham_benh_mat.sup_mi'|translate}}</mat-radio-button>
+              <mat-form-field appearance='outline' class="col-6 m-r-0 full-width text-area-line-height">
+                <mat-label>{{'kham_benh_mat.do' | translate}}</mat-label>
+                    <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.Do'></textarea>
+              </mat-form-field>
+          </mat-radio-group>
+
+        <strong>{{'kham_benh_mat.rach_mi' | translate}}:</strong>
+        <br />
+          <mat-radio-group [(ngModel)]="field.RACH_MI">
+            <div class="row" style="align-items: center">
+              <mat-radio-button class="col-3" style="max-width: fit-content; margin-right: 0;padding: 2px;" [value]="1">{{'kham_benh_mat.lop'|translate}}</mat-radio-button>
+              <mat-radio-button class="col-3" style="max-width: fit-content;margin-right: 0;padding: 4px;" [value]="2">{{'kham_benh_mat.toan_bo_chieu_day'|translate}}</mat-radio-button>
+              <mat-radio-button class="col-3" style="max-width: fit-content;margin-right: 0;padding: 4px;" [value]="3">{{'kham_benh_mat.bo_mi'|translate}}</mat-radio-button>
+              <mat-radio-button class="col-3" style="max-width: fit-content;margin-right: 0;padding: 2px;" [value]="4">{{'kham_benh_mat.mat_to_chuc'|translate}}</mat-radio-button>
+            </div>
+          </mat-radio-group>
+
+          <mat-radio-group class="row" style="justify-content: space-around" [(ngModel)]="field.KHAU">
+              <mat-radio-button class="col-4" [value]="1">{{'kham_benh_mat.chua_khau'|translate}}</mat-radio-button>
+              <mat-radio-button class="col-4" [value]="2">{{'kham_benh_mat.da_khau'|translate}}</mat-radio-button>
+          </mat-radio-group>
+
+        <strong>{{'kham_benh_mat.le_quan' | translate}}:</strong>
+        <mat-radio-group class="row" style="justify-content: space-around" [(ngModel)]="field.LE_QUAN">
+            <mat-radio-button class="col-4" [value]="1">{{'kham_benh_mat.binh_thuong'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-4" [value]="2">{{'kham_benh_mat.dut_le_quan'|translate}}</mat-radio-button>
+        </mat-radio-group>
+
+        <div class="row">
+          <mat-radio-group *ngIf="field.LE_QUAN !== 1" [(ngModel)]="field.CHI_TIET_LE_QUAN">
+              <mat-radio-button class="col-3" style="max-width: fit-content; margin-right: 0;padding: 2px; margin-left: 1px" [value]="1">{{'kham_benh_mat.1/3_ngoai'|translate}}</mat-radio-button>
+              <mat-radio-button class="col-3" style="max-width: fit-content; margin-right: 0;padding: 3px;" [value]="2">{{'kham_benh_mat.1/3_giua'|translate}}</mat-radio-button>
+              <mat-radio-button class="col-3" style="max-width: fit-content; margin-right: 0;padding: 3px;" [value]="3">{{'kham_benh_mat.1/3_trong'|translate}}</mat-radio-button>
+              <mat-radio-button class="col" style="max-width: fit-content; margin-right: 0;padding: 2px;" [value]="4">{{'kham_benh_mat.dut_2_le_quan'|translate}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="row" style="align-items: center">
+          <mat-checkbox labelPosition='before' class='col-4' style="max-width: fit-content" [(ngModel)]='field.SEO_MI'>
+            {{'kham_benh_mat.seo_mi'|translate}}
+          </mat-checkbox>
+          <div *ngIf="field.SEO_MI === true">
+            <mat-form-field appearance='outline' class="col full-width text-area-line-height">
+                  <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                            [(ngModel)]='field.SEO_MI_CHI_TIET'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+    <!-- Các tổn thương khác -->
+        <mat-form-field appearance='outline' class="col-12 m-x-1 full-width text-area-line-height">
+          <mat-label>{{'kham_benh_mat.ton_thuong_khac' | translate}}</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.CAC_TON_THUONG_KHAC'></textarea>
+        </mat-form-field>
+
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='miMat; context: {$implicit: khamMatChanThuong.MAT_PHAI.MI_MAT}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='miMat; context: {$implicit: khamMatChanThuong.MAT_TRAI.MI_MAT}'></ng-container></td>
+    </tr>
+
+<!-- Kết mạc -->
+    <tr>
+      <th>{{'kham_benh_mat.ket_mac'|translate}}</th>
+      <ng-template #ketMac let-field>
+        <mat-radio-group style="align-items: center; margin-top: 3px;" [(ngModel)]="field.TINH_TRANG">
+          <div class="row">
+            <mat-radio-button class="col-6 m-r-0" [value]="1">{{'kham_benh_mat.binh_thuong'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-6 m-r-0" [value]="2">{{'kham_benh_mat.cuong_tu'|translate}}</mat-radio-button>
+          </div>
+
+          <div class="row" style="align-items: center ; margin-top: 3px;">
+            <mat-radio-button class="col-6 m-r-0" [value]="3">{{'kham_benh_mat.xuat_huyet'|translate}}</mat-radio-button>
+            <div *ngIf="field.TINH_TRANG === 3" class="col">
+              <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                            [(ngModel)]='field.XUAT_HUYET_2'></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+            <div class="row" style="align-items: center; margin-top: 3px;">
+              <mat-radio-button class="col-6 m-r-0" [value]="4">{{'kham_benh_mat.rach_km'|translate}}</mat-radio-button>
+              <div *ngIf="field.TINH_TRANG === 4" class="col">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                            [(ngModel)]='field.RACH_KM_2'></textarea>
+                </mat-form-field>
+              </div>
+          </div>
+            <div class="row" style="align-items: center; margin-top: 3px;">
+              <mat-radio-button class="col-6 m-r-0" [value]="5">{{'kham_benh_mat.thieu_mau'|translate}}</mat-radio-button>
+              <div *ngIf="field.TINH_TRANG === 5" class="col">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                            [(ngModel)]='field.THIEU_MAU_2'></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+        </mat-radio-group>
+
+        <!-- Các tổn thương khác -->
+        <mat-form-field appearance='outline' class="col-12 m-x-1 full-width text-area-line-height">
+          <mat-label>{{'kham_benh_mat.ton_thuong_khac' | translate}}</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.TON_THUONG_KHAC'></textarea>
+        </mat-form-field>
+
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='ketMac; context: {$implicit: khamMatChanThuong.MAT_PHAI.KET_MAC}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='ketMac; context: {$implicit: khamMatChanThuong.MAT_TRAI.KET_MAC}'></ng-container></td>
+    </tr>
+
+<!-- Hình vẽ mô tả tổn thương -->
+    <tr>
+      <th>{{'kham_benh_mat.hinh_ve'|translate}}</th>
+      <ng-template #hinhVe let-field>
+        <div class='row'>
+          <div class='w-full' style="height: 150px;">
+          </div>
+        </div>
+      </ng-template>
+      <td>
+        <ng-container *ngTemplateOutlet='hinhVe; context: {$implicit: khamMatChanThuong.MAT_PHAI.HINH_VE}'></ng-container>
+      </td>
+      <td>
+        <ng-container *ngTemplateOutlet='hinhVe; context: {$implicit: khamMatChanThuong.MAT_TRAI.HINH_VE}'></ng-container>
+      </td>
+    </tr>
+
+<!-- Giác mạc -->
+    <tr>
+      <th>{{'kham_benh_mat.giac_mac'|translate}}</th>
+      <ng-template #giacMac let-field>
+        <mat-radio-group style="align-items: center" [(ngModel)]="field.TINH_TRANG">
+          <div class="row" style="justify-content: space-around">
+            <mat-radio-button class="col-4 m-r-0 m-t-0.5" [value]="1">{{'kham_benh_mat.trong'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-4 m-r-0" [value]="2">{{'kham_benh_mat.phu'|translate}}</mat-radio-button>
+          </div>
+          <div class="row" style="align-items: center; padding: 2px 0;">
+            <mat-radio-button class="col-4" [value]="3">{{'kham_benh_mat.seo'|translate}}</mat-radio-button>
+            <mat-form-field appearance='outline' *ngIf="field.TINH_TRANG === 3" class="col m-r-0 full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.seo' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.SEO'></textarea>
+            </mat-form-field>
+          </div>
+          <div class="row" style="align-items: center;padding: 2px 0;">
+            <mat-radio-button class="col-4 m-r-0" [value]="4">{{'kham_benh_mat.di_vat'|translate}}</mat-radio-button>
+            <mat-form-field appearance='outline' *ngIf="field.TINH_TRANG === 4" class="col m-r-0 full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.di_vat' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.DI_VAT'></textarea>
+            </mat-form-field>
+          </div>
+        </mat-radio-group>
+
+    <!-- Tuả mặt sau giác mạc -->
+        <strong>{{'kham_benh_mat.tua_mat_sau_giac_mac' | translate}}:</strong>
+        <mat-radio-group class="row" [(ngModel)]="field.TUA_MAT_SAU_GIAC_MAC" style="justify-content: space-around">
+            <mat-radio-button class="col-6" style="max-width: fit-content; margin-right: 0;padding: 2px;" [value]="1">{{'kham_benh_mat.tua_moi'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-6" style="max-width: fit-content;margin-right: 0;padding: 4px;" [value]="2">{{'kham_benh_mat.tua_cu'|translate}}</mat-radio-button>
+        </mat-radio-group>
+
+      <div class="row" style="justify-content: space-around">
+        <mat-checkbox class="col-3" style="max-width: fit-content" [(ngModel)]="field.NGAM_MAU">{{'kham_benh_mat.ngam_mau'|translate}}</mat-checkbox>
+        <mat-checkbox class="col-3" style="max-width: fit-content" [(ngModel)]="field.Abces">{{'kham_benh_mat.Abces'|translate}}</mat-checkbox>
+        <mat-checkbox class="col-3" style="max-width: fit-content" [(ngModel)]="field.TROT">{{'kham_benh_mat.trot'|translate}}</mat-checkbox>
+        <mat-checkbox class="col-3" style="max-width: fit-content" [(ngModel)]="field.LOET">{{'kham_benh_mat.loet'|translate}}</mat-checkbox>
+      </div>
+
+    <!-- Rách -->
+        <div class="row" style="align-items: center">
+          <mat-checkbox labelPosition='before' class='col-3' style="max-width: fit-content" [(ngModel)]='field.RACH'>
+            {{'kham_benh_mat.rach'|translate}}
+          </mat-checkbox>
+            <mat-form-field appearance='outline' *ngIf="field.RACH === true" class="col-4 m-y-1 full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.kich_thuoc' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.KICH_THUOC'></textarea>
+            </mat-form-field>
+            <mat-form-field appearance='outline' *ngIf="field.RACH === true" class="col-5 full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.vi_tri' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.VI_TRI'></textarea>
+            </mat-form-field>
+        </div>
+      <!-- Tình trạng rách -->
+          <mat-radio-group *ngIf="field.RACH === true" style="align-items: center; justify-content: space-around" [(ngModel)]="field.TINH_TRANG_RACH">
+            <div class="row" style="padding: 2px">
+              <mat-radio-button class="col-4" [value]="1">{{'kham_benh_mat.rach_gon'|translate}}</mat-radio-button>
+              <mat-radio-button class="col-4" [value]="2">{{'kham_benh_mat.nham_nho'|translate}}</mat-radio-button>
+            </div>
+            <div class="row" style="padding: 2px">
+              <mat-radio-button class="col-4" [value]="3">{{'kham_benh_mat.mat_to_chuc'|translate}}</mat-radio-button>
+              <mat-radio-button class="col-4" [value]="4">{{'kham_benh_mat.ket_to_chuc_noi_nhan'|translate}}</mat-radio-button>
+            </div>
+          </mat-radio-group>
+    <!-- Khâu -->
+        <mat-radio-group *ngIf="field.RACH === true"  class="row" style="margin-left: 0" [(ngModel)]="field.KHAU">
+            <mat-radio-button class="col-3" style="padding: 1px; margin: 0; max-width: fit-content"  [value]="1">{{'kham_benh_mat.da_khau'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-3" style="padding: 1px; margin: 0;max-width: fit-content" [value]="2">{{'kham_benh_mat.dung_giai_phau'|translate}}</mat-radio-button>
+            <mat-radio-button class="col" style="padding: 1px;margin: 0;max-width: fit-content" [value]="3">{{'kham_benh_mat.khong_dung_giai_phau'|translate}}</mat-radio-button>
+        </mat-radio-group>
+
+        <!-- Các tổn thương khác -->
+        <mat-form-field appearance='outline' class="col-12 m-x-1 full-width text-area-line-height">
+          <mat-label>{{'kham_benh_mat.ton_thuong_khac' | translate}}</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.CAC_TON_THUONG_KHAC'></textarea>
+        </mat-form-field>
+
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='giacMac; context: {$implicit: khamMatChanThuong.MAT_PHAI.GIAC_MAC}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='giacMac; context: {$implicit: khamMatChanThuong.MAT_TRAI.GIAC_MAC}'></ng-container></td>
+    </tr>
+
+<!-- Củng mạc -->
+    <tr>
+      <th>{{'kham_benh_mat.cung_mac'|translate}}</th>
+      <ng-template #cungMac let-field>
+        <mat-radio-group class="row" style="align-items: center; justify-content: space-around" [(ngModel)]="field.BINH_THUONG">
+            <mat-radio-button class="col-4 m-r-0" [value]="1">{{'kham_benh_mat.binh_thuong'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-4 m-r-0" [value]="2">{{'kham_benh_mat.gian_loi'|translate}}</mat-radio-button>
+        </mat-radio-group>
+
+
+        <!-- Rách -->
+        <div class="row" style="align-items: center">
+          <mat-checkbox labelPosition='before' class='col-3' style="max-width: fit-content" [(ngModel)]='field.RACH'>
+            {{'kham_benh_mat.rach'|translate}}
+          </mat-checkbox>
+          <mat-form-field appearance='outline' *ngIf="field.RACH === true" class="col-4 m-y-1 full-width text-area-line-height">
+            <mat-label>{{'kham_benh_mat.kich_thuoc' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.KICH_THUOC'></textarea>
+          </mat-form-field>
+          <mat-form-field appearance='outline' *ngIf="field.RACH === true" class="col-5 full-width text-area-line-height">
+            <mat-label>{{'kham_benh_mat.vi_tri' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.VI_TRI'></textarea>
+          </mat-form-field>
+        </div>
+
+        <!-- Khâu -->
+        <mat-radio-group *ngIf="field.RACH === true"  class="row" style="margin-left: 0; justify-content: space-around" [(ngModel)]="field.KHAU">
+          <mat-radio-button class="col-3" style="padding: 1px; margin: 0; max-width: fit-content"  [value]="1">{{'kham_benh_mat.da_khau'|translate}}</mat-radio-button>
+          <mat-radio-button class="col-3" style="padding: 1px; margin: 0;max-width: fit-content" [value]="2">{{'kham_benh_mat.chua_khau'|translate}}</mat-radio-button>
+          <mat-radio-button class="col" style="padding: 1px;margin: 0;max-width: fit-content" [value]="3">{{'kham_benh_mat.ket_to_chuc'|translate}}</mat-radio-button>
+        </mat-radio-group>
+
+        <!-- Các tổn thương khác -->
+        <mat-form-field appearance='outline' class="col-12 m-x-1 full-width text-area-line-height">
+          <mat-label>{{'kham_benh_mat.ton_thuong_khac' | translate}}</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.CAC_TON_THUONG_KHAC'></textarea>
+        </mat-form-field>
+
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='cungMac; context: {$implicit: khamMatChanThuong.MAT_PHAI.CUNG_MAC}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='cungMac; context: {$implicit: khamMatChanThuong.MAT_TRAI.CUNG_MAC}'></ng-container></td>
+    </tr>
+
+<!-- Tiền phòng -->
+    <tr>
+      <th>{{'kham_benh_mat.tien_phong_du'|translate}}</th>
+      <ng-template #tienPhong let-field>
+        <mat-radio-group style="align-items: center" [(ngModel)]="field.TINH_TRANG">
+          <div class="row" style="justify-content: space-around">
+            <mat-radio-button class="col-4 m-0 p-0" style="max-width: fit-content" [value]="1">{{'kham_benh_mat.binh_thuong'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-4 m-0 p-0" style="max-width: fit-content" [value]="2">{{'kham_benh_mat.xep_tien_phong'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-4 m-0 p-0" style="max-width: fit-content" [value]="3">{{'kham_benh_mat.chat_the_thuy_tinh'|translate}}</mat-radio-button>
+          </div>
+          <div class="row" style="align-items: center">
+          <mat-radio-button class="col-4" style="padding: 1px; margin-left: 2px;" [value]="4">{{'kham_benh_mat.mu'|translate}}</mat-radio-button>
+            <mat-form-field *ngIf="field.TINH_TRANG == 4" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.MU'></textarea>
+            </mat-form-field>
+          </div>
+          <div class="row" style="align-items: center">
+            <mat-radio-button class="col-4" style="padding: 1px; margin-left: 2px;" [value]="5">{{'kham_benh_mat.xuat_tiet'|translate}}</mat-radio-button>
+            <mat-form-field *ngIf="field.TINH_TRANG == 5" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.XUAT_TIET'></textarea>
+            </mat-form-field>
+          </div>
+          <div class="row" style="align-items: center">
+            <mat-radio-button class="col-4" style="padding: 1px; margin-left: 2px;" [value]="6">{{'kham_benh_mat.tyndall'|translate}}</mat-radio-button>
+            <mat-form-field *ngIf="field.TINH_TRANG == 6" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.Tyndall'></textarea>
+            </mat-form-field>
+          </div>
+          <div class="row" style="align-items: center">
+            <mat-radio-button class="col-4" style="padding: 1px; margin-left: 2px;" [value]="7">{{'kham_benh_mat.xuat_huyet'|translate}}</mat-radio-button>
+            <mat-form-field *ngIf="field.TINH_TRANG == 7" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.muc_do' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.XUAT_HUYET'></textarea>
+            </mat-form-field>
+          </div>
+          <div class="row" style="align-items: center">
+            <mat-radio-button class="col-4" style="padding: 1px; margin-left: 2px;" [value]="8">{{'kham_benh_mat.di_vat'|translate}}</mat-radio-button>
+            <mat-form-field *ngIf="field.TINH_TRANG == 8" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.DI_VAT'></textarea>
+            </mat-form-field>
+          </div>
+        </mat-radio-group>
+        <!-- Các tổn thương khác -->
+        <mat-form-field appearance='outline' class="col-12 m-x-1 full-width text-area-line-height">
+          <mat-label>{{'kham_benh_mat.ton_thuong_khac' | translate}}</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.CAC_TON_THUONG_KHAC'></textarea>
+        </mat-form-field>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='tienPhong; context: {$implicit: khamMatChanThuong.MAT_PHAI.TIEN_PHONG}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='tienPhong; context: {$implicit: khamMatChanThuong.MAT_TRAI.TIEN_PHONG}'></ng-container></td>
+    </tr>
+
+<!-- Mống mắt -->
+    <tr>
+      <th>{{'kham_benh_mat.mong_mat'|translate}}</th>
+      <ng-template #mongMat let-field>
+        <mat-radio-group style="align-items: center" [(ngModel)]="field.TINH_TRANG">
+          <div class="row" style="justify-content: space-around">
+            <mat-radio-button class="col-4 m-0 p-0" style="max-width: fit-content" [value]="1">{{'kham_benh_mat.binh_thuong'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-4 m-0 p-0" style="max-width: fit-content" [value]="2">{{'kham_benh_mat.thoai_hoa'|translate}}</mat-radio-button>
+          </div>
+          <div class="row" style="align-items: center">
+            <mat-radio-button class="col-5" style="padding: 1px; margin-left: 2px; width: fit-content" [value]="3">{{'kham_benh_mat.dut_chan_mong_mat'|translate}}</mat-radio-button>
+            <mat-form-field *ngIf="field.TINH_TRANG == 3" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.DUT_CHAN_MONG_MAT'></textarea>
+            </mat-form-field>
+          </div>
+          <div class="row" style="align-items: center">
+            <mat-radio-button class="col-4" style="padding: 1px; margin-left: 2px;" [value]="4">{{'kham_benh_mat.mat_mong_mat'|translate}}</mat-radio-button>
+            <mat-form-field *ngIf="field.TINH_TRANG == 4" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.MAT_MONG_MAT'></textarea>
+            </mat-form-field>
+          </div>
+          <div class="row" style="align-items: center">
+            <mat-radio-button class="col-4" style="padding: 1px; margin-left: 2px;" [value]="5">{{'kham_benh_mat.thung_mong_mat'|translate}}</mat-radio-button>
+            <mat-form-field *ngIf="field.TINH_TRANG == 5" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.THUNG_MONG_MAT'></textarea>
+            </mat-form-field>
+          </div>
+
+        <!-- Đồng tử -->
+          <div class="row" style="align-items: center">
+            <strong class="col-3 p-x-4" style="max-width: fit-content;">{{'kham_benh_mat.dong_tu'|translate}}</strong>
+            <mat-form-field appearance='outline' class="col-4 m-0 p-x-4 full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.kich_thuoc_mm'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.KICH_THUOC'></textarea>
+            </mat-form-field>
+            <strong class="col-2 m-0 p-0" style="max-width: fit-content">{{'kham_benh_mat.pxdt'|translate}}:</strong>
+            <mat-radio-group [(ngModel)]="field.PXDT">
+              <mat-radio-button class="col-2 p-1" style="max-width: fit-content" [value]="1">{{'kham_benh_mat.co'|translate}}</mat-radio-button>
+              <mat-radio-button class="col-2 p-0" style="max-width: fit-content"  [value]="2">{{'kham_benh_mat.khong'|translate}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <mat-radio-group class="hinh_thai" [(ngModel)]="field.HINH_THAI" >
+            <div class="row" style="align-items: center; margin-left: 1%">
+              <mat-radio-button [value]="1">{{'kham_benh_mat.tron' | translate}}</mat-radio-button>
+              <mat-radio-button [value]="2">{{'kham_benh_mat.meo' | translate}}</mat-radio-button>
+              <mat-radio-button [value]="3" style="padding: 0px;">{{'kham_benh_mat.dinh' | translate}}</mat-radio-button>
+              <mat-form-field appearance='outline' style="margin: 0 2%" class="col-3 p-0 full-width text-area-line-height">
+                <mat-label>{{'kham_benh_mat.vi_tri'|translate}}</mat-label>
+                  <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.VI_TRI'></textarea>
+              </mat-form-field>
+              <mat-radio-button [value]="4" style="padding: 0px">{{'kham_benh_mat.gian_liet' | translate}}</mat-radio-button>
+            </div>
+            <div class="row" style="align-items: center">
+              <mat-form-field appearance='outline' style="margin: 0 2%" class="col-6 p-0 full-width text-area-line-height">
+                <mat-label>{{'kham_benh_mat.anh_dong_tu'|translate}}</mat-label>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.ANH_DONG_TU'></textarea>
+              </mat-form-field>
+              <mat-radio-button class="col" [value]="5" style="padding: 0px">{{'kham_benh_mat.khong_quan_sat_duoc' | translate}}</mat-radio-button>
+            </div>
+          </mat-radio-group>
+
+        </mat-radio-group>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='mongMat; context: {$implicit: khamMatChanThuong.MAT_PHAI.MONG_MAT}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='mongMat; context: {$implicit: khamMatChanThuong.MAT_TRAI.MONG_MAT}'></ng-container></td>
+    </tr>
+
+<!-- Thể thủy tinh -->
+    <tr>
+      <th>{{'kham_benh_mat.the_thuy_tinh'|translate}}</th>
+      <ng-template #theThuyTinh let-field>
+        <mat-radio-group style="align-items: center" [(ngModel)]="field.TINH_TRANG">
+          <div class="row" style="justify-content: space-around">
+            <mat-radio-button class="col-3 m-0 p-0" style="max-width: fit-content" [value]="1">{{'kham_benh_mat.trong'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-3 m-0 p-0" style="max-width: fit-content" [value]="2">{{'kham_benh_mat.duc'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-3 m-0 p-0" style="max-width: fit-content" [value]="3">{{'kham_benh_mat.vo'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-3 m-0 p-0" style="max-width: fit-content" [value]="4">{{'kham_benh_mat.di_vat'|translate}}</mat-radio-button>
+          </div>
+          <div class="row" style="justify-content: space-around; padding: 2px 0px">
+            <mat-radio-button class="col-3 m-0 p-0" style="max-width: fit-content" [value]="5">{{'kham_benh_mat.sa_lech'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-4 m-0 p-0" style="max-width: fit-content" [value]="6">{{'kham_benh_mat.ra_tien_phong'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-4 m-0 p-0" style="max-width: fit-content" [value]="7">{{'kham_benh_mat.vao_buong_dich_kinh'|translate}}</mat-radio-button>
+          </div>
+          <div class="row" style="align-items: center">
+            <mat-radio-button class="col-3" style="max-width: fit-content" [value]="8">{{'kham_benh_mat.viem_mu'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-3" style="max-width: fit-content" [value]="9">{{'kham_benh_mat.da_dat_iol'|translate}}</mat-radio-button>
+            <mat-form-field *ngIf="field.TINH_TRANG == 9" appearance='outline' class="col-5 m-x-1 full-width text-area-line-height">
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.IOL'></textarea>
+            </mat-form-field>
+          </div>
+        </mat-radio-group>
+        <!-- Các tổn thương khác -->
+        <mat-form-field appearance='outline' class="col-12 m-x-1 full-width text-area-line-height">
+          <mat-label>{{'kham_benh_mat.ton_thuong_khac' | translate}}</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.CAC_TON_THUONG_KHAC'></textarea>
+        </mat-form-field>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='theThuyTinh; context: {$implicit: khamMatChanThuong.MAT_PHAI.THE_THUY_TINH}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='theThuyTinh; context: {$implicit: khamMatChanThuong.MAT_TRAI.THE_THUY_TINH}'></ng-container></td>
+    </tr>
+
+<!-- Dịch kính -->
+    <tr>
+      <th>{{'kham_benh_mat.dich_kinh'|translate}}</th>
+      <ng-template #dichKinh let-field>
+        <mat-radio-group style="align-items: center" [(ngModel)]="field.TINH_TRANG">
+          <div class="row" style="justify-content: space-around">
+            <mat-radio-button class="col-4 m-0 p-0" [value]="1">{{'kham_benh_mat.duc_dich_kinh'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-4 m-0 p-0" [value]="2">{{'kham_benh_mat.viem_mu'|translate}}</mat-radio-button>
+          </div>
+          <div class="row m-y-1" style="justify-content: space-around; margin-top: 2px;">
+            <mat-radio-button class="col-4 m-0 p-0" [value]="3">{{'kham_benh_mat.bong_dich_kinh_sau'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-4 m-0 p-0" [value]="4">{{'kham_benh_mat.to_chuc_hoa'|translate}}</mat-radio-button>
+          </div>
+          <div class="row" style="justify-content: space-around; margin-top: 2px;">
+            <mat-radio-button class="col-4 m-0 p-0" [value]="5">{{'kham_benh_mat.bong_dich_kinh_sau'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-4 m-0 p-0" [value]="6">{{'kham_benh_mat.di_vat'|translate}}</mat-radio-button>
+          </div>
+        </mat-radio-group>
+        <!-- Các tổn thương khác -->
+        <mat-form-field appearance='outline' class="col-12 m-x-1 full-width text-area-line-height">
+          <mat-label>{{'kham_benh_mat.ton_thuong_khac' | translate}}</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.CAC_TON_THUONG_KHAC'></textarea>
+        </mat-form-field>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='dichKinh; context: {$implicit: khamMatChanThuong.MAT_PHAI.DICH_KINH}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='dichKinh; context: {$implicit: khamMatChanThuong.MAT_TRAI.DICH_KINH}'></ng-container></td>
+    </tr>
+
+<!-- Võng mạc -->
+    <tr>
+      <th>{{'kham_benh_mat.vong_mac'|translate}}</th>
+      <ng-template #vongMac let-field>
+          <div class="row" style="justify-content: space-around">
+            <mat-form-field appearance='outline' class="col-6 m-x-1 full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.he_mach' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.HE_MACH'></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance='outline' class="col-6 m-x-1 full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.dia_thi' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.DIA_THI'></textarea>
+            </mat-form-field>
+          </div>
+
+        <mat-radio-group [(ngModel)]="field.TINH_TRANG">
+          <div class="row" style="align-items:center; margin-top: 3px">
+            <mat-radio-button class="col-2 m-0 p-1" [value]="1">{{'kham_benh_mat.phu'|translate}}</mat-radio-button>
+            <mat-form-field *ngIf="field.TINH_TRANG === 1" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.phu' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.PHU'></textarea>
+            </mat-form-field>
+          </div>
+          <div class="row" style="align-items: center;margin-top: 3px">
+            <mat-radio-button class="col-3 m-0 p-1" [value]="2">{{'kham_benh_mat.xuat_huyet'|translate}}</mat-radio-button>
+            <mat-form-field  *ngIf="field.TINH_TRANG === 2" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.xuat_huyet' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.XUAT_HUYET'></textarea>
+            </mat-form-field>
+          </div>
+        </mat-radio-group>
+        <strong>{{'kham_benh_mat.bong_vong_mac'|translate}}</strong>
+         <mat-radio-group class="row" style="margin-top: 2px; align-items: center" [(ngModel)]="field.BONG_VONG_MAC">
+           <mat-radio-button class="col-3 m-0 p-1" [value]="0">{{'kham_benh_mat.khong'|translate}}</mat-radio-button>
+           <mat-radio-button class="col-2 m-0 p-1" [value]="1">{{'kham_benh_mat.co'|translate}}</mat-radio-button>
+           <mat-form-field  *ngIf="field.BONG_VONG_MAC === 1" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+             <mat-label>{{'kham_benh_mat.muc_do' | translate}}</mat-label>
+             <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.MUC_DO'></textarea>
+            </mat-form-field>
+         </mat-radio-group>
+
+        <strong style="margin-top: 2px;">{{'kham_benh_mat.rach_vong_mac'|translate}}</strong>
+          <mat-radio-group class="row" style="margin-top: 2px; align-items: center" [(ngModel)]="field.RACH_VONG_MAC">
+            <mat-radio-button class="col-3 m-0 p-1" style="width: fit-content" [value]="0">{{'kham_benh_mat.khong'|translate}}</mat-radio-button>
+            <mat-radio-button class="col-2 m-0 p-1" style="width: fit-content" [value]="1">{{'kham_benh_mat.co'|translate}}</mat-radio-button>
+            <mat-form-field  *ngIf="field.RACH_VONG_MAC === 1" appearance='outline' class="col-6 full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.so_luong' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.SO_LUONG'></textarea>
+            </mat-form-field>
+          </mat-radio-group>
+
+        <div class="row" *ngIf="field.RACH_VONG_MAC === 1" style="justify-content: space-around">
+          <mat-form-field appearance='outline' class="col-6 m-x-1 full-width text-area-line-height">
+            <mat-label>{{'kham_benh_mat.vi_tri_vet_rach' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.VI_TRI_VET_RACH'></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance='outline' class="col-6 m-x-1 full-width text-area-line-height">
+            <mat-label>{{'kham_benh_mat.hinh_thai' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.HINH_THAI'></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="row" style="align-items: center">
+          <mat-checkbox labelPosition='before' class='col-2' style="max-width: fit-content" [(ngModel)]='field.DI_VAT'>
+            {{'kham_benh_mat.di_vat'|translate}}
+          </mat-checkbox>
+
+          <mat-form-field *ngIf="field.DI_VAT === true" appearance='outline' class="col-4 m-x-1 full-width text-area-line-height">
+            <mat-label>{{'kham_benh_mat.kich_thuoc' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.KICH_THUOC'></textarea>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="field.DI_VAT === true" appearance='outline' class="col-5 m-x-1 full-width text-area-line-height">
+            <mat-label>{{'kham_benh_mat.vi_tri' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.VI_TRI'></textarea>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance='outline' class="col-12 m-x-1 full-width text-area-line-height">
+            <mat-label>{{'kham_benh_mat.ton_thuong_khac' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.CAC_TON_THUONG_KHAC'></textarea>
+        </mat-form-field>
+
+          <div class='row' style="margin-left: 2px;">
+            <strong>MP/MT</strong>
+            <div class='w-full' style="height: 150px;">
+            </div>
+          </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='vongMac; context: {$implicit: khamMatChanThuong.MAT_PHAI.VONG_MAC}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='vongMac; context: {$implicit: khamMatChanThuong.MAT_TRAI.VONG_MAC}'></ng-container></td>
+    </tr>
+
+<!-- Hốc mắt -->
+    <tr>
+      <th>{{'kham_benh_mat.hoc_mat'|translate}}</th>
+      <ng-template #hocMat let-field>
+        <strong>{{'kham_benh_mat.hoc_mat'|translate}}</strong>
+        <br/>
+        <mat-radio-group [(ngModel)]="field.TINH_TRANG">
+          <mat-radio-button class="col-2 m-0 p-0" [value]="1">{{'kham_benh_mat.binh_thuong'|translate}}</mat-radio-button>
+          <div class="row p-y-1" style="align-items:center; margin-top: 3px;">
+            <mat-radio-button class="col-4 m-0 p-1" [value]="2">{{'kham_benh_mat.benh_ly'|translate}}</mat-radio-button>
+            <mat-form-field class="col m-0 p-0" *ngIf="field.TINH_TRANG === 2" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.BENH_LY'></textarea>
+            </mat-form-field>
+          </div>
+          <div class="row" style="align-items: center; margin-top: 3px;">
+            <mat-radio-button class="col-4 m-0 p-1" [value]="3">{{'kham_benh_mat.di_vat'|translate}}</mat-radio-button>
+            <mat-form-field *ngIf="field.TINH_TRANG === 3" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.DI_VAT'></textarea>
+            </mat-form-field>
+          </div>
+        </mat-radio-group>
+
+        <strong>{{'kham_benh_mat.van_nhan'|translate}}</strong>
+        <br/>
+        <mat-radio-group style="margin-top: 2px; align-items: center; margin-top: 3px;" [(ngModel)]="field.VAN_NHAN">
+          <mat-radio-button class="col-4 m-0 p-0" [value]="0">{{'kham_benh_mat.binh_thuong'|translate}}</mat-radio-button>
+         <div class="row" style="align-items:center; margin-top: 3px;">
+          <mat-radio-button class="col-4 m-0 p-1" [value]="1">{{'kham_benh_mat.benh_ly'|translate}}</mat-radio-button>
+          <mat-form-field  *ngIf="field.VAN_NHAN === 1" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.MUC_DO'></textarea>
+          </mat-form-field>
+         </div>
+        </mat-radio-group>
+
+        <strong>{{'kham_benh_mat.nhan_cau'|translate}}</strong>
+        <mat-radio-group class="row" style="margin-top: 2px; align-items: center; margin-top: 3px;" [(ngModel)]="field.NHAN_CAU">
+          <mat-radio-button class="col-2 m-0 p-1" [value]="0" style='margin-top: 3px;'>{{'kham_benh_mat.teo'|translate}}</mat-radio-button>
+          <mat-radio-button class="col-2 m-0 p-1" [value]="1" style='margin-top: 3px;'>{{'kham_benh_mat.loi'|translate}}</mat-radio-button>
+          <mat-form-field  *ngIf="field.NHAN_CAU === 1" appearance='outline' class="col m-x-1 full-width text-area-line-height">
+            <mat-label>{{'kham_benh_mat.do_loi'|translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"  [(ngModel)]='field.DO_LOI'></textarea>
+          </mat-form-field>
+        </mat-radio-group>
+
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='hocMat; context: {$implicit: khamMatChanThuong.MAT_PHAI.HOC_MAT}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='hocMat; context: {$implicit: khamMatChanThuong.MAT_TRAI.HOC_MAT}'></ng-container></td>
+    </tr>
+
+  </table>
+</div>

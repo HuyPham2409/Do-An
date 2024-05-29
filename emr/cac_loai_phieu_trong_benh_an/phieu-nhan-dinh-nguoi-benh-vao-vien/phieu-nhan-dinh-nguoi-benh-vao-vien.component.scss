@@ -1,0 +1,24 @@
+.table-container {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+
+  // Remove built-in spacing
+  border-collapse: collapse;
+
+  tr {
+    border-bottom: 1px solid #CCCCCC;
+  }
+
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border: 1px solid #CCCCCC;
+
+    &:not(:last-child) {
+      border-right: 1px solid #CCCCCC;
+    }
+  }
+}

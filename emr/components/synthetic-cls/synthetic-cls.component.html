@@ -1,0 +1,168 @@
+<h1 class='template-dialog-title' style='position: relative' mat-dialog-title>
+  Tổng hợp kết quả CLS<i (click)='closeDialog("close")' style='position: absolute; right: 5px; top: 5px; cursor: pointer' class="fa fa-close"></i>
+</h1>
+<div mat-dialog-content class='temp-dialog-content' style='position: relative; min-height: 50vh; max-height: 50vh; overflow: scroll'>
+  <div class='row'>
+    <mat-form-field class='col-4'>
+      <mat-label>{{'date_time.search_by_date' | translate}}</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="{{'date_time.begin' | translate}}" [(ngModel)]='dateStart'>
+        <input matEndDate placeholder="{{'date_time.end' | translate}}" [(ngModel)]='dateEnd'>
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <div class='col-6'>
+      <button class='btn btn-primary' (click)='filterDate()' style='z-index: 10000000; cursor: pointer'>Tìm kiếm</button>
+    </div>
+    <div class='col-2'>
+      <button class='btn btn-primary' (click)='closeDialog()' style='z-index: 10000000; cursor: pointer'>Xác nhận</button>
+    </div>
+  </div>
+  <mat-tab-group style='height: 45vh !important;'>
+    <mat-tab label="Danh sách kết quả CLS">
+      <table class='table-synthetic'>
+        <thead class='cls-header'>
+        <tr style='width: 100%'>
+          <th style='width: 15%'>
+            <input type="checkbox" (click)='selectAll("cls")' [checked]='checkAll === 1'>Ngày yêu cầu
+          </th>
+          <th style='width: 15%'>
+            Ngày kết quả
+          </th>
+          <th style='width: 35%'>
+            Tên dịch vụ
+          </th>
+          <th>
+            Kết luận
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor='let cls of listCLS; let index = index'>
+          <td> <span> <input type="checkbox" (click)='getConclusion(cls, index, "cls")' [checked]='listCheckboxCls.has(index)'> {{cls.created_at* 1000 | date :'dd/MM/yyyy' }}</span></td>
+          <td>{{cls.created_at* 1000 | date :'dd/MM/yyyy' }}</td>
+          <td>{{cls.service_name}}</td>
+          <td [innerHTML]='cls.results.conclusion'></td>
+        </tr>
+        </tbody>
+      </table>
+    </mat-tab>
+    <mat-tab label="Danh sách kết quả xét nghiệm">
+      <table class='table-synthetic'>
+        <thead class='cls-header'>
+        <tr>
+          <th style='width: 15%'>
+            <input type="checkbox" (click)='selectAll("xn")' [checked]='checkAll === 2'>Ngày yêu cầu
+          </th>
+          <th style='width: 15%'>
+            Ngày kết quả
+          </th>
+          <th>
+            Tên dịch vụ
+          </th>
+          <th style='width: 15%'>
+            Kết quả
+          </th>
+          <th style='width: 15%'>
+            Giá trị bình thường
+          </th>
+        </tr>
+        </thead>
+        <tbody *ngFor='let xn of listXN; let i = index'>
+        <tr *ngIf='[xn.results.service_category_id] | memo: checkCurrentCategory'>
+          <td colspan='6' style='font-weight: 700'>
+            <input type="checkbox" (click)='selectXn(xn.results.service_category_id, listXN, "xn")' [checked]='checkAll === 2'>
+            {{xn.results.service_category_name}}</td>
+        </tr>
+        <ng-container *ngIf='xn.results.service_category_id != 13'>
+          <tr>
+            <td><span> <input type="checkbox" (click)='getConclusion(xn, i, "xn")' [checked]='listCheckboxXn.has(i)'> {{xn.current_day_time}}</span></td>
+            <td (click)='showResultsXN(i)'>{{xn.current_day_time}}</td>
+            <td (click)='showResultsXN(i)'>{{xn.service_name}}</td>
+            <td (click)='showResultsXN(i)'>{{xn.results.conclusion}}</td>
+            <td (click)='showResultsXN(i)' style='text-align: center' *ngIf='!isShowResultsXn.has(i)'><i class="fas fa-angle-right"></i></td>
+            <td (click)='showResultsXN(i)' style='text-align: center' *ngIf='isShowResultsXn.has(i)'><i class="fas fa-angle-down"></i></td>
+          </tr>
+          <ng-container *ngIf='!isShowResultsXn.has(i)'>
+            <tr *ngFor='let par of xn.results.parameters; let ix = index'>
+              <td style='text-align: center'><input type='checkbox' (click)='getConclusion(par, ix, "c_xn", i)' [checked]='listChildCheckboxXn.has(i + "-" + ix)'></td>
+              <td colspan='2' [class.in-normal]='[par.lab_indicator_value, par.lab_indicator_min, par.lab_indicator_max] | memo: isInNormal'>{{par.lab_indicator_name}}</td>
+              <td style='text-align: center' [class.in-normal]='[par.lab_indicator_value, par.lab_indicator_min, par.lab_indicator_max] | memo: isInNormal'>{{par.lab_indicator_value}}</td>
+              <td style='text-align: center' [class.in-normal]='[par.lab_indicator_value, par.lab_indicator_min, par.lab_indicator_max] | memo: isInNormal'>{{par.lab_indicator_min}} - {{par.lab_indicator_max}}</td>
+            </tr>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf='xn.results.service_category_id == 13'>
+          <tr [class.in-normal]='[xn.results.test_status.microbiology_test_status_code, "", "", "xnvs"] | memo: isInNormal'>
+            <td><span> <input type="checkbox" (click)='getConclusion(xn, i, "xn", -1)' [checked]='listCheckboxXn.has(i)'> {{xn.current_day_time}}</span></td>
+            <td >{{xn.current_day_time}}</td>
+            <td >{{xn.service_name}}</td>
+            <td style='text-align: center'>{{xn.results.test_status? xn.results.test_status.microbiology_test_status_name : ""}}</td>
+            <td></td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </mat-tab>
+    <mat-tab label="Chỉ số bất thường">
+      <table class='table-synthetic'>
+        <thead class='cls-header'>
+        <tr>
+          <th style='width: 15%'>
+            <input type="checkbox" (click)='selectAll("in")' [checked]='checkAll === 3'>Ngày yêu cầu
+          </th>
+          <th style='width: 15%'>
+            Ngày kết quả
+          </th>
+          <th>
+            Tên dịch vụ
+          </th>
+          <th style='width: 15%'>
+            Kết quả
+          </th>
+          <th style='width: 15%'>
+            Giá trị bình thường
+          </th>
+        </tr>
+        </thead>
+        <tbody *ngFor='let xn of listInNormal; let i = index'>
+        <tr *ngIf='[xn.results.service_category_id] | memo: checkCurrentCategory'>
+          <td colspan='6' style='font-weight: 700'>
+            <input type="checkbox" (click)='selectXn(xn.results.service_category_id, listXN, "in")' [checked]='checkAll === 3'>
+            {{xn.results.service_category_name}}</td>
+        </tr>
+        <ng-container *ngIf='xn.results.service_category_id != 13'>
+        <tr>
+          <td><span> <input type="checkbox" (click)='getConclusion(xn, i, "in")' [checked]='listCheckboxIn.has(i)'> {{xn.current_day_time}}</span></td>
+          <td (click)='showResultsXN(i)'>{{xn.current_day_time}}</td>
+          <td (click)='showResultsXN(i)'>{{xn.service_name}}</td>
+          <td (click)='showResultsXN(i)'>{{xn.results.conclusion}}</td>
+          <td (click)='showResultsXN(i)' style='text-align: center' *ngIf='!isShowResultsXn.has(i)'><i class="fas fa-angle-right"></i></td>
+          <td (click)='showResultsXN(i)' style='text-align: center' *ngIf='isShowResultsXn.has(i)'><i class="fas fa-angle-down"></i></td>
+        </tr>
+        <ng-container *ngIf='!isShowResultsXn.has(i)'>
+        <tr *ngFor='let par of xn.results.parameters; let ix = index'>
+          <ng-container *ngIf='[par.lab_indicator_value, par.lab_indicator_min, par.lab_indicator_max] | memo: isInNormal'>
+          <td style='text-align: center'><input type='checkbox' (click)='getConclusion(par, ix, "c_in", i)' [checked]='listChildCheckboxIn.has(i + "-" + ix)'></td>
+          <td class='in-normal' colspan='2'>{{par.lab_indicator_name}}</td>
+          <td class='in-normal' style='text-align: center'>{{par.lab_indicator_value}}</td>
+          <td class='in-normal' style='text-align: center'>{{par.lab_indicator_min}} - {{par.lab_indicator_max}}</td>
+          </ng-container>
+        </tr>
+        </ng-container>
+        </ng-container>
+        <ng-container *ngIf='xn.results.service_category_id == 13'>
+          <tr *ngIf='[xn.results.test_status.microbiology_test_status_code, "", "", "xnvs"] | memo: isInNormal'>
+            <td class='in-normal'><span> <input type="checkbox" (click)='getConclusion(xn, i, "in")' [checked]='listCheckboxIn.has(i)'> {{xn.current_day_time}}</span></td>
+            <td class='in-normal'>{{xn.current_day_time}}</td>
+            <td class='in-normal'>{{xn.service_name}}</td>
+            <td class='in-normal' style='text-align: center'>{{xn.results.test_status? xn.results.test_status.microbiology_test_status_name : ""}}</td>
+            <td></td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </mat-tab>
+  </mat-tab-group>
+</div>

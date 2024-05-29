@@ -1,0 +1,152 @@
+<div class='matero-row tien-su-benh' fxLayout='row'>
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div fxLayout='column'>
+          <h1 fxLayout='row' fxFlex='100' class='m-8'>
+            <strong>X. {{'hoi_benh_noi_khoa.kham_benh.tien_su_benh'|translate}}</strong>
+          </h1>
+
+<!--          Tiền sử bản thân-->
+          <div class='row' *ngIf='showField?.TS_BAN_THAN === true'>
+            <label class='col-3 text-left p-t-8'>- {{'emr.ban_than'|translate}}:</label>
+            <div class='col-9 p-r-0'>
+              <div class='col-12 row p-r-0'>
+                <div class='col-5 matero-col'>
+                  <mat-radio-group class='row' [(ngModel)]="tienSuBenh.TS_BAN_THAN">
+                    <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0' (click)='resetBenhLy("TS_BAN_THAN")'>{{'emr.binh_thuong'|translate}}</mat-radio-button>
+                    <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.benh_ly'|translate}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngIf='tienSuBenh.TS_BAN_THAN === 1' class='col-7 p-r-0'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                    <textarea matInput [(ngModel)]='tienSuBenh.BENH_LY_BAN_THAN'></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<!--          Tiền sử gia đình-->
+          <div class='row' *ngIf='showField?.TS_GIA_DINH === true'>
+            <label class='col-3 text-left p-t-8'>- {{'emr.gia_dinh'|translate}}:</label>
+            <div class='col-9 p-r-0'>
+              <div class='col-12 row p-r-0'>
+                <div class='col-5 matero-col'>
+                  <mat-radio-group class='row' [(ngModel)]="tienSuBenh.TS_GIA_DINH">
+                    <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0' (click)='resetBenhLy("TS_GIA_DINH")'>{{'emr.khong'|translate}}</mat-radio-button>
+                    <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngIf='tienSuBenh.TS_GIA_DINH === 1' class='col-7 p-r-0'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                    <textarea matInput [(ngModel)]='tienSuBenh.BENH_LY_GIA_DINH'></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<!--          Tiền sử mang thai của mẹ-->
+          <div class='row' *ngIf='showField?.TS_MANG_THAI_CUA_ME === true'>
+            <label class='col-3 text-left p-t-8'>- {{'hoi_benh_san_khoa.tien_su_me_mang_thai'|translate}}:</label>
+            <div class='col-9 p-r-0'>
+              <div class='col-12 row p-r-0'>
+                <div class='col-5 matero-col'>
+                  <mat-radio-group class='row' [(ngModel)]="tienSuBenh.TS_MANG_THAI_CUA_ME">
+                    <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0' (click)='resetBenhLy("TS_MANG_THAI_CUA_ME")'>{{'emr.binh_thuong'|translate}}</mat-radio-button>
+                    <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.benh_ly'|translate}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngIf='tienSuBenh.TS_MANG_THAI_CUA_ME === 1' class='col-7 p-r-0'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                    <textarea matInput [(ngModel)]='tienSuBenh.BENH_LY_KHI_MANG_THAI'></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<!--          Tiền sử sinh đẻ-->
+          <div class='row' *ngIf='showField?.TS_SINH_DE === true'>
+            <label class='col-3 text-left p-t-8'>- {{'hoi_benh_san_khoa.tien_su_sinh_de'|translate}}:</label>
+            <div class='col-9 p-r-0'>
+              <div class='col-12 row p-r-0'>
+                <div class='col-5 matero-col'>
+                  <mat-radio-group class='row' [(ngModel)]="newTienSuDe.CACH_DE" >
+                    <mat-radio-button class='col-6' *ngFor='let tsd of tienSuDe' style='width: 30%; float: left; margin: 5px 0' [value]="tsd.ID ">{{tsd.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div class='col-6 matero-col p-r-0'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"hoi_benh_san_khoa.con_thu_may"| translate}}:</mat-label>
+                    <input matInput [(ngModel)]='newTienSuDe.CON_THU_MAY' type='number'>
+                  </mat-form-field>
+                </div>
+                <div class='col-1' fxLayoutAlign='center center'>
+                  <button type="button" (click)="addChildren()" mat-button class="btn-sm m-b-8 mat-blue-hn">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class='row col-12 m-y-8 p-r-0' *ngFor="let item of tienSuBenh.TS_SINH_DE; let i = index">
+                <div class='col-5 matero-col'>
+                  <mat-radio-group class='row' [(ngModel)]="item.CACH_DE" >
+                    <mat-radio-button class='col-6' *ngFor='let tsd of tienSuDe' style='width: 30%; float: left; margin: 5px 0' [value]="tsd.ID ">{{tsd.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div class='col-6 matero-col p-r-0'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"hoi_benh_san_khoa.con_thu_may"| translate}}:</mat-label>
+                    <input matInput [(ngModel)]='item.CON_THU_MAY' type='number'>
+                  </mat-form-field>
+                </div>
+                <div class='col-1' fxLayoutAlign='center center'>
+                  <button type="button" (click)="removeChildren(i)" mat-button class="btn-sm m-b-8 mat-red-hn">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+<!--          Phát triển trí tuệ-->
+          <div class='row' *ngIf='showField?.PHAT_TRIEN_TRI_TUE === true'>
+            <label class='col-3 text-left p-t-8'>- {{'emr.phat_trien_tri_tue'|translate}}:</label>
+            <div class='col-9 p-r-0'>
+              <div class='col-12 row p-r-0'>
+                <div class='col-5 matero-col'>
+                  <mat-radio-group class='row' [(ngModel)]="tienSuBenh.PHAT_TRIEN_TRI_TUE">
+                    <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0' (click)='resetBenhLy("PHAT_TRIEN_TRI_TUE")'>{{'emr.binh_thuong'|translate}}</mat-radio-button>
+                    <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.benh_ly'|translate}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngIf='tienSuBenh.PHAT_TRIEN_TRI_TUE === 1' class='col-7 p-r-0'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                    <textarea matInput [(ngModel)]='tienSuBenh.BENH_LY_PHAT_TRIEN_TRI_TUE'></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<!--          Phả hệ di truyền-->
+          <div class='row' *ngIf='showField?.PHA_HE_DI_TRUYEN === true'>
+            <label class='col-3 text-left p-t-8'>- {{'emr.pha_he_di_truyen'|translate}}:</label>
+            <div class='col-9'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <textarea matInput [(ngModel)]='tienSuBenh.PHA_HE_DI_TRUYEN'></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

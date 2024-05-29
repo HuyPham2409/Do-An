@@ -1,0 +1,33 @@
+.align-center-have-margin{
+  margin-top: 55px;
+  align-self: center;
+}
+
+.align-end{
+  align-self: flex-end;
+}
+
+.align-center{
+  align-self: center;
+}
+
+.border{
+  border-bottom: 0.1px solid grey;
+  padding: 5px;
+}
+
+.border:hover {
+  background-color: #fddca5;
+}
+
+.background-hover{
+  padding: 5px;
+}
+
+.background-hover:hover {
+  background-color: #fddca5;
+}
+
+.border-large{
+  border-bottom: 1.2px solid black;
+}

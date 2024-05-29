@@ -1,0 +1,577 @@
+<div class="glnb">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <h1 style="text-align: center; font-size: 16px"><strong>KHÁM MẮT</strong></h1>
+<!--Thị lực không kính và kính đang đeo -->
+      <div class="col-12 row">
+<!--Thị lực không kính -->
+        <div class="col-5">
+          <h2 fxLayout='row'>{{"benh_an_phau_thuat_khuc_xa.thi_luc_khong_kinh" | translate}}:</h2>
+          <div class='matero-col'>
+            <div fxFlex.gt-sm='50' class='matero-col'>
+              <div class='form-field-full'>
+                <mat-form-field class='full-width'>
+                  <mat-label><strong>MP:</strong></mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.THI_LUC_KHONG_KINH.MP" maxlength='100'>
+                </mat-form-field>
+                <mat-form-field class='full-width'>
+                  <mat-label><strong>MT:</strong></mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.THI_LUC_KHONG_KINH.MT" maxlength='100'>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!--kính đang đeo -->
+        <div class="col-7 row">
+          <h2 fxLayout='row' style="margin-bottom: 2px">{{"benh_an_phau_thuat_khuc_xa.kinh_dang_deo" | translate}}:</h2>
+            <div class='matero-col'>
+              <div class='form-field-full row' style="align-items: center">
+<!--Mắt phải-->
+              <div style="align-items: center; margin-bottom: 4px">
+                <div fxFlex="20"><strong>MP:</strong></div>
+                <div  fxFlex="80" class=" col-12 row">
+                  <div class="col-3">
+                    <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                      <mat-label>SPH...DS</mat-label>
+                      <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KINH_DANG_DEO.MP.SPH" maxlength='100' placeholder="SPH...DS">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-3">
+                    <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                      <mat-label>Syl.....DS</mat-label>
+                      <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KINH_DANG_DEO.MP.Syl" maxlength='100' placeholder="Syl.....DS">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-3">
+                    <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                      <mat-label>Axis</mat-label>
+                      <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KINH_DANG_DEO.MP.Axis" maxlength='100' placeholder="Axis">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-3">
+                    <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                      <mat-label>TL</mat-label>
+                      <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KINH_DANG_DEO.MP.TL" maxlength='100' placeholder="TL">
+                    </mat-form-field>
+                  </div>
+              </div>
+            </div>
+<!-- Mắt trái -->
+            <div style="align-items: center; margin-top: 5px;">
+                <div fxFlex="20"><strong>MT:</strong></div>
+                <div  fxFlex="80" class=" col-12 row">
+                  <div class="col-3">
+                    <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                      <mat-label>SPH...DS</mat-label>
+                      <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KINH_DANG_DEO.MT.SPH" maxlength='100' placeholder="SPH...DS">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-3">
+                    <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                      <mat-label>Syl.....DS</mat-label>
+                      <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KINH_DANG_DEO.MT.Syl" maxlength='100' placeholder="Syl.....DS">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-3">
+                    <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                      <mat-label>Axis</mat-label>
+                      <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KINH_DANG_DEO.MT.Axis" maxlength='100' placeholder="Axis">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-3">
+                    <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                      <mat-label>TL</mat-label>
+                      <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KINH_DANG_DEO.MT.TL" maxlength='100' placeholder="TL">
+                    </mat-form-field>
+                  </div>
+                </div>
+            </div>
+<!-- Hết mắt trái -->
+              </div>
+            </div>
+          </div>
+      </div>
+<!-- Hết phần khám kính -->
+<!-- Khúc xạ chưa liệt điều tiết -->
+      <div class="row">
+        <h2 fxLayout='row' style="margin-bottom: 2px">{{"benh_an_phau_thuat_khuc_xa.khuc_xa_chua_liet_dieu_tiet" | translate}}:</h2>
+        <div class='matero-col'>
+          <div class='form-field-full row' style="align-items: center">
+            <!--Mắt phải-->
+            <div style="align-items: center; margin-bottom: 4px">
+              <div fxFlex="20"><strong>MP:</strong></div>
+              <div  fxFlex="80" class=" col-12 row">
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>SPH...DS</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CHUA_LIET_DIEU_TIET.MP.SPH" maxlength='100' placeholder="SPH...DS">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>Syl.....DS</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CHUA_LIET_DIEU_TIET.MP.Syl" maxlength='100' placeholder="Syl.....DS">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>Axis</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CHUA_LIET_DIEU_TIET.MP.Axis" maxlength='100' placeholder="Axis">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>TL</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CHUA_LIET_DIEU_TIET.MP.TL" maxlength='100' placeholder="TL">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <!-- Mắt trái -->
+            <div style="align-items: center; margin-top: 5px;">
+              <div fxFlex="20"><strong>MT:</strong></div>
+              <div  fxFlex="80" class=" col-12 row">
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>SPH...DS</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CHUA_LIET_DIEU_TIET.MT.SPH" maxlength='100' placeholder="SPH...DS">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>Syl.....DS</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CHUA_LIET_DIEU_TIET.MT.Syl" maxlength='100' placeholder="Syl.....DS">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>Axis</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CHUA_LIET_DIEU_TIET.MT.Axis" maxlength='100' placeholder="Axis">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>TL</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CHUA_LIET_DIEU_TIET.MT.TL" maxlength='100' placeholder="TL">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+<!-- Khúc xạ có liệt điều tiết -->
+      <div class="row">
+        <h2 fxLayout='row' style="margin-bottom: 2px">{{"benh_an_phau_thuat_khuc_xa.khuc_xa_co_liet_dieu_tiet" | translate}}:</h2>
+        <div class='matero-col'>
+          <div class='form-field-full row' style="align-items: center">
+            <!--Mắt phải-->
+            <div style="align-items: center; margin-bottom: 4px">
+              <div fxFlex="20"><strong>MP:</strong></div>
+              <div  fxFlex="80" class=" col-12 row">
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>SPH...DS</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CO_LIET_DIEU_TIET.MP.SPH" maxlength='100' placeholder="SPH...DS">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>Syl.....DS</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CO_LIET_DIEU_TIET.MP.Syl" maxlength='100' placeholder="Syl.....DS">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>Axis</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CO_LIET_DIEU_TIET.MP.Axis" maxlength='100' placeholder="Axis">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>TL</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CO_LIET_DIEU_TIET.MP.TL" maxlength='100' placeholder="TL">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <!-- Mắt trái -->
+            <div style="align-items: center; margin-top: 5px;">
+              <div fxFlex="20"><strong>MT:</strong></div>
+              <div  fxFlex="80" class=" col-12 row">
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>SPH...DS</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CO_LIET_DIEU_TIET.MT.SPH" maxlength='100' placeholder="SPH...DS">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>Syl.....DS</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CO_LIET_DIEU_TIET.MT.Syl" maxlength='100' placeholder="Syl.....DS">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>Axis</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CO_LIET_DIEU_TIET.MT.Axis" maxlength='100' placeholder="Axis">
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>TL</mat-label>
+                    <input matInput type='text' [(ngModel)]="khamMatBAPTKX.KHUC_XA_CO_LIET_DIEU_TIET.MT.TL" maxlength='100' placeholder="TL">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- Thông tin chi tiết -->
+      <div class="row">
+        <div class='matero-col'>
+          <div class='form-field-full row' style="align-items: center">
+     <!-- Vận nhãn -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.van_nhan" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Van_Nhan" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Van_Nhan" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Mi - phần phụ -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.mi_phan_phu" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Mi_Phan_Phu" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Mi_Phan_Phu" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Kết mạc -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.ket_mac" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Ket_Mac" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Ket_Mac" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Tiền phòng -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.tien_phong" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Tien_Phong" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Tien_Phong" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Mống mắt -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.momg_mat" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Mong_Mat" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Mong_Mat" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Thủy tinh thể -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.thuy_tinh_the" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Thuy_Tinh_The" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Thuy_Tinh_The" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Dịch kính -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.dich_kinh" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Dich_Kinh" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Dich_Kinh" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Võng mạc -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.vong_mac" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Vong_Mac.Vong_Mac_Chi_Tiet" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Vong_Mac.Vong_Mac_Chi_Tiet" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Công suất GM -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.cong_suat_GM" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-3">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP_Ngang</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Cong_Suat_GM.Ngang" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-3">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP_Dọc</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Cong_Suat_GM.Doc" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-3">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>Mt_Ngang</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Cong_Suat_GM.Ngang" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-3">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT_Dọc</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Cong_Suat_GM.Doc" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Đồng tử -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.dong_tu" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-3">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP_Sáng</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Dong_Tu.Sang" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-3">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP_Tối</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Dong_Tu.Toi" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-3">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT_Sáng</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Dong_Tu.Sang" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-3">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT_Tối</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Dong_Tu.Toi" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Nhãn áp -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.nhan_ap" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Nhan_Ap" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Nhan_Ap" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Chiều dày GM -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.chieu_day_GM" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Chieu_day" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Chieu_day" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+      <!-- Đường kính GM -->
+            <div fxFlex="20">{{"benh_an_phau_thuat_khuc_xa.duong_kinh_GM" | translate}}:</div>
+            <div  fxFlex="80" class=" col-12 row">
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MP</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MP.Duong_Kinh" maxlength='100' placeholder="SPH...DS">
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>MT</mat-label>
+                  <input matInput type='text' [(ngModel)]="khamMatBAPTKX.MT.Duong_Kinh" maxlength='100' placeholder="Syl.....DS">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!--Kết luận -->
+<div class="glnb">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <!-- Cận lâm sàng -->
+      <h2 fxLayout='row' class='m-8'>{{"benh_an_phau_thuat_khuc_xa.cls" | translate}}:</h2>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamMatBAPTKX.Can_lam_sang'>
+            </textarea>
+        </mat-form-field>
+      </div>
+      <!-- Chẩn đoán -->
+      <h2 fxLayout='row' class='m-8'>{{"benh_an_phau_thuat_khuc_xa.chan_doan" | translate}}:</h2>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamMatBAPTKX.Chan_doan'>
+            </textarea>
+        </mat-form-field>
+      </div>
+      <!-- Tiên lượng -->
+      <h2 fxLayout='row' class='m-8'>{{"benh_an_phau_thuat_khuc_xa.tien_luong" | translate}}:</h2>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5"
+                      [(ngModel)]='khamMatBAPTKX["Tien-Luong"]'>
+            </textarea>
+        </mat-form-field>
+      </div>
+<!-- Phẫu thuật -->
+<!-- Mắt phải -->
+      <h2 fxLayout='row' class='m-8'>{{"benh_an_phau_thuat_khuc_xa.chuong_trinh_phau_thuat" | translate}}:</h2>
+        <div class="col-12 row">
+          <div class="col-6 row">
+            <div class='row col-12' style="justify-content: space-around">
+              <mat-checkbox class="example-margin" [(ngModel)]="khamMatBAPTKX.Phau_thuat.MP.SBK_Lasik" >SBK Lasik</mat-checkbox>
+              <mat-checkbox class="example-margin" [(ngModel)]="khamMatBAPTKX.Phau_thuat.MP.Femtosecond_Lasik" >Femtosecond Lasik</mat-checkbox>
+              <mat-checkbox class="example-margin" [(ngModel)]="khamMatBAPTKX.Phau_thuat.MP.Relex_SMILE" >Relex SMILE</mat-checkbox>
+            </div>
+            <div class="col-6 row">
+              <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                <mat-label>Ring</mat-label>
+                <input matInput type='text' [(ngModel)]="khamMatBAPTKX.Phau_thuat.MP.Ring" maxlength='100' >
+              </mat-form-field>
+              <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                <mat-label>Stop</mat-label>
+                <input matInput type='text' [(ngModel)]="khamMatBAPTKX.Phau_thuat.MP.Stop" maxlength='100' >
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                <mat-label>F.Diameter</mat-label>
+                <input matInput type='text' [(ngModel)]="khamMatBAPTKX.Phau_thuat.MP.F_Diameter" maxlength='100' >
+              </mat-form-field>
+              <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                <mat-label>Ablation</mat-label>
+                <input matInput type='text' [(ngModel)]="khamMatBAPTKX.Phau_thuat.MP.Ablation" maxlength='100' >
+              </mat-form-field>
+          </div>
+          </div>
+<!-- Mắt trái -->
+        <div class="col-6 row" style="margin-left: 5px;">
+          <div class='row col-12' style="justify-content: space-around">
+            <mat-checkbox class="example-margin" [(ngModel)]="khamMatBAPTKX.Phau_thuat.MT.SBK_Lasik" >SBK Lasik</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="khamMatBAPTKX.Phau_thuat.MT.Femtosecond_Lasik" >Femtosecond Lasik</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="khamMatBAPTKX.Phau_thuat.MT.Relex_SMILE" >Relex SMILE</mat-checkbox>
+          </div>
+          <div class="col-6 row">
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>Ring</mat-label>
+              <input matInput type='text' [(ngModel)]="khamMatBAPTKX.Phau_thuat.MT.Ring" maxlength='100' >
+            </mat-form-field>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>Stop</mat-label>
+              <input matInput type='text' [(ngModel)]="khamMatBAPTKX.Phau_thuat.MT.Stop" maxlength='100' >
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>F.Diameter</mat-label>
+              <input matInput type='text' [(ngModel)]="khamMatBAPTKX.Phau_thuat.MT.F_Diameter" maxlength='100' >
+            </mat-form-field>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>Ablation</mat-label>
+              <input matInput type='text' [(ngModel)]="khamMatBAPTKX.Phau_thuat.MT.Ablation" maxlength='100' >
+            </mat-form-field>
+          </div>
+        </div>
+        </div>
+    </mat-card-content>
+  </mat-card>
+</div>

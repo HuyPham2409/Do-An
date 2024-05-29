@@ -1,0 +1,87 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class='row'>
+        <div style='width: 6em;margin: 8px 0 0 10px'>
+          <label><strong>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.kinh_gui" | translate}}</strong>:</label>
+        </div>
+        <div class='col-5 form-field-full'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_de_nghi_kham_chua_benh_theo_yeu_cau.kinh_gui" | translate}}</mat-label>
+            <input matInput [(ngModel)]='thongTinTuVan.TAI_KHOA' disabled>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='row' style='margin-top: 10px'>
+        <label class='col-12' style='margin-top: 10px'><strong>{{ "phieu_thong_tin_tu_van.thong_tin_nguoi_tao_phieu" | translate}}</strong>:</label>
+        <div class='col-3'>
+          <app-select [(model)]='thongTinTuVan.NGUOI_TAO_PHIEU.nguoi_tao_phieu' label='bao_cao_phan_ung_co_hai_cua_thuoc.ho_ten' category='cbyt'> </app-select>
+        </div>
+        <div class='col-2'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"benh_an_iui.nam_sinh" | translate}}</mat-label>
+            <input matInput [(ngModel)]='thongTinTuVan.NAM_SINH_NGUOI_TAO_PHIEU' type='number' min='0'>
+          </mat-form-field>
+        </div>
+        <div class='col-4'>
+          <app-select [(model)]='thongTinTuVan.CHUC_DANH' label='tong_ket.san_khoa.chuc_danh' category='title'> </app-select>
+        </div>
+        <div class='col-3'>
+          <app-select label='tiem_chung.bed' [(model)]='thongTinTuVan.KHOA_PHONG'
+                      category='kdt'></app-select>
+        </div>
+        <label class='col-12' style='margin-top: 10px'><strong>{{ "phieu_theo_doi_bn_loc_mau.thong_tin_nguoi_benh" | translate}}</strong>:</label>
+        <div class='col-3'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "bao_cao_phan_ung_co_hai_cua_thuoc.ho_ten" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.HO_TEN}}" disabled>
+          </mat-form-field>
+        </div>
+        <div class='col-2'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{ "benh_an_iui.nam_sinh" | translate}}</mat-label>
+            <input matInput [(ngModel)]='thongTinTuVan.NAM_SINH_NGUOI_BENH' disabled>
+          </mat-form-field>
+        </div>
+        <div class='col-2'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.patient_id" | translate}}</mat-label>
+            <input matInput type='text' [ngModel]='patientInfo.patient_id' disabled>
+          </mat-form-field>
+        </div>
+        <div class='col-2'>
+          <app-emr-date label='phieu_thong_tin_tu_van.ngay_gio_kham' mode='datetime'
+                        [(model)]='thongTinTuVan.NGAY_GIO_KHAM_MOMENT'
+                        [(dmModel)]='thongTinTuVan.NGAY_GIO_KHAM'></app-emr-date>
+        </div>
+        <div class='col-3'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "tiem_chung.bed" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.room_name}}" disabled>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-3' style='margin-top: 5px'>
+          <mat-radio-group [(ngModel)]='thongTinTuVan.DOI_TUONG.ID' (change)='autoFill()'>
+            <mat-radio-button *ngFor='let listdt of listDoiTuong' style='float: left; margin: 5px' [value]="listdt.ID" >{{listdt.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class='col-2'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "phieu_thong_tin_tu_van.doi_tuong" | translate}}</mat-label>
+            <input matInput [(ngModel)]='thongTinTuVan.DAI_DIEN_GIA_DINH' [readonly]='thongTinTuVan.DOI_TUONG.ID == "1"'>
+          </mat-form-field>
+        </div>
+        <div class='col-2'>
+          <app-emr-date label='emr.ngay_gio_1' mode='datetime'
+                        [(model)]='thongTinTuVan.NGAY_GIO_MOMENT'
+                        [(unixModel)]='thongTinTuVan.NGAY_GIO'></app-emr-date>
+        </div>
+        <div class='col-2'>
+          <app-select [(model)]='thongTinTuVan.NGUOI_TU_VAN.nguoi_tu_van' label='phieu_gdsk.nguoi_tu_van' category='cbyt'> </app-select>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

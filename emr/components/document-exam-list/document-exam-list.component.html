@@ -1,0 +1,172 @@
+<!--<app-giay-phieu-tien-su-di-ung class='document-exam giay-to-bhyt' *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_TIEN_SU_DI_UNG'-->
+<!--                               [documentType]='loaiGiayToLienQuan.DOCUMENT_TYPE'-->
+<!--                               [patient]='patientInfo'-->
+<!--                               [data]='selectGiayToLienQuan'-->
+<!--                               (idChange)='idDocumentExam = $event'></app-giay-phieu-tien-su-di-ung>-->
+<app-hsba-cs-dt-hiv-aids *ngIf='loaiGiayToLienQuan.ID === ID_HSBA_CS_DT_HIV && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                         [patientInfo]='patientInfo'
+                         [selectGiayToLienQuan]=selectGiayToLienQuan></app-hsba-cs-dt-hiv-aids>
+<app-so-ket-dieu-tri *ngIf='loaiGiayToLienQuan.ID === ID_SOKET_DIEUTRI && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                     [selectGiayToLienQuan]=selectGiayToLienQuan
+                     [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                     [patientInfo]='patientInfo'></app-so-ket-dieu-tri>
+<app-phieu-theo-doi-chuc-nang-song *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_THEO_DOI_CHUC_NANG_SONG && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                   [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                   [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                   [isEdit]='isEdit'
+                                   (disabledChange)="handleReceiveDisableFromChild($event)"
+                                   [patientInfo]='patientInfo'></app-phieu-theo-doi-chuc-nang-song>
+<app-bang-kiem-an-toan-phau-thuat *ngIf='loaiGiayToLienQuan.ID === ID_BANG_KIEM_AN_TOAN_PT && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                  [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                  [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                  [patientInfo]='patientInfo'
+                                  [loaiGiayToLienQuan]='loaiGiayToLienQuan'
+                                  (save)='save.emit()'></app-bang-kiem-an-toan-phau-thuat>
+<app-bang-kiem-chuan-bi-va-ban-giao-nguoi-benh *ngIf='loaiGiayToLienQuan.ID === ID_BANG_KIEM_AN_VA_BAN_GIAO_NGUOI_BENH && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                  [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                  [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                  [patientInfo]='patientInfo'
+                                  [loaiGiayToLienQuan]='loaiGiayToLienQuan'
+                                  (save)='save.emit()'></app-bang-kiem-chuan-bi-va-ban-giao-nguoi-benh>
+<app-bo-cau-hoi-nrs *ngIf='loaiGiayToLienQuan.ID === ID_BO_CAU_HOI_NRS && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                               [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                               [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                               [patientInfo]='patientInfo'
+                                               [loaiGiayToLienQuan]='loaiGiayToLienQuan'
+                                               (save)='save.emit()'></app-bo-cau-hoi-nrs>
+<app-phieu-danh-gia-dinh-duong-phu-nu-mang-thai *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_DANH_GIA_DINH_DUONG_PHU_NU_MANG_THAI && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                    [selectGiayToLienQuan]='selectGiayToLienQuan'
+                    [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                    [patientInfo]='patientInfo'
+                    [loaiGiayToLienQuan]='loaiGiayToLienQuan'
+                    (save)='save.emit()'></app-phieu-danh-gia-dinh-duong-phu-nu-mang-thai>
+<app-phieu-yeu-cau-quan-ly-khang-sinh *ngIf='loaiGiayToLienQuan.ID === ID_YEU_CAU_QUAN_LY_KHANG_SINH && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                      [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                      [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                      [patientInfo]='patientInfo'
+                                      [patientInfoHis]='patientInfoHis'>
+</app-phieu-yeu-cau-quan-ly-khang-sinh>
+<app-phieu-danh-gia-dinh-duong-tre-em  *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_DANH_GIA_DD_TRE_EM && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                       [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                       [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                       [patientInfo]='patientInfo'
+                                       ></app-phieu-danh-gia-dinh-duong-tre-em>
+<!-- <app-giay-dong-y-thuc-hien-pttt *ngIf='loaiGiayToLienQuan.ID === ID_GIAY_DONG_Y_PTTT && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                [patientInfo]='patientInfo'
+                                [patientInfoHis]='patientInfoHis'></app-giay-dong-y-thuc-hien-pttt> -->
+<app-adr *ngIf='loaiGiayToLienQuan.ID === ID_ADR && loaiGiayToLienQuan.TYPE_CREATE === 1'
+         [selectGiayToLienQuan]='selectGiayToLienQuan'
+         [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+         [patientInfo]='patientInfo'
+         [patientInfoHis]='patientInfoHis'
+         [showSearch]='false'></app-adr>
+<app-phieu-tu-choi-dieu-tri *ngIf='loaiGiayToLienQuan.ID === ID_TU_CHOI_DIEU_TRI && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                         [patientInfo]='patientInfo'
+                         [selectGiayToLienQuan]=selectGiayToLienQuan></app-phieu-tu-choi-dieu-tri>
+<app-phieu-theo-doi-giam-dau-sau-mo *ngIf='loaiGiayToLienQuan.ID === ID_THEO_DOI_GIAM_DAU_SAU_MO && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                            [patientInfo]='patientInfo'
+                            [selectGiayToLienQuan]=selectGiayToLienQuan></app-phieu-theo-doi-giam-dau-sau-mo>
+<app-phieu-duyet-mo *ngIf='loaiGiayToLienQuan.ID === ID_PDM && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                    [selectGiayToLienQuan]='selectGiayToLienQuan'
+                    [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                    [patientInfo]='patientInfo'
+                    [patientInfoHis]='patientInfoHis'></app-phieu-duyet-mo>
+<app-bang-danh-gia-thang-diem-glasgow *ngIf='loaiGiayToLienQuan.ID === ID_BANG_DANH_GIA_THANG_DIEM_GLASGOW && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                    [selectGiayToLienQuan]='selectGiayToLienQuan'
+                    [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                    [patientInfo]='patientInfo'
+                    [patientInfoHis]='patientInfoHis'></app-bang-danh-gia-thang-diem-glasgow>
+<app-bang-theo-doi-benh-nhan-ecmo *ngIf='loaiGiayToLienQuan.ID === ID_BANG_THEO_DOI_BENH_NHAN_ECMO && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                      [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                      [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                      [patientInfo]='patientInfo'
+                                      [patientInfoHis]='patientInfoHis'></app-bang-theo-doi-benh-nhan-ecmo>
+<app-phieu-theo-doi-benh-nhan-loc-mau-lien-tuc *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_THEO_DOI_BENH_NHAN_LOC_MAU_LIEN_TUC && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                  [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                  [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                  [patientInfo]='patientInfo'
+                                  [patientInfoHis]='patientInfoHis'></app-phieu-theo-doi-benh-nhan-loc-mau-lien-tuc>
+<app-phieu-thong-tin-tu-van *ngIf='loaiGiayToLienQuan.ID === ID_THONG_TIN_TU_VAN && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                               [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                               [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                               [patientInfo]='patientInfo'
+                                               [patientInfoHis]='patientInfoHis'></app-phieu-thong-tin-tu-van>
+<app-bo-cau-hoi-tre-em *ngIf='loaiGiayToLienQuan.ID === ID_BO_CAU_HOI_TRE_EM && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                            [selectGiayToLienQuan]='selectGiayToLienQuan'
+                            [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                            [patientInfo]='patientInfo'
+                            [patientInfoHis]='patientInfoHis'></app-bo-cau-hoi-tre-em>
+<app-tom-tat-ho-so-benh-an *ngIf='loaiGiayToLienQuan.ID === ID_TOM_TAT_HO_SO_BENH_AN && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                               [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                               [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                               [patientInfo]='patientInfo'
+                                               [patientInfoHis]='patientInfoHis'></app-tom-tat-ho-so-benh-an>
+
+<app-phieu-de-nghi-kham-chua-benh-theo-yeu-cau *ngIf='loaiGiayToLienQuan.ID === ID_PDNKCBTYC && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                    [selectGiayToLienQuan]='selectGiayToLienQuan'
+                    [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                    [patientInfo]='patientInfo'
+                    [patientInfoHis]='patientInfoHis'></app-phieu-de-nghi-kham-chua-benh-theo-yeu-cau>
+<app-giay-de-nghi-kham-chua-benh-theo-yeu-cau-khoa-san *ngIf='loaiGiayToLienQuan.ID === ID_PDNKCBTYC_KSAN && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                                       [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                                       [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                                       [patientInfo]='patientInfo'
+                                                       [patientInfoHis]='patientInfoHis'></app-giay-de-nghi-kham-chua-benh-theo-yeu-cau-khoa-san>
+<app-giay-cam-ket-nguoi-benh-nam-noi-chu *ngIf='loaiGiayToLienQuan.ID === ID_CAM_KET_NB_NOI_TRU && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                         [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                         [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                         [patientInfo]='patientInfo'
+                                         [patientInfoHis]='patientInfoHis'
+></app-giay-cam-ket-nguoi-benh-nam-noi-chu>
+
+<app-phieu-loc-mau-lien-tuc *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_LOC_MAU_LIEN_TUC && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                            [selectGiayToLienQuan]='selectGiayToLienQuan'
+                            [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                            [patientInfo]='patientInfo'
+                            [patientInfoHis]='patientInfoHis'></app-phieu-loc-mau-lien-tuc>
+<app-giay-kham-suc-khoe-lai-xe  *ngIf='loaiGiayToLienQuan.ID === ID_GIAY_KHAM_SUC_KHOE_LAI_XE && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                            [selectGiayToLienQuan]='selectGiayToLienQuan'
+                            [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                            [patientInfo]='patientInfo'
+                            [loaiGiayToLienQuan]='loaiGiayToLienQuan'></app-giay-kham-suc-khoe-lai-xe>
+<app-phieu-tien-me  *ngIf='loaiGiayToLienQuan.ID === ID_GIAY_KHAM_TIEN_ME && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                [patientInfo]='patientInfo'
+                                [loaiGiayToLienQuan]='loaiGiayToLienQuan'></app-phieu-tien-me>
+<app-phieu-lap-ke-hoach-cham-soc *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_LAP_KE_HOACH_CHAM_SOC && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                            [selectGiayToLienQuan]='selectGiayToLienQuan'
+                            [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                            [patientInfo]='patientInfo'
+                            [loaiGiayToLienQuan]='loaiGiayToLienQuan'
+                            [isEdit]="isEdit"
+                            [template]='template'></app-phieu-lap-ke-hoach-cham-soc>
+<app-giay-cam-doan-chap-nhan-phau-thuat-thu-thuat  *ngIf='loaiGiayToLienQuan.ID === ID_GIAY_CAM_DOAN_CHAP_NHAN_PHAU_THUAT_THU_THUAT && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                            [selectGiayToLienQuan]='selectGiayToLienQuan'
+                            [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                            [patientInfo]='patientInfo'
+                            ></app-giay-cam-doan-chap-nhan-phau-thuat-thu-thuat>
+<app-phieu-tu-nguyen *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_TU_NGUYEN && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                  [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                  [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                  [patientInfo]='patientInfo'
+                                  [patientInfoHis]='patientInfoHis'></app-phieu-tu-nguyen>
+<app-phieu-nhan-dinh-nguoi-benh-vao-vien *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_NHAN_DINH_NGUOI_BENH_VAO_VIEN && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                     [selectGiayToLienQuan]='selectGiayToLienQuan'
+                     [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                     [patientInfo]='patientInfo'
+                     [patientInfoHis]='patientInfoHis'></app-phieu-nhan-dinh-nguoi-benh-vao-vien>
+<app-phieu-theo-doi-tien-su-di-ung *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_THEO_DOI_TIEN_SU_DI_UNG && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                                         [selectGiayToLienQuan]='selectGiayToLienQuan'
+                                         [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                                         [patientInfo]='patientInfo'
+                                         [patientInfoHis]='patientInfoHis'></app-phieu-theo-doi-tien-su-di-ung>
+<app-phieu-truyen-mau *ngIf='loaiGiayToLienQuan.ID === ID_PHIEU_TRUYEN_MAU && loaiGiayToLienQuan.TYPE_CREATE === 1'
+                      [selectGiayToLienQuan]=selectGiayToLienQuan
+                      [isCreateGiayToLienQuan]='isCreateGiayToLienQuan'
+                      [listLoaiGiayToSave]='listLoaiGiayToSave'
+                      [patientInfo]='patientInfo'
+                      [loaiGiayToLienQuan]='loaiGiayToLienQuan'></app-phieu-truyen-mau>
+

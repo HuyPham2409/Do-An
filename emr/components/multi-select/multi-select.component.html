@@ -1,0 +1,95 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{ label ? ((label|translate)+':') : '' }}</mat-label>
+  <mat-chip-grid #chipList>
+    <mat-chip-row
+      *ngFor="let item of items"
+      (removed)="removeChip(item)" [ngSwitch]='category'>
+      <ng-container *ngSwitchCase='"icd"'>
+        {{ item?.MA }} - {{ item?.MO_TA }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"icds"'>
+        {{ item?.service_icd_code }} - {{ item?.service_icd_name }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"mota"'>
+        {{ item?.MO_TA }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"way_to_use"'>
+        {{ item?.way_to_use_name }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"pharma"'>
+        {{ item?.pharma_code }} - {{ item?.pharma_name }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"vaccine_mapped_pharma"'>
+        {{ item?.pharma_name }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"ATC"'>
+        {{ item?.atc_code}}
+      </ng-container>
+      <ng-container *ngSwitchCase='"bs"'>
+        {{ item?.fullname}}
+      </ng-container>
+      <ng-container *ngSwitchCase='"kdt"'>
+        {{ item?.parent_name}}
+      </ng-container>
+      <ng-container *ngSwitchCase='"vaccine"' required>
+        {{ item?.vaccine_name }}
+      </ng-container>
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip-row>
+    <input
+      [placeholder]='label ? ((label|translate)+"...") : ""'
+      [(ngModel)]='query'
+      (ngModelChangeDebounced)='getList($event)'
+      (focus)="getList('')"
+      (click)="getList('')"
+      #input
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="addChip($event)">
+  </mat-chip-grid>
+  <mat-autocomplete #auto="matAutocomplete"
+                    (optionSelected)="selectChip($event)"
+                    [displayWith]='displayWith'
+  >
+    <mat-option *ngFor="let item of listItems" [value]="item" [ngSwitch]='category'>
+      <ng-container *ngSwitchCase='"icd"'>
+        {{ item?.MA }} - {{ item?.MO_TA }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"icds"'>
+        {{ item?.MA }} - {{ item?.MO_TA }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"mota"'>
+        {{ item?.MO_TA }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"way_to_use"'>
+        {{ item?.way_to_use_name }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"pharma"'>
+        {{ item?.pharma_name }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"vaccine_mapped_pharma"'>
+        {{ item?.pharma_name }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"ATC"'>
+        {{ item?.atc_code }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"bs"'>
+        {{ item?.fullname }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"kdt"'>
+        {{ item?.parent_name }}
+      </ng-container>
+      <ng-container *ngSwitchCase='"vaccine"'>
+        {{ item?.vaccine_name }}
+      </ng-container>
+    </mat-option>
+  </mat-autocomplete>
+  <button type="button" mat-button *ngIf="(items?.length || 0) > 0" matSuffix mat-icon-button
+          aria-label="Clear" (click)="items.length = 0">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<!-- [displayWith]='displayWith' -->

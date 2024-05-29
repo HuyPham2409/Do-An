@@ -1,0 +1,30 @@
+<mat-card appearance="outlined" *ngIf='id_giaytio != 0 && id_giaytio !=undefined'>
+  <mat-card-content>
+    <div class="picture_cls" fxLayout='column' fxLayout.gt-md='row'>
+      <div class='text-left m-b-8'>{{giayto.MO_TA}}</div>
+      <div class="file-list" *ngFor="let file of localfiles; let i=index">
+        {{file.name}} | {{file.type}}
+      </div>
+      <div class='row'>
+        <div class='col file-upload-container'>
+          <label for="file-upload" class="custom-file-upload" ng-class="{'disabled':local_loading}">
+            <i class="fa fa-cloud-upload"></i> Thêm file từ máy tính
+          </label>
+          <input  id="file-upload" type="file" multiple="true" class="form-control input-sm" (change)="uploadFromLocal($event)" accept="image/*,application/pdf"/>
+        </div>
+        <div class='col'>
+          <button mat-button class='bg-red-500 text-white w-full h-full' (click)="removeImage()">Xóa file</button>
+        </div>
+        <div class='col'>
+          <button mat-button class='bg-blue-500 text-white w-full h-full' (click)="upload_patient_pic()"><i class="fa fa-upload"></i>&nbsp;Upload file</button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf='listImageServes.length > 0'  fxLayout='row'>
+      <div class='box-img-server matero-col' fxFlex.gt-sm='40' *ngFor='let img of listImageServes' fxFlex.gt-sm='30' fxFlex.gt-xs='50' fxFlex='30'>
+        <img src='{{img.url}}'  width='100%'>
+        <mat-checkbox [(ngModel)]="img.checked"></mat-checkbox>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

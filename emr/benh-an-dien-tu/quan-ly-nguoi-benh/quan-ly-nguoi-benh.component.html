@@ -1,0 +1,302 @@
+<div class='qlnb' *ngIf='showField?.QUAN_LY_NGUOI_BENH !== false'>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class='row'>
+        <div class='col-12'>
+          <h2 fxLayout='row' style="font-weight: 500;" class='m-8'>II. QUẢN LÝ NGƯỜI BỆNH</h2>
+        </div>
+        <div class='col-6'>
+          <div class='h-full p-b-8' >
+            <div *ngIf='showField?.THOI_DIEM_VAO_VIEN !== false'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Vào viện:</mat-label>
+                <input matInput [ngxMatDatetimePicker]="picker" placeholder="Vào viện"
+                       [(ngModel)]='qlnb.VAO_VIEN.thoi_diem_vao_vien'
+                       (ngModelChange)='onDate($event, "thoi_diem_vao_vien")'>
+                <mat-datepicker-toggle matSuffix [for]="$any(picker)">
+                </mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+              </mat-form-field>
+            </div>
+            <div *ngIf='showField?.NOI_VAO_VIEN !== false' fxLayout='column' fxLayoutAlign='start center'>
+              <div class='col-12 boderMatRadioGr p-x-0' style='padding-bottom: 1px'>
+                <label class='w-full' fxLayout='row'>Trực tiếp vào:</label>
+                <div class='col-12 w-radio-container m-y-8  radio-container-truc-tiep-vao'>
+                  <mat-radio-group class='row' fxLayoutAlign='center' [(ngModel)]='qlnb.VAO_VIEN.NOI_VAO_VIEN.ID'>
+                    <mat-radio-button class="col col-lg-4" *ngFor='let nvv of listNoiVaoVien; index as i'  style='width: 100%; float: left; margin-bottom: 5px;margin-right: 0;margin-left: 0' [value]="nvv.ID"> {{nvv.ID}}. {{nvv.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TungVS -->
+        <div class='col-12 row boderMatRadioGr' *ngIf='showField?.MA_NOI_CHUYEN_1 === true' style="margin: 0px 16px 0px 16px;">
+          <div class='col-12' *ngIf='showField?.MA_NOI_CHUYEN_1 === true' fxLayout='column' fxLayoutAlign='start center'>
+            <label class='w-full' fxLayout='row'>Nơi giới thiệu:</label>
+            <div class='w-radio-container m-y-8 col-12'>
+              <mat-radio-group class='row' [ngModelOptions]="{standalone: true}" [(ngModel)]='qlnb.VAO_VIEN.MA_NOI_CHUYEN.ID'>
+                <mat-radio-button class='m-r-0 p-b-4' *ngFor='let nvv of listNoiGioiThieu; index as i '
+                                  [ngClass]="{'col-lg-5':i === 0,'col-lg-4':i === 1,'col-lg-3':i === 2, 'col': true}"
+                                  [value]="nvv.ID">{{nvv.ID}}. {{nvv.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <!-- End -->
+
+        <div class='col-6'>
+          <div *ngIf='showField?.THOI_DIEM_BI_BONG === true'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>Thời gian bị bỏng:</mat-label>
+                <input matInput [ngxMatDatetimePicker]="picker1"
+                       [(ngModel)]='qlnb.THOI_GIAN_BI_BONG'>
+                <mat-datepicker-toggle matSuffix [for]="$any(picker1)">
+                </mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='row boderMatRadioGr ' *ngIf='showField?.MA_NOI_CHUYEN !== false || showField?.VAO_VIEN_DO_BENH_LAN_THU !== false'>
+            <div class='col-12 p-b-5' fxLayout='column' fxLayoutAlign='start center'>
+              <label class='w-full' fxLayout='row'>Nơi giới thiệu:</label>
+              <div class='w-radio-container m-y-8 col-12'>
+                <mat-radio-group class='row' [ngModelOptions]="{standalone: true}" [(ngModel)]='qlnb.VAO_VIEN.MA_NOI_CHUYEN.ID'>
+                  <mat-radio-button class='m-r-0 p-b-4 col col-lg-4' [checked]="qlnb.VAO_VIEN.MA_NOI_CHUYEN.ID === nvv.ID" *ngFor='let nvv of listNoiGioiThieu; index as i '
+                                 
+                                    [value]="nvv.ID">{{nvv.ID}}. {{nvv.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-12 form-field-full' *ngIf='showField?.VAO_VIEN_DO_BENH_LAN_THU !== false'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- Vào viện do bệnh này lần thứ</mat-label>
+                <input matInput [(ngModel)]='qlnb.vao_vien_do_benh_lan_thu' type='number' min='0' max='999' autocomplete='off'>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div fxLayout='row' class='col-12 m-8' *ngIf='showField?.BENH_AN_YHCT_NOI_TRU === true'><strong>{{"phieu_yhct_noi_tru.chan_doan_cua_khoa_kham_benh" | translate}}</strong></div>
+        <div class='col-6'*ngIf='showField?.BENH_AN_YHCT_NOI_TRU === true'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_yhct_noi_tru.theo_yhct" | translate}}</mat-label>
+            <input matInput [(ngModel)]='qlnb.CD_THEO_YHCT'>
+          </mat-form-field>
+        </div>
+        <div class='col-6'*ngIf='showField?.BENH_AN_YHCT_NOI_TRU === true'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"phieu_yhct_noi_tru.theo_yhhd" | translate}}</mat-label>
+            <input matInput [(ngModel)]='qlnb.CD_THEO_YHHD'>
+          </mat-form-field>
+        </div>
+        <div class='col-6 text-left' *ngIf='showField?.KHOA_DIEU_TRI !== false'>
+          <div>
+            <div class='row boderMatRadioGr'>
+              <div class='col-12'>
+                <label class='w-full' fxLayout='row'>Vào khoa:</label>
+                <div class='row' style='padding-bottom: 30px'>
+                  <div class='col-4'>
+                    <mat-form-field appearance='outline' class='full-width'>
+                      <mat-label>Khoa</mat-label>
+                      <input matInput disabled='patientInfo.in_patient !== 1'
+                             [matAutocomplete]="room"
+                             [(ngModel)]="qlnb.DIEU_TRI.LICH_SU_KHOA_DIEU_TRI[0].KHOA_DIEU_TRI"
+                             (focus)="filterRoom('')"
+                             (ngModelChange)="filterRoom(qlnb.DIEU_TRI.LICH_SU_KHOA_DIEU_TRI[0].KHOA_DIEU_TRI)">
+                      <mat-autocomplete [displayWith]="displayDMKDT" #room="matAutocomplete">
+                        <mat-option *ngFor="let room of filteredRooms" [value]="room">
+                          <span>{{ room?.TEN_KHOA_PHONG }}</span>
+                        </mat-option>
+                      </mat-autocomplete>
+                      <button type="button" mat-button *ngIf="qlnb.KHOA_DIEU_TRI_HIEN_TAI && qlnb.KHOA_DIEU_TRI_HIEN_TAI.TEN_KHOA_PHONG" matSuffix mat-icon-button aria-label="Clear" (click)="qlnb.KHOA_DIEU_TRI_HIEN_TAI = resetKDT">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                  </div>
+                  <div class='col-4'>
+                    <ng-container *ngIf='showField?.THOI_DIEM_VAO_KHOA !== false'>
+                      <mat-form-field appearance='outline' class='full-width'>
+                        <input matInput [ngxMatDatetimePicker]="picker3" placeholder="ng/th/năm"
+                               [(ngModel)]='qlnb.DIEU_TRI.LICH_SU_KHOA_DIEU_TRI[0].thoi_diem_vao_khoa'
+
+                               (ngModelChange)="onDate($event,'THOI_DIEM_BAT_DAU')">
+                        <mat-datepicker-toggle matSuffix [for]="$any(picker3)">
+                        </mat-datepicker-toggle>
+                        <ngx-mat-datetime-picker #picker3></ngx-mat-datetime-picker>
+                      </mat-form-field>
+                    </ng-container>
+                  </div>
+                  <div class='col-4'>
+                    <ng-container *ngIf='showField?.SO_NGAY_DIEU_TRI !== false'>
+                      <mat-form-field appearance='outline' class="m-r-8 full-width">
+                        <mat-label>Số ngày điều trị</mat-label>
+                        <input matInput type='number' min='0' max='999' autocomplete='off'
+                               [(ngModel)]='qlnb.DIEU_TRI.LICH_SU_KHOA_DIEU_TRI[0].so_ngay_dieu_tri'
+                               (ngModelChange)="calDate($event,'SO_NGAY_DIEU_TRI', 0)">
+                      </mat-form-field>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <div class='col-12' *ngIf='showField?.CHUYEN_KHOA !== false'>
+                <p class='m-t-1'>Chuyển khoa:</p>
+                <div class='row'>
+                  <ng-container *ngFor='let khoaDieuTri of qlnb.DIEU_TRI.LICH_SU_KHOA_DIEU_TRI | slice: 1; index as i'>
+                    <div class='col-4'>
+                      <mat-form-field appearance='outline' class='full-width'>
+                        <mat-label>Khoa</mat-label>
+                        <input matInput
+                               [matAutocomplete]="room"
+                               [(ngModel)]="khoaDieuTri.KHOA_DIEU_TRI"
+                               (focus)="filterRoom('')"
+                               (ngModelChange)="filterRoom(khoaDieuTri.KHOA_DIEU_TRI)">
+                        <mat-autocomplete panelWidth='370px' [displayWith]="displayDMKDT" #room="matAutocomplete"  >
+                          <mat-option  *ngFor="let room of filteredRooms" [value]="room">
+                            <span >{{ room?.TEN_KHOA_PHONG }}</span>
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                    </div>
+                    <div class='col-4 form-field-full'>
+                      <mat-form-field appearance='outline' class='full-width'>
+                        <input matInput [ngxMatDatetimePicker]="picker_thoi_diem_vao_khoa" placeholder="ng/th/năm"
+                               [(ngModel)]='khoaDieuTri.thoi_diem_vao_khoa'
+                               (ngModelChange)="onDate($event,'THOI_DIEM_BAT_DAU', i)">
+                        <mat-datepicker-toggle matSuffix [for]="$any(picker_thoi_diem_vao_khoa)">
+                        </mat-datepicker-toggle>
+                        <ngx-mat-datetime-picker #picker_thoi_diem_vao_khoa></ngx-mat-datetime-picker>
+                      </mat-form-field>
+                    </div>
+                    <div class='col-4 form-field-full'>
+                      <mat-form-field appearance='outline'>
+                        <input matInput type='number' min='0' max='999' autocomplete='off' [(ngModel)]="khoaDieuTri.so_ngay_dieu_tri">
+                      </mat-form-field>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='col-6' >
+          <div class='row boderMatRadioGr' *ngIf='showField?.LOAI_HINH_CHUYEN_VIEN !== false || showField?.MA_NOI_CHUYEN_DEN !== false || showField?.NGAY_RA_VIEN !== false
+                                                    || showField?.HINH_THUC_RA_VIEN !== false || showField?.TONG_SO_NGAY_DTRI !== false'>
+            <div class='col-12 p-b-5' fxLayout='column' fxLayoutAlign='start center' *ngIf='showField?.LOAI_HINH_CHUYEN_VIEN !== false'>
+              <label class='w-full' fxLayout='row'>Chuyển viện:</label>
+              <div class='col-12 w-radio-container m-y-8'>
+                <mat-radio-group class='row' [(ngModel)]='qlnb.RA_VIEN.LOAI_HINH_CHUYEN_VIEN.ID'>
+                <mat-radio-button class='col col-lg-4 m-r-0 p-b-4' [value]="'1'"> 1.Tuyến trên</mat-radio-button>
+                <mat-radio-button class='col col-lg-4 m-r-0 p-b-4' [value]="'2'"> 2.Tuyến dưới</mat-radio-button>
+                <mat-radio-button class='col col-lg-4 m-r-0 p-b-4' [value]="'3'"> 3.CK</mat-radio-button>
+              </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-12' *ngIf='showField?.MA_NOI_CHUYEN_DEN !== false'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Chuyển đến</mat-label>
+                <input matInput
+                       [matAutocomplete]="hospital"
+                       [(ngModel)]="qlnb.RA_VIEN.MA_NOI_CHUYEN_DEN"
+                       (focus)="filterHospital('')"
+                       (ngModelChange)="filterHospital(qlnb.RA_VIEN.MA_NOI_CHUYEN_DEN)">
+                <mat-autocomplete [displayWith]="displayDM" #hospital="matAutocomplete">
+                  <mat-option *ngFor="let hospital of filteredHospitals" [value]="hospital">
+                    <span>{{ hospital?.MO_TA }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                <button type="button" mat-button
+                        *ngIf="qlnb.RA_VIEN.MA_NOI_CHUYEN_DEN &&
+                      qlnb.RA_VIEN.MA_NOI_CHUYEN_DEN.MO_TA"
+                        matSuffix
+                        mat-icon-button
+                        aria-label="Clear"
+                        (click)="qlnb.RA_VIEN.MA_NOI_CHUYEN_DEN = resetDM">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class='col-12' *ngIf='showField?.NGAY_RA_VIEN !== false'>
+              <label class='w-full' fxLayout='row'>Ra viện:</label>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Thời điểm ra viện</mat-label>
+                <input matInput [ngxMatDatetimePicker]="picker6" placeholder="Ra viện"
+                       [(ngModel)]='qlnb.RA_VIEN.ngay_ra_vien'
+                       (ngModelChange)="onDate($event,'NGAY_RA_VIEN')">
+                <mat-datepicker-toggle matSuffix [for]="$any(picker6)">
+                </mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker6></ngx-mat-datetime-picker>
+              </mat-form-field>
+            </div>
+            <div class='col-12 p-b-21' *ngIf='showField?.HINH_THUC_RA_VIEN !== false' fxLayout='column' fxLayoutAlign='start center'>
+              <div class='col-12 w-radio-container m-y-8'>
+                <mat-radio-group class='row' [(ngModel)]='qlnb.RA_VIEN.HINH_THUC_RA_VIEN.ID'>
+                  <mat-radio-button class='col col-lg-3 m-r-0 p-b-4' *ngFor='let item of list_HINH_THUC_RA_VIEN' [value]="item.ID">{{item.MO_TA|translate}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class='col-12 form-field-full' *ngIf='showField?.TONG_SO_NGAY_DTRI !== false'>
+              <mat-form-field appearance='outline'>
+                <mat-label>Tổng số ngày điều trị:</mat-label>
+                <input matInput name="Tổng số ngày điều trị" [(ngModel)]='qlnb.TONG_SO_NGAY_DTRI' type='number' min='0' max='999' autocomplete='off'>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+<!--        Bảng tiếp nhận  -->
+        <div class="form-field-full col-12" *ngIf="showField?.TIEP_NHAN_TAI === true" >
+          <fieldset style="border: 1px solid #949494; margin: 14px 0" fxFlex.xs="calc(100%-25px)" fxFlex="calc(100% - 50px)">
+            <div class='row'>
+              <div class="col-4">{{'emr.dot_dieu_tri'|translate}}</div>
+              <div class="col-3">{{'emr.thoi_gian'|translate}}</div>
+              <div class="col-4">{{'emr.dieu_tri_ngoai_tru'|translate}}</div>
+              <div class='col-1' fxLayoutAlign='center center'>
+                <button type="button" (click)="addDieuTri()" mat-button class="btn-sm m-b-8 mat-blue-hn"
+                        [title]="'tooltip.add_pttt' | translate">
+                  <i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class='row' *ngFor="let item of dieuTriList; let i = index">
+              <div class='col-4'>
+                <mat-form-field appearance='outline' fxFlex>
+                  <mat-label>{{'emr.dot_dieu_tri'|translate}}</mat-label>
+                  <input matInput [(ngModel)]='item.dot' (ngModelChangeDebounced)='handleChange($event, "dot", i)'>
+                </mat-form-field>
+              </div>
+
+              <div class='col-3'>
+                <mat-form-field appearance='outline' class='full-width'>
+                  <mat-label>{{'emr.thoi_gian'|translate}}</mat-label>
+                  <input matInput [ngxMatDatetimePicker]="picker_time"
+                         [(ngModel)]='item.thoi_gian'
+                         (ngModelChangeDebounced)='handleChange($event, "time", i)'>
+                  <mat-datepicker-toggle matSuffix [for]="$any(picker_time)">
+                  </mat-datepicker-toggle>
+                  <ngx-mat-datetime-picker #picker_time></ngx-mat-datetime-picker>
+                </mat-form-field>
+              </div>
+
+              <div class='col-4'>
+                <mat-form-field appearance='outline' fxFlex>
+                  <mat-label>{{'emr.dieu_tri_ngoai_tru'|translate}}</mat-label>
+                  <input matInput [(ngModel)]='item.ngoai_tru' (ngModelChangeDebounced)='handleChange($event, "description", i)'>
+                </mat-form-field>
+              </div>
+              <div class='col-1' fxLayoutAlign='center center'>
+                <button type="button" (click)="removePtHis(i)" mat-button class="btn-sm m-b-8 mat-red-hn"
+                        [title]="'tooltip.delete_pttt' | translate">
+                  <i class="fa fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+

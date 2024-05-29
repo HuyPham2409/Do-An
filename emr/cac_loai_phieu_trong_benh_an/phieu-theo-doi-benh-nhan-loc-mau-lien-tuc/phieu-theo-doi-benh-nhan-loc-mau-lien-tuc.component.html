@@ -1,0 +1,363 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <label><strong>{{ "phieu_theo_doi_bn_loc_mau.thong_tin_nguoi_benh" | translate}}</strong></label>
+      <div class='row'>
+        <div class='col-4'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.ho_ten_nguoi_benh" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.HO_TEN}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-4'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.tuoi" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.DO_TUOI}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-4'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.giuong" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.in_patient_bed_name}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-12'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.chan_doan" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.examining_diagnosis}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-4'>
+          <app-emr-date label='phieu_khai_thac_tien_su_dung_thuoc.ngay_thuc_hien' mode='date'
+                        [(model)]='theoDoiLocMau.ngay_thuc_hien'
+                        [(dmModel)]='theoDoiLocMau.NGAY_THUC_HIEN'></app-emr-date>
+        </div>
+        <div class='col-4'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "phieu_theo_doi_bn_loc_mau.pp_thuc_hien" | translate}}</mat-label>
+            <mtx-select [items]='PHUONG_PHAP_THUC_HIEN' bindLabel='MO_TA'
+                        [(ngModel)]="theoDoiLocMau.PHUONG_PHAP_THUC_HIEN"></mtx-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <label><strong>{{ "phieu_theo_doi_bn_loc_mau.truoc_vao" | translate}}</strong></label>
+      <div class='row'>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <!--          <app-emr-date label='laboratory.choose_time' mode='time'-->
+          <!--                        [(model)]='theoDoiLocMau.TRUOC_VAO.gio_thuc_hien'-->
+          <!--                        [(dmModel)]='theoDoiLocMau.TRUOC_VAO.GIO_THUC_HIEN'></app-emr-date>-->
+          <div style='width: 6em'>{{ 'laboratory.choose_time' | translate }}:</div>
+          <div class='col p-r-0'>
+           <app-emr-date mode='datetime'
+                         [(model)]='theoDoiLocMau.TRUOC_VAO.gio_thuc_hien'
+                         [(dmModel)]='theoDoiLocMau.TRUOC_VAO.GIO_THUC_HIEN'></app-emr-date>
+          </div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'emr.mach' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]="theoDoiLocMau.TRUOC_VAO.MACH" type='number' min='0' max='999' autocomplete='off'>
+            <div matSuffix class='m-t-16'>lần/phút</div>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'emr.spo2' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]="theoDoiLocMau.TRUOC_VAO.SPO2" type='number' min='0' max='100' autocomplete='off'>
+            <div matSuffix class='m-t-16'>{{'%'|translate}}</div>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div style='width: 6em'>{{ 'emr.huyet_ap' | translate }}:</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="theoDoiLocMau.TRUOC_VAO.HUYET_AP_TAM_THU" type='number' min='0' max='999' autocomplete='off'>
+            </mat-form-field>
+          </div>
+          <div>/</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="theoDoiLocMau.TRUOC_VAO.HUYET_AP_TAM_TRUONG" type='number' min='0' max='999' autocomplete='off'>
+            </mat-form-field>
+          </div>
+          <div class='unit'>{{'mmHg'|translate}}</div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.toc_do_mau' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.TRUOC_VAO.TOC_DO_MAU' type='number' min='0' max='999' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.dich_thay_the' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.TRUOC_VAO.DICH_THAY_THE' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.dich_diasy' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.TRUOC_VAO.DICH_DIASY' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.access' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.TRUOC_VAO.ACCESS' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.filter' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.TRUOC_VAO.FILTER' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.tmp' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.TRUOC_VAO.TMP' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.rentun' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.TRUOC_VAO.RENTUN' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.heparin' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.TRUOC_VAO.HEPARIN' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.rut_dich' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.TRUOC_VAO.RUT_DICH' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div style='width: 6em'>{{ 'emr.dieu_duong' | translate }}:</div>
+          <div class='col p-r-0'>
+            <app-select [(model)]='theoDoiLocMau.TRUOC_VAO.DIEU_DUONG'
+                        category='cbyt'></app-select>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <label><strong>{{ "phieu_theo_doi_bn_loc_mau.sau_vao_15p" | translate}}</strong></label>
+      <div class='row'>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div style='width: 6em'>{{ 'laboratory.choose_time' | translate }}:</div>
+          <div class='col p-r-0'>
+            <app-emr-date mode='datetime'
+                          [(model)]='theoDoiLocMau.SAU_VAO_15P.gio_thuc_hien'
+                          [(dmModel)]='theoDoiLocMau.SAU_VAO_15P.GIO_THUC_HIEN'></app-emr-date>
+          </div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'emr.mach' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]="theoDoiLocMau.SAU_VAO_15P.MACH" type='number' min='0' max='999' autocomplete='off'>
+            <div matSuffix class='m-t-16'>lần/phút</div>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'emr.spo2' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]="theoDoiLocMau.SAU_VAO_15P.SPO2" type='number' min='0' max='100' autocomplete='off'>
+            <div matSuffix class='m-t-16'>{{'%'|translate}}</div>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div style='width: 6em'>{{ 'emr.huyet_ap' | translate }}:</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="theoDoiLocMau.SAU_VAO_15P.HUYET_AP_TAM_THU" type='number' min='0' max='999' autocomplete='off'>
+            </mat-form-field>
+          </div>
+          <div>/</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="theoDoiLocMau.SAU_VAO_15P.HUYET_AP_TAM_TRUONG" type='number' min='0' max='999' autocomplete='off'>
+            </mat-form-field>
+          </div>
+          <div class='unit'>{{'mmHg'|translate}}</div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.toc_do_mau' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_15P.TOC_DO_MAU' type='number' min='0' max='999' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.dich_thay_the' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_15P.DICH_THAY_THE' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.dich_diasy' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_15P.DICH_DIASY' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.access' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_15P.ACCESS' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.filter' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_15P.FILTER' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.tmp' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_15P.TMP' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.rentun' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_15P.RENTUN' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.heparin' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_15P.HEPARIN' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.rut_dich' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_15P.RUT_DICH' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div style='width: 6em'>{{ 'emr.dieu_duong' | translate }}:</div>
+          <div class='col p-r-0'>
+            <app-select [(model)]='theoDoiLocMau.SAU_VAO_15P.DIEU_DUONG'
+                        category='cbyt'></app-select>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <label><strong>{{ "phieu_theo_doi_bn_loc_mau.sau_vao_30p" | translate}}</strong></label>
+      <div class='row'>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div style='width: 6em'>{{ 'laboratory.choose_time' | translate }}:</div>
+          <div class='col p-r-0'>
+            <app-emr-date mode='datetime'
+                          [(model)]='theoDoiLocMau.SAU_VAO_30P.gio_thuc_hien'
+                          [(dmModel)]='theoDoiLocMau.SAU_VAO_30P.GIO_THUC_HIEN'></app-emr-date>
+          </div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'emr.mach' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]="theoDoiLocMau.SAU_VAO_30P.MACH" type='number' min='0' max='999' autocomplete='off'>
+            <div matSuffix class='m-t-16'>lần/phút</div>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'emr.spo2' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]="theoDoiLocMau.SAU_VAO_30P.SPO2" type='number' min='0' max='100' autocomplete='off'>
+            <div matSuffix class='m-t-16'>{{'%'|translate}}</div>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div style='width: 6em'>{{ 'emr.huyet_ap' | translate }}:</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="theoDoiLocMau.SAU_VAO_30P.HUYET_AP_TAM_THU" type='number' min='0' max='999' autocomplete='off'>
+            </mat-form-field>
+          </div>
+          <div>/</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="theoDoiLocMau.SAU_VAO_30P.HUYET_AP_TAM_TRUONG" type='number' min='0' max='999' autocomplete='off'>
+            </mat-form-field>
+          </div>
+          <div class='unit'>{{'mmHg'|translate}}</div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.toc_do_mau' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_30P.TOC_DO_MAU' type='number' min='0' max='999' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.dich_thay_the' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_30P.DICH_THAY_THE' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.dich_diasy' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_30P.DICH_DIASY' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.access' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_30P.ACCESS' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.filter' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_30P.FILTER' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.tmp' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_30P.TMP' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.rentun' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_30P.RENTUN' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.heparin' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_30P.HEPARIN' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'phieu_theo_doi_bn_loc_mau.rut_dich' | translate }}:</div>
+          <mat-form-field class='w-full'>
+            <input matInput [(ngModel)]='theoDoiLocMau.SAU_VAO_30P.RUT_DICH' autocomplete='off'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div style='width: 6em'>{{ 'emr.dieu_duong' | translate }}:</div>
+          <div class='col p-r-0'>
+            <app-select [(model)]='theoDoiLocMau.SAU_VAO_30P.DIEU_DUONG'
+                        category='cbyt'></app-select>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

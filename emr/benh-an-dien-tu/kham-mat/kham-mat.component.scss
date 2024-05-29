@@ -1,0 +1,27 @@
+table {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-collapse: collapse;
+}
+th {
+  padding: 5px 0;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-collapse: collapse;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.radio-w-full ::ng-deep {
+  /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
+  /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
+  .mat-radio-label-content {
+    flex: 1;
+  }
+}

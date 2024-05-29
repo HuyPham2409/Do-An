@@ -1,0 +1,31 @@
+.hanh-chinh {
+  .full-width {
+    width: 100%;
+  }
+}
+.table-container {
+  width: 100%;
+  border: 1px solid #B9B9B9;
+  border-radius: 4px;
+  margin-bottom: 1.25em;
+}
+
+table {
+  width: 100%;
+
+  // Remove built-in spacing
+  border-collapse: collapse;
+
+  tr {
+    border-bottom: 1px solid #B9B9B9;
+  }
+
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+
+    &:not(:last-child) {
+      border-right: 1px solid #B9B9B9;
+    }
+  }
+}

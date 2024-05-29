@@ -1,0 +1,669 @@
+<div class='matero-row hanh-chinh'>
+  <div class='matero-col'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div class='row'>
+          <div class='col-12'>
+            <h2 fxLayout='row' class='m-8' *ngIf='showField?.TITLE_HANH_CHINH !== false'>I. {{"emr.administrative" | translate}}</h2>
+            <h2 fxLayout='row' class='m-8' *ngIf='showField?.TITLE_HANH_CHINH_NT === true'>I. {{"emr.administrative" | translate}}:</h2>
+          </div>
+          <div class='col-6' *ngIf='showField?.HO_TEN !== false'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.patient_fullname" | translate}} :</mat-label>
+              <input matInput type='text' [(ngModel)]="patientHanhChinh.HO_TEN">
+            </mat-form-field>
+          </div>
+          <div class='col-4' *ngIf='showField?.NGAY_SINH !== false'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.birthday" | translate}}:</mat-label>
+              <input matInput [matDatepicker]="pickerBirthday"
+                     (ngModelChange)="onDate($event,'NGAY_SINH')"
+                     [(ngModel)]="patientHanhChinh.birthdayString">
+              <mat-datepicker-toggle matSuffix [for]="pickerBirthday"></mat-datepicker-toggle>
+              <mat-datepicker #pickerBirthday></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class='col-2' *ngIf='showField?.TUOI !== false'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.age" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='patientHanhChinh.DO_TUOI' type='number' min='0' max='999' autocomplete='off'>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf='showField?.GIOI_TINH !== false' class='col-6 p-b-8 fomt' >
+            <div class='col-12 h-full' fxLayoutAlign='start center'>
+              <div class='col-3 col-lg-2 text-left ' style="position: relative; right:7px">{{"patient.sex" |translate}}:</div>
+              <div class='col-9 col-lg-10 row  m-r-8'>
+                <mat-radio-group class="m-t-8 " 
+                  (ngModelChange)='changeRadioSex($event)'
+                  [(ngModel)]='patientHanhChinh.GIOI_TINH.ID'>
+                  <mat-radio-button class='col-6 m-r-0 p-b-4' [value]="'1'"> {{"emr.male"| translate}}</mat-radio-button>
+                  <mat-radio-button class='col-6 m-r-0 p-l-24 p-b-4' [value]="'2'"> {{"emr.female"| translate}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+          </div>
+          <div *ngIf='showField?.NGHE_NGHIEP !== false' class='col-6'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.job"| translate}}:</mat-label>
+              <input matInput
+                     [matAutocomplete]="position"
+                     [(ngModel)]="patientHanhChinh.NGHE_NGHIEP"
+                     (focus)="filterPosition('')"
+                     (ngModelChange)="filterPosition(patientHanhChinh.NGHE_NGHIEP)">
+              <mat-autocomplete [displayWith]="displayDM" #position="matAutocomplete">
+                <mat-option *ngFor="let position of filteredPositions" [value]="position">
+                  <span>{{ position?.MO_TA }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="patientHanhChinh.NGHE_NGHIEP" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.NGHE_NGHIEP = resetDM">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div class='col-6' *ngIf='showField?.DAN_TOC_BENH_AN_NAO_PHA_THAI === true'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.ethnic"| translate}}:</mat-label>
+              <input matInput
+                     [matAutocomplete]="dantoc"
+                     [(ngModel)]="patientHanhChinh.DAN_TOC"
+                     (click)="filterEthnic('')"
+                     (ngModelChange)="filterEthnic(patientHanhChinh.DAN_TOC)">
+              <mat-autocomplete [displayWith]="displayDM" #dantoc="matAutocomplete">
+                <mat-option *ngFor="let ethnic of filteredEthnics" [value]="ethnic">
+                  <span>{{ ethnic?.MO_TA }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="patientHanhChinh.DAN_TOC" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.DAN_TOC = resetDM">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+<!--          Thông tin mẹ -->
+          <div *ngIf='showField?.THONG_TIN_ME === true'  class='row col-12' style='padding: 0px; margin-left: 0px'>
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.mom_fullname" | translate}} :</mat-label>
+                <input matInput type='text' [(ngModel)]="patientHanhChinh.HO_TEN_ME">
+              </mat-form-field>
+            </div>
+            <div class='col-6'>
+              <mat-form-field *ngIf='showField?.NGAY_SINH_ME !== false' appearance='outline' class='full-width'>
+                <mat-label>{{"emr.birthday" | translate}}:</mat-label>
+                <input matInput [matDatepicker]="pickerBirthdayMom"
+                       (ngModelChange)="onDate($event,'NGAY_SINH_ME')"
+                       [(ngModel)]="patientHanhChinh.NGAY_SINH_ME">
+                <mat-datepicker-toggle matSuffix [for]="pickerBirthdayMom"></mat-datepicker-toggle>
+                <mat-datepicker #pickerBirthdayMom></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.job"| translate}}:</mat-label>
+                <input matInput
+                       [matAutocomplete]="position"
+                       [(ngModel)]="patientHanhChinh.NGHE_NGHIEP_ME"
+                       (focus)="filterPosition('')"
+                       (ngModelChange)="filterPosition(patientHanhChinh.NGHE_NGHIEP)">
+                <mat-autocomplete [displayWith]="displayDM" #position="matAutocomplete">
+                  <mat-option *ngFor="let position of filteredPositions" [value]="position">
+                    <span>{{ position?.MO_TA }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                <button type="button" mat-button *ngIf="patientHanhChinh.NGHE_NGHIEP_ME" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.NGHE_NGHIEP_ME = resetDM">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class='col-6' *ngIf='showField?.SO_LAN_ME_DE === true'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.so_lan_de"| translate}}:</mat-label>
+                <input matInput [(ngModel)]="patientHanhChinh.SO_LAN_ME_DE" type='number' min='0'>
+              </mat-form-field>
+            </div>
+            <div class='col-6' *ngIf='showField?.TRINH_DO_VAN_HOA_ME === true'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.trinh_do"| translate}}:</mat-label>
+                <input matInput
+                       [(ngModel)]="patientHanhChinh.TRINH_DO_VAN_HOA_ME">
+                <button type="button" mat-button *ngIf="patientHanhChinh.TRINH_DO_VAN_HOA_ME" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.TRINH_DO_VAN_HOA_ME = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+          </div>
+<!--          //////////////////////////-->
+
+<!--          Thông tin bố-->
+          <div *ngIf='showField?.THONG_TIN_BO === true'  class='row col-12' style='padding: 0px; margin-left: 0px' >
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.dad_fullname" | translate}} :</mat-label>
+                <input matInput type='text' [(ngModel)]="patientHanhChinh.HO_TEN_BO">
+              </mat-form-field>
+            </div>
+            <div class='col-6'>
+              <mat-form-field *ngIf='showField?.NGAY_SINH_BO !== false' appearance='outline' class='full-width'>
+                <mat-label>{{"emr.birthday" | translate}}:</mat-label>
+                <input matInput [matDatepicker]="pickerBirthdayDad"
+                       (ngModelChange)="onDate($event,'NGAY_SINH_BO')"
+                       [(ngModel)]="patientHanhChinh.NGAY_SINH_BO">
+                <mat-datepicker-toggle matSuffix [for]="pickerBirthdayDad"></mat-datepicker-toggle>
+                <mat-datepicker #pickerBirthdayDad></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.job"| translate}}:</mat-label>
+                <input matInput
+                       [matAutocomplete]="position"
+                       [(ngModel)]="patientHanhChinh.NGHE_NGHIEP_BO"
+                       (focus)="filterPosition('')"
+                       (ngModelChange)="filterPosition(patientHanhChinh.NGHE_NGHIEP)">
+                <mat-autocomplete [displayWith]="displayDM" #position="matAutocomplete">
+                  <mat-option *ngFor="let position of filteredPositions" [value]="position">
+                    <span>{{ position?.MO_TA }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                <button type="button" mat-button *ngIf="patientHanhChinh.NGHE_NGHIEP_BO" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.NGHE_NGHIEP_BO = resetDM">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class='col-6' *ngIf='showField?.TRINH_DO_VAN_HOA_BO === true'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.trinh_do"| translate}}:</mat-label>
+                <input matInput
+                       [(ngModel)]="patientHanhChinh.TRINH_DO_VAN_HOA_BO">
+                <button type="button" mat-button *ngIf="patientHanhChinh.TRINH_DO_VAN_HOA_BO" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.TRINH_DO_VAN_HOA_BO = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class='col-12 row p-r-0' *ngIf='showField?.TRINH_DO_VAN_HOA === true'>
+            <div class='col-6 p-r-4'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.ethnic"| translate}}:</mat-label>
+                <input matInput
+                       [matAutocomplete]="dantoc" [(ngModel)]="patientHanhChinh.DAN_TOC" (focus)="filterEthnic('')"
+                       (ngModelChange)="filterEthnic(patientHanhChinh.DAN_TOC)">
+                <mat-autocomplete [displayWith]="displayDM" #dantoc="matAutocomplete">
+                  <mat-option *ngFor="let ethnic of filteredEthnics" [value]="ethnic">
+                    <span>{{ ethnic?.MO_TA }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                <button type="button" mat-button *ngIf="patientHanhChinh.DAN_TOC" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.DAN_TOC = resetDM">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <div class='col-6 p-l-12 p-r-0'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.trinh_do"| translate}}:</mat-label>
+                <input matInput
+                       [(ngModel)]="patientHanhChinh.TRINH_DO_VAN_HOA">
+                <button type="button" mat-button *ngIf="patientHanhChinh.TRINH_DO_VAN_HOA" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.TRINH_DO_VAN_HOA = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <div class='col-6 p-r-4'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.country"| translate}}:</mat-label>
+                <input matInput
+                       [matAutocomplete]="quoctich"
+                       [(ngModel)]="patientHanhChinh.QUOC_TICH"
+                       (focus)="filterCountry('')"
+                       (ngModelChange)="filterCountry(patientHanhChinh.QUOC_TICH)">
+                <mat-autocomplete [displayWith]="displayDM" #quoctich="matAutocomplete">
+                  <mat-option *ngFor="let country of filteredCountrys" [value]="country">
+                    <span>{{ country?.MO_TA }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                <button type="button" mat-button *ngIf="patientHanhChinh.QUOC_TICH" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.QUOC_TICH = resetDM">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </div>
+
+
+          <!--         ////////////////////////////-->
+          <div class='row' style='padding: 0 8px'>
+            <div class='col-6' *ngIf='showField?.DAN_TOC !== false'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.ethnic"| translate}}:</mat-label>
+                <input matInput
+                       [matAutocomplete]="dantoc"
+                       [(ngModel)]="patientHanhChinh.DAN_TOC"
+                       (focus)="filterEthnic('')"
+                       (ngModelChange)="filterEthnic(patientHanhChinh.DAN_TOC)">
+                <mat-autocomplete [displayWith]="displayDM" #dantoc="matAutocomplete">
+                  <mat-option *ngFor="let ethnic of filteredEthnics" [value]="ethnic">
+                    <span>{{ ethnic?.MO_TA }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                <button type="button" mat-button *ngIf="patientHanhChinh.DAN_TOC" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.DAN_TOC = resetDM">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+          <div class='col-6' *ngIf='showField?.QUOC_TICH !== false'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.country"| translate}}:</mat-label>
+              <input matInput
+                     [matAutocomplete]="quoctich"
+                     [(ngModel)]="patientHanhChinh.QUOC_TICH"
+                     (click)="filterCountry('')"
+                     (ngModelChange)="filterCountry(patientHanhChinh.QUOC_TICH)">
+              <mat-autocomplete [displayWith]="displayDM" #quoctich="matAutocomplete">
+                <mat-option *ngFor="let country of filteredCountrys" [value]="country">
+                  <span>{{ country?.MO_TA }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="patientHanhChinh.QUOC_TICH" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.QUOC_TICH = resetDM">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+          <div class='col-6' *ngIf='showField?.DIA_CHI_CHI_TIET !== false'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"patient.address"| translate}}:</mat-label>
+              <input matInput [(ngModel)]='this.patientHanhChinh.DIA_CHI.CHI_TIET'>
+              <button type="button" mat-button *ngIf="patientHanhChinh.DIA_CHI.CHI_TIET" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.DIA_CHI.CHI_TIET = ''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+          <div class='col-6' *ngIf='showField?.XA_PHUONG !== false'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.town"| translate}}:</mat-label>
+              <input matInput
+                     [matAutocomplete]="xaphuong"
+                     [(ngModel)]="patientHanhChinh.XA_PHUONG"
+                     (focus)="filterTown('')"
+                     (ngModelChange)="filterTown(patientHanhChinh.XA_PHUONG)">
+              <mat-autocomplete [displayWith]="displayDM" #xaphuong="matAutocomplete">
+                <mat-option *ngFor="let town of filteredTowns" [value]="town">
+                  <span>{{ town?.MO_TA }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="patientHanhChinh.XA_PHUONG" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.XA_PHUONG = resetDM">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+          <div class='col-6' *ngIf='showField?.QUAN_HUYEN !== false'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.district"| translate}}:</mat-label>
+              <input matInput
+                     [matAutocomplete]="quanhuyen"
+                     [(ngModel)]="patientHanhChinh.QUAN_HUYEN"
+                     (click)="filterDistrict('')"
+                     (ngModelChange)="filterDistrict(patientHanhChinh.QUAN_HUYEN)">
+              <mat-autocomplete [displayWith]="displayDM" #quanhuyen="matAutocomplete">
+                <mat-option *ngFor="let district of filteredDistricts" [value]="district">
+                  <span>{{ district?.MO_TA }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="patientHanhChinh.QUAN_HUYEN" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.QUAN_HUYEN = resetDM">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+          <div class='col-6' *ngIf='showField?.TINH_THANH !== false'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.province"| translate}}:</mat-label>
+              <input matInput
+                     [matAutocomplete]="tinhthanh"
+                     [(ngModel)]="patientHanhChinh.TINH_THANH"
+                     (click)="filterProvince('')"
+                     (ngModelChange)="filterProvince(patientHanhChinh.TINH_THANH)">
+              <mat-autocomplete [displayWith]="displayDM" #tinhthanh="matAutocomplete">
+                <mat-option *ngFor="let province of filteredProvinces" [value]="province">
+                  <span>{{ province?.MO_TA }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="patientHanhChinh.XA_PHUONG" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.XA_PHUONG = resetDM">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+            <div class='col-6' *ngIf='showField?.DIEN_THOAI === true'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"patient.phone_number"| translate}}</mat-label>
+                <input matInput [(ngModel)]='patientHanhChinh.phone_number'>
+                <button type="button" mat-button *ngIf="patientHanhChinh.phone_number" matSuffix mat-icon-button aria-label="Clear"
+                        (click)="patientHanhChinh.phone_number = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <div class='col-6' *ngIf='showField?.FAX === true'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.fax"| translate}}</mat-label>
+                <input matInput [(ngModel)]='patientHanhChinh.fax'>
+                <button type="button" mat-button *ngIf="patientHanhChinh.fax" matSuffix mat-icon-button aria-label="Clear"
+                        (click)="patientHanhChinh.fax = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <div class='col-12' *ngIf='showField?.EMAIL === true'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.email"| translate}}</mat-label>
+                <input matInput [(ngModel)]='patientHanhChinh.email'>
+                <button type="button" mat-button *ngIf="patientHanhChinh.email" matSuffix mat-icon-button aria-label="Clear"
+                        (click)="patientHanhChinh.email = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+          <div *ngIf='showField?.NOI_CONG_TAC !== false' class='col-12 col-lg-6'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.work_address"| translate}}:</mat-label>
+              <input matInput [(ngModel)]='patientHanhChinh.NOI_CONG_TAC'>
+              <button type="button" mat-button *ngIf="patientHanhChinh.NOI_CONG_TAC" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.NOI_CONG_TAC = ''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf='showField?.DOI_TUONG !== false' class='col-12 col-lg-6 m-b-8 fomt'>
+            <div class='h-full p-r-12 m-b-8' fxLayoutAlign='start center'>
+              <div class='col-12 row boderMatRadioGr' >
+                <label class='w-full text-left ' style="margin-top: 10px;" >{{"emr.object"| translate}}:</label>
+                <div class='w-radio-container m-y-8 col-12' >
+                  <mat-radio-group class='row' [(ngModel)]="patientHanhChinh.DOI_TUONG.ID">
+                    <mat-radio-button class='col-3 m-r-0 p-b-4' *ngFor='let dt of listDT' [value]='dt.ID'>{{dt.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf='showField?.NGAY_HET_HAN_BHYT !== false'  class='col-6' >
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.bhyt_valid_to"| translate}}:</mat-label>
+              <input matInput [matDatepicker]="picker"
+                     (ngModelChange)="onDate($event,'GT_THE_DEN')"
+                     [(ngModel)]="patientHanhChinh.until_health_insurance">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf='showField?.MA_THE_BHYT !== false ' class='col-6'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.bhyt_number"| translate}}:</mat-label>
+              <input matInput [(ngModel)]="patientHanhChinh.MA_THE_BHYT">
+            </mat-form-field>
+          </div>
+
+          <div class='col-6' *ngIf='showField?.BENH_AN_NAO_PHA_THAI === true'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"benh_an_nao_pha_thai.so_dien_thoai_lien_lac"| translate}}:</mat-label>
+              <input matInput [(ngModel)]="patientHanhChinh.SO_DT_LIEN_LAC">
+            </mat-form-field>
+          </div>
+
+            <div class='col-6' *ngIf='showField?.BENH_AN_PHAU_THUAT_KHUC_XA === true'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"benh_an_nao_pha_thai.so_dien_thoai_lien_lac"| translate}}:</mat-label>
+                <input matInput [(ngModel)]="patientHanhChinh.SO_DT_LIEN_LAC">
+              </mat-form-field>
+            </div>
+
+            <div class='col-6' *ngIf='showField?.BENH_AN_PHAU_THUAT_KHUC_XA === true'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"benh_an_phau_thuat_khuc_xa.SO_DT_CQ"| translate}}:</mat-label>
+                <input matInput [(ngModel)]="patientHanhChinh.SO_DT_CQ">
+              </mat-form-field>
+            </div>
+          <div *ngIf='showField?.NHOM_MAU_ME === true' class='col-4'>
+            <mat-form-field appearance='outline' class="col-6 p-l-0">
+              <mat-label>{{"emr.nhom_mau_me"| translate}}:</mat-label>
+              <mat-select (ngModelChange)='changeRadioNhomMau($event)'
+                          [(ngModel)]='patientHanhChinh.NHOM_MAU_ME.NHOM_MAU.ID'>
+                <mat-option *ngFor='let mau of nhomMau' [value]='mau.ID'>{{mau.MO_TA}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance='outline' class="col-6 p-r-0">
+              <mat-label>Yếu tố Rh:</mat-label>
+              <mat-select [(ngModel)]='patientHanhChinh.NHOM_MAU_ME.YEU_TO_Rh.ID'>
+                <mat-option *ngFor='let Rh of yeuToRh' [value]='Rh.ID'>{{Rh.MO_TA}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div *ngIf='showField?.TIEN_THAI_ME === true' class='col-8 p-b-12'>
+            <div class='h-full col-12' style='border: 1px solid #CCCCCC;border-radius: 5px;margin: 0.25em 0; display: flex;  justify-content: left; align-items: center; '>
+              <app-tien-thai-para [tienthaiPara]='patientHanhChinh.TIEN_THAI_ME'></app-tien-thai-para>
+            </div>
+          </div>
+          <div class='col-6' *ngIf='showField?.DIA_CHI_NGUOI_LIEN_HE !== false'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.patient_fullname_address_family"| translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='patientHanhChinh.DIA_CHI_NGUOI_LIEN_HE'>
+              </textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-6' *ngIf='showField?.SO_DT_NGUOI_LIEN_HE !== false'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"emr.phone_number"| translate}}:</mat-label>
+              <input matInput [(ngModel)]="patientHanhChinh.SO_DT_NGUOI_LIEN_HE">
+            </mat-form-field>
+          </div>
+
+            <div class='col-12' *ngIf='showField?.CCCD_NGUOI_LIEN_HE === true'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.identity_id"| translate}}</mat-label>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                          [(ngModel)]='patientHanhChinh.CCCD_NGUOI_LIEN_HE'>
+              </textarea>
+              </mat-form-field>
+            </div>
+
+          <div class='col-6' *ngIf='showField?.BENH_AN_NAO_PHA_THAI === true'>
+            <app-emr-date label='benh_an_nao_pha_thai.den_kham_hoi'
+                          [(model)]= 'patientHanhChinh.vao_vien_hoi'
+                          [(dmModel)]='patientHanhChinh.VAO_VIEN_HOI'></app-emr-date>
+          </div>
+          <div class='col-6' *ngIf='showField?.BENH_AN_NAO_PHA_THAI === true'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"benh_an_nao_pha_thai.noi_gioi_thieu"| translate}}:</mat-label>
+              <input matInput [(ngModel)]="patientHanhChinh.NOI_GIOI_THIEU">
+            </mat-form-field>
+          </div>
+          <div class='col-6' *ngIf='showField?.BENH_AN_NAO_PHA_THAI === true' style='margin-top: 8px'>
+            <mat-radio-group style='float: left;width: 100%' [(ngModel)]='patientHanhChinh.LIST_NOI_GIOI_THIEU.ID'>
+              <mat-radio-button *ngFor='let listnoigioithieu of listNoiGioiThieu' [value]="listnoigioithieu.ID">{{listnoigioithieu.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-6' *ngIf='showField?.BENH_AN_NAO_PHA_THAI === true'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"benh_an_nao_pha_thai.chan_doan_noi_gioi_thieu"| translate}}:</mat-label>
+              <input matInput [(ngModel)]="patientHanhChinh.CHAN_DOAN_NOI_GIOI_THIEU">
+            </mat-form-field>
+          </div>
+          </div>
+<!--          //////////////////////////-->
+<!--          Thời điểm đến khám bệnh-->
+          <div *ngIf='showField?.THOI_DIEM_DEN_KHAM_BENH === true' class='col-12'>
+            <app-emr-date label='emr.thoi_diem_den_kham_benh'
+                          [(model)]= 'patientHanhChinh.thoi_diem_den_kham_benh'
+                          [(dmModel)]='patientHanhChinh.THOI_DIEM_DEN_KHAM_BENH'></app-emr-date>
+          </div>
+
+          <ng-container *ngIf='showField?.CHAN_DOAN_XU_LY_NOI_GIOI_THIEU === true'>
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.chan_doan_xu_ly_noi_gioi_thieu"| translate}}:</mat-label>
+                <input matInput [(ngModel)]="patientHanhChinh.CHAN_DOAN_XU_LY_NOI_GIOI_THIEU">
+              </mat-form-field>
+            </div>
+            <div class='col-6 m-t-8'>
+              <mat-radio-group style='float: left; display: flex; justify-content: space-evenly;width: 100%' [(ngModel)]='patientHanhChinh.LIST_NOI_GIOI_THIEU.ID'>
+                <mat-radio-button *ngFor='let listnoigioithieu of listNoiGioiThieu' [value]="listnoigioithieu.ID">{{listnoigioithieu.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </ng-container>
+        </div>
+       <div *ngIf='showField?.BENH_AN_IUI === true' class='row' style='padding: 0px; margin-left: 0px'>
+         <div class='col-3'>
+           <mat-form-field appearance='outline' class='full-width'>
+             <mat-label>{{"emr.ho_ten_vo" | translate}}</mat-label>
+             <input matInput type='text' [(ngModel)]='patientHanhChinh.BENH_AN_IUI.HO_TEN_VO'>
+           </mat-form-field>
+         </div>
+         <div class='col-3'>
+           <mat-form-field appearance='outline' class='full-width'>
+             <mat-label>{{"emr.birthday" | translate}}</mat-label>
+             <input matInput [matDatepicker]="pickerBirthday"
+                    [(ngModel)]="patientHanhChinh.BENH_AN_IUI.BIRTHDAY_VO">
+             <mat-datepicker-toggle matSuffix [for]="pickerBirthday"></mat-datepicker-toggle>
+             <mat-datepicker #pickerBirthday></mat-datepicker>
+           </mat-form-field>
+         </div>
+         <div class='col-3'>
+           <mat-form-field appearance='outline' class='full-width'>
+             <mat-label>{{"emr.job"| translate}}:</mat-label>
+             <input matInput
+                    [matAutocomplete]="position"
+                    [(ngModel)]="patientHanhChinh.BENH_AN_IUI.JOB_VO"
+                    (focus)="filterPosition('')"
+                    (ngModelChange)="filterPosition(patientHanhChinh.BENH_AN_IUI.JOB_VO)">
+             <mat-autocomplete [displayWith]="displayDM" #position="matAutocomplete">
+               <mat-option *ngFor="let position of filteredPositions" [value]="position">
+                 <span>{{ position?.MO_TA }}</span>
+               </mat-option>
+             </mat-autocomplete>
+             <button type="button" mat-button *ngIf="patientHanhChinh.BENH_AN_IUI.JOB_VO" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.BENH_AN_IUI.JOB_VO = resetDM">
+               <mat-icon>close</mat-icon>
+             </button>
+           </mat-form-field>
+         </div>
+         <div class='col-3'>
+           <mat-form-field appearance='outline' class='full-width'>
+             <mat-label>{{"emr.trinh_do" | translate}}</mat-label>
+             <input matInput type='text' [(ngModel)]='patientHanhChinh.BENH_AN_IUI.TRINH_DO_VO'>
+           </mat-form-field>
+         </div>
+         <div class='col-3'>
+           <mat-form-field class='full-width' appearance='outline'>
+             <mat-label>{{"emr.ho_ten_chong" | translate}}</mat-label>
+             <input matInput type='text' [(ngModel)]='patientHanhChinh.BENH_AN_IUI.HO_TEN_CHONG' >
+           </mat-form-field>
+         </div>
+         <div class='col-3'>
+           <mat-form-field class='full-width' appearance='outline'>
+             <mat-label>{{"emr.birthday" | translate}}</mat-label>
+             <input matInput [matDatepicker]="pickerBirthdayChong"
+                    [(ngModel)]="patientHanhChinh.BENH_AN_IUI.BIRTHDAY_CHONG">
+             <mat-datepicker-toggle matSuffix [for]="pickerBirthdayChong"></mat-datepicker-toggle>
+             <mat-datepicker #pickerBirthdayChong></mat-datepicker>
+           </mat-form-field>
+         </div>
+         <div class='col-3'>
+           <mat-form-field appearance='outline' class='full-width'>
+             <mat-label>{{"emr.job"| translate}}:</mat-label>
+             <input matInput
+                    [matAutocomplete]="position"
+                    [(ngModel)]="patientHanhChinh.BENH_AN_IUI.JOB_CHONG"
+                    (focus)="filterPosition('')"
+                    (ngModelChange)="filterPosition(patientHanhChinh.BENH_AN_IUI.JOB_CHONG)">
+             <mat-autocomplete [displayWith]="displayDM" #position="matAutocomplete">
+               <mat-option *ngFor="let position of filteredPositions" [value]="position">
+                 <span>{{ position?.MO_TA }}</span>
+               </mat-option>
+             </mat-autocomplete>
+             <button type="button" mat-button *ngIf="patientHanhChinh.BENH_AN_IUI.JOB_CHONG" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.BENH_AN_IUI.JOB_CHONG = resetDM">
+               <mat-icon>close</mat-icon>
+             </button>
+           </mat-form-field>
+         </div>
+         <div class='col-3'>
+           <mat-form-field class='full-width' appearance='outline'>
+             <mat-label>{{"emr.trinh_do" | translate}}</mat-label>
+             <input matInput type='text' [(ngModel)]='patientHanhChinh.BENH_AN_IUI.TRINH_DO_CHONG' >
+           </mat-form-field>
+         </div>
+         <div class='col-6'>
+           <mat-form-field appearance='outline' class='full-width'>
+             <mat-label>{{"patient.address"| translate}}:</mat-label>
+             <input matInput [(ngModel)]='this.patientHanhChinh.DIA_CHI.CHI_TIET'>
+             <button type="button" mat-button *ngIf="patientHanhChinh.DIA_CHI.CHI_TIET" matSuffix mat-icon-button aria-label="Clear" (click)="patientHanhChinh.DIA_CHI.CHI_TIET = ''">
+               <mat-icon>close</mat-icon>
+             </button>
+           </mat-form-field>
+         </div>
+         <div class='col-6'>
+           <mat-form-field class='full-width' appearance='outline'>
+             <mat-label>{{"emr.email" | translate}}</mat-label>
+             <input matInput type='text' [(ngModel)]='patientHanhChinh.BENH_AN_IUI.EMAIL' >
+           </mat-form-field>
+         </div>
+         <div class='col-6'>
+           <mat-form-field class='full-width' appearance='outline'>
+             <mat-label>{{"emr.phone_vo" | translate}}</mat-label>
+             <input matInput type='text' [(ngModel)]='patientHanhChinh.BENH_AN_IUI.PHONE_VO' type='number'>
+           </mat-form-field>
+         </div>
+         <div class='col-6'>
+           <mat-form-field class='full-width' appearance='outline'>
+             <mat-label>{{"emr.phone_chong" | translate}}</mat-label>
+             <input matInput type='text' [(ngModel)]='patientHanhChinh.BENH_AN_IUI.PHONE_CHONG' type='number'>
+           </mat-form-field>
+         </div>
+         <div class='col-6'>
+           <mat-form-field class='full-width' appearance='outline'>
+             <mat-label>{{"title.chan_doan" | translate}}</mat-label>
+             <input matInput type='text' [(ngModel)]='patientHanhChinh.BENH_AN_IUI.CHAN_DOAN'>
+           </mat-form-field>
+         </div>
+         <div class='col-6'>
+           <mat-form-field class='full-width' appearance='outline'>
+             <mat-label>{{"title.chi_dinh_dieu_tri" | translate}}</mat-label>
+             <input matInput type='text' [(ngModel)]='patientHanhChinh.BENH_AN_IUI.CHI_DINH_DIEU_TRI'>
+           </mat-form-field>
+         </div>
+       </div>
+        <div fxLayout='row' *ngIf='showField?.GIAY_CN_KHUYET_TAT === true'>
+          <div class='col-3' style='text-align: left;margin-top: 10px'>* {{"giay_cn_khuyet_tat" | translate}}:</div>
+          <div class='col-3' style='text-align: left;margin-top: 10px'>
+            <mat-radio-group style='float: left; display: flex; justify-content: space-evenly;width: 100%' [(ngModel)]='patientHanhChinh.LIST_GIAY_CN_KHUYET_TAT.ID' (click)="reset('GIAY_CN_KHUYET_TAT')">
+              <mat-radio-button *ngFor='let listgiaycnkhuyettat of listGiayCNKhuyetTat' [value]="listgiaycnkhuyettat.ID">{{listgiaycnkhuyettat.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-3' style='padding-right: 0 !important;'>
+            <mat-form-field appearance='outline' class='full-width' *ngIf='patientHanhChinh.LIST_GIAY_CN_KHUYET_TAT.ID === "2"'>
+              <mat-label>{{"benh_an_ngoai_tru_phcn.dang_khuyet_tat" | translate}}</mat-label>
+              <input matInput [(ngModel)]='patientHanhChinh.DANG_KHUYET_TAT'>
+            </mat-form-field>
+          </div>
+          <div class='col-3' style='padding-right: 0 !important;'>
+            <mat-form-field appearance='outline' class='full-width' *ngIf='patientHanhChinh.LIST_GIAY_CN_KHUYET_TAT.ID === "2"'>
+              <mat-label>{{"benh_an_ngoai_tru_phcn.muc_do_kt" | translate}}</mat-label>
+              <input matInput [(ngModel)]='patientHanhChinh.MUC_DO_KHUYET_TAT'>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

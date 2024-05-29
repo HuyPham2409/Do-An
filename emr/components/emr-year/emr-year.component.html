@@ -1,0 +1,7 @@
+<mat-form-field appearance='outline' class='w-full'>
+  <mat-label>{{label | translate}}</mat-label>
+  <input matInput [matDatepicker]="picker" [placeholder]="placeholder | translate" [(ngModel)]='moment' #model=ngModel>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker startView="multi-year" (yearSelected)='selectYear($event, $any(picker))'>
+  </mat-datepicker>
+</mat-form-field>

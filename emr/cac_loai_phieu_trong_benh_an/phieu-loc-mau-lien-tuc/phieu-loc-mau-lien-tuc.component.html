@@ -1,0 +1,140 @@
+<h2>Phiếu lọc máu liên tục</h2>
+<mat-card appearance="outlined">
+    <h3>Thông tin bệnh nhân</h3>
+    <mat-card-content>
+        <div class="row">
+            <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+                <mat-label>{{"so_ket_dieu_tri.ho_ten_nguoi_benh" | translate}}</mat-label>
+                <input matInput value="{{patientInfo.HO_TEN}}" readonly>
+            </mat-form-field>
+            <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+                <mat-label>{{ "so_ket_dieu_tri.tuoi" | translate}}</mat-label>
+                <input matInput value="{{patientInfo.results.hc?.DO_TUOI}}" type="number" readonly>
+                <!-- <input matInput value="{{patientInfo|json}}"> -->
+            </mat-form-field>
+            <span class="col-lg-4 col-md-4 col-sm-4">
+                <mat-form-field class='w-full' *ngIf='patientInfo.GIOI_TINH'>
+                    <mat-label>{{ "so_ket_dieu_tri.gioi_tinh" | translate}}</mat-label>
+                    <input matInput value="{{patientInfo.GIOI_TINH.MO_TA }}" readonly>
+                </mat-form-field>
+            </span>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="col-lg-12 col-md-12 col-sm-12" appearance='outline'>
+                <mat-label>{{ "so_ket_dieu_tri.chan_doan" | translate}}</mat-label>
+                <textarea matInput value="{{patientInfo.results.patientInfoHis.examining_diagnosis}}" type="text"
+                          class=""></textarea>
+            </mat-form-field>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined" class="m-b-24">
+    <h3 class="m-t-16">Thời gian lọc máu</h3>
+    <div class="row">
+        <div class='col-lg-4 col-md-4 col-sm-4'>
+            <app-emr-date mode='datetime' [label]='"Thời gian bắt đầu lọc máu"'
+                          [(model)]='locMauLienTuc.thoi_gian_bdau_loc'
+                          [(dmModel)]='locMauLienTuc.THOI_GIAN_BDAU_LOC'></app-emr-date>
+        </div>
+        <div class='col-lg-4 col-md-4 col-sm-4'>
+            <app-emr-date mode='datetime' [label]='"Thời gian kết thúc lọc máu"'
+                          [(model)]='locMauLienTuc.thoi_gian_ket_thuc_loc'
+                          [(dmModel)]='locMauLienTuc.THOI_GIAN_KTHUC_LOC'></app-emr-date>
+        </div>
+    </div>
+</mat-card>
+<mat-card appearance="outlined" class="m-b-24">
+    <h3>Thông tin lọc máu</h3>
+
+    <div class="row">
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>{{"phieu_loc_mau_lien_tuc.qua_loc"|translate}}</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.qua_loc' type="text">
+        </mat-form-field>
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>{{"phieu_theo_doi_bn_loc_mau.toc_do_mau" |translate}}</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.toc_do_mau' type="text" class="">
+            <span matSuffix>ml/phút</span>
+        </mat-form-field>
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>Dịch thay thế</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.dich_thay_the'>
+        </mat-form-field>
+
+    </div>
+    <div class="row">
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>tốc độ dịch thay thế</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.toc_do_thay_the' type="number" class="">
+            <span matSuffix>ml/phút</span>
+        </mat-form-field>
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>trước màng</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.truoc_mang' type="text" class="">
+            <span matSuffix>ml/phút</span>
+        </mat-form-field>
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>sau màng</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.sau_mang' type="text" class="">
+            <span matSuffix>ml/phút</span>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>tốc độ dịch thẩm tách</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.toc_do_dich_tham_tach' type="number"
+                   class="">
+            <span matSuffix>ml/phút</span>
+        </mat-form-field>
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>rút dịch</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.rut_dich' type="text" class="">
+        </mat-form-field>
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>các tai biến và xử trí</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.tai_bien_xu_tri' type="text" class="">
+        </mat-form-field>
+    </div>
+
+
+    <div class="row">
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>chống đông</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.chong_dong' type="text" class="">
+        </mat-form-field>
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>Bolus</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.bolus' type="text" class="">
+        </mat-form-field>
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>Duy trì</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.duy_tri' type="text" class="">
+        </mat-form-field>
+    </div>
+
+
+
+    <div class="row">
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>Kali clorid</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.kali_clorid' type="text" class="">
+        </mat-form-field>
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>corticoid</mat-label>
+            <input matInput [(ngModel)]='locMauLienTuc.corticoid' type="text" class="">
+        </mat-form-field>
+
+
+    </div>
+    <h3 class="m-t-16">Bác sĩ chỉ định</h3>
+    <div class="row">
+        <mat-form-field class="col-lg-4 col-md-4 col-sm-4" appearance='outline'>
+            <mat-label>Bác sĩ chỉ định</mat-label>
+            <input matInput value="{{patientInfo.results.patientInfoHis.user_full_name?patientInfo.results.patientInfoHis.user_full_name:patientInfo.results.patientInfoHis.examining_by_fullname}}" class="" readonly>
+           
+        </mat-form-field> 
+    </div>
+</mat-card>

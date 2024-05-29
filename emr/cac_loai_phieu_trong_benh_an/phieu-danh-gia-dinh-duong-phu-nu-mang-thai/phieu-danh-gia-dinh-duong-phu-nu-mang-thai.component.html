@@ -1,0 +1,108 @@
+<mat-card appearance="outlined">
+  <section>
+    <h3 style='font-weight: bolder'>Bộ câu hỏi</h3>
+    <form class='row align-items-center' #form=ngForm>
+      <div class='col-4'>
+        <div class='row align-items-center'>
+          <div class='col-sm-4 col-md-5'>
+            Cân nặng trước khi mang thai:
+          </div>
+          <mat-form-field  class='col-sm-4 col-md-4  p-l-4' appearance='outline'>
+            <input type='number' matInput [(ngModel)]='phieuDanhGia.canNangTruoc' name='canNangTruoc' pattern='[0-9]+' (input)='calculate()'>
+          </mat-form-field>
+          <div class='col-sm-4 col-md-2'>
+            kg
+          </div>
+        </div>
+      </div>
+      <div class='col-4'>
+        <div class='row align-items-center'>
+          <div class='col-sm-4 col-md-5'>
+            Chiều cao hiện tại:
+          </div>
+          <mat-form-field  class='col-sm-4 col-md-4  p-l-4' appearance='outline'>
+            <input name='chieu_cao' type='number' matInput [(ngModel)]='phieuDanhGia.chieuCaoHienTai' name='chieuCao' min='0' pattern='[0-9]+' (input)='calculate()' >
+          </mat-form-field>
+          <div class='col-sm-4 col-md-2'>
+            Cm
+          </div>
+        </div>
+      </div>
+      <div class='col-4'>
+        <div class='row align-items-center'>
+          <div class='col-sm-4 col-md-4'>
+            BMI trước khi mang thai:
+          </div>
+          <mat-form-field  class='col-sm-4 col-md-4  p-l-4' appearance='outline'>
+            <input name='bmi' type='number' matInput [(ngModel)]='phieuDanhGia.bmi'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='col-4'>
+        <div class='row align-items-center'>
+          <div class='col-sm-4 col-md-5'>
+            Cân nặng hiện tại
+          </div>
+          <mat-form-field  class='col-sm-4 col-md-4  p-l-4' appearance='outline'>
+            <input name='can_nang' type='number' matInput [(ngModel)]='phieuDanhGia.canNangHienTai' name='canNangHienTai' pattern='[0-9]+'>
+          </mat-form-field>
+          <div class='col-sm-4 col-md-2'>
+            Kg
+          </div>
+        </div>
+      </div>
+      <div class='col-8'>
+        <div class='row align-items-center'>
+          <div class='col-sm-4 col-md-3'>
+            Mức độ tăng cân theo khuyến nghị
+          </div>
+          <mat-radio-group name='can_nang_theo_khuyen_nghi' class='col-md-3' style="align-items: center;" [(ngModel)]='phieuDanhGia.tangCanTheoKhuyenNghi'>
+            <div class='row'>
+              <mat-radio-button class='col-6' [value]="1">Có</mat-radio-button>
+              <mat-radio-button class='col-5' [value]="2">Không</mat-radio-button>
+            </div>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class='col-4'>
+        <div class='row align-items-center'>
+          <div class='col-sm-4 col-md-5'>
+            Tuổi thai
+          </div>
+          <mat-form-field  class='col-sm-4 col-md-4  p-l-4' appearance='outline'>
+            <input type='number' matInput [(ngModel)]='phieuDanhGia.tuoiThai' name='tuan'>
+          </mat-form-field>
+          <div class='col-sm-4 col-md-2'>
+            Tuần
+          </div>
+        </div>
+      </div>
+      <div class='col-8'>
+        <div class='row align-items-center'>
+          <div class='col-sm-4 col-md-3'>
+            Theo
+          </div>
+          <mat-radio-group name='theo' class='col-md-3' style="align-items: center;" [(ngModel)]='phieuDanhGia.theo'>
+            <div class='row'>
+              <mat-radio-button class='col-6' [value]="1">Kinh cuối</mat-radio-button>
+              <mat-radio-button class='col-5' [value]="2">Siêu âm 3 tháng đầu thai kỳ</mat-radio-button>
+            </div>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class='col-8'>
+        <div class='row align-items-center'>
+          <div class='col-sm-2 m-r-32'>
+            Bệnh lý:
+          </div>
+          <mat-radio-group  name='benh_ly' class='col-md-3 m-l-10' style="align-items: center;" [(ngModel)]='phieuDanhGia.benhLy'>
+            <div class='row'>
+              <mat-radio-button class='col-5' [value]="1">Không</mat-radio-button>
+              <mat-radio-button class='col-5' [value]="2">Bệnh THA, ĐTĐ, các bệnh liên quan đến dinh dưỡng</mat-radio-button>
+            </div>
+          </mat-radio-group>
+        </div>
+      </div>
+    </form>
+  </section>
+</mat-card>

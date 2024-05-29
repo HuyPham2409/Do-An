@@ -1,0 +1,51 @@
+.template-dialog-title {
+  background: #286090;
+  color: white;
+  padding: 10px;
+}
+
+.temp-dialog-content {
+  padding: 0 24px;
+  .cls-header {
+    background-color: #f8f8f8;
+  }
+}
+
+.pl-50 {
+  padding-left: 50px;
+}
+
+.in-normal {
+  color: red;
+}
+
+.table-synthetic {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: auto;
+}
+
+.cls-header {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.cls-header th {
+  padding: 10px;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+}
+
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid black;
+}
+

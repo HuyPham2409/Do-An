@@ -1,0 +1,125 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class="common-table text-center" style="overflow: auto;">
+      <table>
+        <tr class="text-center">
+          <th style="width:2%"></th>
+          <th style="width:2%">{{'nav.print'|translate}}</th>
+          <th style="width:11%">{{ 'phieu_theo_doi_truyen_dich.date' | translate }}</th>
+          <th style="width:14%">{{ 'phieu_theo_doi_truyen_dich.ten_dich_truyen' | translate }}</th>
+          <th style="width:6%;">{{ 'phieu_truyen_dich.so_luong' | translate }}</th>
+          <th style="width:8%">{{ 'phieu_theo_doi_truyen_dich.so_lo' | translate }}</th>
+          <th style="width:6%">{{ 'phieu_theo_doi_truyen_dich.toc_do_giot' | translate }}</th>
+          <th style="width:13%">{{ 'phieu_theo_doi_truyen_dich.time_start' | translate }}</th>
+          <th style="width:13%">{{ 'phieu_theo_doi_truyen_dich.time_end' | translate }}</th>
+          <th style="width:14%">{{ 'thuc_hien_ky_thuat_phcn.BS_CHI_DINH' | translate }}</th>
+          <th style="width:10%">{{ 'phieu_theo_doi_truyen_dich.yt_dd_thuc_hien' | translate }}</th>
+          <th style="width:3%"><!-- actions --></th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>
+            <app-emr-date label='phieu_theo_doi_truyen_dich.date' mode='date'
+                          [(model)]='PHIEU_THEO_DOI_TRUYEN_DICH.ngay_thang'
+                          [(dmModel)]='PHIEU_THEO_DOI_TRUYEN_DICH.NGAY_THANG'></app-emr-date>
+          </td>
+          <td>
+            <app-select [(model)]='PHIEU_THEO_DOI_TRUYEN_DICH.PHARMA'
+                        category='pharma' [resetTo]='null'></app-select>
+          </td>
+          <td>
+            <mat-form-field  appearance='outline'>
+              <input  matInput [(ngModel)]='PHIEU_THEO_DOI_TRUYEN_DICH.SO_LUONG' type='number' min='0' autocomplete='off'>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance='outline'>
+              <input matInput [(ngModel)]='PHIEU_THEO_DOI_TRUYEN_DICH.LO_SO_SAN_XUAT' min='0'>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance='outline'>
+              <input matInput [(ngModel)]='PHIEU_THEO_DOI_TRUYEN_DICH.TOC_DO_GIOT' type='number' min='0' autocomplete='off'>
+            </mat-form-field>
+          </td>
+          <td>
+            <app-emr-date label='phieu_theo_doi_truyen_dich.time_start'
+                          [(model)]='PHIEU_THEO_DOI_TRUYEN_DICH.time_start'
+                          [(dmModel)]='PHIEU_THEO_DOI_TRUYEN_DICH.TIME_START'></app-emr-date>
+          </td>
+          <td>
+            <app-emr-date label='phieu_theo_doi_truyen_dich.time_end'
+                          [(model)]='PHIEU_THEO_DOI_TRUYEN_DICH.time_end'
+                          [(dmModel)]='PHIEU_THEO_DOI_TRUYEN_DICH.TIME_END'></app-emr-date>
+          </td>
+          <td>
+            <app-select label='thuc_hien_ky_thuat_phcn.BS_CHI_DINH' [(model)]='PHIEU_THEO_DOI_TRUYEN_DICH.BS_CHI_DINH'
+                        category='cbyt'></app-select>
+          </td>
+          <td>
+            <app-select label='phieu_theo_doi_truyen_dich.yt_dd_thuc_hien' [(model)]='PHIEU_THEO_DOI_TRUYEN_DICH.YT_DD_THUC_HIEN'
+                        category='cbyt'></app-select>
+          </td>
+          <td class="button-container">
+            <button style="margin-bottom:2px" type="button" (click)='createTruyenDich()' mat-button class=" btn mat-blue-hn">
+              <i class="fa fa-plus" style="margin-bottom: 16px;"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngFor='let theo_doi_truyen_dich of PHIEU_THEO_DOI_TRUYEN_DICH.theo_doi_truyen_dich; let index = index;let indexOfelement = index'>
+          <td>{{index+1}}</td>
+          <td class='text-center'><mat-checkbox class='m-r-0'
+                                                [(ngModel)]='indexesToPrint[index]'></mat-checkbox></td>
+          <td>
+            <app-emr-date label='phieu_theo_doi_truyen_dich.date' mode='date'
+                          [(model)]='theo_doi_truyen_dich.ngay_thang'
+                          [(dmModel)]='theo_doi_truyen_dich.NGAY_THANG'></app-emr-date>
+          </td>
+          <td>
+            <app-select [(model)]='theo_doi_truyen_dich.PHARMA'
+                        category='pharma' [resetTo]='null'></app-select>
+          </td>
+          <td>
+            <mat-form-field appearance='outline'>
+              <input matInput [(ngModel)]='theo_doi_truyen_dich.SO_LUONG' type='number' min='0' autocomplete='off'>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance='outline'>
+              <input matInput [(ngModel)]='theo_doi_truyen_dich.LO_SO_SAN_XUAT' min='0'>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance='outline'>
+              <input matInput [(ngModel)]='theo_doi_truyen_dich.TOC_DO_GIOT' type='number' min='0' autocomplete='off'>
+            </mat-form-field>
+          </td>
+          <td>
+            <app-emr-date label='phieu_theo_doi_truyen_dich.time_start'
+                          [(model)]='theo_doi_truyen_dich.time_start'
+                          [(dmModel)]='theo_doi_truyen_dich.TIME_START'></app-emr-date>
+          </td>
+          <td>
+            <app-emr-date label='phieu_theo_doi_truyen_dich.time_end'
+                          [(model)]='theo_doi_truyen_dich.time_end'
+                          [(dmModel)]='theo_doi_truyen_dich.TIME_END'></app-emr-date>
+          </td>
+          <td>
+            <app-select label='thuc_hien_ky_thuat_phcn.BS_CHI_DINH' [(model)]='theo_doi_truyen_dich.BS_CHI_DINH'
+                        category='cbyt'></app-select>
+          </td>
+          <td>
+            <app-select label='phieu_theo_doi_truyen_dich.yt_dd_thuc_hien' [(model)]='theo_doi_truyen_dich.YT_DD_THUC_HIEN'
+                        category='cbyt'></app-select>
+          </td>
+          <td>
+            <button type="button" (click)='removeTruyenDich(indexOfelement)' mat-button class="btn mat-red-hn">
+              <i class="fa fa-times" style="margin-bottom: 16px;"></i>
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

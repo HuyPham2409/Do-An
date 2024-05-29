@@ -1,0 +1,143 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <label fxLayout='row' class='col-12'>
+        <strong>A. {{"giay_tu_choi_dieu_tri.phan_hanh_chinh" | translate}}</strong>
+      </label>
+      <div fxLayout='row' style='margin-top: 5px'>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"laboratory.reception_queue_id_in_patient" | translate}}</mat-label>
+            <input matInput [(ngModel)]='patientInfo.reception_queue_id' readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <app-emr-date label='emr.ngay_gio_1' mode='datetime'
+                        [(model)]='tuChoiDieuTri.ngay_gio'
+                        [(unixModel)]='tuChoiDieuTri.NGAY_GIO' readonly></app-emr-date>
+        </div>
+      </div>
+      <label fxLayout='row' class='col-12' style='margin: 5px 0'>
+        <strong>B.{{"giay_tu_choi_dieu_tri.service_name" | translate}}</strong>
+      </label>
+      <label fxLayout='row' class='col-12' style='margin: 5px 0'>
+        <strong>I. {{"giay_tu_choi_dieu_tri.phan_hanh_chinh_bn" | translate}}</strong>
+      </label>
+      <div fxLayout='row col-12'>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.patient_fullname" | translate}}</mat-label>
+            <input matInput [(ngModel)]='patientInfo.HO_TEN' readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"emr.age" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='patientInfo.DO_TUOI' readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+         <mat-form-field appearance='outline' class='full-width'>
+           <mat-label>{{"giay_to_lien_quan.sex" | translate}}</mat-label>
+           <input matInput [(ngModel)]='patientInfo.GIOI_TINH.MO_TA' readonly>
+<!--           {{patientInfo.sex === 0 ? "Nam" : "Nữ"}}-->
+         </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.patient_id" | translate}}</mat-label>
+            <input matInput [(ngModel)]="patientInfo.patient_id" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.address" | translate}}</mat-label>
+            <input matInput [(ngModel)]="patientInfo.address1" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+         <mat-form-field appearance='outline' class='full-width'>
+           <mat-label>{{"bien_ban_kiem_diem_tu_vong.vao_vien_luc" | translate}}</mat-label>
+           <input matInput value="{{ patientInfo.vao_vien_hoi  | amDateFormat: 'HH:mm DD/MM/YYYY'}}" readonly>
+         </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"bien_ban_kiem_diem_tu_vong.tai_khoa" | translate}}</mat-label>
+            <input matInput [(ngModel)]='patientInfo.parent_name' readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"emr.bhyt_number" | translate}}</mat-label>
+            <input matInput [(ngModel)]="patientInfo.MA_THE_BHYT" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"emr.bhyt_valid_to" | translate}}</mat-label>
+            <input matInput [(ngModel)]='patientInfo.GT_THE_DEN' readonly>
+          </mat-form-field>
+        </div>
+        <label fxLayout='row' class='col-12 m-t-4'>
+          <strong>II. {{"giay_tu_choi_dieu_tri.phan_thong_tin_can_nhap" | translate}}</strong>
+        </label>
+        <div class='col-1' style='text-align: left;margin-top: 15px'>{{"ivf.patient_type" | translate}}:</div>
+        <div class='col-5' style='margin-top: 10px'>
+          <mat-radio-group [(ngModel)]='tuChoiDieuTri.DOI_TUONG.ID'>
+            <mat-radio-button *ngFor='let listdt of listDoiTuong' style='float: left; margin: 5px' [value]="listdt.ID">{{listdt.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"giay_tu_choi_dieu_tri.mqh_voi_nguoi_benh" | translate}}</mat-label>
+            <input matInput [(ngModel)]="tuChoiDieuTri.MQH_VOI_NGUOI_BENH">
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"giay_tu_choi_dieu_tri.ho_ten" | translate}}</mat-label>
+            <input matInput [(ngModel)]="tuChoiDieuTri.HO_TEN">
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.address" | translate}}</mat-label>
+            <input matInput [(ngModel)]="tuChoiDieuTri.DIA_CHI">
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"emr.identity_id" | translate}}</mat-label>
+            <input matInput [(ngModel)]="tuChoiDieuTri.SO_CMTND">
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <app-emr-date label='giay_chung_nhan_thuong_tich.ngay_cap' mode='date'
+                        [(model)]='tuChoiDieuTri.ngay_cap'
+                        [(dmModel)]='tuChoiDieuTri.NGAY_CAP'></app-emr-date>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"giay_tu_choi_dieu_tri.khi_can_bao_tin" | translate}}</mat-label>
+            <input matInput [(ngModel)]="tuChoiDieuTri.SDT_KHI_CAN_BAO_TIN">
+          </mat-form-field>
+        </div>
+        <div class='col-6 form-field-full'>
+          <app-multi-select
+            label='giay_to_lien_quan.chan_doan'
+            [items]='tuChoiDieuTri.CHAN_DOAN'
+            category='icd'
+            [displayWith]='displayDMICD'
+          ></app-multi-select>
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"giay_tu_choi_dieu_tri.nguyen_vong_cua_gia_dinh" | translate}}</mat-label>
+            <input matInput [(ngModel)]="tuChoiDieuTri.NGUYEN_VONG_DIEU_TRI_CUA_GIA_DINH">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

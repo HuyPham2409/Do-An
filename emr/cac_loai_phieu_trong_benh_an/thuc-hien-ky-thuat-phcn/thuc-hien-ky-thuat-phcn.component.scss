@@ -1,0 +1,31 @@
+table {
+  table-layout: fixed;
+}
+
+.mat-mdc-header-cell, .mat-mdc-cell {
+
+  padding: 0 12px;
+}
+.mat-mdc-header-cell{
+    text-align: left;
+    font-weight: 600;
+    vertical-align: top;
+    
+}
+.mat-mdc-header-cell:first-child{
+  padding-left: 24px !important;
+}
+button{
+  height: 24px !important;
+  position: relative;
+  min-width: unset !important;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 25px;
+  top: 0.16em;
+  text-align: center;
+  .fa{
+    position: relative;
+    bottom:0.165em
+}
+}

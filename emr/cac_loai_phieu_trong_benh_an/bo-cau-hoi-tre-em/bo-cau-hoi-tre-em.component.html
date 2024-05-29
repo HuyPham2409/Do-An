@@ -1,0 +1,107 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <label><strong>{{"bo_cau_hoi_tre_em.title" | translate}}:</strong></label>
+      <div class='row col-12'>
+        <div class='col-4' fxLayoutAlign='start center' style='padding-right: 0 !important;padding-left: 0px !important;'>
+          <div class='row w-full'>
+            <div class='col-12'>
+              <div class='row'>
+                <div class='col-4' style='margin-top: 10px'>1. {{ 'bo_cau_hoi_tre_em.can_nang_hien_tai' | translate }}:</div>
+                <mat-form-field class='col-4' style='padding-right: 0 !important'>
+                  <input matInput [(ngModel)]="boCauHoiTreEm.CAN_NANG_HIEN_TAI" type='number' min='0' max='999' autocomplete='off'
+                         (ngModelChangeDebounced)='calBMI($event, boCauHoiTreEm.CHIEU_CAO_HIEN_TAI)'>
+                  <div matSuffix class='m-t-4'>{{'kg'|translate}}</div>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class='col-12'>
+              <div class='row'>
+                <div class='col-4' style='margin-top: 10px'>2. {{ 'bo_cau_hoi_tre_em.chieu_cao_hien_tai' | translate }}:</div>
+                <mat-form-field class='col-4' style='padding-right: 0 !important'>
+                  <input matInput [(ngModel)]="boCauHoiTreEm.CHIEU_CAO_HIEN_TAI" type='number' min='0' max='999' autocomplete='off'
+                         (ngModelChangeDebounced)='calBMI( boCauHoiTreEm.CAN_NANG_HIEN_TAI, $event)'>
+                  <div matSuffix class='m-t-4'>{{'cm'|translate}}</div>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class='col-12'>
+              <div class='row'>
+                <div class='col-4' style='margin-top: 10px'>{{ 'bo_cau_hoi_tre_em.bmi_hien_tai' | translate }}:</div>
+                <mat-form-field class='col-4' style='padding-right: 0 !important'>
+                  <input matInput [value]='boCauHoiTreEm.BMI_HIEN_TAI' readonly>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class='col-12' style='margin-top: 5px'>
+              <label>3. {{ 'bo_cau_hoi_tre_em.can_nang_theo_chieu_cao_chieu_dai' | translate }}:</label>
+              <mat-radio-group [(ngModel)]='boCauHoiTreEm.CAN_NANG_THEO_CHIEU_CAO.ID' class='radio-group'>
+                <mat-radio-button *ngFor='let listcn of listcn' class='radio-box' style='width: 100%; margin: 5px' [value]="listcn.ID">{{listcn.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class='col-5' style='padding-right: 0 !important'>
+          <div class='row w-full'>
+            <div class='col-12'>
+              <div class='row'>
+                <div class='col-4' style='margin-top: 10px'>4. {{ 'bo_cau_hoi_tre_em.can_nang_1_thang_truoc' | translate }}:</div>
+                <mat-form-field class='col-4' style='padding-right: 0 !important'>
+                  <input matInput [(ngModel)]="boCauHoiTreEm.CAN_NANG_1_THANG_TRUOC" type='number' min='0' max='999' autocomplete='off'>
+                  <div matSuffix class='m-t-4'>{{'kg'|translate}}</div>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class='col-12'>
+              <div class='row'>
+                <div class='col-4' style='margin-top: 10px'>5. {{ 'bo_cau_hoi_tre_em.sut_can_trong_1_thang_qua' | translate }}:</div>
+                <div class='col-8'>
+                  <mat-radio-group [(ngModel)]='boCauHoiTreEm.SUT_CAN_TRONG_THANG.ID' class='radio-group'>
+                    <mat-radio-button *ngFor='let listsutcan of listsutcan' class='radio-box' style='width: 30%; margin: 12px 5px 0 5px' [value]="listsutcan.ID">{{listsutcan.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+            </div>
+            <div class='col-12' style='margin-top: 10px'>
+              <div class='row'>
+                <div class='col-3' style='margin-top: 10px'>*{{ 'bo_cau_hoi_tre_em.tuoi_nho_hon_2' | translate }}:
+                  <div style='margin-top: 43px'>*{{ 'bo_cau_hoi_tre_em.tuoi_lon_hon_2' | translate }}:</div>
+                </div>
+                <div class='col-9'>
+                  <mat-radio-group [(ngModel)]='boCauHoiTreEm.NHO_HON_2_TUOI.ID' class='radio-group'>
+                    <mat-radio-button *ngFor='let listbehon2tuoi of listbehon2tuoi' class='radio-box' style='width: 100%; margin: 11px 5px 0 5px' required [value]="listbehon2tuoi.ID">{{listbehon2tuoi.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+
+                  <tr ng-repeat='listbehon2tuoi in listbehon2tuoi | limitTo:6 | limitTo:-3'>
+                  </tr>
+                </div>
+              </div>
+            </div>
+<!--            <div class='col-12' style='margin-top: 10px'>-->
+<!--              <div class='row'>-->
+<!--                <div class='col-2' style='margin-top: 10px'>*{{ 'bo_cau_hoi_tre_em.tuoi_lon_hon_2' | translate }}:</div>-->
+<!--                <div class='col-10'>-->
+<!--                  <mat-radio-group [(ngModel)]='boCauHoiTreEm.LON_HON_2_TUOI.ID' class='radio-group'>-->
+<!--                    <mat-radio-button *ngFor='let listbehon2tuoi of listbehon2tuoi' class='radio-box' style='width: 100%; margin: 11px 5px 0 5px' required [value]="listbehon2tuoi.ID">{{listbehon2tuoi.MO_TA}}</mat-radio-button>-->
+<!--                  </mat-radio-group>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+          </div>
+        </div>
+        <div class='col-3' style='padding-right: 0 !important'>
+          <div class='row w-full'>
+            <div class='col-12'>
+              <div class='row'>
+                <div class='col-12' style='margin-top: 10px'>6. {{ 'bo_cau_hoi_tre_em.luong_an_trong_1_tuan' | translate }}:</div>
+                <mat-radio-group [(ngModel)]='boCauHoiTreEm.LUONG_AN_TRONG_1_TUAN.ID' class='radio-group'>
+                  <mat-radio-button *ngFor='let listluongantrong1tuan of listluongantrong1tuan' class='radio-box' style='width: 100%; margin: 5px 5px 5px 15px' [value]="listluongantrong1tuan.ID">{{listluongantrong1tuan.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

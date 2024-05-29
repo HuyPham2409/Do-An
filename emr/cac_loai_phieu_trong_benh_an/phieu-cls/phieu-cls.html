@@ -1,0 +1,137 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div>
+        <h2 class="form-field-full text-left">
+          {{loaiGiayToLienQuan.MO_TA}}
+        </h2>
+        <div class="form-field-full">
+          <div style="text-align: center">
+            <mat-form-field appearance="outline">
+              <mat-label>{{"phieu_cls.danh_sach_phieu_cls" | translate}}</mat-label>
+              <input matInput
+                     [matAutocomplete]="select3"
+                     [(ngModel)]="phieuCLS">
+              <mat-autocomplete [displayWith]="displayphieuCLS" #select3="matAutocomplete" (optionSelected)='fillDataResults(phieuCLS)'>
+                <mat-option *ngFor="let result of listHisResults" [value]="result">
+                  <span>{{ result?.created_at * 1000 | date : "HH:mm dd/MM/yyyy" }} - {{ result?.service_name}}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="phieuCLS && phieuCLS._id"
+                      matSuffix mat-icon-button aria-label="Clear"
+                      (click)="phieuCLS = {}">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class='m-r-8'>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>{{"phieu_cls.ngay_yeu_cau" | translate}}</mat-label>
+              <input matInput [(ngModel)]='dataCLSEMR.Ngayyeucau_moment'
+                     (ngModelChange)='onDate($event, "DATE_YEU_CAU", undefined)'
+                     [ngxMatDatetimePicker]='picker1'>
+              <mat-datepicker-toggle matSuffix [for]="$any(picker1)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>{{"phieu_cls.bsi_yeu_cau" | translate}}</mat-label>
+              <input matInput [(ngModel)]='dataCLSEMR.BSyeucau'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8'>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field *ngIf='isCDHA'>
+              <mat-label>{{"hoi_benh_noi_khoa.tong_ket_benh_an.loai" | translate}}</mat-label>
+              <mat-select [(ngModel)]='dataCLSEMR.Loai.MA'>
+                <mat-option>-- None --</mat-option>
+                <mat-option *ngFor='let dmLoaiCLS of listDMLoaiCLS' [value]='dmLoaiCLS.MA'>{{dmLoaiCLS.MO_TA}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf='isCDHA === false'>
+              <mat-label>{{"hoi_benh_noi_khoa.tong_ket_benh_an.loai" | translate}}</mat-label>
+              <mat-select [(ngModel)]='dataCLSEMR.Loai.MA'>
+                <mat-option>-- None --</mat-option>
+                <mat-option *ngFor='let dmLoaiCLS of listDMLoaiCLS' [value]='dmLoaiCLS.MA'>{{dmLoaiCLS.MO_TA}}</mat-option>
+
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>{{"phieu_cls.yeu_cau" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='dataCLSEMR.Yeucau.MO_TA'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8'>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>{{"phieu_cls.nguoi_thuc_hien" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='dataCLSEMR.Nguoithuchien'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>{{"phieu_cls.ngay_gio_thuc_hien" | translate}}</mat-label>
+              <input matInput [(ngModel)]='dataCLSEMR.Ngaythuchien_moment'
+                     (ngModelChange)='onDate($event, "DATE_THUC_HIEN", undefined)'
+                     [ngxMatDatetimePicker]='picker2'>
+              <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker2></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8'>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <mat-label fxLayout='row' class='text-left'>{{"laboratory.result" | translate}}</mat-label>
+          <ckeditor [editor]="editor" [(ngModel)]='dataCLSEMR.Ketqua'></ckeditor>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <mat-label fxLayout='row' class='text-left'>{{"laboratory.semen_chart_form.diagnosis" | translate}}</mat-label>
+          <ckeditor [editor]="editor" [(ngModel)]='dataCLSEMR.Ketluan'></ckeditor>
+        </div>
+      </div>
+      <div class='m-r-8 m-t-8'>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <mat-label fxLayout='row' class='text-left'>{{"phieu_cls.loi_dan_cua_bsi_chuyen_khoa" | translate}}</mat-label>
+          <ckeditor [editor]="editor" [(ngModel)]='dataCLSEMR.Loidan'></ckeditor>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>{{"phieu_cls.ten_bsi_chuyen_khoa" | translate}}</mat-label>
+              <input matInput [(ngModel)]='dataCLSEMR.BSdocketqua'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

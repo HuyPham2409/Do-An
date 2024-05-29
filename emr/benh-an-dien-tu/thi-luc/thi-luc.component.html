@@ -1,0 +1,69 @@
+<div class='matero-row thi-luc' fxLayout='row'>
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+       <div fxLayout='column'>
+         <div class='row'>
+           <div class='row col-7'>
+             <label class='col-4 left-label p-x-0'>- {{'kham_mat.thi_luc_vv'|translate}}:</label>
+             <div class='col-8'>
+               <div class=' row col-12'>
+                 <label class='col-6 left-label'>- {{'kham_mat.khong_kinh'|translate}}:</label>
+                 <mat-form-field appearance='outline' class='col-3 p-l-0'>
+                   <mat-label>{{"kham_mat.mp"| translate}}:</mat-label>
+                   <input matInput [(ngModel)]='thiLuc.MAT_PHAI.KHONG_KINH'>
+                 </mat-form-field>
+                 <mat-form-field appearance='outline' class='col-3 p-l-0'>
+                   <mat-label>{{"kham_mat.mt"| translate}}:</mat-label>
+                   <input matInput [(ngModel)]='thiLuc.MAT_TRAI.KHONG_KINH'>
+                 </mat-form-field>
+               </div>
+               <div class='row col-12'>
+                 <label class='col-6 left-label'>- {{'kham_mat.co_kinh'|translate}}:</label>
+                 <mat-form-field appearance='outline' class='col-3 p-l-0'>
+                   <mat-label>{{"kham_mat.mp"| translate}}:</mat-label>
+                   <input matInput [(ngModel)]='thiLuc.MAT_PHAI.CO_KINH'>
+                 </mat-form-field>
+                 <mat-form-field appearance='outline' class='col-3 p-l-0'>
+                   <mat-label>{{"kham_mat.mt"| translate}}:</mat-label>
+                   <input matInput [(ngModel)]='thiLuc.MAT_TRAI.CO_KINH'>
+                 </mat-form-field>
+               </div>
+             </div>
+           </div>
+
+           <div class='col-5'>
+             <div class='row col-12'>
+               <label class='col-6 left-label'>- {{'kham_mat.nhan_ap_vao_vien'|translate}}:</label>
+               <div class='col-6 row'>
+                 <mat-form-field appearance='outline' class='col-6 p-l-0'>
+                   <mat-label>{{"kham_mat.mp"| translate}}:</mat-label>
+                   <input matInput [(ngModel)]='thiLuc.MAT_PHAI.NHAN_AP_VV'>
+                 </mat-form-field>
+                 <mat-form-field appearance='outline' class='col-6 p-l-0'>
+                   <mat-label>{{"kham_mat.mt"| translate}}:</mat-label>
+                   <input matInput [(ngModel)]='thiLuc.MAT_TRAI.NHAN_AP_VV'>
+                 </mat-form-field>
+               </div>
+             </div>
+             <div *ngIf='showField?.THI_TRUONG !== false' class='row col-12'>
+               <label class='col-6 left-label'>- {{'kham_mat.thi_truong'|translate}}:</label>
+               <div class='col-6 row'>
+                 <mat-form-field appearance='outline' class='col-6 p-l-0'>
+                   <mat-label>{{"kham_mat.mp"| translate}}:</mat-label>
+                   <input matInput [(ngModel)]='thiLuc.MAT_PHAI.THI_TRUONG'>
+                 </mat-form-field>
+                 <mat-form-field appearance='outline' class='col-6 p-l-0'>
+                   <mat-label>{{"kham_mat.mt"| translate}}:</mat-label>
+                   <input matInput [(ngModel)]='thiLuc.MAT_TRAI.THI_TRUONG'>
+                 </mat-form-field>
+               </div>
+             </div>
+           </div>
+
+         </div>
+       </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

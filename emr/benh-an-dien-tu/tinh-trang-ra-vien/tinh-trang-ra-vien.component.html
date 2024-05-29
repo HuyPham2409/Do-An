@@ -1,0 +1,119 @@
+<div class='matero-row tinh-trang-ra-vien' fxLayout='row wrap' *ngIf='showField?.TINH_TRANG_RA_VIEN !== false'>
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div class='row'>
+          <div class='col-12'>
+            <h2 fxLayout='row' style="font-weight: 500;">IV. TÌNH TRẠNG RA VIỆN</h2>
+          </div>
+          <div class='col-6'>
+            <div class='row'>
+              <div class='col-12 text-left'>Kết quả điều trị</div>
+              <div class='col-12'>
+                <div class='col-12 w-radio-container m-y-8' style='border: 1px solid #CCCCCC;border-radius: 10px;float: left;margin-top: 10px'>
+                  <mat-radio-group class='row' [(ngModel)]='tinh_trang_rv.KET_QUA_DIEU_TRI.ID' style='display: flex;flex-direction: column;align-items: flex-start;justify-content: flex-start;flex-wrap: wrap;max-height: 120px' (click)='reset("TINH_HINH_TU_VONG")'>
+                    <mat-radio-button class='col-4 m-r-0 p-b-4' *ngFor='let kqdt of listKQDT' [value]="kqdt.ID" style='width: 50%; float: left; margin: 5px 0'>{{kqdt.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+              <ng-container *ngIf='showField?.KET_QUA_GIAI_PHAU_BENH !== false'>
+                <div class='col-12 text-left'>Giải phẫu bệnh (khi có sinh thiết)</div>
+                <div class='col-12'>
+                  <div class='col-12 w-radio-container m-y-8'>
+                    <mat-radio-group class='row p-t-8' [(ngModel)]='tinh_trang_rv.KET_QUA_GIAI_PHAU_BENH.ID'>
+                      <mat-radio-button class='col col-lg-4 m-r-0 p-b-4' *ngFor='let gpb of listGiaiPhauBenh' [value]="gpb.ID"> {{gpb.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class='col-6' *ngIf="tinh_trang_rv.KET_QUA_DIEU_TRI.ID === '5' || showField?.KET_QUA_DIEU_TRI === true">
+            <div class='row'>
+              <div class='col-12 form-field-full '>
+                <app-emr-date label='tinh_trang_ra_vien.tinh_hinh_tu_vong'
+                              [(model)]='tinh_trang_rv.ngay_gio_tu_vong'
+                              [(dmModel)]='tinh_trang_rv.NGAY_GIO_TU_VONG'></app-emr-date>
+              </div>
+              <div class='col-12'>
+                <div class='col-12 w-radio-container m-y-8' style='border: 1px solid #CCCCCC;border-radius: 10px;float: left;margin-top: 10px'>
+                  <mat-radio-group class='row' [(ngModel)]='tinh_trang_rv.LOAI_NGUYEN_NHAN_TU_VONG.ID'>
+                    <mat-radio-button class='m-r-0 p-b-4 col-12' *ngFor='let ldtv of listLyDoTuVong, index as i' style='width: 30%; float: left; margin: 5px 0'
+                                      [class.col-lg-4]='i === 0 || i === 2' [class.col-xl-3]='i === 0 || i === 2'
+                                      [class.col-lg-6]='i === 1' [class.col-xl-4]='i === 1'
+                                      [value]="ldtv.ID"> {{ldtv.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+
+                <div *ngIf='showField?.KHOANG_THOI_GIAN_TU_VONG !== false' class='col-12 w-radio-container m-r-8' style='border: 1px solid #CCCCCC;border-radius: 10px;float: left;margin: 10px 0'>
+                  <mat-radio-group class='row' [(ngModel)]='tinh_trang_rv.KHOANG_THOI_GIAN_TU_VONG.ID'>
+                    <mat-radio-button class='m-r-0 p-b-4 col-12 col-lg' *ngFor='let gvv of listThoiGianTuVong1' [value]="gvv.ID">{{gvv.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+
+                <div *ngIf='showField?.KHOANG_THOI_GIAN_TU_VONG_2 === true' class='col-12 w-radio-container m-r-8' style='border: 1px solid #CCCCCC;border-radius: 10px;float: left;margin: 10px 0'>
+                  <mat-radio-group class='row' [(ngModel)]='tinh_trang_rv.KHOANG_THOI_GIAN_TU_VONG.ID'>
+                    <mat-radio-button class='m-r-0 p-b-4 col-12 col-lg' *ngFor='let gvv of listThoiGianTuVong2' style='width: 50%; margin: 5px 0;float: left' [value]="gvv.ID">{{gvv.MO_TA}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+
+              </div>
+<!--              <div class='col-12 text-left'>28. Nguyên nhân chính tử vong:</div>-->
+              <div class='col-12 form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>Nguyên nhân chính tử vong:</mat-label>
+                  <input matInput
+                         [matAutocomplete]="cdnntv"
+                         [(ngModel)]="chan_doan_tu_vong.CHAN_DOAN_NGUYEN_NHAN_TU_VONG"
+                         (focus)="filterICD('')"
+                         (ngModelChange)="filterICD(chan_doan_tu_vong.CHAN_DOAN_NGUYEN_NHAN_TU_VONG)" placeholder='Nguyên nhân chính tử vong'>
+                  <mat-autocomplete [displayWith]="displayDMICD" #cdnntv="matAutocomplete">
+                    <mat-option *ngFor="let icd of filteredICDs" [value]="icd">
+                      <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                  <button type="button" mat-button *ngIf="chan_doan_tu_vong.CHAN_DOAN_NGUYEN_NHAN_TU_VONG" matSuffix mat-icon-button aria-label="Clear" (click)="chan_doan_tu_vong.CHAN_DOAN_NGUYEN_NHAN_TU_VONG = resetDM">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class='col-12 col-lg-6 p-b-16' fxLayoutAlign='start center'>
+                <mat-checkbox [(ngModel)]='tinh_trang_rv.KHAM_NGHIEM' >Khám nghiệm tử thi</mat-checkbox>
+              </div>
+              <div class='col-12 col-lg-6 form-field-full' *ngIf='showField?.KHAM_NGHIEM_TU_THI_TEXT === true'>
+                <mat-form-field appearance='outline'>
+                  <mat-label></mat-label>
+                  <input matInput
+                         [(ngModel)]="tinh_trang_rv.KHAM_NGHIEM_TU_THI">
+                  <button type="button" mat-button *ngIf="tinh_trang_rv.KHAM_NGHIEM_TU_THI" matSuffix mat-icon-button aria-label="Clear"
+                          (click)="tinh_trang_rv.KHAM_NGHIEM_TU_THI = ''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class='col form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>Chẩn đoán giải phẫu tử thi:</mat-label>
+                  <input matInput
+                         [matAutocomplete]="cdgpb"
+                         [(ngModel)]="chan_doan_tu_vong.CHAN_DOAN_GIAI_PHAU_TU_THI"
+                         (focus)="filterICD('')"
+                         (ngModelChange)="filterICD(chan_doan_tu_vong.CHAN_DOAN_GIAI_PHAU_TU_THI)">
+                  <mat-autocomplete [displayWith]="displayDMICD" #cdgpb="matAutocomplete">
+                    <mat-option *ngFor="let icd of filteredICDs" [value]="icd">
+                      <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                  <button type="button" mat-button *ngIf="chan_doan_tu_vong.CHAN_DOAN_GIAI_PHAU_TU_THI" matSuffix mat-icon-button aria-label="Clear" (click)="chan_doan_tu_vong.CHAN_DOAN_GIAI_PHAU_TU_THI = resetDM">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

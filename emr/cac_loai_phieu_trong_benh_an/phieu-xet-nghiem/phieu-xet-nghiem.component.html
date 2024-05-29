@@ -1,0 +1,154 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div>
+        <h2 class="form-field-full text-left">
+          {{loaiGiayToLienQuan.MO_TA}}
+        </h2>
+        <div class="form-field-full">
+          <div style="text-align: center">
+            <mat-form-field appearance="outline">
+              <mat-label>{{"phieu_cls.danh_sach_phieu_cls" | translate}}</mat-label>
+              <input matInput
+                     [matAutocomplete]="select3"
+                     [(ngModel)]="phieuXN">
+              <mat-autocomplete [displayWith]="displayphieuXN" #select3="matAutocomplete" (optionSelected)='fillDataResults(phieuXN)'>
+                <mat-option *ngFor="let result of listHisResults" [value]="result">
+                  <span>{{ result?.created_at * 1000 | date : "HH:mm dd/MM/yyyy" }} - {{ result?.service_name}}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="phieuXN && phieuXN._id"
+                      matSuffix mat-icon-button aria-label="Clear"
+                      (click)="phieuXN = {}">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class='m-r-8'>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>{{"phieu_cls.ngay_yeu_cau" | translate}}</mat-label>
+              <input matInput [(ngModel)]='dataXNGEH.XN_Ngaygioyeucau_moment'
+                     (ngModelChange)='onDate($event, "DATE_YEU_CAU")'
+                     [ngxMatDatetimePicker]='picker1'>
+              <mat-datepicker-toggle matSuffix [for]="$any(picker1)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>{{"phieu_cls.bsi_yeu_cau" | translate}}</mat-label>
+              <input matInput [(ngModel)]='dataXNGEH.XN_BSyeucau'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8'>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>{{"hoi_benh_noi_khoa.tong_ket_benh_an.loai" | translate}}</mat-label>
+              <mat-select [(ngModel)]='dataXNGEH.XN_Loai.MA'>
+                <mat-option>-- None --</mat-option>
+                <mat-option *ngFor='let dmLoaiCLS of listDMLoaiXN' [value]='dmLoaiCLS.MA'>{{dmLoaiCLS.MO_TA}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>Tên xét nghiệm</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='dataXNGEH.XN_TenXN.MO_TA'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8'>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>{{"phieu_cls.nguoi_thuc_hien" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='dataXNGEH.Nguoithuchien'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>{{"phieu_cls.ngay_gio_thuc_hien" | translate}}</mat-label>
+              <input matInput [(ngModel)]='dataXNGEH.NgaygioThuchien_moment'
+                     (ngModelChange)='onDate($event, "DATE_THUC_HIEN")'
+                     [ngxMatDatetimePicker]='picker2'>
+              <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker2></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class='m-r-8'>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <mat-label fxLayout='row' class='text-left'>Nhận xét</mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    [(ngModel)]='dataXNGEH.XN_Nhanxet'
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field>
+              <mat-label>Bác sĩ duyệt kết quả</mat-label>
+              <input matInput [(ngModel)]='dataXNGEH.BSduyetKQ'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class='m-r-8'>
+        <div fxLayout='column' *ngIf='dataXNGEH.XN_Ketqua && dataXNGEH.XN_Ketqua.length > 0'>
+          <mat-label class='m-t-8' fxLayout='row' fxFlex='100'> Kết quả xét nghiệm:</mat-label>
+          <div class='m-t-8' fxFlex='100' *ngFor='let xn of dataXNGEH.XN_Ketqua'>
+            <div fxFlex='10'>
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Mã chỉ số" [(ngModel)]="xn.Chiso_Code">
+              </mat-form-field>
+            </div>
+            <div fxFlex='20'>
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Giá trị" [(ngModel)]="xn.Chiso_Giatri">
+              </mat-form-field>
+            </div>
+            <div fxFlex='80' class='form-field-full m-l-16'>
+              <mat-form-field>
+                <mat-label>Diễn giải</mat-label>
+                <input matInput
+                       [matAutocomplete]="dien_giai"
+                       [(ngModel)]="xn.Diengiai">
+                <mat-autocomplete [displayWith]="displayDM" #dien_giai="matAutocomplete">
+                  <mat-option *ngFor="let category of categoryDichKetQuaXN" [value]="category">
+                    <span>{{ category?.MA }} - {{ category?.MO_TA }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                <button type="button" mat-button *ngIf="xn.Diengiai" matSuffix mat-icon-button aria-label="Clear" (click)="xn.Diengiai = resetDM">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

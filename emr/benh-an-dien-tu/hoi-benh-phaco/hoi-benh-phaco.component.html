@@ -1,0 +1,76 @@
+<div class='matero-row' fxLayout='row wrap'>
+  <div class='matero-col' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <div class='row'>
+        <div class='col-12 text-left'>
+          <h3>II. {{'title.benh_su' | translate}}</h3>
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'hoi_benh_phaco.benh_su.thoi_gian_xuat_hien_benh' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='hoiBenhPhaco.BENH_SU.THOI_GIAN_XUAT_HIEN_BENH'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'hoi_benh_phaco.benh_su.nguyen_nhan' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='hoiBenhPhaco.BENH_SU.NGUYEN_NHAN'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'hoi_benh_phaco.benh_su.dieu_tri_dien_bien' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='hoiBenhPhaco.BENH_SU.PHUONG_PHAP_DA_DTRI_VA_DIEN_BIEN_BENH'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-12 text-left'>
+          <h3>III. {{'title.tien_su' | translate}}</h3>
+        </div>
+        <div class='col-12 text-left'>
+          <h3>{{'hoi_benh.ban_than' | translate}}:</h3>
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'hoi_benh_phaco.tien_su.tai_mat' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='hoiBenhPhaco.TIEN_SU.BAN_THAN.BENH_MAT'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'hoi_benh_noi_khoa.kham_benh.toan_than' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='hoiBenhPhaco.TIEN_SU.BAN_THAN.TOAN_THAN'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-12 text-left'>
+          <h3>{{'hoi_benh.gia_dinh' | translate}}:</h3>
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'hoi_benh_phaco.tien_su.benh_mat' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='hoiBenhPhaco.TIEN_SU.GIA_DINH.BENH_MAT'>
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-12'>
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>{{'hoi_benh_phaco.tien_su.benh_toan_than' | translate}}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                      [(ngModel)]='hoiBenhPhaco.TIEN_SU.GIA_DINH.TOAN_THAN'>
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

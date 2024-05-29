@@ -1,0 +1,37 @@
+.title{
+  width: 7em;
+}
+.unit {
+  width: 4em;
+}
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
+}
+
+.content mat-form-field{
+  width: 50%;
+}
+.content{
+  width: fit-content;
+}
+.tb-chuc-nang-song tbody .lbl td {
+ padding-left:0.2em;
+
+}
+table{ td,th {
+  padding-top:0.5em;
+  padding-bottom:0.5em;
+}}
+button{
+  border-radius: 5px;
+  height: 24px;
+  position: relative;
+  // top: 0.16em;
+  min-width: unset;
+  .fa{
+      position: relative;
+      bottom:0.165em
+  }
+}

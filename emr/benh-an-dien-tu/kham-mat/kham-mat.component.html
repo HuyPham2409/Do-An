@@ -1,0 +1,1774 @@
+<div *ngIf='showField?.KHAM_MAT_DAY_MAT === true'>
+  <div class='col-12' style='text-align: left'><strong>{{"kham_mat.benh_chuyen_khoa" | translate}}</strong></div>
+  <div class='col-12' style='text-align: left;margin-top: 5px'>{{"kham_mat.thi_luc_vao_vien" | translate}}:</div>
+  <div class='col-12'>
+    <div fxFlex='49.5'>
+      <div fxLayout='row'>
+        <div fxFlex='40' style='text-align: left;margin-top: 15px'>{{"kham_mat.khong_kinh" | translate}}:</div>
+        <div fxFlex='60'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mp" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.THI_LUC_VAO_VIEN_KHONG_KINH'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mt" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.THI_LUC_VAO_VIEN_KHONG_KINH'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div fxFlex='40' style='text-align: left;margin-top: 15px'>{{"kham_mat.co_kinh" | translate}}:</div>
+        <div fxFlex='60'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mp" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.THI_LUC_VAO_VIEN_CO_KINH'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mt" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.THI_LUC_VAO_VIEN_CO_KINH'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxFlex='1'></div>
+    <div fxFlex='49.5'>
+      <div fxLayout='row'>
+        <div fxFlex='40' style='text-align: left;margin-top: 15px'>{{"kham_mat.nhan_ap_vao_vien" | translate}}:</div>
+        <div fxFlex='60'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mp" | translate}}</mat-label>
+              <input matInput placeholder='mmHg' [(ngModel)]='khammat.MAT_PHAI.NHAN_AP_VAO_VIEN'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mt" | translate}}</mat-label>
+              <input matInput placeholder='mmHg' [(ngModel)]='khammat.MAT_TRAI.NHAN_AP_VAO_VIEN'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div fxFlex='40' style='text-align: left;margin-top: 15px'>{{"kham_mat.thi_truong" | translate}}:</div>
+        <div fxFlex='60'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mp" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.THI_TRUONG'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mt" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.THI_TRUONG'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <table style='width: 100%'>
+      <tr>
+        <th style='width: 50%'>{{"kham_mat.mat_phai" | translate}}</th>
+        <th style='width: 50%'>{{"kham_mat.mat_trai" | translate}}</th>
+      </tr>
+      <tr style='border-bottom: 1px solid black !important'>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>1. {{"kham_mat.mi_mat" | translate}}</strong></div>
+          <div class='col-12'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.MI_MAT_PHAI.LIST_MI_MAT.ID'>
+              <mat-radio-button *ngFor='let mimat of listMiMat' style='float: left; margin: 5px 5px 5px 0' [value]="mimat.ID">{{mimat.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div fxLayout='row' class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.benh_ly_khac" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.MI_MAT_PHAI.BENH_LY_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>1. {{"kham_mat.mi_mat" | translate}}</strong></div>
+          <div class='col-12'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.MI_MAT_TRAI.LIST_MI_MAT.ID'>
+              <mat-radio-button *ngFor='let mimat of listMiMat' style='float: left; margin: 5px 5px 5px 0' [value]="mimat.ID">{{mimat.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div fxLayout='row' class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.benh_ly_khac" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.MI_MAT_TRAI.BENH_LY_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr style='border-bottom: 1px solid black !important'>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>2. {{"kham_mat.ket_mac" | translate}}</strong></div>
+          <div class='col-12'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.KET_MAC_PHAI.LIST_KET_MAC.ID'>
+              <mat-radio-button *ngFor='let ketmac of listKetMac' style='float: left; margin: 5px 0' [value]="ketmac.ID">{{ketmac.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_PHAI.KET_MAC_PHAI.XUAT_HUYET' style='margin-top: 12px;float: left' (click)="reset('LIST_KET_MAC')">{{"kham_mat.xuat_huyet" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full' *ngIf='khammat.MAT_PHAI.KET_MAC_PHAI.XUAT_HUYET'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.KET_MAC_PHAI.TEXT_XUAT_HUYET'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_PHAI.KET_MAC_PHAI.SEO_KM' style='margin-top: 12px;float: left' (click)="reset('LIST_SEO_KET_MAC')">{{"kham_mat.seo_km" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full' *ngIf='khammat.MAT_PHAI.KET_MAC_PHAI.SEO_KM'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.KET_MAC_PHAI.TEXT_SEO_KM'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.benh_ly_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.KET_MAC_PHAI.BENH_LY_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>2. {{"kham_mat.ket_mac" | translate}}</strong></div>
+          <div class='col-12'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.KET_MAC_TRAI.LIST_KET_MAC.ID'>
+              <mat-radio-button *ngFor='let ketmac of listKetMac' style='float: left; margin: 5px 0' [value]="ketmac.ID">{{ketmac.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_TRAI.KET_MAC_TRAI.XUAT_HUYET' style='margin-top: 12px;float: left' (click)="reset('LIST_KET_MAC')">{{"kham_mat.xuat_huyet" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full' *ngIf='khammat.MAT_TRAI.KET_MAC_TRAI.XUAT_HUYET'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.KET_MAC_TRAI.TEXT_XUAT_HUYET'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_TRAI.KET_MAC_TRAI.SEO_KM' style='margin-top: 12px;float: left' (click)="reset('LIST_SEO_KET_MAC')">{{"kham_mat.seo_km" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full' *ngIf='khammat.MAT_TRAI.KET_MAC_TRAI.SEO_KM'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.KET_MAC_TRAI.TEXT_SEO_KM'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.benh_ly_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.KET_MAC_TRAI.BENH_LY_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+
+      <tr style='border-bottom: 1px solid black !important'>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>3. {{"kham_mat.giac_mac" | translate}}</strong></div>
+          <div fxLayout='row'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.GIAC_MAC_PHAI.LIST_GIAC_MAC.ID'>
+              <mat-radio-button labelPosition='before' *ngFor='let giacmac of listGiacMac' style='float: left; margin: 5px' [value]="giacmac.ID">{{giacmac.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div fxLayout='row' style='margin-left: 5px'>- {{"kham_mat.tua_mat_sau_giac_mac" | translate}}:</div>
+          <div fxLayout='row' class="col-lg-12">
+            <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.GIAC_MAC_PHAI.LIST_TUA_MAT_SAU_GIAC_MAC.ID'>
+              <mat-radio-button *ngFor='let tuagiacmac of listTuaGiacMac' style='float: left; margin: 5px 0 5px 5px' [value]="tuagiacmac.ID">{{tuagiacmac.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.vi_tri_tua" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.GIAC_MAC_PHAI.VI_TRI_TUA'>
+            </mat-form-field>
+          </div>
+          <div fxLayout='row' style='margin-left: 5px'>
+            <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_PHAI.GIAC_MAC_PHAI.SEO_GM'>- {{"kham_mat.seo_gm" | translate}}</mat-checkbox>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.benh_ly_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.GIAC_MAC_PHAI.BENH_LY_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>3. {{"kham_mat.giac_mac" | translate}}</strong></div>
+          <div fxLayout='row'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.GIAC_MAC_TRAI.LIST_GIAC_MAC.ID'>
+              <mat-radio-button labelPosition='before' *ngFor='let giacmac of listGiacMac' style='float: left; margin: 5px' [value]="giacmac.ID">{{giacmac.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div fxLayout='row' style='margin-left: 5px'>- {{"kham_mat.tua_mat_sau_giac_mac" | translate}}:</div>
+          <div fxLayout='row' class="col-lg-12">
+            <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.GIAC_MAC_TRAI.LIST_TUA_MAT_SAU_GIAC_MAC.ID'>
+              <mat-radio-button *ngFor='let tuagiacmac of listTuaGiacMac' style='float: left; margin: 5px 0 5px 5px' [value]="tuagiacmac.ID">{{tuagiacmac.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.vi_tri_tua" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.GIAC_MAC_TRAI.VI_TRI_TUA'>
+            </mat-form-field>
+          </div>
+          <div fxLayout='row' style='margin-left: 5px'>
+            <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_TRAI.GIAC_MAC_TRAI.SEO_GM'>- {{"kham_mat.seo_gm" | translate}}</mat-checkbox>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.benh_ly_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.GIAC_MAC_TRAI.BENH_LY_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr style='border-bottom: 1px solid black !important'>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>4. {{"kham_mat.cung_mac" | translate}}</strong></div>
+          <div fxLayout='row'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.CUNG_MAC_PHAI.LIST_CUNG_MAC.ID'>
+              <mat-radio-button *ngFor='let listcungmac of listCungMac' style='float: left; margin: 5px 0 5px 5px' [value]="listcungmac.ID">{{listcungmac.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.benh_ly_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.CUNG_MAC_PHAI.BENH_LY_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>4. {{"kham_mat.cung_mac" | translate}}</strong></div>
+          <div fxLayout='row'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.CUNG_MAC_TRAI.LIST_CUNG_MAC.ID'>
+              <mat-radio-button *ngFor='let listcungmac of listCungMac' style='float: left; margin: 5px 0 5px 5px' [value]="listcungmac.ID">{{listcungmac.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.benh_ly_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.CUNG_MAC_TRAI.BENH_LY_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr style='border-bottom: 1px solid black !important'>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>5. {{"kham_mat.tien_phong" | translate}}</strong></div>
+          <div fxLayout='row'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.TIEN_PHONG_PHAI.LIST_TIEN_PHONG.ID'>
+              <mat-radio-button *ngFor='let listtienphong of listTienPhong' style='float: left; margin: 5px 0 5px 5px' [value]="listtienphong.ID">{{listtienphong.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_PHAI.TIEN_PHONG_PHAI.XUAT_HUYET' style='margin-top: 12px;float: left' (click)="reset('LIST_XUAT_HUYET')">{{"kham_mat.xuat_huyet" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full' *ngIf='khammat.MAT_PHAI.TIEN_PHONG_PHAI.XUAT_HUYET'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_mat.do" | translate}}</mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.TIEN_PHONG_PHAI.TEXT_XUAT_HUYET'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_PHAI.TIEN_PHONG_PHAI.MU_XUAT_TIET' style='margin-top: 12px;float: left' (click)="reset('LIST_XUAT_TIET')">{{"kham_mat.mu_xuat_tiet" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full' *ngIf='khammat.MAT_PHAI.TIEN_PHONG_PHAI.MU_XUAT_TIET'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_mat.muc_do" | translate}}</mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.TIEN_PHONG_PHAI.TEXT_MU_XUAT_TIET'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_PHAI.TIEN_PHONG_PHAI.TYNDALL' style='margin-top: 12px;float: left' (click)="reset('TYNDALL')">{{"kham_mat.tyndall" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full' *ngIf='khammat.MAT_PHAI.TIEN_PHONG_PHAI.TYNDALL'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_mat.do" | translate}}</mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.TIEN_PHONG_PHAI.TEXT_TYNDALL'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout='row'>
+            <div fxFlex='33' style='margin:7px 0 0 6px;text-align: left'>{{"kham_mat.goc_tien_phong" | translate}}:</div>
+            <div fxFlex='67'>
+              <mat-radio-group style='float: left' [(ngModel)]='khammat.MAT_PHAI.TIEN_PHONG_PHAI.LIST_GOC_TIEN_PHONG.ID'>
+                <mat-radio-button *ngFor='let listgoctienphong of listGocTienPhong' style='float: left; margin: 5px 0 5px 5px' [value]="listgoctienphong.ID">{{listgoctienphong.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.ton_thuong_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.TIEN_PHONG_PHAI.TON_THUONG_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>5. {{"kham_mat.tien_phong" | translate}}</strong></div>
+          <div fxLayout='row'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.TIEN_PHONG_TRAI.LIST_TIEN_PHONG.ID'>
+              <mat-radio-button *ngFor='let listtienphong of listTienPhong' style='float: left; margin: 5px 0 5px 5px' [value]="listtienphong.ID">{{listtienphong.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_TRAI.TIEN_PHONG_TRAI.XUAT_HUYET' style='margin-top: 12px;float: left' (click)="reset('LIST_XUAT_HUYET')">{{"kham_mat.xuat_huyet" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full'  *ngIf='khammat.MAT_TRAI.TIEN_PHONG_TRAI.XUAT_HUYET'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_mat.do" | translate}}</mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.TIEN_PHONG_TRAI.TEXT_XUAT_HUYET'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_TRAI.TIEN_PHONG_TRAI.MU_XUAT_TIET' style='margin-top: 12px;float: left' (click)="reset('LIST_XUAT_TIET')">{{"kham_mat.mu_xuat_tiet" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full' *ngIf='khammat.MAT_TRAI.TIEN_PHONG_TRAI.MU_XUAT_TIET'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_mat.muc_do" | translate}}</mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.TIEN_PHONG_TRAI.TEXT_MU_XUAT_TIET'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_TRAI.TIEN_PHONG_TRAI.TYNDALL' style='margin-top: 12px;float: left' (click)="reset('TYNDALL')">{{"kham_mat.tyndall" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full' *ngIf='khammat.MAT_TRAI.TIEN_PHONG_TRAI.TYNDALL'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_mat.do" | translate}}</mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.TIEN_PHONG_TRAI.TEXT_TYNDALL'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout='row'>
+            <div fxFlex='33' style='margin:7px 0 0 6px;text-align: left'>{{"kham_mat.goc_tien_phong" | translate}}:</div>
+            <div fxFlex='67'>
+              <mat-radio-group style='float: left' [(ngModel)]='khammat.MAT_TRAI.TIEN_PHONG_TRAI.LIST_GOC_TIEN_PHONG.ID'>
+                <mat-radio-button *ngFor='let listgoctienphong of listGocTienPhong' style='float: left; margin: 5px 0 5px 5px' [value]="listgoctienphong.ID">{{listgoctienphong.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.ton_thuong_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.TIEN_PHONG_TRAI.TON_THUONG_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr style='border-bottom: 1px solid black !important'>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>6. {{"kham_mat.mong_mat" | translate}}:</strong></div>
+          <div fxLayout='row'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.MONG_MAT_PHAI.LIST_MONG_MAT.ID'>
+              <mat-radio-button *ngFor='let listmongmat of listMongMat' style='float: left; margin: 5px 0 5px 5px' [value]="listmongmat.ID">{{listmongmat.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_PHAI.MONG_MAT_PHAI.TAN_MACH_MONG_MAT' style='margin-top: 12px;float: left' (click)="reset('TAN_MACH_MONG_MAT')">{{"kham_mat.tan_mach_mong_mat" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_PHAI.MONG_MAT_PHAI.TAN_MACH_MONG_MAT'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.MONG_MAT_PHAI.TEXT_TAN_MACH_MONG_MAT'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_PHAI.MONG_MAT_PHAI.HOAT_KOEPPI' style='margin-top: 12px;float: left' (click)="reset('HOAT_KOEPPI')">{{"kham_mat.hoat_koeppi" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_PHAI.MONG_MAT_PHAI.HOAT_KOEPPI'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.MONG_MAT_PHAI.TEXT_HOAT_KOEPPI'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_PHAI.MONG_MAT_PHAI.HAT_BUSACA' style='margin-top: 12px;float: left' (click)="reset('HAT_BUSACA')">{{"kham_mat.hat_busaca" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_PHAI.MONG_MAT_PHAI.HAT_BUSACA'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.MONG_MAT_PHAI.TEXT_HAT_BUSACA'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12' style='text-align: left;margin: 5px 0'><strong>{{"kham_mat.dong_tu" | translate}}</strong></div>
+          <div class='row m-x-0'>
+            <div class='col-7'>
+              <div class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>{{"kham_benh_mat.anh_dong_tu" | translate}}</mat-label>
+                  <input matInput [(ngModel)]='khammat.MAT_PHAI.ANH_DONG_TU'>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class='col-5'>
+              <div class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>{{"kham_benh_mat.kich_thuoc" | translate}}</mat-label>
+                  <input matInput type='number' [(ngModel)]='khammat.MAT_PHAI.KICH_THUOC'>
+                  <div matSuffix class='m-t-16'>mm</div>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div fxLayout='row m-x-0'>
+            <div class='col-7' style='margin-top: 10px'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.MONG_MAT_PHAI.LIST_MONG_MAT_2.ID'>
+                <mat-radio-button *ngFor='let listmat of listMat' style='float: left; margin: 5px 0 5px 5px' [value]="listmat.ID">{{listmat.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class='col-5 form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_benh_mat.vi_tri" | translate}}</mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.VI_TRI'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='15' style='margin:7px 0 0 6px;text-align: left'>{{"kham_mat.pxdt" | translate}}:</div>
+            <div fxFlex='85'>
+              <mat-radio-group style='float: left' [(ngModel)]='khammat.MAT_PHAI.MONG_MAT_PHAI.LIST_PXDT.ID'>
+                <mat-radio-button *ngFor='let listpxdt of listPXDT' style='float: left; margin: 5px 0 5px 5px' [value]="listpxdt.ID">{{listpxdt.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.ton_thuong_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.MONG_MAT_PHAI.TON_THUONG_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>6. {{"kham_mat.mong_mat" | translate}}:</strong></div>
+          <div fxLayout='row'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.MONG_MAT_TRAI.LIST_MONG_MAT.ID'>
+              <mat-radio-button *ngFor='let listmongmat of listMongMat' style='float: left; margin: 5px 0 5px 5px' [value]="listmongmat.ID">{{listmongmat.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_TRAI.MONG_MAT_TRAI.TAN_MACH_MONG_MAT' style='margin-top: 12px;float: left' (click)="reset('TAN_MACH_MONG_MAT')">{{"kham_mat.tan_mach_mong_mat" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_TRAI.MONG_MAT_TRAI.TAN_MACH_MONG_MAT'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.MONG_MAT_TRAI.TEXT_TAN_MACH_MONG_MAT'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_TRAI.MONG_MAT_TRAI.HOAT_KOEPPI' style='margin-top: 12px;float: left' (click)="reset('HOAT_KOEPPI')">{{"kham_mat.hoat_koeppi" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_TRAI.MONG_MAT_TRAI.HOAT_KOEPPI'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.MONG_MAT_TRAI.TEXT_HOAT_KOEPPI'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_TRAI.MONG_MAT_TRAI.HAT_BUSACA' style='margin-top: 12px;float: left' (click)="reset('HAT_BUSACA')">{{"kham_mat.hat_busaca" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_TRAI.MONG_MAT_TRAI.HAT_BUSACA'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.MONG_MAT_TRAI.TEXT_HAT_BUSACA'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12' style='text-align: left;margin: 5px 0'><strong>{{"kham_mat.dong_tu" | translate}}</strong></div>
+          <div class='row m-x-0'>
+            <div class='col-7'>
+              <div class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>{{"kham_benh_mat.anh_dong_tu" | translate}}</mat-label>
+                  <input matInput [(ngModel)]='khammat.MAT_TRAI.ANH_DONG_TU'>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class='col-5'>
+              <div class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>{{"kham_benh_mat.kich_thuoc" | translate}}</mat-label>
+                  <input matInput type='number' [(ngModel)]='khammat.MAT_TRAI.KICH_THUOC'>
+                  <div matSuffix class='m-t-16'>mm</div>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div fxLayout='row m-x-0'>
+            <div class='col-7' style='margin-top: 10px'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.MONG_MAT_TRAI.LIST_MONG_MAT_2.ID'>
+                <mat-radio-button *ngFor='let listmat of listMat' style='float: left; margin: 5px 0 5px 5px' [value]="listmat.ID">{{listmat.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class='col-5 form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_benh_mat.vi_tri" | translate}}</mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.VI_TRI'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='15' style='margin:7px 0 0 6px;text-align: left'>{{"kham_mat.pxdt" | translate}}:</div>
+            <div fxFlex='85'>
+              <mat-radio-group style='float: left' [(ngModel)]='khammat.MAT_TRAI.MONG_MAT_TRAI.LIST_PXDT.ID'>
+                <mat-radio-button *ngFor='let listpxdt of listPXDT' style='float: left; margin: 5px 0 5px 5px' [value]="listpxdt.ID">{{listpxdt.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.ton_thuong_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.MONG_MAT_TRAI.TON_THUONG_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr style='border-bottom: 1px solid black !important'>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>7. {{"kham_mat.the_thuy_tinh" | translate}}:</strong></div>
+          <div fxLayout='row'>
+            <mat-radio-group class='row m-x-0 text-left radio-w-full'
+                             [(ngModel)]='khammat.MAT_PHAI.THE_THUY_TINH_PHAI.LIST_THE_THUY_TINH.ID'>
+              <mat-radio-button *ngFor='let listthethuytinh of listTheThuyTinh; index as i' [value]="listthethuytinh.ID"
+                                class='col m-r-0 p-y-4'
+                                [class.col-3]='i === 0 || i === 1 || i === 3'
+                                [class.col-5]='i === 4'
+                                [class.col-xl-2]='i === 0 || i === 1 || i === 3'
+                                [class.col-xl-4]='i === 2 || i === 4'>{{listthethuytinh.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.ton_thuong_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.THE_THUY_TINH_PHAI.TON_THUONG_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div fxLayout='row' style='margin-left: 5px'><strong>7. {{"kham_mat.the_thuy_tinh" | translate}}:</strong></div>
+          <div fxLayout='row'>
+            <mat-radio-group class='row m-x-0 text-left radio-w-full'
+                             [(ngModel)]='khammat.MAT_TRAI.THE_THUY_TINH_TRAI.LIST_THE_THUY_TINH.ID'>
+              <mat-radio-button *ngFor='let listthethuytinh of listTheThuyTinh; index as i' [value]="listthethuytinh.ID"
+                                class='col m-r-0 p-y-4'
+                                [class.col-3]='i === 0 || i === 1 || i === 3'
+                                [class.col-5]='i === 4'
+                                [class.col-xl-2]='i === 0 || i === 1 || i === 3'
+                                [class.col-xl-4]='i === 2 || i === 4'>{{listthethuytinh.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.ton_thuong_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.THE_THUY_TINH_TRAI.TON_THUONG_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr style='border-bottom: 1px solid black !important'>
+        <td>
+          <div fxLayout='row'>
+            <div fxFlex='30' style='margin: 6px 0 0 5px;text-align: left'><strong>8. {{"kham_mat.dich_kinh" | translate}}:</strong></div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.DICH_KINH_PHAI.LIST_DICH_KINH.ID'>
+                <mat-radio-button *ngFor='let listdichkinh of listDichKinh' style='float: left; margin: 5px 0 5px 5px' [value]="listdichkinh.ID">{{listdichkinh.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.do" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.DICH_KINH_PHAI.DO'>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_PHAI.DICH_KINH_PHAI.VIEM_MU' style='margin-top: 12px;float: left' (click)="reset('VIEM_MU')">{{"kham_mat.viem_mu" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full' *ngIf='khammat.MAT_PHAI.DICH_KINH_PHAI.VIEM_MU'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.DICH_KINH_PHAI.TEXT_VIEM_MU'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout='row'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.DICH_KINH_PHAI.LIST_DICH_KINH_2.ID'>
+              <mat-radio-button *ngFor='let listdichkinh2 of listDichKinh2' style='float: left; margin: 5px 0 5px 5px' [value]="listdichkinh2.ID">{{listdichkinh2.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.ton_thuong_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.DICH_KINH_PHAI.TON_THUONG_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div fxLayout='row'>
+            <div fxFlex='30' style='margin: 6px 0 0 5px;text-align: left'><strong>8. {{"kham_mat.dich_kinh" | translate}}:</strong></div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.DICH_KINH_TRAI.LIST_DICH_KINH.ID'>
+                <mat-radio-button *ngFor='let listdichkinh of listDichKinh' style='float: left; margin: 5px 0 5px 5px' [value]="listdichkinh.ID">{{listdichkinh.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.do" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.DICH_KINH_TRAI.DO'>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_TRAI.DICH_KINH_TRAI.VIEM_MU' style='margin-top: 12px;float: left' (click)="reset('VIEM_MU')">{{"kham_mat.viem_mu" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='65' class='form-field-full' *ngIf='khammat.MAT_TRAI.DICH_KINH_TRAI.VIEM_MU'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.DICH_KINH_TRAI.TEXT_VIEM_MU'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout='row'>
+            <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.DICH_KINH_TRAI.LIST_DICH_KINH_2.ID'>
+              <mat-radio-button *ngFor='let listdichkinh2 of listDichKinh2' style='float: left; margin: 5px 0 5px 5px' [value]="listdichkinh2.ID">{{listdichkinh2.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.ton_thuong_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.DICH_KINH_TRAI.TON_THUONG_KHAC'>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr style='border-bottom: 1px solid black !important'>
+        <td>
+          <div fxLayout='row'>
+            <div fxFlex='30' style='margin: 3px 0 0 5px;text-align: left'><strong>9.{{"kham_mat.vong_mac" | translate}}:</strong></div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.VONG_MAC' labelPosition='before'>{{"laboratory.semen_chart_form.normal" | translate}}</mat-checkbox>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.BENH_LY_KHAC' labelPosition='before' style='margin-top: 12px;float: left' (click)="reset('BENH_LY_KHAC')">{{"kham_mat.benh_ly_khac" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_PHAI.VONG_MAC_PHAI.BENH_LY_KHAC'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TEXT_BENH_LY_KHAC'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout='row'>
+            <div fxFlex='30' style='margin: 3px 0 0 8px;text-align: left'>{{"kham_mat.he_mach" | translate}}:</div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.HE_MACH' labelPosition='before'>{{"laboratory.semen_chart_form.normal" | translate}}</mat-checkbox>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='20' style='margin-top:4px;text-align: left'>{{"kham_mat.tac_dm" | translate}}:</div>
+            <div fxFlex='80' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAC_DM.TRUNG_TAM'>{{"kham_mat.trung_tam" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAC_DM.NHANH'>{{"kham_mat.nhanh" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAC_DM.MI_VM'>{{"kham_mat.mi_vm" | translate}}</mat-checkbox>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='20' style='margin-top:4px;text-align: left'>{{"kham_mat.tac_tm" | translate}}:</div>
+            <div fxFlex='80' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAC_TM.TRUNG_TAM' style='width: 40%'>{{"kham_mat.trung_tam" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAC_TM.NHANH' style='width: 40%'>{{"kham_mat.nhanh" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAC_TM.PHU' style='width: 40%'>{{"kham_mat.phu" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAC_TM.THIEU_MAU' style='width: 40%'>{{"kham_mat.thieu_mau" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAC_TM.HON_HOP' style='width: 40%'>{{"kham_mat.hon_hop" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAC_TM.VIEM_MAO_MACH' style='width: 40%'>{{"kham_mat.viem_mao_mach" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAC_TM.TAN_MACH_VONG_MAC' style='width: 40%'>{{"kham_mat.tan_mach_vong_mac" | translate}}</mat-checkbox>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40' style='margin-top:6px;text-align: left'>{{"kham_mat.tan_mach_hac_mac" | translate}}:</div>
+            <div fxFlex='60' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAN_MACH_HAC_MAC.ID'>
+                <mat-radio-button *ngFor='let listtmhm of listTanMachHacMac' style='float: left; margin: 5px 0 5px 5px' [value]="listtmhm.ID">{{listtmhm.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='13' style='margin-top:6px;text-align: left'>{{"kham_mat.dia_thi" | translate}}:</div>
+            <div fxFlex='87' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.DIA_THI.ID'>
+                <mat-radio-button *ngFor='let listdiathi of listDiaThi' style='float: left; margin: 5px 0 5px 5px' [value]="listdiathi.ID">{{listdiathi.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='23' style='margin-top:6px;text-align: left'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_PHAI.TAN_MACH' (click)="reset('TAN_MACH')">{{"kham_benh_mat.tan_mach" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='77' style='text-align: left' *ngIf='khammat.MAT_PHAI.TAN_MACH'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TAN_MACH.ID'>
+                <mat-radio-button *ngFor='let listtanmach of listTanMach' style='float: left; margin: 5px 0 5px 5px' [value]="listtanmach.ID">{{listtanmach.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='23' style='margin-top:6px;text-align: left'>{{"kham_mat.hoang_diem" | translate}}:</div>
+            <div fxFlex='77' style='text-align: left'>
+              <div fxLayout='row'>
+                <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.HOANG_DIEM.ID'>
+                  <mat-radio-button *ngFor='let listhoangdiem1 of listHoangDiem1' style='float: left; margin: 5px 0 5px 5px' [value]="listhoangdiem1.ID">{{listhoangdiem1.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div fxLayout='row'>
+                <div fxFlex='20' style='margin:6px 0 0 6px;text-align: left'>{{"kham_mat.Phu" | translate}}:</div>
+                <div fxFlex='80' style='text-align: left'>
+                  <div fxLayout='row'>
+                    <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.PHU.ID'>
+                      <mat-radio-button *ngFor='let listphu of listPhu' style='float: left; margin: 5px 0 5px 5px' [value]="listphu.ID">{{listphu.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div fxFlex='20' style='margin:15px 0 0 6px;text-align: left'>{{"kham_mat.lo" | translate}}:</div>
+                <div fxFlex='80' style='text-align: left'>
+                  <div fxLayout='row' class='form-field-full'>
+                    <mat-form-field appearance='outline'>
+                      <mat-label>{{"kham_mat.do" | translate}}</mat-label>
+                      <input matInput [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.DO'>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout='row'>
+                    <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.LO.ID'>
+                      <mat-radio-button *ngFor='let listlo of listLo' style='float: left; margin: 5px 0 5px 5px' [value]="listlo.ID">{{listlo.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div fxFlex='20' style='margin:6px 0 0 6px;text-align: left'>{{"kham_mat.seo_hd" | translate}}:</div>
+                <div fxFlex='80' style='text-align: left'>
+                  <div fxLayout='row'>
+                    <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.SEO_HD.ID'>
+                      <mat-radio-button *ngFor='let listseohd of listSeoHD' style='float: left; margin: 5px 0 5px 5px' [value]="listseohd.ID">{{listseohd.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30' style='margin-top:6px;text-align: left'>{{"kham_mat.thoai_hoa_vm" | translate}}:</div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.THOAI_HOA_VM.ID'>
+                <mat-radio-button *ngFor='let listthoaihoavm of listThoaiHoaVM' style='float: left; margin: 5px 0 5px 5px' [value]="listthoaihoavm.ID">{{listthoaihoavm.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.hinh_thai_thoai_hoa" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.HINH_THAI_THOAI_HOA'>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='23' style='margin-top:6px;text-align: left'>{{"kham_mat.xuat_huyet" | translate}}:</div>
+            <div fxFlex='77' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.XUAT_HUYET.ID'>
+                <mat-radio-button *ngFor='let listxuathuyet of listXuatHuyet' style='float: left; margin: 5px 0 5px 5px' [value]="listxuathuyet.ID">{{listxuathuyet.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='23' style='margin-top:6px;text-align: left'>{{"kham_mat.xuat_tiet" | translate}}:</div>
+            <div fxFlex='77' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.XUAT_TIET.ID'>
+                <mat-radio-button *ngFor='let listxuatiet of listXuatTiet' style='float: left; margin: 5px 0 5px 5px' [value]="listxuatiet.ID">{{listxuatiet.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12' style='text-align: left'>
+            <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.BONG_THANH_DICH'>{{"kham_mat.bong_thanh_dich" | translate}}</mat-checkbox>
+            <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.BONG_BMST'>{{"kham_mat.bong_bmst" | translate}}</mat-checkbox>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30' style='margin-top:6px;text-align: left'>{{"kham_mat.o_viem_hac_mac" | translate}}:</div>
+            <div fxFlex='70' style='text-align: left'>
+              <div fxLayout='row'>
+                <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.O_VIEM_HAC_MAC.ID'>
+                  <mat-radio-button *ngFor='let listoviemhacmac of listOViemHacMac' style='float: left; margin: 5px 0 5px 5px' [value]="listoviemhacmac.ID">{{listoviemhacmac.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div fxLayout='row' class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>{{"phieu_truyen_dich.so_luong" | translate}}:</mat-label>
+                  <input matInput type='number' maxlength='10' [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.SO_LUONG'>
+                </mat-form-field>
+              </div>
+              <div fxLayout='row' class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>{{"kham_benh_mat.vi_tri" | translate}}:</mat-label>
+                  <input matInput [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.VI_TRI'>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.BONG_VONG_MAC' labelPosition='before' style='margin-top: 12px;float: left' (click)="reset('BONG_VONG_MAC')">{{"kham_mat.bong_vong_mac" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_PHAI.VONG_MAC_PHAI.BONG_VONG_MAC'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_mat.muc_do" | translate}}:</mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TEXT_BONG_VONG_MAC'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.RACH_VONG_MAC' labelPosition='before' style='margin-top: 12px;float: left' (click)="reset('RACH_VONG_MAC')">{{"kham_mat.rach_vong_mac" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_PHAI.VONG_MAC_PHAI.RACH_VONG_MAC'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"phieu_truyen_dich.so_luong" | translate}}:</mat-label>
+                <input matInput type='number' maxlength='10' [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TEXT_RACH_VONG_MAC'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.vi_tri_vet_rach" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.VI_TRI_VET_RACH'>
+            </mat-form-field>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"phieu_yhct_noi_tru.hinh_thai" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.HINH_THAI'>
+            </mat-form-field>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.ton_thuong_phoi_hop" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TON_THUONG_PHOI_HOP'>
+            </mat-form-field>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.benh_ly_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.VONG_MAC_PHAI.TEXT_BENH_LY_KHAC_2'>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div fxLayout='row'>
+            <div fxFlex='30' style='margin: 3px 0 0 5px;text-align: left'><strong>9.{{"kham_mat.vong_mac" | translate}}:</strong></div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.VONG_MAC' labelPosition='before'>{{"laboratory.semen_chart_form.normal" | translate}}</mat-checkbox>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.BENH_LY_KHAC' labelPosition='before' style='margin-top: 12px;float: left' (click)="reset('BENH_LY_KHAC')">{{"kham_mat.benh_ly_khac" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_TRAI.VONG_MAC_TRAI.BENH_LY_KHAC'>
+              <mat-form-field appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TEXT_BENH_LY_KHAC'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout='row'>
+            <div fxFlex='30' style='margin: 3px 0 0 8px;text-align: left'>{{"kham_mat.he_mach" | translate}}:</div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.HE_MACH' labelPosition='before'>{{"laboratory.semen_chart_form.normal" | translate}}</mat-checkbox>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='20' style='margin-top:4px;text-align: left'>Tắc ĐM:</div>
+            <div fxFlex='80' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAC_DM.TRUNG_TAM'>{{"kham_mat.trung_tam" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAC_DM.NHANH'>{{"kham_mat.nhanh" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAC_DM.MI_VM'>{{"kham_mat.mi_vm" | translate}}</mat-checkbox>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='20' style='margin-top:4px;text-align: left'>Tắc TM:</div>
+            <div fxFlex='80' style='text-align: left'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAC_TM.TRUNG_TAM' style='width: 40%'>{{"kham_mat.trung_tam" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAC_TM.NHANH' style='width: 40%'>{{"kham_mat.nhanh" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAC_TM.PHU' style='width: 40%'>{{"kham_mat.phu" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAC_TM.THIEU_MAU' style='width: 40%'>{{"kham_mat.thieu_mau" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAC_TM.HON_HOP' style='width: 40%'>{{"kham_mat.hon_hop" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAC_TM.VIEM_MAO_MACH' style='width: 40%'>{{"kham_mat.viem_mao_mach" | translate}}</mat-checkbox>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAC_TM.TAN_MACH_VONG_MAC' style='width: 40%'>{{"kham_mat.tan_mach_vong_mac" | translate}}</mat-checkbox>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40' style='margin-top:6px;text-align: left'>{{"kham_mat.tan_mach_hac_mac" | translate}}:</div>
+            <div fxFlex='60' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAN_MACH_HAC_MAC.ID'>
+                <mat-radio-button *ngFor='let listtmhm of listTanMachHacMac' style='float: left; margin: 5px 0 5px 5px' [value]="listtmhm.ID">{{listtmhm.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='13' style='margin-top:6px;text-align: left'>{{"kham_mat.dia_thi" | translate}}:</div>
+            <div fxFlex='87' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.DIA_THI.ID'>
+                <mat-radio-button *ngFor='let listdiathi of listDiaThi' style='float: left; margin: 5px 0 5px 5px' [value]="listdiathi.ID">{{listdiathi.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='23' style='margin-top:6px;text-align: left'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='khammat.MAT_TRAI.TAN_MACH' (click)="reset('TAN_MACH')">{{"kham_benh_mat.tan_mach" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='77' style='text-align: left' *ngIf='khammat.MAT_TRAI.TAN_MACH'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TAN_MACH.ID'>
+                <mat-radio-button *ngFor='let listtanmach of listTanMach' style='float: left; margin: 5px 0 5px 5px' [value]="listtanmach.ID">{{listtanmach.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='23' style='margin-top:6px;text-align: left'>{{"kham_mat.hoang_diem" | translate}}:</div>
+            <div fxFlex='77' style='text-align: left'>
+              <div fxLayout='row'>
+                <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.HOANG_DIEM.ID'>
+                  <mat-radio-button *ngFor='let listhoangdiem1 of listHoangDiem1' style='float: left; margin: 5px 0 5px 5px' [value]="listhoangdiem1.ID">{{listhoangdiem1.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div fxLayout='row'>
+                <div fxFlex='20' style='margin:6px 0 0 6px;text-align: left'>{{"kham_mat.Phu" | translate}}:</div>
+                <div fxFlex='80' style='text-align: left'>
+                  <div fxLayout='row'>
+                    <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.PHU.ID'>
+                      <mat-radio-button *ngFor='let listphu of listPhu' style='float: left; margin: 5px 0 5px 5px' [value]="listphu.ID">{{listphu.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div fxFlex='20' style='margin:15px 0 0 6px;text-align: left'>{{"kham_mat.lo" | translate}}:</div>
+                <div fxFlex='80' style='text-align: left'>
+                  <div fxLayout='row' class='form-field-full'>
+                    <mat-form-field appearance='outline'>
+                      <mat-label>{{"kham_mat.do" | translate}}</mat-label>
+                      <input matInput [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.DO'>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout='row'>
+                    <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.LO.ID'>
+                      <mat-radio-button *ngFor='let listlo of listLo' style='float: left; margin: 5px 0 5px 5px' [value]="listlo.ID">{{listlo.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div fxFlex='20' style='margin:6px 0 0 6px;text-align: left'>{{"kham_mat.seo_hd" | translate}}:</div>
+                <div fxFlex='80' style='text-align: left'>
+                  <div fxLayout='row'>
+                    <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.SEO_HD.ID'>
+                      <mat-radio-button *ngFor='let listseohd of listSeoHD' style='float: left; margin: 5px 0 5px 5px' [value]="listseohd.ID">{{listseohd.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30' style='margin-top:6px;text-align: left'>{{"kham_mat.thoai_hoa_vm" | translate}}:</div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.THOAI_HOA_VM.ID'>
+                <mat-radio-button *ngFor='let listthoaihoavm of listThoaiHoaVM' style='float: left; margin: 5px 0 5px 5px' [value]="listthoaihoavm.ID">{{listthoaihoavm.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.hinh_thai_thoai_hoa" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.HINH_THAI_THOAI_HOA'>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='23' style='margin-top:6px;text-align: left'>{{"kham_mat.xuat_huyet" | translate}}:</div>
+            <div fxFlex='77' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.XUAT_HUYET.ID'>
+                <mat-radio-button *ngFor='let listxuathuyet of listXuatHuyet' style='float: left; margin: 5px 0 5px 5px' [value]="listxuathuyet.ID">{{listxuathuyet.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='23' style='margin-top:6px;text-align: left'>{{"kham_mat.xuat_tiet" | translate}}:</div>
+            <div fxFlex='77' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.XUAT_TIET.ID'>
+                <mat-radio-button *ngFor='let listxuatiet of listXuatTiet' style='float: left; margin: 5px 0 5px 5px' [value]="listxuatiet.ID">{{listxuatiet.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='col-12' style='text-align: left'>
+            <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.BONG_THANH_DICH'>{{"kham_mat.bong_thanh_dich" | translate}}</mat-checkbox>
+            <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.BONG_BMST'>{{"kham_mat.bong_bmst" | translate}}</mat-checkbox>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='30' style='margin-top:6px;text-align: left'>{{"kham_mat.o_viem_hac_mac" | translate}}:</div>
+            <div fxFlex='70' style='text-align: left'>
+              <div fxLayout='row'>
+                <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.O_VIEM_HAC_MAC.ID'>
+                  <mat-radio-button *ngFor='let listoviemhacmac of listOViemHacMac' style='float: left; margin: 5px 0 5px 5px' [value]="listoviemhacmac.ID">{{listoviemhacmac.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div fxLayout='row' class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>{{"phieu_truyen_dich.so_luong" | translate}}:</mat-label>
+                  <input matInput type='number' maxlength='10' [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.SO_LUONG'>
+                </mat-form-field>
+              </div>
+              <div fxLayout='row' class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>{{"kham_benh_mat.vi_tri" | translate}}:</mat-label>
+                  <input matInput [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.VI_TRI'>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.BONG_VONG_MAC' labelPosition='before' style='margin-top: 12px;float: left' (click)="reset('BONG_VONG_MAC')">{{"kham_mat.bong_vong_mac" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_TRAI.VONG_MAC_TRAI.BONG_VONG_MAC'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"kham_mat.muc_do" | translate}}:</mat-label>
+                <input matInput [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TEXT_BONG_VONG_MAC'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div fxFlex='40'>
+              <mat-checkbox [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.RACH_VONG_MAC' labelPosition='before' style='margin-top: 12px;float: left' (click)="reset('RACH_VONG_MAC')">{{"kham_mat.rach_vong_mac" | translate}}</mat-checkbox>
+            </div>
+            <div fxFlex='5'></div>
+            <div fxFlex='55' class='form-field-full' *ngIf='khammat.MAT_TRAI.VONG_MAC_TRAI.RACH_VONG_MAC'>
+              <mat-form-field appearance='outline'>
+                <mat-label>{{"phieu_truyen_dich.so_luong" | translate}}:</mat-label>
+                <input matInput type='number' maxlength='10' [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TEXT_RACH_VONG_MAC'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.vi_tri_vet_rach" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.VI_TRI_VET_RACH'>
+            </mat-form-field>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"phieu_yhct_noi_tru.hinh_thai" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.HINH_THAI'>
+            </mat-form-field>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.ton_thuong_phoi_hop" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TON_THUONG_PHOI_HOP'>
+            </mat-form-field>
+          </div>
+          <div class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.benh_ly_khac" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.VONG_MAC_TRAI.TEXT_BENH_LY_KHAC_2'>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr style='border-bottom: 1px solid black !important'>
+        <td>
+          <div fxLayout='row'>
+            <div fxFlex='30' style='margin: 6px 0 0 5px;text-align: left'><strong>10.{{"kham_mat.hoc_mat" | translate}}:</strong></div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.HOC_MAT_PHAI.LIST_HOC_MAT.ID' (click)="reset('HOC_MAT_PHAI')">
+                <mat-radio-button *ngFor='let listhocmat of listHocMat' style='float: left; margin: 5px 0 5px 5px' [value]="listhocmat.ID">{{listhocmat.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div *ngIf='khammat.MAT_PHAI.HOC_MAT_PHAI.LIST_HOC_MAT.ID === "2"' class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mo_ta" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.HOC_MAT_PHAI.MO_TA_HOC_MAT'>
+            </mat-form-field>
+          </div>
+          <div fxLayout='row'>
+            <div fxFlex='30' style='margin: 6px 0 0 5px;text-align: left'>{{"kham_mat.van_nhan" | translate}}</div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_PHAI.HOC_MAT_PHAI.LIST_VAN_NHAN.ID' (click)="reset('VAN_NHAN_PHAI')">
+                <mat-radio-button *ngFor='let listvannhan of listVanNhan' style='float: left; margin: 5px 0 5px 5px' [value]="listvannhan.ID">{{listvannhan.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div *ngIf='khammat.MAT_PHAI.HOC_MAT_PHAI.LIST_VAN_NHAN.ID === "2"' class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mo_ta" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.HOC_MAT_PHAI.MO_TA_VAN_NHAN'>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div fxLayout='row'>
+            <div fxFlex='30' style='margin: 6px 0 0 5px;text-align: left'><strong>10.{{"kham_mat.hoc_mat" | translate}}:</strong></div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.HOC_MAT_TRAI.LIST_HOC_MAT.ID' (click)="reset('HOC_MAT_TRAI')">
+                <mat-radio-button *ngFor='let listhocmat of listHocMat' style='float: left; margin: 5px 0 5px 5px' [value]="listhocmat.ID">{{listhocmat.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div *ngIf= "khammat.MAT_TRAI.HOC_MAT_TRAI.LIST_HOC_MAT.ID === '2'" class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mo_ta" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.HOC_MAT_TRAI.MO_TA_HOC_MAT'>
+            </mat-form-field>
+          </div>
+          <div fxLayout='row'>
+            <div fxFlex='30' style='margin: 6px 0 0 5px;text-align: left'>{{"kham_mat.van_nhan" | translate}}</div>
+            <div fxFlex='70' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='khammat.MAT_TRAI.HOC_MAT_TRAI.LIST_VAN_NHAN.ID' (click)="reset('VAN_NHAN_TRAI')">
+                <mat-radio-button *ngFor='let listvannhan of listVanNhan' style='float: left; margin: 5px 0 5px 5px' [value]="listvannhan.ID">{{listvannhan.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div *ngIf="khammat.MAT_TRAI.HOC_MAT_TRAI.LIST_VAN_NHAN.ID === '2'"  class='col-12 form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mo_ta" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.HOC_MAT_TRAI.MO_TA_VAN_NHAN'>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div *ngIf='showField?.KHAM_MAT_LAC_SUP_MI === true'>
+  <div fxLayout='row'><strong>{{"kham_mat.benh_chuyen_khoa" | translate}}:</strong></div>
+  <div fxLayout='row'>
+    <div fxFlex='20' style='text-align: left;margin-top: 15px'>- {{"kham_mat.thi_luc_vao_vien" | translate}}:</div>
+    <div fxFlex='80'>
+      <div fxLayout='row'>
+        <div fxFlex='20' style='text-align: left;margin-top: 15px'>{{"kham_mat.khong_kinh" | translate}}:</div>
+        <div fxFlex='80'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mp" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.THI_LUC_VAO_VIEN_KHONG_KINH_BA_MAT_LAC_SUP_MI'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mt" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.THI_LUC_VAO_VIEN_KHONG_KINH_BA_MAT_LAC_SUP_MI'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div fxFlex='20' style='text-align: left;margin-top: 15px'>{{"kham_mat.co_kinh" | translate}}:</div>
+        <div fxFlex='80'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mp" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.THI_LUC_VAO_VIEN_CO_KINH_BA_MAT_LAC_SUP_MI'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mt" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.THI_LUC_VAO_VIEN_CO_KINH_BA_MAT_LAC_SUP_MI'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='20' style='text-align: left;margin-top: 15px'>- {{"kham_mat.khuc_xa_may" | translate}}:</div>
+    <div fxFlex='80'>
+      <div fxLayout='row'>
+        <div fxFlex='20' style='text-align: left;margin-top: 15px'>{{"kham_mat.truoc_atropine" | translate}}:</div>
+        <div fxFlex='80'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mp" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.TRUOC_ATROPINE'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mt" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.TRUOC_ATROPINE'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div fxFlex='20' style='text-align: left;margin-top: 15px'>{{"kham_mat.sau_atropine" | translate}}:</div>
+        <div fxFlex='80'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mp" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_PHAI.SAU_ATROPINE'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.mt" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.MAT_TRAI.SAU_ATROPINE'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout='row'>- {{"kham_mat.soi_bong_dong_tu" | translate}}:</div>
+  <div fxLayout='row' style='margin-top: 5px'>{{"kham_mat.sau_atropine" | translate}}:</div>
+  <div fxLayout='row' style='margin-top: 5px'>- {{"kham_mat.van_nhan_ngoai_lai" | translate}}:</div>
+  <div fxLayout='row' style='margin-top: 5px'>
+    <div fxFlex='20' style='margin-top: 15px;text-align: left'>-{{"kham_mat.van_nhan_noi_tai" | translate}}:</div>
+    <div fxFlex='80'>
+      <div>
+        <div fxFlex='40' style='margin-top: 8px;text-align: left'>
+          <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_MAT_PHAI.ID' (click)="reset('LIST_MAT_PHAI')">
+            <mat-radio-button *ngFor='let listvnntmp of listVanNhanNoiTaiMP' style='float: left; margin: 5px 0 5px 5px' [value]="listvnntmp.ID">{{listvnntmp.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div fxFlex='60' class='form-field-full' *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_MAT_PHAI.ID === "2"'>
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.BENH_LY_MAT_PHAI'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <div fxFlex='40' style='margin-top: 8px;text-align: left'>
+          <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_MAT_TRAI.ID' (click)="reset('LIST_MAT_TRAI')">
+            <mat-radio-button *ngFor='let listvnntmt of listVanNhanNoiTaiMT' style='float: left; margin: 5px 0 5px 5px' [value]="listvnntmt.ID">{{listvnntmt.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div fxFlex='60' class='form-field-full' *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_MAT_TRAI.ID === "2"'>
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.BENH_LY_MAT_TRAI'>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='36' style='margin-top: 15px;text-align: left'>- {{"kham_mat.diem_can_quy_tu" | translate}}</div>
+    <div fxFlex='64' class='form-field-full'>
+      <mat-form-field appearance='outline'>
+        <mat-label>{{"kham_mat.benh_ly" | translate}}</mat-label>
+        <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.BENH_LY'>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='20' style='margin-top: 15px;text-align: left'>- {{"kham_mat.rung_giat_nhan_cau" | translate}}:</div>
+    <div fxFlex='80'>
+      <div fxFlex='25' style='margin-top: 8px;text-align: left'>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_RUNG_GIAT_NHAN_CAU.ID' (click)="reset('LIST_RUNG_GIAT_NHAN_CAU')">
+          <mat-radio-button *ngFor='let listrgnc of listRungGiatNhanCau' style='float: left; margin: 5px 0 5px 5px' [value]="listrgnc.ID">{{listrgnc.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div fxFlex='75' class='form-field-full' *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_RUNG_GIAT_NHAN_CAU.ID === "2"'>
+        <mat-form-field appearance='outline'>
+          <mat-label></mat-label>
+          <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.TEXT_RUNG_GIAT_NHAN_CAU'>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div fxLayout='row' class='form-field-full'>
+    <mat-form-field appearance='outline'>
+      <mat-label>{{"kham_mat.kieu_rgnc" | translate}}</mat-label>
+      <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KIEU_RUNG_GIAT_NHAN_CAU'>
+    </mat-form-field>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='20' style='margin-top: 15px;text-align: left'>- {{"kham_mat.goc_ham" | translate}}:</div>
+    <div fxFlex='80' style='margin-top: 8px;text-align: left'>
+      <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_GOC_HAM.ID'>
+        <mat-radio-button *ngFor='let listgocham of listGocHam' style='float: left; margin: 5px 0 5px 5px' [value]="listgocham.ID">{{listgocham.MO_TA}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='20' style='margin-top: 15px;text-align: left'>- {{"kham_mat.thu_nghiem_che_mat" | translate}}:</div>
+    <div fxFlex='80' style='margin-top: 8px;text-align: left'>
+      <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_THU_NGHIEM_CHE_MAT.ID'>
+        <mat-radio-button *ngFor='let listtncm of listThuNghiemCheMat' style='float: left; margin: 5px 0 5px 5px' [value]="listtncm.ID">{{listtncm.MO_TA}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <div fxLayout='row' class='form-field-full'>
+    <mat-form-field appearance='outline'>
+      <mat-label>{{"kham_mat.hinh_thai_va_tinh_chat_lac" | translate}}</mat-label>
+      <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.TEXT_THU_NGHIEM_CHE_MAT'>
+    </mat-form-field>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='20' style='text-align: left;margin-top: 15px'>- {{"kham_mat.do_lac" | translate}}:</div>
+    <div fxFlex='80'>
+      <div fxLayout='row'>
+        <div fxFlex='20' style='text-align: left;margin-top: 15px'>{{"kham_mat.hirschberg" | translate}}:</div>
+        <div fxFlex='80'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.truoc_atropine" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.HIRSCHBERG_TRUOC_ATROPINE'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.sau_atropine" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.HIRSCHBERG_SAU_ATROPINE'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div fxFlex='20' style='text-align: left;margin-top: 15px'>{{"kham_mat.lang_kinh" | translate}}:</div>
+        <div fxFlex='80'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.truoc_atropine" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.LANG_KINH_TRUOC_ATROPINE'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"kham_mat.sau_atropine" | translate}}</mat-label>
+              <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.LANG_KINH_SAU_ATROPINE'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='49.5' class='form-field-full'>
+      <mat-form-field appearance='outline'>
+        <mat-label>{{"kham_mat.nhin_gan" | translate}}:</mat-label>
+        <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.NHIN_GAN'>
+      </mat-form-field>
+    </div>
+    <div fxFlex='1'></div>
+    <div fxFlex='49.5' class='form-field-full'>
+      <mat-form-field appearance='outline'>
+        <mat-label>{{"kham_mat.nhin_xa" | translate}}:</mat-label>
+        <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.NHIN_XA'>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='49.5' class='form-field-full'>
+      <mat-form-field appearance='outline'>
+        <mat-label>{{"kham_mat.nhin_len" | translate}}:</mat-label>
+        <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.NHIN_LEN'>
+      </mat-form-field>
+    </div>
+    <div fxFlex='1'></div>
+    <div fxFlex='49.5' class='form-field-full'>
+      <mat-form-field appearance='outline'>
+        <mat-label>{{"kham_mat.nhin_xuong" | translate}}:</mat-label>
+        <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.NHIN_XUONG'>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout='row' class='form-field-full'>
+    <mat-form-field appearance='outline'>
+      <mat-label>- {{"kham_mat.hoi_chung" | translate}}:</mat-label>
+      <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.HOI_CHUNG'>
+    </mat-form-field>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='20' style='text-align: left;margin-top: 15px'>- {{"kham_mat.synoptophore" | translate}}:</div>
+    <div fxFlex='80'>
+      <div fxFlex='49.5' class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{"kham_mat.khach_quan" | translate}}</mat-label>
+          <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.SYNOPTOPHORE_KHACH_QUAN'>
+        </mat-form-field>
+      </div>
+      <div fxFlex='1'></div>
+      <div fxFlex='49.5' class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{"kham_mat.chu_quan" | translate}}</mat-label>
+          <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.SYNOPTOPHORE_CHU_QUAN'>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='25' style='margin-top: 15px;text-align: left'>- {{"kham_mat.tinh_trang_thi_giac_hai_mat" | translate}}:</div>
+    <div fxFlex='35.4' style='margin-top: 8px;text-align: left'>
+      <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_TINH_TRANG_THI_GIAC.ID' (click)="reset('TINH_TRANG_THI_GIAC')">
+        <mat-radio-button *ngFor='let listttg of listTinhTrangThiGiac' style='float: left; margin: 5px 0 5px 5px' [value]="listttg.ID">{{listttg.MO_TA}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div fxFlex='39.6' class=form-field-full *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_TINH_TRANG_THI_GIAC.ID === "3"'>
+      <mat-form-field appearance='outline'>
+        <mat-label></mat-label>
+        <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.PHU_THI'>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout='row' class='form-field-full'>
+    <mat-form-field appearance='outline'>
+      <mat-label>{{"kham_mat.bien_do_hop_thi" | translate}}:</mat-label>
+      <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.BIEN_DO_HOP_THI'>
+    </mat-form-field>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='20' style='margin-top: 15px;text-align: left'>- {{"kham_mat.tuong_ung_vong_mac" | translate}}:</div>
+    <div fxFlex='80' style='margin-top: 8px;text-align: left'>
+      <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_TUONG_UNG_VONG_MAC.ID'>
+        <mat-radio-button *ngFor='let listuvm of listTuongUngVongMac' style='float: left; margin: 5px 0 5px 5px' [value]="listuvm.ID">{{listuvm.MO_TA}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='20' style='margin-top: 15px;text-align: left'>- {{"kham_mat.song_thi" | translate}}:</div>
+    <div fxFlex='20' style='margin-top: 8px;text-align: left'>
+      <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_SONG_THI.ID' (click)="reset('SONG_THI')">
+        <mat-radio-button *ngFor='let listsongthi of listSongThi' style='float: left; margin: 5px 0 5px 5px' [value]="listsongthi.ID">{{listsongthi.MO_TA}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div fxFlex='60' class='form-field-full' *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_SONG_THI.ID === "2"'>
+      <mat-form-field appearance='outline'>
+        <mat-label></mat-label>
+        <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.TEXT_SONG_THI'>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout='row'>
+    <div fxFlex='20' style='margin-top: 15px;text-align: left'>- {{"kham_mat.tu_the_bu_tru" | translate}}:</div>
+    <div fxFlex='20' style='margin-top: 8px;text-align: left'>
+      <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_TU_THE_BU_TRU.ID' (click)="reset('TU_THE_BU_TRU')">
+        <mat-radio-button *ngFor='let listtuthebutru of listTuTheBuTru' style='float: left; margin: 5px 0 5px 5px' [value]="listtuthebutru.ID">{{listtuthebutru.MO_TA}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div fxFlex='60' class='form-field-full' *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.LIST_TU_THE_BU_TRU.ID === "2"'>
+      <mat-form-field appearance='outline'>
+        <mat-label></mat-label>
+        <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.TEXT_TU_THE_BU_TRU'>
+      </mat-form-field>
+    </div>
+  </div>
+  <table style='width: 100%;margin: 5px 0 5px 0'>
+    <tr>
+      <th style='width: 32%'>{{"kham_mat.kham_mat" | translate}}</th>
+      <th style='width: 34%'>{{"kham_mat.mat_phai" | translate}}</th>
+      <th style='width: 34%'>{{"kham_mat.mat_trai" | translate}}</th>
+    </tr>
+    <tr>
+      <td>
+        <div style='text-align: left;margin-left: 5px'><strong>1. {{"kham_mat.mi_mat" | translate}}</strong></div>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.MI_MAT.ID'>
+          <mat-radio-button *ngFor='let listmimat of listMiMat2' style='float: left; margin: 5px 0 5px 5px' [value]="listmimat.ID">{{listmimat.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.MI_MAT.ID'>
+          <mat-radio-button *ngFor='let listmimat of listMiMat2' style='float: left; margin: 5px 0 5px 5px' [value]="listmimat.ID">{{listmimat.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style='text-align: left;margin-left: 5px'>- {{"kham_mat.muc_do_sup_mi" | translate}}</div>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.MUC_DO_SUP_MI.ID'>
+          <mat-radio-button *ngFor='let listmucdosupmi of listMucDoSupMi' style='float: left; margin: 5px 0 5px 5px' [value]="listmucdosupmi.ID">{{listmucdosupmi.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.MUC_DO_SUP_MI.ID'>
+          <mat-radio-button *ngFor='let listmucdosupmi of listMucDoSupMi' style='float: left; margin: 5px 0 5px 5px' [value]="listmucdosupmi.ID">{{listmucdosupmi.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style='text-align: left;margin-left: 5px'>- {{"kham_mat.epicanthus" | translate}}</div>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.EPICANTHUS.ID'>
+          <mat-radio-button *ngFor='let listepicanthus of listEpicanthus' style='float: left; margin: 5px 0 5px 5px' [value]="listepicanthus.ID">{{listepicanthus.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.EPICANTHUS.ID'>
+          <mat-radio-button *ngFor='let listepicanthus of listEpicanthus' style='float: left; margin: 5px 0 5px 5px' [value]="listepicanthus.ID">{{listepicanthus.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style='text-align: left;margin-left: 5px'>- {{"kham_mat.chuc_nang_co_nang_mi" | translate}}</div>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.CHUC_NANG_CO_NANG_MI.ID'>
+          <mat-radio-button *ngFor='let listcncnm of listChucNangCoNangMi' style='float: left; margin: 5px 0 5px 5px' [value]="listcncnm.ID">{{listcncnm.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.CHUC_NANG_CO_NANG_MI.ID'>
+          <mat-radio-button *ngFor='let listcncnm of listChucNangCoNangMi' style='float: left; margin: 5px 0 5px 5px' [value]="listcncnm.ID">{{listcncnm.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style='text-align: left;margin-left: 5px'>- {{"kham_mat.marcus_gunn" | translate}}</div>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.MARCUS_GUNN.ID'>
+          <mat-radio-button *ngFor='let listmcg of listMarcusGunn' style='float: left; margin: 5px 0 5px 5px' [value]="listmcg.ID">{{listmcg.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.MARCUS_GUNN.ID'>
+          <mat-radio-button *ngFor='let listmcg of listMarcusGunn' style='float: left; margin: 5px 0 5px 5px' [value]="listmcg.ID">{{listmcg.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style='text-align: left;margin-left: 5px'>- {{"kham_mat.dau_hieu_bell" | translate}}</div>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.DAU_HIEU_BELL.ID'>
+          <mat-radio-button *ngFor='let listdauhieubell of listDauHieuBell' style='float: left; margin: 5px 0 5px 5px' [value]="listdauhieubell.ID">{{listdauhieubell.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.DAU_HIEU_BELL.ID'>
+          <mat-radio-button *ngFor='let listdauhieubell of listDauHieuBell' style='float: left; margin: 5px 0 5px 5px' [value]="listdauhieubell.ID">{{listdauhieubell.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+    </tr>
+    <tr style='border-bottom: 1px solid black !important'>
+      <td>
+        <div style='text-align: left;margin-left: 5px'>- {{"hoi_benh_noi_khoa.kham_benh.khac" | translate}}</div>
+      </td>
+      <td>
+        <div class='col-12 form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.KHAC'>
+          </mat-form-field>
+        </div>
+      </td>
+      <td>
+        <div class='col-12 form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.KHAC'>
+          </mat-form-field>
+        </div>
+      </td>
+    </tr>
+    <tr style='border-bottom: 1px solid black !important'>
+      <td>
+        <div style='text-align: left;margin-left: 5px'><strong>2. {{"kham_mat.ket_mac" | translate}}</strong></div>
+      </td>
+      <td>
+        <div fxLayout='row'>
+          <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.LIST_KET_MAC.ID' (click)="reset('LIST_KET_MAC_PHAI')">
+            <mat-radio-button *ngFor='let listketmac of listKetMac2' style='float: left; margin: 5px 0 5px 5px' [value]="listketmac.ID">{{listketmac.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div fxLayout='row' class='col-12 form-field-full' *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.LIST_KET_MAC.ID === "2"'>
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.TEXT_BENH_LY_KET_MAC'>
+          </mat-form-field>
+        </div>
+      </td>
+      <td>
+        <div fxLayout='row'>
+          <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.LIST_KET_MAC.ID' (click)="reset('LIST_KET_MAC_TRAI')">
+            <mat-radio-button *ngFor='let listketmac of listKetMac2' style='float: left; margin: 5px 0 5px 5px' [value]="listketmac.ID">{{listketmac.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div fxLayout='row' class='col-12 form-field-full' *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.LIST_KET_MAC.ID === "2"'>
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.TEXT_BENH_LY_KET_MAC'>
+          </mat-form-field>
+        </div>
+      </td>
+    </tr>
+    <tr style='border-bottom: 1px solid black !important'>
+      <td>
+        <div style='text-align: left;margin-left: 5px'><strong>3. {{"kham_mat.phan_truoc_nhan_cau" | translate}}</strong></div>
+      </td>
+      <td>
+        <div fxLayout='row'>
+          <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.LIST_PHAN_TRUOC_NHAN_CAU.ID' (click)="reset('LIST_PHAN_TRUOC_NHAN_CAU_PHAI')">
+            <mat-radio-button *ngFor='let listptnc of listPhanTruocNhanCau' style='float: left; margin: 5px 0 5px 5px' [value]="listptnc.ID">{{listptnc.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div fxLayout='row' class='col-12 form-field-full' *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.LIST_PHAN_TRUOC_NHAN_CAU.ID === "2"'>
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.TEXT_PHAN_TRUOC_NHAN_CAU'>
+          </mat-form-field>
+        </div>
+      </td>
+      <td>
+        <div fxLayout='row'>
+          <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.LIST_PHAN_TRUOC_NHAN_CAU.ID' (click)="reset('LIST_PHAN_TRUOC_NHAN_CAU_TRAI')">
+            <mat-radio-button *ngFor='let listptnc of listPhanTruocNhanCau' style='float: left; margin: 5px 0 5px 5px' [value]="listptnc.ID">{{listptnc.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div fxLayout='row' class='col-12 form-field-full' *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.LIST_PHAN_TRUOC_NHAN_CAU.ID === "2"'>
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.TEXT_PHAN_TRUOC_NHAN_CAU'>
+          </mat-form-field>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style='text-align: left;margin-left: 5px'><strong>4. {{"kham_mat.phan_sau_nhan_cau" | translate}}</strong></div>
+      </td>
+      <td>
+        <div fxLayout='row'>
+          <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.LIST_PHAN_SAU_NHAN_CAU.ID' (click)="reset('LIST_PHAN_SAU_NHAN_CAU_PHAI')">
+            <mat-radio-button *ngFor='let listpsnc of listPhanSauNhanCau' style='float: left; margin: 5px 0 5px 5px' [value]="listpsnc.ID">{{listpsnc.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div fxLayout='row' class='col-12 form-field-full' *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.LIST_PHAN_SAU_NHAN_CAU.ID === "2"'>
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.TEXT_PHAN_SAU_NHAN_CAU'>
+          </mat-form-field>
+        </div>
+      </td>
+      <td>
+        <div fxLayout='row'>
+          <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.LIST_PHAN_SAU_NHAN_CAU.ID' (click)="reset('LIST_PHAN_SAU_NHAN_CAU_TRAI')">
+            <mat-radio-button *ngFor='let listpsnc of listPhanSauNhanCau' style='float: left; margin: 5px 0 5px 5px' [value]="listpsnc.ID">{{listpsnc.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div fxLayout='row' class='col-12 form-field-full' *ngIf='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.LIST_PHAN_SAU_NHAN_CAU.ID === "2"'>
+          <mat-form-field appearance='outline'>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.TEXT_PHAN_SAU_NHAN_CAU'>
+          </mat-form-field>
+        </div>
+      </td>
+    </tr>
+    <tr style='border-bottom: 1px solid black !important'>
+      <td>
+        <div style='text-align: left;margin-left: 5px'>{{"kham_mat.dinh_thi" | translate}}</div>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_PHAI.DINH_THI.ID'>
+          <mat-radio-button *ngFor='let listdinhthi of listDinhThi' style='width: 40%;float: left; margin: 5px 0 5px 5px' [value]=" listdinhthi.ID">{{ listdinhthi.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+      <td>
+        <mat-radio-group style='float: left' [(ngModel)]='khammat.BENH_AN_MAT_LAC_SUP_MI.KHAM_MAT_TRAI.DINH_THI.ID'>
+          <mat-radio-button *ngFor='let listdinhthi of listDinhThi' style='width: 40%;float: left; margin: 5px 0 5px 5px' [value]=" listdinhthi.ID">{{ listdinhthi.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </td>
+    </tr>
+  </table>
+</div>
+
+

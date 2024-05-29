@@ -1,0 +1,103 @@
+<div fxLayout='row' style='margin-top: 10px'><strong>2. {{"benh_an_so_sinh.cac_co_quan_khac" | translate}}:</strong></div>
+<div fxLayout='row' style='margin: 5px 0'>- {{"hoi_benh_san_khoa.kham_benh.ho_hap" | translate}}:</div>
+
+<div fxLayout='row'>
+  <div fxFlex='49.5' class='form-field-full'>
+    <mat-form-field appearance='outline'>
+      <mat-label>+ {{"st_nhip_tho" | translate}}</mat-label>
+      <input matInput [(ngModel)]='khamBenhSoSinh.NHIP_THO_HO_HAP' type='number' min='0'>
+    </mat-form-field>
+  </div>
+  <div fxFlex='1'></div>
+  <div fxFlex='49.5' class='form-field-full'>
+    <mat-form-field appearance='outline'>
+      <mat-label>+ {{"benh_an_so_sinh.nghe_phoi" | translate}}</mat-label>
+      <input matInput [(ngModel)]='khamBenhSoSinh.NGHE_PHOI'>
+    </mat-form-field>
+  </div>
+</div>
+
+<div fxLayout='row' class='form-field-full'>
+  <mat-form-field appearance='outline'>
+    <mat-label>+ {{"benh_an_so_sinh.chi_so_silverman" | translate}}</mat-label>
+    <input matInput [(ngModel)]='khamBenhSoSinh.CHI_SO_SILVERMAN' type='number' min='0'>
+  </mat-form-field>
+</div>
+<table>
+  <tr>
+    <th style="width:10%">Điểm</th>
+    <th style="width:22%">Sự dãn nở lồng ngực</th>
+    <th style="width:20%">Co kéo cơ liên sườn</th>
+    <th style="width:15%">Co kéo mũi ức</th>
+    <th style="width:13%">Đập cánh mũi</th>
+    <th style="width:20%">Rên rỉ</th>
+  </tr>
+  <tr>
+    <td style="width:10%">0</td>
+    <td style="width:22%">Điều hòa</td>
+    <td style="width:20%">Không</td>
+    <td style="width:15%">Không</td>
+    <td style="width:13%">Không</td>
+    <td style="width:20%">Không</td>
+  </tr>
+  <tr>
+    <td style="width:10%">1</td>
+    <td style="width:22%">Xê dịch nhịp thở với di động bụng</td>
+    <td style="width:20%">Có ít</td>
+    <td style="width:15%">Có ít</td>
+    <td style="width:13%">Nhẹ</td>
+    <td style="width:20%">Nghe bằng ống nghe</td>
+  </tr>
+  <tr>
+    <td style="width:10%">2</td>
+    <td style="width:22%">Không di động ngực bụng</td>
+    <td style="width:20%">Thấy rõ</td>
+    <td style="width:15%">Thấy rõ</td>
+    <td style="width:13%">Rõ</td>
+    <td style="width:20%">Tai thường nghe rõ</td>
+  </tr>
+</table>
+<div fxLayout='row' class='form-field-full' style='margin-top: 5px'>
+  <mat-form-field appearance='outline'>
+    <mat-label>- {{"benh_an_so_sinh.tim_mach" | translate}}</mat-label>
+    <input matInput [(ngModel)]='khamBenhSoSinh.NHIP_TIM' type='number' min='0'>
+  </mat-form-field>
+</div>
+
+<div fxLayout='row' class='form-field-full'>
+  <mat-form-field appearance='outline'>
+    <mat-label>- {{"phieu_yhct_noi_tru.bung" | translate}}:</mat-label>
+    <input matInput [(ngModel)]='khamBenhSoSinh.BUNG'>
+  </mat-form-field>
+</div>
+
+<div fxLayout='row' class='form-field-full'>
+  <mat-form-field appearance='outline'>
+    <mat-label>- {{"benh_an_so_sinh.co_quan_sinh_duc_ngoai" | translate}}:</mat-label>
+    <input matInput [(ngModel)]='khamBenhSoSinh.CO_QUAN_SINH_DUC_NGOAI'>
+  </mat-form-field>
+</div>
+
+<div fxLayout='row' class='form-field-full'>
+  <mat-form-field appearance='outline'>
+    <mat-label>- {{"benh_an_so_sinh.xuong_khop" | translate}}:</mat-label>
+    <input matInput [(ngModel)]='khamBenhSoSinh.XUONG_KHOP'>
+  </mat-form-field>
+</div>
+
+<div class='p-l-8' fxLayout='row'>- {{"hoi_benh_noi_khoa.kham_benh.than_kinh" | translate}}:</div>
+<div fxLayout='row' style='margin-top: 5px'>
+  <div fxFlex='49.5' class='form-field-full'>
+    <mat-form-field appearance='outline'>
+      <mat-label>+ {{"benh_an_so_sinh.phan_xa" | translate}}:</mat-label>
+      <input matInput [(ngModel)]='khamBenhSoSinh.PHAN_XA'>
+    </mat-form-field>
+  </div>
+  <div fxFlex='1'></div>
+  <div fxFlex='49.5' class='form-field-full'>
+    <mat-form-field appearance='outline'>
+      <mat-label>+ {{"benh_an_so_sinh.truong_luc_co" | translate}}:</mat-label>
+      <input matInput [(ngModel)]='khamBenhSoSinh.TRUONG_LUC_CO'>
+    </mat-form-field>
+  </div>
+</div>

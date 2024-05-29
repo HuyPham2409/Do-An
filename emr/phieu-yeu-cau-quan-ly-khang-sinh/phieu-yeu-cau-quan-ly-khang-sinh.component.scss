@@ -1,0 +1,41 @@
+.box-border{
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0.5em;
+}
+.pull-left{
+  float: left;
+}
+.w-95{
+  width: 95%;
+}
+.button-save{
+  background-color: #28a745;
+  color: #FFFFFF;
+}
+.button-approve{
+  color: #FFFFFF;
+  background-color: #007bff;
+}
+
+.button-denied{
+  color: #FFFFFF;
+  background-color: red;
+}
+
+.button-disable{
+  color: #000042;
+  background-color: #BDBDBD;
+}
+button{
+  height: 24px !important;
+  position: relative;
+  min-width: unset !important;
+  border-radius: 5px;
+  padding: 0 10px !important;
+  bottom: 0.16em;
+  .fa{
+      position: relative;
+      top:0.165em
+  }
+}

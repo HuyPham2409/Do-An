@@ -1,0 +1,114 @@
+<mat-card appearance="outlined" class='text-left'>
+  <mat-card-content>
+    <h3 class='m-b-4'>I. Thông tin chung</h3>
+
+    <div class='row'>
+      <div class='col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>Họ tên người bệnh:</mat-label>
+          <input type='text' matInput [(ngModel)]='glasgow.ho_ten_nguoi_benh' disabled>
+        </mat-form-field>
+      </div>
+      <div class='col-3'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>Năm sinh:</mat-label>
+          <input matInput [(ngModel)]='glasgow.nam_sinh' disabled>
+        </mat-form-field>
+      </div>
+      <div class='col-3'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>Giới tính:</mat-label>
+          <input matInput value='{{glasgow.gioi_tinh == 0 ? "Nam" : "Nữ"}}' disabled>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='col-12'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>Khoa/Phòng:</mat-label>
+          <input matInput [(ngModel)]='glasgow.khoa' disabled>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>Chẩn đoán:</mat-label>
+          <input matInput [(ngModel)]='glasgow.chan_doan' disabled>
+        </mat-form-field>
+      </div>
+      <div class='col-3'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>Ngày vào viện:</mat-label>
+          <input matInput  value="{{glasgow.ngay_vao_vien * 1000 | amDateFormat:'DD-MM-YYYY' }}" disabled>
+        </mat-form-field>
+      </div>
+      <div class='col-3'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>Số bệnh án:</mat-label>
+          <input matInput  value="{{glasgow.ma_so_ba}}" disabled>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-content>
+    <h3 class='m-b-4'>II. Nội dung</h3>
+
+    <div class='col-12 matero-col'>
+      <b>Mắt:</b>
+      <mat-radio-group class='row' [(ngModel)]="glasgow.mat" (change)='sum()' required>
+        <mat-radio-button class='col-sm-3' [value]="4">Mở mắt tự nhiên</mat-radio-button>
+        <mat-radio-button class='col-sm-3' [value]="3">Mở mắt khi ra lệnh</mat-radio-button>
+        <mat-radio-button class='col-sm-3' [value]="2">Mở mắt khi gây đau</mat-radio-button>
+        <mat-radio-button class='col' [value]="1">Không mở</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class='col-12 matero-col'>
+      <b>Lời nói:</b>
+      <mat-radio-group class='row' [(ngModel)]="glasgow.loi_noi" (change)='sum()' required>
+        <mat-radio-button class='col' [value]="5">Nói trả lời đúng</mat-radio-button>
+        <mat-radio-button class='col' [value]="4">Trả lời hạn chế</mat-radio-button>
+        <mat-radio-button class='col' [value]="3">Trả lời lộn xộn</mat-radio-button>
+        <mat-radio-button class='col' [value]="2">Không rõ nói gì</mat-radio-button>
+        <mat-radio-button class='col' [value]="1">Không nói</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class='col-12 matero-col'>
+      <b>Vận động:</b>
+      <mat-radio-group [(ngModel)]="glasgow.van_dong" (change)='sum()' required>
+        <div class='row'>
+          <mat-radio-button class='col' [value]="6">Đáp ứng đúng khi ra lệnh</mat-radio-button>
+          <mat-radio-button class='col' [value]="5">Đáp ứng đúng chỉ khi gây đau</mat-radio-button>
+          <mat-radio-button class='col' [value]="4">Co chi lại, cử động không chủ động</mat-radio-button>
+        </div>
+        <div class='row'>
+          <mat-radio-button class='col' [value]="3">Co cứng mất vỏ</mat-radio-button>
+          <mat-radio-button class='col' [value]="2">Duỗi cứng mất não</mat-radio-button>
+          <mat-radio-button class='col' [value]="1">Nằm yên không đáp ứng</mat-radio-button>
+        </div>
+      </mat-radio-group>
+    </div>
+
+  </mat-card-content>
+  <mat-card-content>
+    <h3 class='m-b-4'>III. Tổng kết</h3>
+    <div class='col-12 matero-col'>
+      <mat-form-field appearance='outline' class='full-width'>
+        <mat-label>Ghi chú:</mat-label>
+        <input type='text' matInput [(ngModel)]='glasgow.ghi_chu'>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='full-width col-6 p-l-0'>
+      <mat-label>Tổng điểm:</mat-label>
+      <input type='text' matInput [(ngModel)]='glasgow.tong_diem' readonly>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='full-width col-6 p-r-0'>
+      <mat-label>Người đánh giá:</mat-label>
+        <input type='text' [disabled]='glasgow.nguoi_danh_gia.nguoi_danh_gia.length > 0' matInput [(ngModel)]='glasgow.nguoi_danh_gia.nguoi_danh_gia'>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+</mat-card>

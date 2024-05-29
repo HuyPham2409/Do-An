@@ -1,0 +1,128 @@
+.disabled{
+  pointer-events: none;
+  cursor: default;
+}
+
+//#region Form fields
+:host ::ng-deep .emr {
+  $label-top: 2.1em;
+  $label-top-when-float: 1.9em;
+  /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-form-field-flex {
+    // min-height: 2.8em;
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    .mat-form-field-suffix {
+      display: flex;
+      top: 0;
+
+      .mat-mdc-icon-button {
+        width: 1.3em;
+        height: 1.3em;
+        bottom: -3px;
+
+        svg {
+          font-size: 0.7em;
+        }
+      }
+    }
+  }
+  /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-form-field-label-wrapper {
+    top: -1.2em;
+  }
+  .mat-icon {
+    font-size: 1em;
+  }
+  /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-form-field-suffix {
+    display: flex;
+    top: 0;
+  }
+
+  .mat-form-field-appearance-outline {
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    .mat-form-field-label {
+      top: $label-top;
+    }
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    &.mat-form-field-should-float {
+      /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+      /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+      .mat-form-field-label {
+        top: $label-top-when-float;
+      }
+    }
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    .mat-form-field-wrapper{
+      padding-bottom: 5px;
+      margin-bottom: 0;
+    }
+  }
+  /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-form-field-should-float {}
+  .pull-right{
+    float: right;
+  }
+  .pull-left{
+    float: left;
+  }
+}
+/*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+/*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+.mat-form-field-infix {
+  font-size: 13px;
+  padding: 1px 0 4px 0 !important;
+  width: auto;
+  // padding:0 !important;
+  border-top-width: 8px !important;
+}
+/*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+/*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+::ng-deep .mat-form-field-wrapper{
+  margin-top:8px !important
+}
+
+.table-wrap{
+  height: calc(100vh - 400px);
+  overflow-x: auto;
+  overflow-y: auto;
+  .table-phieu-da-luu{
+    border-collapse: collapse;
+    width: 100%;
+    tbody tr {
+      background-color: #fff;
+      position: static;
+      z-index: 9;
+    }
+    thead {
+      tr{
+        th{
+          position: sticky;
+          top: 0;
+          background-color: #fff;
+          z-index: 99;
+        }
+      }
+    }
+    th, td{
+      padding: 2px;
+    }
+  }
+}
+
+
+//#endregion

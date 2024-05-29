@@ -1,0 +1,261 @@
+<div class='gcv'>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+
+      <h2 class='text-left'>GIẤY CHUYỂN VIỆN</h2>
+      <div class="m-r-8">
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chuyen_vien.khoa_dieu_tri"| translate}}</mat-label>
+              <input matInput [(ngModel)]='gcv.patient_info.parent_name'>
+              <button type="button" mat-button *ngIf="selectGCV && selectGCV.patient_info && selectGCV.patient_info.parent_name" matSuffix mat-icon-button aria-label="Clear" (click)="selectGCV.patient_info.parent_name = ''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chuyen_vien.so_serri"| translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='gcv.code'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="3" readonly></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+<!--      <div class="m-r-8">-->
+<!--        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">-->
+<!--          <div class="form-field-full">-->
+<!--            <mat-form-field appearance='outline'>-->
+<!--              <mat-label>{{"patient.room_name"| translate}}</mat-label>-->
+<!--              <input matInput [(ngModel)]='gcv.patient_info.in_patient_room_name'>-->
+<!--              <button type="button" mat-button matSuffix mat-icon-button aria-label="Clear">-->
+<!--                <mat-icon>close</mat-icon>-->
+<!--              </button>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">-->
+<!--          <div class="form-field-full">-->
+<!--            <mat-form-field appearance='outline'>-->
+<!--              <mat-label>{{"giay_chuyen_vien.giuong"| translate}}</mat-label>-->
+<!--              <input matInput [(ngModel)]='gcv.patient_info.in_patient_bed_name'>-->
+<!--              <button type="button" mat-button matSuffix mat-icon-button aria-label="Clear">-->
+<!--                <mat-icon>close</mat-icon>-->
+<!--              </button>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="m-r-8">
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+<!--          <div class="form-field-full">-->
+<!--            <mat-form-field appearance='outline'>-->
+<!--              <mat-label>{{"giay_chuyen_vien.tu_ngay"| translate}}</mat-label>-->
+<!--              <input matInput-->
+<!--                     [(ngModel)]='gcv.parent_id_in'-->
+<!--                     (ngModelChange)="onDate($event,'DATE_VAO_VIEN')"-->
+<!--                     [matDatepicker]="picker2">-->
+<!--              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>-->
+<!--              <mat-datepicker #picker2></mat-datepicker>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+          <app-emr-date label='giay_chuyen_vien.tu_ngay' mode='date'
+                        [(model)]='gcv.parent_id_in_moment'
+                        [(unixModel)]='gcv.parent_id_in'></app-emr-date>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+<!--          <div class="form-field-full">-->
+<!--            <mat-form-field appearance='outline'>-->
+<!--              <mat-label>{{"bien_ban_hoi_chan.den_ngay"| translate}}</mat-label>-->
+<!--              <input matInput-->
+<!--                     [(ngModel)]='gcv.exam_done_time'-->
+<!--                     (ngModelChange)="onDate($event,'DATE_RA_VIEN')"-->
+<!--                     [matDatepicker]="picker3">-->
+<!--              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>-->
+<!--              <mat-datepicker #picker3></mat-datepicker>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+          <app-emr-date label='bien_ban_hoi_chan.den_ngay' mode='date'
+                        [(model)]='gcv.exam_done_time_moment'
+                        [(unixModel)]='gcv.exam_done_time'></app-emr-date>
+        </div>
+      </div>
+<mat-card appearance="outlined">
+      <h2 fxLayout='row' class='text-left'>{{"giay_chuyen_vien.tom_tat_benh_an"| translate}}</h2>
+      <div class="m-r-8">
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chuyen_vien.dau_hieu_lam_sang"| translate}}</mat-label>
+              <textarea matInput [(ngModel)]='gcv.results.dau_hieu_lam_sang'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chuyen_vien.ket_qua_xet_nghiem_can_lam_sang"| translate}}</mat-label>
+              <textarea matInput [(ngModel)]='gcv.results.cac_xet_nghiem'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-r-8">
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chuyen_vien.phuong_phap"| translate}}</mat-label>
+              <textarea matInput [(ngModel)]='gcv.results.thuoc_da_dung'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chuyen_vien.tinh_trang_nguoi_benh_luc_chuyen_tuyen"| translate}}</mat-label>
+              <textarea matInput [(ngModel)]='gcv.results.tinh_trang_luc_chuyen_vien'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-r-8">
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"emr.diagnose"| translate}}</mat-label>
+              <textarea matInput [(ngModel)]='gcv.results.diagnosis'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>ICD:</mat-label>
+              <mtx-select [multiple]="true" [items]="filteredICDs" [(ngModel)]="gcv.results.service_icd" bindLabel='service_name' (search)='filterICD($event.term)'>
+                <mtx-option *ngFor="let icd of filteredICDs" [value]="icd.service_id">{{icd.service_name}}
+                </mtx-option>
+              </mtx-select>
+
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-r-8">
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"title.huong_dieu_tri"| translate}}</mat-label>
+              <textarea matInput [(ngModel)]='gcv.results.huong_dieu_tri'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class="form-field-full">
+            <app-select label='giay_chuyen_vien.chuyen_den'
+                        [(model)]='gcv.results.chuyen_den_vien'
+                        category='medical_facility' [resetTo]='null'></app-select>
+<!--            <mat-form-field appearance='outline' class='full-width'>-->
+<!--              <mat-label>{{"giay_chuyen_vien.chuyen_den"| translate}}</mat-label>-->
+<!--              <input matInput-->
+<!--                     [(ngModel)]='gcv.results.chuyen_den_vien'-->
+<!--                     [matAutocomplete]="hospital"-->
+<!--                     (focus)="filterHospital('')">-->
+<!--              <mat-autocomplete [displayWith]="displayDM" #hospital="matAutocomplete">-->
+<!--                <mat-option *ngFor="let hospital of filteredHospitals" [value]="hospital">-->
+<!--                  <span>{{ hospital?.hospital_name }}</span>-->
+<!--                </mat-option>-->
+<!--              </mat-autocomplete>-->
+<!--              <button type="button" mat-button-->
+<!--                      matSuffix-->
+<!--                      mat-icon-button-->
+<!--                      aria-label="Clear">-->
+<!--                <mat-icon>close</mat-icon>-->
+<!--              </button>-->
+<!--            </mat-form-field>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="m-r-8">
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <label fxLayout='column' class='text-left' >Lý do chuyển viện</label>
+          <div class="form-field-full m-t-8">
+            <mat-radio-group [(ngModel)]='gcv.results.ly_do_chuyen_vien'>
+              <mat-radio-button  *ngFor='let ldcv of listLyDoChuyenVien' [value]="ldcv.ID" style='margin: 5px 15px 5px 5px'>
+                <span class='word-space'>{{ldcv.MO_TA}}</span>
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chuyen_vien.ly_do_chuyen_vien"| translate}}</mat-label>
+              <input matInput [(ngModel)]='gcv.results.ly_do_chuyen_vien_txt'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div fxLayout='row'>{{"giay_chuyen_vien.phuong_phap_van_chuyen"| translate}}</div>
+          <div>
+            <mat-radio-group [(ngModel)]='gcv.results.phuong_phap_van_chuyen'>
+              <mat-radio-button *ngFor='let ppvc of listPhuongPhapVanChuyen' style='width: 100%; float: left; margin: 5px 0' [value]="ppvc.MO_TA"> {{ppvc.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-r-8">
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+<!--          <div class="form-field-full">-->
+<!--            <mat-form-field appearance='outline'>-->
+<!--              <mat-label>{{"giay_chuyen_vien.thoi_gian_chuyen_vien"| translate}}</mat-label>-->
+<!--              <input matInput-->
+<!--                     [(ngModel)]='gcv.date_chuyen_vien'-->
+<!--                     (ngModelChange)="onDate($event,'DATE_CHUYEN_VIEN')"-->
+<!--                     [matDatepicker]="picker4">-->
+<!--              <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>-->
+<!--              <mat-datepicker #picker4></mat-datepicker>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+          <app-emr-date label='giay_chuyen_vien.thoi_gian_chuyen_vien' mode='datetime'
+                        [(model)]='gcv.date_chuyen_vien_moment'
+                        [(unixModel)]='gcv.date_chuyen_vien '></app-emr-date>
+        </div>
+
+        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+          <div class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>Người nhận hồ sơ</mat-label>
+              <input matInput
+                     [matAutocomplete]="position2"
+                     [(ngModel)]="gcv.results.nguoi_dua_di"
+                     (focus)="filterUser('')"
+                     (ngModelChange)="filterUser(gcv.nguoi_dua_di)">
+              <mat-autocomplete [displayWith]="displayCBYT" #position2="matAutocomplete">
+                <mat-option *ngFor="let user of filteredUsers" [value]="user">
+                  <span>{{ user?.TEN }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="gcv.nguoi_dua_di" matSuffix mat-icon-button aria-label="Clear" (click)="gcv.results.nguoi_dua_di = {}">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>
+

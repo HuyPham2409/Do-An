@@ -1,0 +1,266 @@
+@use '../../../theme/style/variables';
+.emr {
+  .full-width {
+    width: 100%;
+  }
+  .mat-mdc-table{
+    width: 100%;
+  }
+  .header-table{
+    background: #e3e3e3;
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+  .mat-mdc-list-base .mat-mdc-list-item .mat-list-item-content-reverse, .mat-mdc-list-base .mat-list-option .mat-list-item-content-reverse{
+    padding: 0px;
+  }
+  padding: 0px variables.$gutter;
+
+  // Allow overflow to detect bugs
+  overflow-x: auto;
+}
+.pt-20 {
+  padding-top: 20px;
+}
+
+//#region Patient info panels
+.patient-info-tab {
+  .mat-expansion-panel-header-title {
+    min-width: 13em;
+  }
+  .mat-icon {
+    font-size: 1.5em;
+
+    color: #337AB7;
+
+    &.warn {
+      color: #EC971F;
+    }
+  }
+}
+//#endregion
+
+//#region Patient relationships
+table.relationships {
+  width: max(100%, 55em);
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid black;
+    padding: 5px;
+  }
+}
+//#endregion
+
+//#region "Sticky"
+.emr-header {
+  top: 1.5rem;
+}
+// Chỉ disable sticky trong màn hình EMR
+:host ::ng-deep {
+  // .header-fixed {
+    &:not(.giay-to-bhyt) .emr-header {
+      position: fixed;
+      top: 3rem;
+      width: calc(100vw - 6.2rem);
+    }
+  &.document-exam.giay-to-bhyt .emr-header {
+    position: relative;
+    top: 0;
+  }
+  // }
+}
+.mat-expansion-panel-body{
+  .mat-icon{
+    height: auto;
+  }
+}
+.emr-tree,
+.emr-documents {
+  transition: 0.2s;
+}
+.emr-scroll-margin-top {
+  margin-top: 14em;
+}
+//#endregion
+
+//#region Form fields
+:host ::ng-deep .emr {
+  // .mat-form-field-flex {
+  //   min-height: 2.8em;
+  // }
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-form-field-infix {
+    padding: 5px 0;
+  }
+  .mat-icon {
+    font-size: 1.2em;
+  }
+
+  // .mat-form-field-appearance-outline {
+  //   .mat-form-field-label {
+  //     top: 1.2em;
+  //   }
+  //   &.mat-form-field-should-float {
+  //     .mat-form-field-label {
+  //       // top: 1.9em;
+  //     }
+  //   }
+  //   .mat-form-field-wrapper{
+  //     padding-bottom: 5px;
+  //     margin-bottom: 0;
+  //   }
+  // }
+}
+//#endregion
+
+//#region List
+:host ::ng-deep .emr {
+  /* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+  /* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+  /* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+  .mat-mdc-list-item .mat-list-item-content.mat-list-item-content-reverse {
+    padding-right: 0;
+    /* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+    /* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+    .mat-list-text {
+      padding-right: 0;
+    }
+  }
+}
+//#endregion
+
+//#region Typography
+:host ::ng-deep .emr {
+  %text-base {
+    font-size: 14px;
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+  /* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+  .mat-expansion-panel-header-title,
+  .mat-expansion-panel-header-description,
+  h1, h2, h3,
+  .mat-list-option {
+    @extend %text-base;
+  }
+}
+//#endregion
+
+//#region Radio buttons / Checkboxes
+:host ::ng-deep .emr {
+  .hanh-chinh {
+    .mat-mdc-radio-group {
+      flex: 0 1 14em;
+    }
+  }
+  .qlnb {
+    .w-radio-container {
+      width: 36em;
+    }
+  }
+  .chan-doan {
+    .w-radio-container {
+      width: 16em;
+    }
+  }
+  .tinh-trang-ra-vien {
+    .w-radio-container {
+      //width: 36em;
+      padding: 10px 0px 10px 10px;
+    }
+  }
+  .boderMatRadioGr{
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    //float: left;
+    padding-top: 10px;
+    margin: 0.25em 0;
+  }
+  .boderMatRadioGR{
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    margin: 0.25em 0;
+    padding: 8px 0px;
+  }
+}
+
+//#endregion
+
+//#region Tree
+.emr-tree {
+  position: fixed;
+
+  .mat-mdc-card {
+    height: 72vh;
+    overflow: auto;
+  }
+  .mat-mdc-card-content {
+    width: max(25em, 100%);
+    overflow-y: auto;
+  }
+  .mat-mdc-raised-button {
+    line-height: 1.4em;
+  }
+}
+.header-fixed .emr-tree {
+//  margin-top: 3em;
+
+  .mat-mdc-card {
+    height: 84vh;
+  }
+}
+//#endregion
+
+$emr-tree-expanded-width: 43%;
+//#region Expand tree width
+$emr-tree-default-width: 25%;
+.emr-tree {
+  z-index: 2;
+  width: $emr-tree-default-width;
+
+  &.expanded {
+    width: $emr-tree-expanded-width;
+  }
+}
+.emr-documents {
+  $emr-tree-fullsize: calc(#{$emr-tree-default-width} + 2em);
+  width: calc(100% - #{$emr-tree-fullsize});
+  margin-left: $emr-tree-fullsize;
+}
+.expand-tree-width {
+  top: 0.9em;
+  right: 0.99em;
+  display: flex;
+
+  .mat-mdc-icon-button {
+    background: #21966F;
+
+    .mat-icon {
+      color: white;
+    }
+  }
+}
+//#endregion
+
+//#region Spinner container
+.spinner-container--document-exam,
+.spinner-container--service {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.spinner-container--document-exam {
+  .mat-mdc-progress-spinner {
+    margin-right: 4px;
+  }
+}
+//#endregion
+th{
+  padding: 4px 10px ;
+}
+.fa{
+  // font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
+

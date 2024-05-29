@@ -1,0 +1,197 @@
+<div class="glnb">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+<!-- Toàn thân -->
+      <h1 fxLayout='row' class='m-8'><strong>{{"benh_an_phau_thuat_khuc_xa.hoi_benh" | translate}}:</strong></h1>
+        <div fxLayout='row' class='m-t-4'>
+            <div class='col-12 boderMatRadioGr' style='padding-bottom: 1px'>
+              <label class='w-full' fxLayout='row'>{{"benh_an_phau_thuat_khuc_xa.toan_than" |translate}}:</label>
+              <div class='row' style="justify-content: space-around">
+                  <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.CAO_HUYET_AP" >1. {{'benh_an_phau_thuat_khuc_xa.cao_huyet_ap' | translate}}</mat-checkbox>
+                  <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.HEN_PHE_QUAN" >4. {{'benh_an_phau_thuat_khuc_xa.hen_phe_quan' | translate}}</mat-checkbox>
+                  <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.VIEM_KHOP_DANG_THAP" >7. {{'benh_an_phau_thuat_khuc_xa.viem_khop-dang_thap' | translate}}</mat-checkbox>
+              </div>
+              <div class='row' style="justify-content: space-around">
+                  <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.DAI_THAO_DUONG">2. {{'benh_an_phau_thuat_khuc_xa.dai_thao_duong' | translate}}</mat-checkbox>
+                  <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.BENH_MAU"> 5. {{'benh_an_phau_thuat_khuc_xa.benh_mau' | translate}}</mat-checkbox>
+                  <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.BENH_KHAC">8. {{'benh_an_phau_thuat_khuc_xa.benh_khac' | translate}}</mat-checkbox>
+              </div>
+              <div class='row' style="justify-content: space-around">
+                    <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.BENH_TIM" >3. {{'benh_an_phau_thuat_khuc_xa.benh_tim' | translate}}</mat-checkbox>
+                    <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.LUPUS_BAN_DO" >6. {{'benh_an_phau_thuat_khuc_xa.lupus_ban_do' | translate}}</mat-checkbox>
+                    <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.KHONG_CO_BENH_TOAN_THAN">9. {{'benh_an_phau_thuat_khuc_xa.khong_co_benh_toan_than' | translate}}</mat-checkbox>
+              </div>
+            </div>
+        </div>
+<!-- Chi tiết thuốc -->
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>- {{'benh_an_phau_thuat_khuc_xa.dang_dieu_tri_thuoc' | translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                [(ngModel)]='hoiBenhBAPTKS.DANG_DIEU_TRI_THUOC'
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                  placeholder="{{'benh_an_phau_thuat_khuc_xa.dang_dieu_tri_thuoc' | translate}}">
+              </textarea>
+          </mat-form-field>
+
+<!-- Thuốc dị ứng -->
+        <h1 fxLayout='row' class='m-t-8'><strong>{{"benh_an_phau_thuat_khuc_xa.tien_su_di_ung" | translate}}:</strong></h1>
+          <mat-radio-group class='row' [(ngModel)]="hoiBenhBAPTKS.DI_UNG">
+            <div class="col-12" style="display: flex; justify-content: center; margin-left: 15px">
+              <mat-radio-button [value]="true">{{"benh_an_phau_thuat_khuc_xa.co" | translate}}</mat-radio-button>
+              <mat-radio-button [value]="false">{{"benh_an_phau_thuat_khuc_xa.khong" | translate}}</mat-radio-button>
+            </div>
+          </mat-radio-group>
+
+
+        <div class="col-12" *ngIf="hoiBenhBAPTKS.DI_UNG === true">
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>- {{'benh_an_phau_thuat_khuc_xa.tien_su_di_ung' | translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='hoiBenhBAPTKS.TIEN_SU_DI_UNG'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"
+                        placeholder="{{'benh_an_phau_thuat_khuc_xa.tien_su_di_ung_placeholder' | translate}}">
+              </textarea>
+          </mat-form-field>
+        </div>
+
+<!-- Thuốc tránh thai -->
+        <h1 fxLayout='row' class='m-t-8'><strong>{{"benh_an_phau_thuat_khuc_xa.dang_dung_thuoc_tranh_thai" | translate}}:</strong></h1>
+        <mat-radio-group class='row' [(ngModel)]="hoiBenhBAPTKS.SU_DUNG_THUOC_TRANH_THAI">
+          <div class="col-12" style="display: flex; justify-content: center; margin-left: 15px">
+            <mat-radio-button [value]="true">{{"benh_an_phau_thuat_khuc_xa.co" | translate}}</mat-radio-button>
+            <mat-radio-button [value]="false">{{"benh_an_phau_thuat_khuc_xa.khong" | translate}}</mat-radio-button>
+          </div>
+        </mat-radio-group>
+
+        <div class="col-12" *ngIf="hoiBenhBAPTKS.SU_DUNG_THUOC_TRANH_THAI === true">
+          <mat-form-field appearance='outline' class="full-width text-area-line-height">
+            <mat-label>- {{'benh_an_phau_thuat_khuc_xa.dang_dung_thuoc_tranh_thai' | translate}}:</mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      [(ngModel)]='hoiBenhBAPTKS.THUOC_TRANH_THAI'
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5"
+                      placeholder="{{'benh_an_phau_thuat_khuc_xa.dang_dung_thuoc_tranh_thai_placeholder' | translate}}">
+              </textarea>
+          </mat-form-field>
+        </div>
+
+<!-- Đang cho con bú -->
+        <h1 fxLayout='row' class='m-t-8'><strong>{{"benh_an_phau_thuat_khuc_xa.danh_cho_benh_nhan_nu" | translate}}:</strong></h1>
+        <mat-radio-group class='row' [(ngModel)]="hoiBenhBAPTKS.CHO_CON_BU">
+          <div class="col-12" style="display: flex; justify-content: center; margin-left: 15px">
+            <mat-radio-button [value]="true">{{"benh_an_phau_thuat_khuc_xa.co" | translate}}</mat-radio-button>
+            <mat-radio-button [value]="false">{{"benh_an_phau_thuat_khuc_xa.khong" | translate}}</mat-radio-button>
+          </div>
+        </mat-radio-group>
+
+<!-- Lý do xin mổ -->
+      <h1 fxLayout='row' class='m-8'><strong>{{"benh_an_phau_thuat_khuc_xa.li_do_xin_mo" | translate}}:</strong></h1>
+      <div fxLayout='row' class='m-t-4'>
+        <div class='col-12 boderMatRadioGr' style='padding-bottom: 1px'>
+          <div class='row' style="justify-content: space-around">
+            <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.LY_DO_NGHE_NGHIEP">{{'benh_an_phau_thuat_khuc_xa.nghe_nghiep' | translate}}</mat-checkbox>
+            <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.THAM_MY">{{'benh_an_phau_thuat_khuc_xa.tham_my' | translate}}</mat-checkbox>
+            <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.BAT_TIEN_TRONG_SINH_HOAT">{{'benh_an_phau_thuat_khuc_xa.bat_tien_trong_sinh_hoat' | translate}}</mat-checkbox>
+          </div>
+          <div class='row' style="justify-content: space-around">
+            <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.KHO_CHIU_KHI_DEO">{{'benh_an_phau_thuat_khuc_xa.kho_chịu_khi_deo_kinh' | translate}}</mat-checkbox>
+            <div  class="example-margin col-4"></div>
+            <mat-checkbox class="example-margin col-4" [(ngModel)]="hoiBenhBAPTKS.LY_DO_KHAC">{{'benh_an_phau_thuat_khuc_xa.ly_do_khac' | translate}}</mat-checkbox>
+          </div>
+        </div>
+      </div>
+
+<!-- Phát hiện khúc xạ -->
+        <mat-form-field appearance='outline' class="full-width text-area-line-height">
+          <mat-label>- {{'benh_an_phau_thuat_khuc_xa.phat_hien_co_do_khuc_xa_tu_luc' | translate}}:</mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    [(ngModel)]='hoiBenhBAPTKS.PHAT_HIEN_CO_DO_KHUC_SA_TU_LUC'
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    placeholder="{{'benh_an_phau_thuat_khuc_xa.phat_hien_co_do_khuc_xa_tu_luc' | translate}}">
+              </textarea>
+        </mat-form-field>
+
+<!-- Tiến triển khúc xạ -->
+      <h1 fxLayout='row' class='m-t-8'><strong>{{"benh_an_phau_thuat_khuc_xa.tien_trien_do_khuc_xa" | translate}}:</strong></h1>
+      <mat-radio-group class='row' [(ngModel)]="hoiBenhBAPTKS.TIEN_TRIEN_DO_KHUC_XA">
+        <div class="col-12" style="display: flex; justify-content: center; margin-left: 15px">
+          <mat-radio-button [value]="true">{{"benh_an_phau_thuat_khuc_xa.on_dinh" | translate}}</mat-radio-button>
+          <mat-radio-button [value]="false">{{"benh_an_phau_thuat_khuc_xa.khong_on_dinh" | translate}}</mat-radio-button>
+        </div>
+      </mat-radio-group>
+
+<!-- Đeo kính -->
+      <h1 fxLayout='row' class='m-t-8'><strong>{{"benh_an_phau_thuat_khuc_xa.dang_deo_kinh" | translate}}:</strong></h1>
+      <mat-radio-group class='row' [(ngModel)]="hoiBenhBAPTKS.KINH_DANG_DEO">
+        <div class="col-12" style="display: flex; justify-content: center; margin-left: 15px">
+          <mat-radio-button [value]="true">{{"benh_an_phau_thuat_khuc_xa.co" | translate}}</mat-radio-button>
+          <mat-radio-button [value]="false">{{"benh_an_phau_thuat_khuc_xa.khong" | translate}}</mat-radio-button>
+        </div>
+      </mat-radio-group>
+
+<!-- Đeo kính có tiếp xúc -->
+      <div class="col-12" *ngIf="hoiBenhBAPTKS.KINH_DANG_DEO === true" style="margin-top: 15px">
+        <h1 fxLayout='row' class='m-t-8'><strong>{{"benh_an_phau_thuat_khuc_xa.deo_kinh_tiep_xuc" | translate}}:</strong></h1>
+
+        <mat-radio-group class='row' [(ngModel)]="hoiBenhBAPTKS.DEO_KINH_TIEP_XUC">
+          <div class="col-12" style="display: flex; justify-content: center; margin-left: 9px;">
+            <mat-radio-button [value]="true">{{"benh_an_phau_thuat_khuc_xa.co" | translate}}</mat-radio-button>
+            <mat-radio-button [value]="false" style="margin-left: 22%;">{{"benh_an_phau_thuat_khuc_xa.khong" | translate}}</mat-radio-button>
+          </div>
+        </mat-radio-group>
+
+          <div class="col-12" *ngIf="hoiBenhBAPTKS.DEO_KINH_TIEP_XUC === true" style="margin-top: 15px;">
+            <mat-radio-group class='row' [(ngModel)]="hoiBenhBAPTKS.LOAI">
+              <div class="col-12" style="display: flex; justify-content: center; margin-left: 5px;">
+                <mat-radio-button [value]="true">{{"benh_an_phau_thuat_khuc_xa.mem" | translate}}</mat-radio-button>
+                <mat-radio-button [value]="false" style="margin-left: 24%;">{{"benh_an_phau_thuat_khuc_xa.cung" | translate}}</mat-radio-button>
+              </div>
+            </mat-radio-group>
+          </div>
+
+        <mat-form-field appearance='outline' class="full-width text-area-line-height">
+          <mat-label>- {{'benh_an_phau_thuat_khuc_xa.deo_thang' | translate}}:</mat-label>
+          <input matInput type="number" min="0" [(ngModel)]="hoiBenhBAPTKS.THANG_DEO" placeholder="{{'benh_an_phau_thuat_khuc_xa.deo_thang' | translate}}">
+        </mat-form-field>
+        <mat-form-field appearance='outline' class="full-width text-area-line-height">
+          <mat-label>- {{'benh_an_phau_thuat_khuc_xa.deo_nam' | translate}}:</mat-label>
+          <input matInput type="number" min="0" [(ngModel)]="hoiBenhBAPTKS.NAM_DEO" placeholder="{{'benh_an_phau_thuat_khuc_xa.deo_nam' | translate}}">
+        </mat-form-field>
+        <mat-form-field appearance='outline' class="full-width text-area-line-height">
+          <mat-label>- {{'benh_an_phau_thuat_khuc_xa.gio/ngay' | translate}}:</mat-label>
+          <input matInput type="number" min="0" [(ngModel)]="hoiBenhBAPTKS.Gio_tren_ngay" placeholder="{{'benh_an_phau_thuat_khuc_xa.gio/ngay' | translate}}">
+        </mat-form-field>
+
+<!-- Tiền sử khám bệnh mắt -->
+        <h1 fxLayout='row' class='m-t-8'><strong>{{"benh_an_phau_thuat_khuc_xa.tien_su_benh_mat" | translate}}:</strong></h1>
+        <mat-form-field appearance='outline' class="full-width text-area-line-height">
+          <mat-label>- {{'benh_an_phau_thuat_khuc_xa.tien_su_benh_mat' | translate}}:</mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    [(ngModel)]='hoiBenhBAPTKS.TIEN_SU_BENH_MAT'
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    placeholder="{{'benh_an_phau_thuat_khuc_xa.tien_su_benh_mat' | translate}}">
+              </textarea>
+        </mat-form-field>
+
+<!-- Tiền sử phấu thuật mắt -->
+        <h1 fxLayout='row' class='m-t-8'><strong>{{"benh_an_phau_thuat_khuc_xa.tien_su_phau_thuat" | translate}}:</strong></h1>
+        <mat-form-field appearance='outline' class="full-width text-area-line-height">
+          <mat-label>- {{'benh_an_phau_thuat_khuc_xa.tien_su_phau_thuat' | translate}}:</mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    [(ngModel)]='hoiBenhBAPTKS.TIEN_SU_PHAU_THUAT'
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    placeholder="{{'benh_an_phau_thuat_khuc_xa.tien_su_phau_thuat' | translate}}">
+              </textarea>
+        </mat-form-field>
+
+</div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+

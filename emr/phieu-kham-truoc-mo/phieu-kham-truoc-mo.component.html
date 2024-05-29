@@ -1,0 +1,384 @@
+<div>
+  <mat-card appearance="outlined">
+    <div>
+      <div fxFlex="1" fxFlex.lt-sm="100" class="matero-col"></div>
+
+      <div fxFlex="10" fxFlex.lt-sm="100" class="matero-col">
+        <p>BN dị ứng với thuốc</p>
+      </div>
+
+      <div fxFlex="59" fxFlex.lt-sm="100" class="matero-col"></div>
+
+      <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+        <div fxFlex="20" fxFlex.lt-sm="100" class="matero-col">
+          <p>Chẩn đoán</p>
+        </div>
+
+        <div fxFlex="80" fxFlex.lt-sm="100" class="matero-col">
+          <form class="form-field-full">
+            <mat-form-field class="m-r-8">
+              <textarea matInput></textarea>
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div>
+      <strong>CHUẨN BỊ BỆNH NHÂN</strong>
+
+      <div>
+        <div fxFlex="20" fxFlex.lt-sm="100" class="matero-col">
+          <table>
+            <tr>
+              <th>Chuẩn bị bệnh nhân</th>
+              <th>Có</th>
+              <th>Không</th>
+            </tr>
+          </table>
+        </div>
+
+        <div fxFlex="2.5" fxFlex.lt-sm="100" class="matero-col"></div>
+        <div fxFlex="40" fxFlex.lt-sm="100" class="matero-col">
+          <div>
+            <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+              <p>Nhắc bệnh nhân nhịn ăn, uống</p>
+            </div>
+
+            <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+              <form class="form-field-full">
+                <mat-form-field class="m-r-8">
+                  <input matInput>
+                </mat-form-field>
+              </form>
+            </div>
+          </div>
+
+          <div>
+            <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+              <p>Thuốc tiêm gây mê (ghi tên thuốc)</p>
+            </div>
+
+            <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+              <form class="form-field-full">
+                <mat-form-field class="m-r-8">
+                  <input matInput>
+                </mat-form-field>
+              </form>
+            </div>
+          </div>
+
+          <div>
+            <div fxFlex="49" fxFlex.lt-sm="100" class="matero-col">
+              <p>Giờ đưa bệnh nhân đi mổ</p>
+            </div>
+
+            <div fxFlex="51" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="41" fxFlex.lt-sm="100" class="matero-col">
+                <mat-form-field class="m-r-8">
+                  <mat-label></mat-label>
+                  <input matInput [matDatepicker]="picker1">
+                </mat-form-field>
+               </div>
+                <div fxFlex="10" fxFlex.lt-sm="100" class="matero-col">
+                  <div class="button">
+                   <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          <div>
+            <div fxFlex="49" fxFlex.lt-sm="100" class="matero-col">
+              <p>Dự tính ngày giờ gây mê bệnh nhân</p>
+            </div>
+
+            <div fxFlex="51" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="41" fxFlex.lt-sm="100" class="matero-col">
+                <mat-form-field class="m-r-8">
+                  <mat-label></mat-label>
+                  <input matInput [matDatepicker]="picker2">
+                </mat-form-field>
+               </div>
+                <div fxFlex="10" fxFlex.lt-sm="100" class="matero-col">
+                  <div class="button">
+                   <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          <div>
+            <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+              <p>Ý kiến dự định gây mê bệnh nhân tại phòng mổ</p>
+            </div>
+
+            <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">
+              <form class="form-field-full">
+                <mat-form-field class="m-r-8">
+                  <input matInput>
+                </mat-form-field>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+        <div fxFlex="2.5" fxFlex.lt-sm="100" class="matero-col"></div>
+
+        <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+          <div>
+            <p>Các thông số</p>
+          </div>
+          <div>
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                <p>Mạch</p>
+              </div>
+
+              <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                <div fxFlex="65" fxFlex.lt-sm="100" class="matero-col">
+                  <form class="form-field-full">
+                    <mat-form-field class="m-r-8">
+                      <input matInput>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+                <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+                  <p>lần/phút</p>
+                </div>
+              </div>
+            </div>
+
+            <div fxFlex="4" fxFlex.lt-sm="100" class="matero-col"></div>
+
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                <p>Chiều cao</p>
+              </div>
+
+              <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                <div fxFlex="65" fxFlex.lt-sm="100" class="matero-col">
+                  <form class="form-field-full">
+                    <mat-form-field class="m-r-8">
+                      <input matInput>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+                <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+                  <p>cm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                <p>Nhiệt độ</p>
+              </div>
+
+              <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                <div fxFlex="65" fxFlex.lt-sm="100" class="matero-col">
+                  <form class="form-field-full">
+                    <mat-form-field class="m-r-8">
+                      <input matInput>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+                <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+                  <p>℃</p>
+                </div>
+              </div>
+            </div>
+
+            <div fxFlex="4" fxFlex.lt-sm="100" class="matero-col"></div>
+
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                <p>Cân nặng</p>
+              </div>
+
+              <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                <div fxFlex="65" fxFlex.lt-sm="100" class="matero-col">
+                  <form class="form-field-full">
+                    <mat-form-field class="m-r-8">
+                      <input matInput>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+                <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+                  <p>kg</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                <p>Huyết áp</p>
+              </div>
+
+              <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                <div fxFlex="65" fxFlex.lt-sm="100" class="matero-col">
+                  <form class="form-field-full">
+                    <mat-form-field class="m-r-8">
+                      <input matInput>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+                <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+                  <p>mmHg</p>
+                </div>
+              </div>
+            </div>
+
+            <div fxFlex="4" fxFlex.lt-sm="100" class="matero-col"></div>
+
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                <p>Nhóm máu</p>
+              </div>
+
+              <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                <div fxFlex="65" fxFlex.lt-sm="100" class="matero-col">
+                  <form class="form-field-full">
+                    <mat-form-field class="m-r-8">
+                      <input matInput>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+                <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+                  <p>MĐ MC</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                <p>Nhịp thở</p>
+              </div>
+
+              <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                <div fxFlex="65" fxFlex.lt-sm="100" class="matero-col">
+                  <form class="form-field-full">
+                    <mat-form-field class="m-r-8">
+                      <input matInput>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+                <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+                  <p>lần/phút</p>
+                </div>
+              </div>
+            </div>
+
+            <div fxFlex="4" fxFlex.lt-sm="100" class="matero-col"></div>
+
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col"></div>
+          </div>
+
+          <div>
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                <p>U.S</p>
+              </div>
+
+              <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                <div fxFlex="65" fxFlex.lt-sm="100" class="matero-col">
+                  <form class="form-field-full">
+                    <mat-form-field class="m-r-8">
+                      <input matInput>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+                <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+
+            <div fxFlex="4" fxFlex.lt-sm="100" class="matero-col"></div>
+
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                <p>H.C</p>
+              </div>
+
+              <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                <div fxFlex="65" fxFlex.lt-sm="100" class="matero-col">
+                  <form class="form-field-full">
+                    <mat-form-field class="m-r-8">
+                      <input matInput>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+                <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                <p>HST</p>
+              </div>
+
+              <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                <div fxFlex="65" fxFlex.lt-sm="100" class="matero-col">
+                  <form class="form-field-full">
+                    <mat-form-field class="m-r-8">
+                      <input matInput>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+                <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+
+            <div fxFlex="4" fxFlex.lt-sm="100" class="matero-col"></div>
+
+            <div fxFlex="48" fxFlex.lt-sm="100" class="matero-col">
+              <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                <p>Test K.S</p>
+              </div>
+
+              <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                <div fxFlex="65" fxFlex.lt-sm="100" class="matero-col">
+                  <form class="form-field-full">
+                    <mat-form-field class="m-r-8">
+                      <input matInput>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+                <div fxFlex="35" fxFlex.lt-sm="100" class="matero-col">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </mat-card>
+</div>

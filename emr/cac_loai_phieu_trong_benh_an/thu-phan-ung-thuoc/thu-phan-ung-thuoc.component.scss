@@ -1,0 +1,178 @@
+$mat-green: #018C33;
+$mat-green-hn: #1B926C;
+$mat-mint-800: #34D8A3;
+$mat-mint-selected: #ADEED9;
+$mat-green-disabled: #CCE6D5;
+$mat-mint-600: #D5F9ED;
+$mat-mint: #E7FFF1;
+$mat-mint-400: #D5FAEF;
+$mat-cyan: #C3E6F7;
+$grey-700: #00000080;
+$light-grey-600: #C7C7C7;
+$header-grey: #0000000F;
+$select-grey: #C4C4C400;
+$background-grey: #C4C4C466;
+$border-grey: #828282;
+$border-grey-400: #89939E; // Viền
+$input-border-grey: #A5A3A3;
+$grey: #B9B9B9;
+$grey-400: #CCCCCC;
+$divider-grey: #C4C4C4;
+$background-light-grey-600: #E5E5E5;
+$background-light-grey: #F2F2F2;
+$mat-sky-blue-400: #D1E2FF;
+$mat-sky-blue: #7ACDF3;
+$mat-navy: #4070C0;
+$edit-blue: #0F56B3;
+$mat-purple: #8F559B;
+$mat-pink-600: #FAD5F2;
+$mat-pink: #FDDFE1;
+$mat-rose: #FD9090;
+$mat-rose-600: #F68274;
+$mat-rose-700: #ED5B5B;
+$danger: #F61414;
+$danger-600: #FF001F;
+$restore-orange: #E67240E3;
+$mat-orange: #EC963A;
+$mat-yellow-600: #EEBC00;
+$mat-yellow: #E3BC08;
+$mat-yellow-400: #F9FAD5;
+
+.action-edit {
+  color: $edit-blue;
+}
+
+.action-save, .action-add {
+  color: $mat-green-hn;
+}
+
+.action-delete {
+  color: $danger;
+}
+
+.action-restore {
+  color: $restore-orange;
+}
+
+
+@mixin column-width($n, $width) {
+  th:nth-child(#{$n}), td:nth-child(#{$n}) {
+    width: $width;
+    max-width: $width;
+  }
+}
+
+/**
+ * Put in .table-container
+ */
+
+@mixin table-container-config($min-height) {
+  min-height: $min-height;
+  table-layout: fixed;
+  font-size: 14px;
+  line-height: 16px;
+  th, td {
+    box-sizing: border-box;
+  }
+  th {
+    font-weight: 600;
+    text-align: center;
+  }
+  .text-align-center {
+    text-align: center;
+  }
+}
+
+.table-container {
+  width: 100%;
+  border: 1px solid $grey;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+
+  // Remove built-in spacing
+  border-collapse: collapse;
+
+  tr {
+    
+    border-bottom: 1px solid $grey;
+  }
+  th{
+    vertical-align: top;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+
+    &:not(:last-child) {
+      border-right: 1px solid $grey;
+    }
+  }
+}
+
+
+mat-form-field {
+  width: 100%;
+}
+
+textarea {
+  padding: 6px 12px;
+  box-sizing: border-box;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of input that may no longer apply for the MDC version.*/
+/* TODO(mdc-migration): The following rule targets internal classes of input that may no longer apply for the MDC version.*/
+::ng-deep .mat-input-underline{ visibility: visible; z-index: -999; display: block; }
+
+.table-container {
+
+  @include table-container-config(200px);
+
+  line-height: 18px;
+
+  @include column-width(1, 50px);
+  @include column-width(2, 240px);
+  @include column-width(4, 210px);
+  @include column-width(5, 210px);
+  @include column-width(6, 210px);
+  @include column-width(7, 210px);
+  @include column-width(8, 210px);
+
+  tr.selected-row {
+    background-color: $mat-mint;
+  }
+
+  tr:not(:first-child) {
+    td {
+      padding: 4px 12px;
+
+      &.button-container {
+        padding: 2px 12px 0 12px;
+      }
+      &.checkbox-container {
+        padding: 10px;
+      }
+      &.not-editing {
+        padding: 10px 12px;
+      }
+    }
+  }
+
+  .border-left {
+    border-left: 1px solid $grey;
+  }
+}
+button{
+  height: 24px;
+  position: relative;
+  min-width: unset !important;
+  border-radius: 5px;
+  padding: 0 10px;
+  // top: 0.16em;
+  .fa{
+      position: relative;
+      bottom:0.165em
+  }
+}

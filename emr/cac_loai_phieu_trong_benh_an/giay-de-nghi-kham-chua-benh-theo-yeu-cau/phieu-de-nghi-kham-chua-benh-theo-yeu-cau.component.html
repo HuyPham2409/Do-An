@@ -1,0 +1,258 @@
+<div class='input_form_field'>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class='hanhChinh'>
+        <div class='row'>
+          <h3>A. {{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.hanh_chinh" | translate}}</h3>
+        </div>
+        <div class='row'>
+          <div class='col-4'>
+            <div class='row' style='align-items: center'>
+              <div class='col-3'>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.kinh_gui" | translate}}:</div>
+              <div class='col-9'>
+                <mat-form-field appearance='outline'>
+                  <input matInput type='text' value='{{giay_de_nghi.thongTinBenhNhan.parent_name}}' disabled>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-4'>
+            <div class='row' style='align-items: center'>
+              <div class='col-3'>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.so_benh_an" | translate}}:</div>
+              <div class='col-9'>
+                <mat-form-field appearance='outline'>
+                  <input matInput type='text' value='{{giay_de_nghi.thongTinBenhNhan.reception_queue_id}}' disabled>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class='col-4'>
+            <div class='row' style='align-items: center'>
+              <div class col-3>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.so_phieu" | translate}}:</div>
+              <div class='col-9'>
+                <mat-form-field appearance='outline'>
+                  <input matInput type='text' [(ngModel)]='giay_de_nghi.so_phieu'>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class='col-4'>
+            <div class='row' style='align-items: center'>
+              <div class col-3>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.ngay_gio" | translate}}:</div>
+              <div class='col-9'>
+                <app-emr-date mode='datetime' [(model)]='giay_de_nghi.ngay_gio_momment'
+                                              [(dmModel)]='giay_de_nghi.ngay_gio'
+                ></app-emr-date>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class='noiDung'>
+        <div class='row'>
+          <h2>B. {{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.hanh_chinh" | translate}}</h2>
+        </div>
+        <div class='row'>
+          <h3>I. {{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.hanh_chinh_nguoi_benh" | translate }}</h3>
+        </div>
+        <div class='row' style='align-items: center'>
+          <div class='col-1'>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.so_vao_vien" | translate }}</div>
+          <div class='col-3'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <input matInput type='text' value='{{giay_de_nghi.thongTinBenhNhan.reception_queue_id}}' readonly>
+            </mat-form-field>
+          </div>
+          <div class='col-3'>
+            <mat-checkbox
+              [checked]='giay_de_nghi.thongTinBenhNhan.in_patient' disabled='true'>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.noi_tru" | translate }}</mat-checkbox>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-3'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <mat-label>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.ho_ten" | translate }}</mat-label>
+              <input matInput type='text' value='{{giay_de_nghi.thongTinBenhNhan.HO_TEN}}' readonly>
+            </mat-form-field>
+          </div>
+          <div class='col-3'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <mat-label>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.tuoi" | translate }}</mat-label>
+              <input matInput type='text' value='{{giay_de_nghi.thongTinBenhNhan.DO_TUOI}}' readonly>
+            </mat-form-field>
+          </div>
+          <div class='col-3'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <mat-label>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.gioi_tinh" | translate }}</mat-label>
+              <input matInput type='text' value='{{giay_de_nghi.thongTinBenhNhan.GIOI_TINH.MO_TA}}' readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-3'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <mat-label>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.ma_y_te" | translate }}</mat-label>
+              <input matInput type='text' value='{{giay_de_nghi.thongTinBenhNhan.patient_id}}' readonly>
+            </mat-form-field>
+          </div>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <mat-label>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.dia_chi" | translate }}</mat-label>
+              <input matInput type='text' value='{{giay_de_nghi.thongTinBenhNhan.address1}}' readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-3'>
+            <app-emr-date [(model)]='giay_de_nghi.thongTinBenhNhan.vao_vien_hoi_moment'
+                          [(unixModel)]='giay_de_nghi.thongTinBenhNhan.vao_vien_hoi'
+                          label='phieu_de_nghi_kham_chua_benh_theo_yeu_cau.vao_vien_luc'></app-emr-date>
+          </div>
+          <div class='col-3'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <mat-label>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.tai_khoa" | translate }}</mat-label>
+              <input matInput type='text' value='{{giay_de_nghi.thongTinBenhNhan.parent_name}}' readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-2'>
+            <h3>II. {{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.phan_thong_tin_cap_nhat" | translate }}</h3>
+          </div>
+          <div class='col-3 m-y-auto'>
+            <div class='row' style='justify-content: space-around'>
+              <div>
+               {{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.doi_tuong" | translate }}
+              </div>
+              <mat-radio-group [(ngModel)]='giay_de_nghi.doiTuong' (ngModelChangeDebounced)='handleChangeDoiTuong($event)'>
+                  <mat-radio-button
+                    [value]='1'>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.benh_nhan" | translate }}</mat-radio-button>
+                  <mat-radio-button
+                    [value]='2'>{{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.nguoi_nha" | translate }}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <mat-label> {{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.ten_toi" | translate }}</mat-label>
+              <input matInput type='text' [(ngModel)]='giay_de_nghi.ten'>
+            </mat-form-field>
+          </div>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <mat-label> {{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.dia_chi" | translate }}</mat-label>
+              <input matInput type='text' [(ngModel)]='giay_de_nghi.diaChi'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <mat-label> {{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.so_cmtnd_cccd" | translate }}</mat-label>
+              <input matInput [(ngModel)]='giay_de_nghi.CCCD'>
+            </mat-form-field>
+          </div>
+          <div class='col-6'>
+            <app-emr-date label='phieu_de_nghi_kham_chua_benh_theo_yeu_cau.ngay_cap' mode='date'
+                          [(model)]='giay_de_nghi.ngayCap_moment'
+                          [(dmModel)]='giay_de_nghi.ngayCap'></app-emr-date>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <mat-label> {{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.co_quan_cap" | translate }}</mat-label>
+              <input matInput [(ngModel)]='giay_de_nghi.CO_QUAN_CAP'>
+            </mat-form-field>
+          </div>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class='w-full'>
+              <mat-label> {{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.dien_thoai" | translate }}</mat-label>
+              <input matInput [(ngModel)]='giay_de_nghi.dienThoai'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class='dichVu'>
+        <div class='col-4'>
+          <h3>III. {{ "phieu_de_nghi_kham_chua_benh_theo_yeu_cau.dich_vu_su_dung" | translate }}</h3>
+        </div>
+
+        <div class='form-field-full'>
+          <fieldset style='border: 1px solid #949494; margin: 14px 0' fxFlex.xs='calc(100%-25px)'
+                    fxFlex='calc(100% - 50px)'>
+            <legend>{{"phieu_de_nghi_kham_chua_benh_theo_yeu_cau.danh_sach_dich_vu" | translate}}</legend>
+            <div class='row'>
+              <div class='col-1'></div>
+              <div class='col-6'>{{'phieu_de_nghi_kham_chua_benh_theo_yeu_cau.ten_dich_vu' | translate}}</div>
+              <div class='col-2'>{{'phieu_de_nghi_kham_chua_benh_theo_yeu_cau.doi_tuong' | translate}}</div>
+              <div class='col-2'>{{'phieu_de_nghi_kham_chua_benh_theo_yeu_cau.don_gia' | translate}}</div>
+              <div class='col-1' fxLayoutAlign='center center'>
+                <button type='button' (click)='add()' mat-button class='btn-sm m-b-8 mat-blue-hn'
+                        [title]="'phieu_de_nghi_kham_chua_benh_theo_yeu_cau.them' | translate">
+                  <i class='fa fa-plus'></i>
+                </button>
+              </div>
+            </div>
+            <div class='row' *ngFor='let item of giay_de_nghi.listDichVu; let i = index'>
+              <div class='col-1'>{{i + 1}}</div>
+              <div class='col-6'>
+                <app-select [(model)]='giay_de_nghi.listDichVu[i]' (modelChange)='OnselectService(i)'
+                            category='service_price'
+                            [params]='PARAMS_GET_SERVICE'></app-select>
+              </div>
+              <div class='col-2'>
+                <mat-form-field appearance='outline' class='w-full'>
+                  <mat-select [(ngModel)]='item.patient_type' (valueChange)='getPriceService(i,$event)'>
+                    <mat-option *ngFor="let dt of listDoiTuong" [value]="dt" >
+                      {{dt?.patient_type_name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class='col-2'>
+                <mat-form-field appearance='outline' class='w-full'>
+                  <input matInput [value]='item.service_price | number'>
+                </mat-form-field>
+              </div>
+              <div class='col-1' fxLayoutAlign='center center'>
+                <button type='button' (click)='remove(i)' mat-button class='btn-sm m-b-8 mat-red-hn'
+                        [title]="'phieu_de_nghi_kham_chua_benh_theo_yeu_cau.xoa' | translate">
+                  <i class='fa fa-times'></i>
+                </button>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+<!--      <div class='form-field-full row'>-->
+<!--        <div class='col-6'>-->
+<!--          <div class='row'>-->
+<!--            <span class='col-6'>{{'Khoản tiền ứng trước theo quy định của bệnh viện'}}</span>-->
+<!--            <mat-form-field appearance='outline' class='col-6'>-->
+<!--              <mat-label>{{'Khoản tiền ứng trước theo quy định của bệnh viện'}}</mat-label>-->
+<!--              <input matInput type='number' [(ngModel)]='giay_de_nghi.SO_TIEN_UNG'>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <!-- #region hieulm - BVKCG-528: Người tư vấn -->
+      <div class='form-field-full row'>
+        <div class='col-6'>
+          <app-select category='cbyt' [resetTo]='null' [label]='"Người tư vấn"' [(model)]='giay_de_nghi.nguoi_tu_van' [disabled]='true'></app-select>
+        </div>
+        <div class='col-6'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{'Người bệnh / Đại diện gia đình'}}</mat-label>
+            <input matInput readonly [value]='giay_de_nghi.ten'>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- #endregion -->
+    </mat-card-content>
+  </mat-card>
+</div>

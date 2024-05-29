@@ -1,0 +1,874 @@
+<div class='kham-mat-phaco text-left'>
+  <div>
+    <strong>{{"title.kham_mat" | translate}}:</strong>
+  </div>
+  <table class='w-full'>
+    <tr>
+      <th></th>
+      <th>{{'kham_benh_mat.mat_phai'|translate}}</th>
+      <th>{{'kham_benh_mat.mat_trai'|translate}}</th>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.thi_luc'|translate}}</th>
+      <ng-template #thiLuc let-field>
+        <div class='row'>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.khong_kinh' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.KHONG_KINH'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.qua_lo' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.QUA_LO'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.co_chinh_kinh' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.CO_CHINH_KINH'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='thiLuc; context: {$implicit: khamBenhPhaco.MAT_PHAI.THI_LUC}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='thiLuc; context: {$implicit: khamBenhPhaco.MAT_TRAI.THI_LUC}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.nhan_ap'|translate}}</th>
+      <ng-template #nhanAp let-field>
+        <div class='row'>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label></mat-label>
+              <input matInput [(ngModel)]='field.NHAN_AP' type='number' min='0' max='99'/>
+              <div matSuffix class='m-t-16'>mmHg</div>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='nhanAp; context: {$implicit: khamBenhPhaco.MAT_PHAI}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='nhanAp; context: {$implicit: khamBenhPhaco.MAT_TRAI}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.lac_va_van_nhan'|translate}}</th>
+      <ng-template #lacVaVanNhan let-field>
+        <div class='row'>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label></mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.LAC_VA_VAN_NHAN'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='lacVaVanNhan; context: {$implicit: khamBenhPhaco.MAT_PHAI}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='lacVaVanNhan; context: {$implicit: khamBenhPhaco.MAT_TRAI}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.le_dao'|translate}}</th>
+      <ng-template #leDao let-field>
+        <div class='row'>
+          <div class='col-12 text-left'>{{ 'kham_benh_mat.bom_le_quan' | translate }}:</div>
+          <div class='col-12 text-left'>
+            <div class='row'>
+              <div class='col-7 col-lg-8 col-xl-5' fxLayoutAlign='start center'>
+                <mat-checkbox labelPosition='before' [(ngModel)]='field.NUOC_THOAT_TOT'>
+                  - {{'kham_benh_mat.nuoc_thoat_tot'|translate}}:
+                </mat-checkbox>
+              </div>
+              <div class='col-5 col-lg-4 col-xl-7'>
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label></mat-label>
+                  <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                            [(ngModel)]='field.NUOC_THOAT_TOT_TEXT'></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class='col-12 text-left'>
+            <div class='row'>
+              <div class='col-7 col-lg-8 col-xl-5' fxLayoutAlign='start center'>
+                <mat-checkbox labelPosition='before' [(ngModel)]='field.TRAO_LE_QUAN_DOI_DIEN'>
+                  - {{'kham_benh_mat.trao_le_quan_doi_dien'|translate}}:
+                </mat-checkbox>
+              </div>
+              <div class='col-5 col-lg-4 col-xl-7'>
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label></mat-label>
+                  <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                            [(ngModel)]='field.TRAO_LE_QUAN_DOI_DIEN_TEXT'></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class='col-12 text-left'>
+            <div class='row'>
+              <div class='col-7 col-lg-8 col-xl-5' fxLayoutAlign='start center'>
+                <mat-checkbox labelPosition='before' [(ngModel)]='field.TRAO_TAI_CHO'>
+                  - {{'kham_benh_mat.trao_tai_cho'|translate}}:
+                </mat-checkbox>
+              </div>
+              <div class='col-5 col-lg-4 col-xl-7'>
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label></mat-label>
+                  <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                            [(ngModel)]='field.TRAO_TAI_CHO_TEXT'></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='leDao; context: {$implicit: khamBenhPhaco.MAT_PHAI.LE_DAO}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='leDao; context: {$implicit: khamBenhPhaco.MAT_TRAI.LE_DAO}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.mi_mat'|translate}}</th>
+      <ng-template #miMat let-field>
+        <div class='row'>
+          <div class='col-6 col-xl-4' fxLayout='row'><mat-checkbox class='m-r-0' labelPosition='before' [(ngModel)]='field.BINH_THUONG'>{{'kham_benh_mat.binh_thuong'|translate}}</mat-checkbox></div>
+          <div class='col-6 col-xl-4' fxLayout='row'><mat-checkbox class='m-r-0' labelPosition='before' [(ngModel)]='field.PHU'>{{'kham_benh_mat.phu'|translate}}</mat-checkbox></div>
+          <div class='col-6 col-xl-4' fxLayout='row'><mat-checkbox class='m-r-0' labelPosition='before' [(ngModel)]='field.CHAP'>{{'kham_benh_mat.chap'|translate}}</mat-checkbox></div>
+          <div class='col-6 col-xl-4' fxLayout='row'><mat-checkbox class='m-r-0' labelPosition='before' [(ngModel)]='field.LEO'>{{'kham_benh_mat.leo'|translate}}</mat-checkbox></div>
+          <div class='col-6 col-xl-4' fxLayout='row'><mat-checkbox class='m-r-0' labelPosition='before' [(ngModel)]='field.SEO_DA_MI'>{{'kham_benh_mat.seo_da_mi'|translate}}</mat-checkbox></div>
+          <div class='col-6 col-xl-4' fxLayout='row'><mat-checkbox class='m-r-0' labelPosition='before' [(ngModel)]='field.SUP_MI'>{{'kham_benh_mat.sup_mi'|translate}}</mat-checkbox></div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'khac' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.KHAC'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <div class='row'>
+              <div class='col-6 col-xl-4' fxLayoutAlign='start center'><mat-checkbox class='m-r-0' labelPosition='before' [(ngModel)]='field.U_MI'>- {{'kham_benh_mat.u_mi'|translate}}</mat-checkbox></div>
+              <ng-container *ngIf='field.U_MI === true'>
+                <div class='col-6 col-xl-9'>
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>{{'kham_benh_mat.tinh_chat_u' | translate}}</mat-label>
+                    <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                              [(ngModel)]='field.TINH_CHAT_U'></textarea>
+                  </mat-form-field>
+                </div>
+                <div class='col-6 col-xl-4'>
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>{{'kham_benh_mat.vi_tri' | translate}}</mat-label>
+                    <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                              [(ngModel)]='field.VI_TRI_U'></textarea>
+                  </mat-form-field>
+                </div>
+                <div class='col-6 col-xl-9'>
+                  <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                    <mat-label>{{'kham_benh_mat.kich_thuoc' | translate}}</mat-label>
+                    <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                              [(ngModel)]='field.KICH_THUOC_U'></textarea>
+                  </mat-form-field>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.quam' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.QUAM.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' [value]="valueset_Co.ID"> {{"yes"| translate}}</mat-radio-button>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' [value]="valueset_Khong.ID" (click)='field.QUAM_MI_TREN = field.QUAM_MI_DUOI = resetDM'> {{"no"| translate}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <ng-container *ngIf='field.QUAM.ID === valueset_Co.ID'>
+            <div class='col-12'>+ {{ 'kham_benh_mat.mi_tren' | translate }}:</div>
+            <div class='col-12 quam'>
+              <mat-radio-group class='row' [(ngModel)]='field.QUAM_MI_TREN.ID'>
+                <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_QUAM_MI' [value]="item.ID"> {{item.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class='col-12'>+ {{ 'kham_benh_mat.mi_duoi' | translate }}:</div>
+            <div class='col-12 quam'>
+              <mat-radio-group class='row' [(ngModel)]='field.QUAM_MI_DUOI.ID'>
+                <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_QUAM_MI' [value]="item.ID"> {{item.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </ng-container>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.HO_MI'>- {{'kham_benh_mat.ho_mi'|translate}}:</mat-checkbox></div>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.TRE_MI'>- {{'kham_benh_mat.tre_mi'|translate}}:</mat-checkbox></div>
+          <div class='col-12'>- {{ 'kham_benh_mat.khuyet_mi' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.KHUYET_MI.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_KHUYET_MI' [value]="item.ID"> {{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>- {{ 'kham_benh_mat.tuyen_bo_mi' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.TUYEN_BO_MI.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_TUYEN_BO_MI' [value]="item.ID"> {{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12 col-xl-8'><mat-checkbox labelPosition='before' [(ngModel)]='field.VIEM_BO_MI'>- {{'kham_benh_mat.viem_bo_mi'|translate}}:</mat-checkbox></div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='miMat; context: {$implicit: khamBenhPhaco.MAT_PHAI.MI_MAT}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='miMat; context: {$implicit: khamBenhPhaco.MAT_TRAI.MI_MAT}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.tinh_trang_nhan_cau'|translate}}</th>
+      <ng-template #tinhtrangNhanCau let-field>
+        <div class='row'>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.ton_thuong_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.TINH_TRANG_NHAN_CAU'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='tinhtrangNhanCau; context: {$implicit: khamBenhPhaco.MAT_PHAI}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='tinhtrangNhanCau; context: {$implicit: khamBenhPhaco.MAT_TRAI}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.ket_mac'|translate}}</th>
+      <ng-template #ketMac let-field>
+        <div class='row'>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.MONG.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_MONG' [value]="item.ID"> {{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.cuong_tu' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.CUONG_TU.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_CUONG_TU' [value]="item.ID"> {{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.CUONG_TU_2.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_CUONG_TU_2' [value]="item.ID"> {{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.PHU_NE'>- {{'kham_benh_mat.phu_ne'|translate}}:</mat-checkbox></div>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.XUAT_HUYET'>- {{'kham_benh_mat.xuat_huyet'|translate}}:</mat-checkbox></div>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.SUNG_HOA'>- {{'kham_benh_mat.sung_hoa'|translate}}:</mat-checkbox></div>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.NHU'>- {{'kham_benh_mat.nhu'|translate}}:</mat-checkbox></div>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.HOT'>- {{'kham_benh_mat.hot'|translate}}:</mat-checkbox></div>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.SEO'>- {{'kham_benh_mat.seo'|translate}}:</mat-checkbox></div>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.TIET_TO_MU'>- {{'kham_benh_mat.tiet_to_mu'|translate}}:</mat-checkbox></div>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.TIET_TO_TRONG'>- {{'kham_benh_mat.tiet_to_trong'|translate}}:</mat-checkbox></div>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.GIA_MAC'>- {{'kham_benh_mat.gia_mac'|translate}}:</mat-checkbox></div>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.BAT_MAU_FLUO'>- {{'kham_benh_mat.bat_mau_fluo'|translate}}:</mat-checkbox></div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.u_ket_mac' | translate }}:</div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.tinh_chat_u' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.TINH_CHAT_U'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.vi_tri' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.VI_TRI_U'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.kich_thuoc' | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.KICH_THUOC_U'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>{{ 'kham_benh_mat.cung_do' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.CUNG_DO.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_CUNG_DO' [value]="item.ID"> {{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>+ {{ 'kham_benh_mat.chieu_cao_cau_dinh' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.CHIEU_CAO_CAU_DINH.ID'>
+              <mat-radio-button labelPosition='before' class='col-12 m-r-0 p-y-4' *ngFor='let item of list_CHIEU_CAO_CAU_DINH' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>+ {{ 'kham_benh_mat.do_rong_cau_dinh' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.DO_RONG_CAU_DINH.ID'>
+              <mat-radio-button labelPosition='before' class='col-12 m-r-0 p-y-4' *ngFor='let item of list_DO_RONG_CAU_DINH' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.ton_thuong_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.TON_THUONG_KHAC'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='ketMac; context: {$implicit: khamBenhPhaco.MAT_PHAI.KET_MAC}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='ketMac; context: {$implicit: khamBenhPhaco.MAT_TRAI.KET_MAC}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.giac_mac'|translate}}</th>
+      <ng-template #giacMac let-field>
+        <div class='row'>
+          <div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.GHEP_GIAC_MAC'>- {{'kham_benh_mat.ghep_giac_mac'|translate}}:</mat-checkbox></div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.kich_thuoc' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.KICH_THUOC.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_KICH_THUOC' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.hinh_dang' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.HINH_DANG.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_HINH_DANG' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.bieu_mo' | translate }}:</div>
+          <div class='col-12'>
+            <div class='row'>
+              <div class='col-8 col-xl-5'><mat-checkbox labelPosition='before' [(ngModel)]='field.HINH_DANG_2.BINH_THUONG'
+                                                        (ngModelChangeDebounced)='$event && reset_HINH_DANG_2(field)'>+ {{'kham_benh_mat.binh_thuong'|translate}}:</mat-checkbox></div>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div class='row'>
+              <div class='col-8 col-xl-5'><mat-checkbox labelPosition='before' [(ngModel)]='field.HINH_DANG_2.TON_THUONG_DANG_CHAM'>+ {{'kham_benh_mat.ton_thuong_dang_cham'|translate}}:</mat-checkbox></div>
+            </div>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>+ {{ 'kham_benh_mat.phu_bong_bieu_mo' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.HINH_DANG_2.PHU_BONG_BIEU_MO.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_PHU_BONG_BIEU_MO' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>+ {{ 'kham_benh_mat.mat_bieu_mo' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.HINH_DANG_2.MAT_BIEU_MO.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_MAT_BIEU_MO' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.HINH_DANG_2.MAT_BIEU_MO_2.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_MAT_BIEU_MO_2' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>+ {{ 'kham_benh_mat.bo_ton_thuong' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.HINH_DANG_2.BO_TON_THUONG.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_BO_TON_THUONG' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'><div class='row'><div class='col-8 col-xl-5'><mat-checkbox labelPosition='before' [(ngModel)]='field.HINH_DANG_2.THOAI_HOA_DAI_BANG'>+ {{'kham_benh_mat.thoai_hoa_dai_bang'|translate}}:</mat-checkbox></div></div></div>
+          <div class='col-12'><div class='row'><div class='col-8 col-xl-5'><mat-checkbox labelPosition='before' [(ngModel)]='field.HINH_DANG_2.LANG_DONG_THUOC'>+ {{'kham_benh_mat.lang_dong_thuoc'|translate}}:</mat-checkbox></div></div></div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.ton_thuong_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.HINH_DANG_2.TON_THUONG_KHAC'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12'><div class='row'><div class='col-8 col-xl-5'><mat-checkbox labelPosition='before' [(ngModel)]='field.NHU_MO.BINH_THUONG'
+                                                                                         (ngModelChangeDebounced)='$event && reset_NHU_MO(field)'>
+            - {{'kham_benh_mat.nhu_mo'|translate}}: + {{'kham_benh_mat.binh_thuong'|translate}}
+          </mat-checkbox></div></div></div>
+          <div class='col-12' fxLayoutAlign='start center'>+ {{ 'kham_benh_mat.phu' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.NHU_MO.PHU.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_PHU' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>+ {{ 'kham_benh_mat.tham_lau' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.NHU_MO.THAM_LAU.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_THAM_LAU' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>+ {{ 'kham_benh_mat.tieu_mong' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.NHU_MO.TIEU_MONG'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_TIEU_MONG' [value]="item">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.NHU_MO.TIEU_MONG_2'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_TIEU_MONG_2' [value]="item">{{item.MO_TA | translate}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.ton_thuong_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.NHU_MO.TON_THUONG_KHAC'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12'><div class='row'><div class='col-10 col-xl-6'><mat-checkbox labelPosition='before' [(ngModel)]='field.NOI_MO_DESCEMET.BINH_THUONG'
+                                                                                         (ngModelChangeDebounced)='$event && reset_NOI_MO_DESCEMET(field)'>
+            - {{'kham_benh_mat.noi_mo_descemet'|translate}}: {{'kham_benh_mat.binh_thuong'|translate}}
+          </mat-checkbox></div></div></div>
+          <div class='col-12' fxLayoutAlign='start center'>+ {{ 'kham_benh_mat.nep_gap' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.NOI_MO_DESCEMET.NEP_GAP.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_NEP_GAP' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.NOI_MO_DESCEMET.TINH_TRANG.ID'>
+              <mat-radio-button labelPosition='before'
+                                class='col-5 col-xl-5 m-r-0 p-y-4' *ngFor='let item of list_NOI_MO_DESCEMET; index as i' [value]="item.ID"
+                                [class.col-7]='i % 2 === 0'>{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+<!--          <div class='col-7 col-xl-6'>-->
+<!--            <mat-checkbox labelPosition='before' [(ngModel)]='field.NOI_MO_DESCEMET.TUA_SAC_TO_MAT_SAU_GM'>-->
+<!--              {{'kham_benh_mat.tua_sac_to_mat_sau_gm'|translate}}:-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+<!--          <div class='col-5 col-xl-6'>-->
+<!--            <mat-checkbox labelPosition='before' [(ngModel)]='field.NOI_MO_DESCEMET.MU_MAT_SAU'>-->
+<!--              {{'kham_benh_mat.mu_mat_sau'|translate}}:-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+<!--          <div class='col-7 col-xl-6'>-->
+<!--            <mat-checkbox labelPosition='before' [(ngModel)]='field.NOI_MO_DESCEMET.XUAT_TIET_MAT_SAU'>-->
+<!--              {{'kham_benh_mat.xuat_tiet_mat_sau'|translate}}:-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+<!--          <div class='col-5 col-xl-6'>-->
+<!--            <mat-checkbox labelPosition='before' [(ngModel)]='field.NOI_MO_DESCEMET.GUTTATA'>-->
+<!--              {{'kham_benh_mat.guttata'|translate}}:-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+<!--          <div class='col-6 col-xl-6'>-->
+<!--            <mat-checkbox labelPosition='before' [(ngModel)]='field.NOI_MO_DESCEMET.RAN_MANG_DESCEMET'>-->
+<!--              {{'kham_benh_mat.ran_mang_descemet'|translate}}:-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+<!--          <div class='col-6 col-xl-6'>-->
+<!--            <mat-checkbox labelPosition='before' [(ngModel)]='field.NOI_MO_DESCEMET.CUON_DESCEMET'>-->
+<!--              {{'kham_benh_mat.cuon_descemet'|translate}}:-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.ton_thuong_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.NOI_MO_DESCEMET.TON_THUONG_KHAC'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.TINH_TRANG.ID'>
+              <mat-radio-button labelPosition='before'
+                                class='col-5 col-xl-3 m-r-0 p-y-4' *ngFor='let item of list_TINH_TRANG; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.thung_giac_mac' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.THUNG_GIAC_MAC.ID'>
+              <mat-radio-button labelPosition='before'
+                                class='col-4 col-xl-3 m-r-0 p-y-4' *ngFor='let item of list_THUNG_GIAC_MAC; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+<!--          <div class='col-6'>-->
+<!--            <mat-checkbox labelPosition='before' [(ngModel)]='field.THUNG_GIAC_MAC.TRUNG_TAM'>-->
+<!--              {{'kham_benh_mat.trung_tam'|translate}}:-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+<!--          <div class='col-6'>-->
+<!--            <mat-checkbox labelPosition='before' [(ngModel)]='field.THUNG_GIAC_MAC.LECH_TAM'>-->
+<!--              {{'kham_benh_mat.lech_tam'|translate}}:-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+<!--          <div class='col-6'>-->
+<!--            <mat-checkbox labelPosition='before' [(ngModel)]='field.THUNG_GIAC_MAC.SAT_RIA'>-->
+<!--              {{'kham_benh_mat.sat_ria'|translate}}:-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+          <div class='col-6' fxLayoutAlign='start center'>
+            <mat-checkbox labelPosition='before' class='m-r-0' [(ngModel)]='field.SEIDEL'>
+              {{'kham_benh_mat.seidel'|translate}}:
+            </mat-checkbox>
+          </div>
+          <div class='col-8'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{ 'kham_benh_mat.duong_kinh_thung' | translate }}</mat-label>
+              <input matInput [(ngModel)]='field.DUONG_KINH_THUNG' type='number' min='0' max='99'/>
+              <div matSuffix class='m-t-16'>mm</div>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.LOAI_THUNG.ID'>
+              <mat-radio-button labelPosition='before'
+                                class='col-4 col-xl-3 m-r-0 p-y-4' *ngFor='let item of list_LOAI_THUNG; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+<!--          <div class='col-6'>-->
+<!--            <mat-checkbox labelPosition='before' [(ngModel)]='field.THUNG_BIT'>-->
+<!--              {{'kham_benh_mat.thung_bit'|translate}}:-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+<!--          <div class='col-6'>-->
+<!--            <mat-checkbox labelPosition='before' [(ngModel)]='field.KHONG_BIT'>-->
+<!--              {{'kham_benh_mat.khong_bit'|translate}}:-->
+<!--            </mat-checkbox>-->
+<!--          </div>-->
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.cam_giac_giac_mac' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.CAM_GIAC_GIAC_MAC.ID'>
+              <mat-radio-button labelPosition='before'
+                                class='col-4 col-xl-3 m-r-0 p-y-4' *ngFor='let item of list_CAM_GIAC_GIAC_MAC; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.tan_mach' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.TAN_MACH.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_TAN_MACH' [value]="item.ID">{{item.MO_TA | translate}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.muc_do' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.MUC_DO.ID'>
+              <mat-radio-button labelPosition='before' class='col-6 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_MUC_DO' [value]="item.ID">{{item.MO_TA | translate}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.vung_ria_giac_mac' | translate }}:</div>
+          <div class='col-8 col-xl-6'>
+            <mat-checkbox labelPosition='before' [(ngModel)]='field.VUNG_RIA_GIAC_MAC.SUY_TE_BAO_NGUON'>
+              + {{'kham_benh_mat.suy_te_bao_nguon'|translate}}:
+            </mat-checkbox>
+          </div>
+          <div class='col-8 col-xl-6'>
+            <mat-checkbox labelPosition='before' [(ngModel)]='field.VUNG_RIA_GIAC_MAC.THOAI_HOA_GIA'>
+              + {{'kham_benh_mat.thoai_hoa_gia'|translate}}:
+            </mat-checkbox>
+          </div>
+          <div class='col-8 col-xl-6'>
+            <mat-checkbox labelPosition='before' [(ngModel)]='field.VUNG_RIA_GIAC_MAC.LANG_DONG_CANXI_SAN_HO'>
+              + {{'kham_benh_mat.lang_dong_canxi_san_ho'|translate}}:
+            </mat-checkbox>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.bat_thuong_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.BAT_THUONG_KHAC'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='giacMac; context: {$implicit: khamBenhPhaco.MAT_PHAI.GIAC_MAC}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='giacMac; context: {$implicit: khamBenhPhaco.MAT_TRAI.GIAC_MAC}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.cung_mac'|translate}}</th>
+      <ng-template #cungMac let-field>
+        <div class='row'>
+          <div class='col-6 col-xl-3'>
+            <mat-checkbox labelPosition='before' [(ngModel)]='field.BINH_THUONG'
+                                                                                         (ngModelChangeDebounced)='$event && reset_CUNG_MAC(field)'>
+            - {{'kham_benh_mat.binh_thuong'|translate}}:
+          </mat-checkbox>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.viem' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.TINH_TRANG_VIEM.ID'>
+              <mat-radio-button labelPosition='before'
+                                class='col-4 col-xl-3 m-r-0 p-y-4' *ngFor='let item of list_TINH_TRANG_VIEM; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.DO_SAU_VIEM.ID'>
+              <mat-radio-button labelPosition='before'
+                                class='col-4 col-xl-3 m-r-0 p-y-4' *ngFor='let item of list_DO_SAU_VIEM; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-8 col-xl-5'>
+            <mat-checkbox labelPosition='before' [(ngModel)]='field.VIEM_THUONG_CUNG_MAC'>
+              - {{'kham_benh_mat.viem_thuong_cung_mac'|translate}}:
+            </mat-checkbox>
+          </div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.TINH_TRANG.ID'>
+              <mat-radio-button labelPosition='before'
+                                class='col-4 col-xl-3 m-r-0 p-y-4' *ngFor='let item of list_TINH_TRANG_CUNG_MAC; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.chi_tiet_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.CHI_TIET_KHAC'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='cungMac; context: {$implicit: khamBenhPhaco.MAT_PHAI.CUNG_MAC}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='cungMac; context: {$implicit: khamBenhPhaco.MAT_TRAI.CUNG_MAC}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.tien_phong'|translate}}</th>
+      <ng-template #tienPhong let-field>
+        <div class='row'>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.TINH_TRANG.ID' (ngModelChangeDebounced)='$event === "1" && reset_TIEN_PHONG(field)'>
+              <mat-radio-button labelPosition='before'
+                                class='col-4 col-xl-3 m-r-0 p-y-4' *ngFor='let item of list_TINH_TRANG_TIEN_PHONG; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-6 col-xl-4'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.mu'|translate}}</mat-label>
+              <input matInput [(ngModel)]='field.MU' type='number' min='0' max='99'/>
+              <div matSuffix class='m-t-16'>mm</div>
+            </mat-form-field>
+          </div>
+          <div class='col-6 col-xl-4' fxLayoutAlign='start center'>
+            <mat-checkbox labelPosition='before' class='m-r-0' [(ngModel)]='field.TYNDAL_POSITIVE'>
+              {{'kham_benh_mat.tyndal_positive'|translate}}:
+            </mat-checkbox>
+          </div>
+          <div class='col-12'>
+            <div class='row'>
+              <div class='col-6 col-xl-4'>
+                <mat-checkbox labelPosition='before' [(ngModel)]='field.MANG_XUAT_TIET'>
+                  - {{'kham_benh_mat.mang_xuat_tiet'|translate}}:
+                </mat-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class='col-6 col-xl-4'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.mau'|translate}}</mat-label>
+              <input matInput [(ngModel)]='field.MAU' type='number' min='0' max='99' autocomplete='off'/>
+              <div matSuffix class='m-t-16'>mm</div>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.ton_thuong_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.TON_THUONG_KHAC'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='tienPhong; context: {$implicit: khamBenhPhaco.MAT_PHAI.TIEN_PHONG}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='tienPhong; context: {$implicit: khamBenhPhaco.MAT_TRAI.TIEN_PHONG}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.mong_mat'|translate}}</th>
+      <ng-template #mongMat let-field>
+        <div class='row'>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.TINH_TRANG.ID'>
+              <mat-radio-button labelPosition='before'
+                                class='col-4 col-xl-3 m-r-0 p-y-4' *ngFor='let item of list_TINH_TRANG_MONG_MAT; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.KHAC'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-6 col-xl-4'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.duong_kinh'|translate}}</mat-label>
+              <input matInput [(ngModel)]='field.DUONG_KINH' type='number' min='0' max='99' autocomplete='off'/>
+              <div matSuffix class='m-t-16'>mm</div>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='mongMat; context: {$implicit: khamBenhPhaco.MAT_PHAI.MONG_MAT}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='mongMat; context: {$implicit: khamBenhPhaco.MAT_TRAI.MONG_MAT}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.dong_tu'|translate}}</th>
+      <ng-template #dongTu let-field>
+        <div class='row'>
+          <div class='col-12 col-xl-6' fxLayoutAlign='start center'>
+            <mat-radio-group class='row w-full' [(ngModel)]='field.HINH_DANG.ID' fxFlex>
+              <mat-radio-button labelPosition='before' class='col-4 col-xl-6 m-r-0 p-y-4' *ngFor='let item of list_HINH_DANG_DONG_TU; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-4 col-xl-3' fxLayoutAlign='start center'>
+            <mat-checkbox labelPosition='before' class='m-r-0' [(ngModel)]='field.DINH'>
+              {{'kham_benh_mat.dinh'|translate}}:
+            </mat-checkbox>
+          </div>
+          <div class='col-8 col-xl-3'>
+            <mat-form-field *ngIf='field.DINH === true' appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.vi_tri_dinh'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.VI_TRI_DINH'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12 col-xl-3' fxLayoutAlign='start center'>- {{ 'kham_benh.phan_xa' | translate }}:</div>
+          <div class='col-12 col-xl-9'>
+            <mat-radio-group class='row' [(ngModel)]='field.PHAN_XA.ID'>
+              <mat-radio-button labelPosition='before' class='col-4 col-xl-4 m-r-0 p-y-4' *ngFor='let item of list_PHAN_XA_DONG_TU; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.ton_thuong_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.TON_THUONG_KHAC'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='dongTu; context: {$implicit: khamBenhPhaco.MAT_PHAI.DONG_TU}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='dongTu; context: {$implicit: khamBenhPhaco.MAT_TRAI.DONG_TU}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.thuy_tinh_the'|translate}}</th>
+      <ng-template #thuyTinhThe let-field>
+        <div class='row'>
+          <div class='col-12'><div class='row'><div class='col-6 col-xl-4'><mat-checkbox labelPosition='before' [(ngModel)]='field.BINH_THUONG'
+                                                                                         (ngModelChangeDebounced)='$event && reset_THUY_TINH_THE(field)'>
+            - {{'kham_benh_mat.binh_thuong'|translate}}:
+          </mat-checkbox></div></div></div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.hinh_thai_duc'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.HINH_THAI_DUC'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <div class='row'>
+              <div class='col-6 col-xl-4'>
+                <mat-checkbox labelPosition='before' [(ngModel)]='field.DUC_BAO_SAU'>
+                  - {{'kham_benh_mat.duc_bao_sau'|translate}}:
+                </mat-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class='col-12'>
+            <div class='row'>
+              <div class='col-6 col-xl-4'>
+                <mat-checkbox labelPosition='before' [(ngModel)]='field.LECH'>
+                  - {{'kham_benh_mat.lech'|translate}}:
+                </mat-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class='col-12' fxLayoutAlign='start center'>- {{ 'kham_benh_mat.iol' | translate }}:</div>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.IOL.ID'>
+              <mat-radio-button labelPosition='before' class='col-4 col-xl-3 m-r-0 p-y-4' *ngFor='let item of list_IOL; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.ton_thuong_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.TON_THUONG_KHAC'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='thuyTinhThe; context: {$implicit: khamBenhPhaco.MAT_PHAI.THUY_TINH_THE}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='thuyTinhThe; context: {$implicit: khamBenhPhaco.MAT_TRAI.THUY_TINH_THE}'></ng-container></td>
+    </tr>
+    <tr>
+      <th>{{'kham_benh_mat.anh_dong_tu'|translate}}</th>
+      <ng-template #anhDongTu let-field>
+        <div class='row'>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.ANH_DONG_TU.ID'>
+              <mat-radio-button labelPosition='before'
+                                class='col-3 m-r-0 p-y-4' *ngFor='let item of list_ANH_DONG_TU; index as i' [value]="item.ID"
+                                [class.col-6]='i === 2' [class.col-xl-3]='i === 2'>{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='anhDongTu; context: {$implicit: khamBenhPhaco.MAT_PHAI}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='anhDongTu; context: {$implicit: khamBenhPhaco.MAT_TRAI}'></ng-container></td>
+    </tr>
+    <tr class='dich-kinh'>
+      <th>{{'kham_benh_mat.dich_kinh'|translate}}</th>
+      <ng-template #dichKinh let-field>
+        <div class='row'>
+          <div class='col-12'>
+            <mat-radio-group class='row' [(ngModel)]='field.TINH_TRANG.ID'>
+              <mat-radio-button labelPosition='before'
+                                class='col-3 col-xl-3 m-r-0 p-y-4' *ngFor='let item of list_TINH_TRANG_DICH_KINH; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.ton_thuong_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.TON_THUONG_KHAC'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='dichKinh; context: {$implicit: khamBenhPhaco.MAT_PHAI.DICH_KINH}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='dichKinh; context: {$implicit: khamBenhPhaco.MAT_TRAI.DICH_KINH}'></ng-container></td>
+    </tr>
+    <tr class='day-mat'>
+      <th>{{'kham_benh_mat.day_mat'|translate}}</th>
+      <ng-template #dayMat let-field>
+        <div class='row'>
+          <div class='col-6 col-xl-7'>
+            <div class='row'>
+              <div class='col-12'>- {{ 'kham_benh_mat.dia_thi' | translate }}:</div>
+              <div class='col-12'>
+                <mat-radio-group class='row' [(ngModel)]='field.DIA_THI.TINH_TRANG.ID'>
+                  <mat-radio-button labelPosition='before'
+                                    class='col-12 col-xl-6 m-r-0 p-y-4'
+                                    *ngFor='let item of list_TINH_TRANG_DIA_THI; index as i' [value]="item.ID">{{item.MO_TA}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+          </div>
+          <div class='col-6 col-xl-5'>
+            <div class='row'>
+              <div class='col-12'>
+                <mat-form-field appearance='outline' class="full-width text-area-line-height">
+                  <mat-label>{{'kham_benh_mat.cd'|translate}}</mat-label>
+                  <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                            [(ngModel)]='field.DIA_THI.CD'></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.vong_mac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.VONG_MAC'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.he_mach_mau'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.HE_MACH_MAU'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class="full-width text-area-line-height">
+              <mat-label>{{'kham_benh_mat.ton_thuong_khac'|translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                        [(ngModel)]='field.TON_THUONG_KHAC'></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-template>
+      <td><ng-container *ngTemplateOutlet='dayMat; context: {$implicit: khamBenhPhaco.MAT_PHAI.DAY_MAT}'></ng-container></td>
+      <td><ng-container *ngTemplateOutlet='dayMat; context: {$implicit: khamBenhPhaco.MAT_TRAI.DAY_MAT}'></ng-container></td>
+    </tr>
+  </table>
+</div>

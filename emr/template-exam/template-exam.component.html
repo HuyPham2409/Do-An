@@ -1,0 +1,35 @@
+<mat-card appearance="outlined" *ngIf='!is_select'>
+  <mat-card-content>
+    <strong>{{("template.danh_sach"| translate)}}
+     - {{loaiGiayToLienQuan.MO_TA}}</strong>
+    <mtx-grid [data]="listTemplate" class="m-t-16"
+              [columns]="columns"
+              [length]="totalTab"
+              [loading]="isLoadingTab"
+              [pageOnFront]="false"
+              [showPaginator]="showPaginatorTab"
+              [rowHover]="rowHover"
+              [rowSelectable]="rowSelectable"
+              [rowStriped]="rowStriped"
+              [pageIndex]="queryPage.page"
+              [pageSize]="queryPage.per_page"
+              [pageSizeOptions]="[10]"
+              [headerTemplate]="headerTpl"
+              (rowClick)='rowClick($event)'
+              (page)="getNextPage($event)">
+    </mtx-grid>
+    <ng-template #headerTpl let-col>
+      {{col.header | translate}}
+    </ng-template>
+  </mat-card-content>
+</mat-card>
+<div *ngIf='is_select'>
+  <mat-form-field class='full-width' appearance='outline' >
+    <mat-label>{{ 'template.chon_mau_phieu' | translate }}</mat-label>
+    <mtx-select [items]='listTemplate' bindLabel='examination_template_name'
+                [(ngModel)]="templateSelect"
+                (change)='choiceTemplate($event)'
+                (search)='getTemplateGiayTo($event.term)'></mtx-select>
+  </mat-form-field>
+</div>
+

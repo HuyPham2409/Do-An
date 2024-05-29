@@ -1,0 +1,105 @@
+<mat-form-field appearance='outline' class='w-full input_form_field' [class.disabled]='disabled'>
+<mat-label>{{label|translate}}</mat-label>
+  <mtx-select appendTo='body'
+              [(ngModel)]="model"
+              [searchFn]='useBuiltInSearch ? _searchLocalList : DISABLE_BUILT_IN_SEARCH'
+              [items]="listItems"
+              [loading]='isLoading'
+              [clearable]='isClearable'
+              [multiple]="multiple"
+              (change)='handleChange($event)'
+              (search)='_getList($event.term)'
+              (focus)='_getList("")'
+              (clear)='reset()'>
+    <ng-template ng-label-tmp let-item="item">
+      <ng-container *ngIf='!bindLabel' [ngSwitch]='category'>
+        <span class='white-space-wrap' *ngSwitchCase='"user"'>{{ item?.TEN }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"dichVu"'>{{ item?.name }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"cbyt"'>{{ item?.MA_NHAN_VIEN ? (item?.MA_NHAN_VIEN + ' - ' + item?.HO_TEN) : item?.fullname }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"title"'>{{ item?.title_name }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"kdt"'>{{ item?.TEN_KHOA_PHONG }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"icd"'>{{ item?.MA ? (item.MA + ' - ' + item.MO_TA) : '' }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"pharma"'>{{ item?.pharma_name }} - {{ item?.unit?.unit_name }} - {{ item?.pharma_dosage }} - {{ item?.ingredient_name }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"way_to_use"'>{{ item?.way_to_use_name }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"pttt"'>{{ item?.operate_no ? (item.Ngaygio?.TIME + ' ' + item.Ngaygio?.DATE + ' - ' + item.operate_no) : '' }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"medical_facility"'>{{ item?.medical_facility_name }} - {{ item?.medical_facility_route }} - {{ item?.medical_facility_rank }} ({{ item?.distance }} km)</span>
+        <span class='white-space-wrap' *ngSwitchCase='"khoa"'>{{ item?.TEN_KHOA_PHONG }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"hospital"'>{{ item?.MO_TA }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"ingredient"'>{{ item?.ingredient_code}} - {{item?.ingredient_name }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"service"'>{{item?.service_name ? ( item?.service_name  + ' - ' + item?.service_code) : "" }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"package_service"'>{{ item?.service_code ? ( item?.service_code + " - " + item?.service_name + " - " + item?.room_name):""}}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"kham_tien_me"'>{{ item?.service_code ? ( item?.service_code + " - " + item?.service_name + " - " + item?.room_name):""}}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"vaccine"'>{{item?.vaccine_code ? ('(' + item?.vaccine_code + ')' + ' - ' + item?.vaccine_name) : "" }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"contract"'>{{ item?.maternity_contract_code ? ('(' + item?.maternity_contract_code + ')' + ' - ' + item?.maternity_contract_name) : "" }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"package"'>{{ item?.maternity_contract_code ? ('(' + item?.maternity_contract_code + ')' + ' - ' + item?.maternity_contract_name) : "" }}</span>
+        <span class='white-space-wrap' *ngSwitchCase="'map-service'">
+          <ng-container *ngIf="item.service_code">
+            ({{item.service_code}})
+          </ng-container>
+          {{item.service_name}}
+          <ng-container *ngIf="item.vaccines">
+              -
+          <ng-container *ngFor="let vaccine of item.vaccines; let last = last">
+            {{vaccine.vaccine_code}}{{last ? '' : ', '}}
+          </ng-container>
+          </ng-container>
+          </span>
+        <span class='white-space-wrap' *ngSwitchCase='"service_price"'>{{ item.service_id ? (item?.service_name + ' / ' + item?.room_name + ' / ' + (item?.service_price | number)) : '' }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"phieu_pttt"'>{{ item.operate_no ? (item?.operate_no) : '' }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"ex_document"'>{{ item.time_date? ("Đo ngày: " + item.time_date):""}}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"service_category"'>{{ item.service_name }}</span>
+        <span class='white-space-wrap' *ngSwitchCase='"warehouse"'>{{ item.warehouse_name }}</span>
+        <span class='white-space-wrap' *ngSwitchDefault>{{ item | translate}}</span>
+        <ng-container *ngSwitchCase='"unit"'>
+          <span *ngIf='(item.unit_name + " (" + item.unitType?.unit_type_name + ")") as text' class='white-space-wrap' [title]='text'>{{text}}</span>
+        </ng-container>
+      </ng-container>
+      <span class='white-space-wrap' *ngIf='bindLabel'>{{ item[bindLabel] | translate}}</span>
+    </ng-template>
+    <ng-template ng-option-tmp let-item="item">
+      <ng-container *ngIf='!bindLabel' [ngSwitch]='category'>
+        <span *ngSwitchCase='"user"' [title]='item?.TEN'>{{ item?.TEN }}</span>
+        <span *ngSwitchCase='"dichVu"' [title]='item?.TEN'>{{ item?.name }}</span>
+        <span *ngSwitchCase='"cbyt"' [title]='item?.HO_TEN'>{{ item?.MA_NHAN_VIEN }} - {{ item?.HO_TEN }}</span>
+        <span *ngSwitchCase='"title"' [title]='item?.title_name'>{{ item?.title_name }}</span>
+        <span *ngSwitchCase='"kdt"' [title]='item?.TEN_KHOA_PHONG'>{{ item?.TEN_KHOA_PHONG }}</span>
+        <span *ngSwitchCase='"icd"' [title]='item?.MO_TA'>{{ item?.MA }} - {{ item?.MO_TA }}</span>
+        <span *ngSwitchCase='"pharma"' [title]='item?.pharma_name'>{{ item?.pharma_name }} - {{ item?.pharma_dosage }}</span>
+        <span *ngSwitchCase='"way_to_use"' [title]='item?.way_to_use_name'>{{ item?.way_to_use_name }}</span>
+        <span *ngSwitchCase='"pttt"'>{{ (item?.Ngaygio?.TIME + ' ' + item?.Ngaygio?.DATE + ' - ' + item?.operate_no) }}</span>
+        <span *ngSwitchCase='"medical_facility"'>{{ item?.medical_facility_name }} - {{ item?.medical_facility_route }} - {{ item?.medical_facility_rank }} ({{ item?.distance }} km)</span>
+        <span *ngSwitchCase='"khoa"' [title]='item?.TEN_KHOA_PHONG'>{{ item?.TEN_KHOA_PHONG }}</span>
+        <span *ngSwitchCase='"hospital"' [title]='item?.MO_TA'>{{ item?.MO_TA }}</span>
+        <span *ngSwitchCase='"ingredient"' [title]='item?.ingredient_name'>{{ item?.ingredient_code}} - {{item?.ingredient_name }}</span>
+        <span *ngSwitchCase='"service"' [title]='item?.service_name'>{{item?.service_name ? ( item?.service_name  + ' - '  + item?.service_code) : "" }}</span>
+        <span *ngSwitchCase='"vaccine"' [title]='item?.vaccine_code'>{{item?.vaccine_code ? ('(' + item?.vaccine_code + ')' + ' - ' + item?.vaccine_name) : "" }}</span>
+        <span *ngSwitchCase='"package_service"' [title]='item?.service_code'>{{ item?.service_code ? ( item?.service_code + " - " + item?.service_name + " - " + item?.room_name):""}}</span>
+        <span *ngSwitchCase='"kham_tien_me"'>{{ item?.service_code ? ( item?.service_code + " - " + item?.service_name + " - " + item?.room_name):""}}</span>
+        <span *ngSwitchCase='"contract"' [title]='item?.maternity_contract_code'>{{ item?.maternity_contract_code ? ('(' + item?.maternity_contract_code + ')' + ' - ' + item?.maternity_contract_name) : "" }}</span>
+        <span *ngSwitchCase='"package"' [title]='item?.maternity_contract_code'>{{ item?.maternity_contract_code ? ('(' + item?.maternity_contract_code + ')' + ' - ' + item?.maternity_contract_name) : "" }}</span>
+        <span *ngSwitchCase="'map-service'" [title]='item?.maternity_contract_code'>
+          <ng-container *ngIf="item.service_code">
+            ({{item.service_code}})
+          </ng-container>
+              {{item.service_name}}
+          <ng-container *ngIf="item.vaccines">
+              -
+          <ng-container *ngFor="let vaccine of item.vaccines; let last = last">
+            {{vaccine.vaccine_code}}{{last ? '' : ', '}}
+          </ng-container>
+          </ng-container>
+          </span>
+        <span *ngSwitchDefault [title]='item'>{{ item | translate}}</span>
+        <span *ngSwitchCase='"service_price"' [style.color] = "(item.highlight && item.highlight === 'red') ? 'red' : 'inherit'">{{ item.service_id ? (item?.service_name + ' / ' + item?.room_name + ' / ' + (item?.service_price | number)) : '' }}</span>
+        <span *ngSwitchCase='"phieu_pttt"'>{{ item.operate_no ? (item?.operate_no) : '' }}</span>
+        <span *ngSwitchCase='"ex_document"'>{{ item.time_date? ("Đo ngày: " + item.time_date):""}}</span>
+        <span *ngSwitchCase='"warehouse"'>{{item.warehouse_name}}</span>
+        <span *ngSwitchCase='"service_category"' [title]='item.service_name'>{{ item.service_name }}</span>
+        <ng-container *ngSwitchCase='"unit"'>
+          <span *ngIf='(item.unit_name + " (" + item.unitType?.unit_type_name + ")") as text' [title]='text'>{{text}}</span>
+        </ng-container>
+      </ng-container>
+      <span *ngIf='bindLabel' [title]='bindLabel'>{{ item[bindLabel] | translate}}</span>
+    </ng-template>
+  </mtx-select>
+</mat-form-field>

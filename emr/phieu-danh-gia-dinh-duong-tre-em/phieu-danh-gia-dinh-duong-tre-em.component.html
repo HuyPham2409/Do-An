@@ -1,0 +1,136 @@
+<mat-card appearance="outlined" class='m-b-16'>
+  <mat-card-content>
+    <div class='row'>
+      <div class='col-sm-4'>
+        <mat-form-field class='col-sm-6' style="padding-right: 0px" appearance='outline'>
+          <mat-label>{{"patient.height" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuDanhGiaDinhDuongTE.CHIEU_CAO'
+                 (ngModelChangeDebounced)='calcBMI(phieuDanhGiaDinhDuongTE.CAN_NANG, $event, 0)'
+                 placeholder='{{"patient.height" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"patient.weight" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuDanhGiaDinhDuongTE.CAN_NANG'
+                 (ngModelChangeDebounced)='calcBMI($event, phieuDanhGiaDinhDuongTE.CHIEU_CAO, 0)'
+                 placeholder='{{"patient.weight" | translate}}'>
+        </mat-form-field>
+      </div>
+      <mat-form-field class='col-sm-4' appearance='outline'>
+        <mat-label>{{"label.chan_doan" | translate}}</mat-label>
+        <input matInput [(ngModel)]='phieuDanhGiaDinhDuongTE.CHAN_DOAN'
+               placeholder='{{"label.chan_doan" | translate}}'>
+      </mat-form-field>
+      <div class="col-sm-4">
+        <app-select
+          bindLabel="code"
+          label='{{ "danh_gia_dinh_duong_tre_em.so_phieu_bo_cau_hoi" | translate }}'
+          [listItems]="list_so_phieu_bo_cau_hoi"
+          [useAPI]="false"
+          [(model)]="phieuDanhGiaDinhDuongTE.so_phieu_bo_cau_hoi"
+          (modelChange)="onChangeSoPhieuBoCauHoi($event)"
+          ></app-select>
+      </div>
+    </div>
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="{{'danh_gia_dinh_duong_tre_em.title_danh_gia_TTDD' | translate }}">
+        <div class='row'>
+          <div class='col-xl-12 col-sm-12' *ngFor='let danhgia of phieuDanhGiaDinhDuongTE.danh_gia; index as i '>
+            <div class='row border-large'>
+              <h2 class='col-4' >
+                {{danhgia.name}}
+              </h2>
+              <div class='col-8'>
+                <div *ngFor='let item of danhgia.datas; index as j' class='row {{j<danhgia.datas.length-1?"border":"background-hover"}}'>
+                  <div class='col-6 align-center'>{{item.name}}</div>
+                  <div class='col-6'>
+                    <div class='row'>
+                      <mat-radio-group [(ngModel)]='danhgia.value' (ngModelChange)="calcTongDiem()"  style='width: 100%'>
+                        <mat-radio-button [value]="item.id" style='width: 100%'>{{item.so_diem}} điểm</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='col-xl-12 col-sm-12'>
+            <div class='row border-large'>
+              <h2 class='col-4 m-0'>
+                {{'danh_gia_dinh_duong_tre_em.tong_diem' | translate}}
+              </h2>
+              <div class='col-8'>
+                <div class='row background-hover'>
+                  <div class='col-6 align-center'></div>
+                  <div class='col-6 align-center'>
+                    <strong>
+                      {{phieuDanhGiaDinhDuongTE.tong_diem}} điểm
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='col-xl-12 col-sm-12'>
+            <div class='row border-large'>
+              <h2 class='col-4'>
+                {{phieuDanhGiaDinhDuongTE.ket_luan.name}}
+              </h2>
+              <div class='col-8'>
+                <div *ngFor='let item of phieuDanhGiaDinhDuongTE.ket_luan.datas; index as i' class='row {{i<phieuDanhGiaDinhDuongTE.ket_luan.datas.length-1?"border":"background-hover"}}'>
+                  <div class='col-6 align-center'>{{item.name}}</div>
+                  <div class='col-6 align-center'>
+                    <div class='row'>
+                      <mat-radio-group [(ngModel)]='phieuDanhGiaDinhDuongTE.ket_luan.value'style='width: 100%'>
+                        <mat-radio-button [value]="item.id" [disabled]="true" style='width: 100%'>{{item.mota}}</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="{{'danh_gia_dinh_duong_tre_em.title_ke_hoach' | translate }}">
+      <div class='row'>
+        <div class='col-xl-12 col-sm-12' *ngFor='let kehoach of phieuDanhGiaDinhDuongTE.ke_hoach index as i '>
+          <div class='row border-large'>
+            <h2 class='col-4' >
+              {{kehoach.name}}
+            </h2>
+            <div class='col-8'>
+              <div *ngFor='let item of kehoach.datas; index as i' class='row {{i<kehoach.datas.length-1?"border":"background-hover"}}'>
+                <div class='col-6 {{kehoach.name === "Chế độ ăn"?"align-end":""}}'>{{item.name}}</div>
+                <div class='col-6' *ngIf='kehoach.name === "Chế độ ăn"'>
+                  <div class='row'>
+                    <div class='col-12 d-flex'>
+                      <div class="col-sm-6">
+                        <app-select
+                        bindLabel="nutrition_category_name"
+                        label='{{ "danh_gia_dinh_duong_tre_em.che_do_dinh_duong" | translate }}'
+                        [(model)]="phieuDanhGiaDinhDuongTE.che_do_dinh_duong"
+                        category='nutrition-category'></app-select>
+                      </div>
+                      <mat-form-field class='col-sm-6' appearance='outline'>
+                        <mat-label>{{"danh_gia_dinh_duong_tre_em.ma_so_che_do_an" | translate}}</mat-label>
+                        <input matInput [(ngModel)]='phieuDanhGiaDinhDuongTE.ma_so_che_do_an'
+                               placeholder='{{"danh_gia_dinh_duong_tre_em.ma_so_che_do_an" | translate}}'>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class='col-6' *ngIf='kehoach.name !== "Chế độ ăn"'>
+                  <div class='row'>
+                    <mat-radio-group [(ngModel)]='kehoach.value' style='width: 100%'>
+                      <mat-radio-button [value]="item.id" style='width: 100%'></mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

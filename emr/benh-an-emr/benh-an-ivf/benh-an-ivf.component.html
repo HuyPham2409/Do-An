@@ -1,0 +1,1206 @@
+<div class='benh-an-ivf'>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <h2 fxLayout='row'>BỆNH ÁN IVF</h2>
+      <div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label><strong>HỌ TÊN VỢ:</strong></mat-label>
+              <input matInput type='text' [(ngModel)]="benhAnIVF.HO_TEN_VO">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label><strong>HỌ TÊN CHỒNG:</strong></mat-label>
+              <input matInput type='text' [(ngModel)]="benhAnIVF.HO_TEN_CHONG">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class=''>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>Ngày sinh vợ:</mat-label>
+              <input matInput [matDatepicker]="pickerBirthday"
+                     (ngModelChange)='onDate($event, "NGAY_SINH_VO")'
+                     [(ngModel)]="benhAnIVF.birthdayStringwife">
+              <mat-datepicker-toggle matSuffix [for]="pickerBirthday"></mat-datepicker-toggle>
+              <mat-datepicker #pickerBirthday></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>Ngày sinh chồng:</mat-label>
+              <input matInput [matDatepicker]="picker1"
+                     (ngModelChange)='onDate($event, "NGAY_SINH_CHONG")'
+                     [(ngModel)]="benhAnIVF.birthdayStringhusban">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class=''>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>Số điện thoại vợ:</mat-label>
+              <input matInput type='text' [(ngModel)]='benhAnIVF.SDT_VO'>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>Số điện thoại chồng:</mat-label>
+              <input matInput [(ngModel)]='benhAnIVF.SDT_CHONG'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class=''>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{ "ivf.address" | translate}}:</mat-label>
+              <input matInput type='text' [(ngModel)]='benhAnIVF.DIA_CHI'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{ "emr.diagnose" | translate}}:</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='benhAnIVF.CHAN_DOAN'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <h3 fxLayout='row' class='m-8' style='font-size:20px'><ins>Vợ:</ins></h3>
+
+      <div class=''>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>1. Ngày lập gia đình:</mat-label>
+              <input matInput [matDatepicker]="picker2"
+                     (ngModelChange)='onDate($event, "NGAY_LAP_GIA_DINH")'
+                     [(ngModel)]="benhAnIVF.NGAY_LAP_GIA_DINH">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>2. Ngày sinh vợ:</mat-label>
+              <input matInput [disabled]="true"
+                     [matDatepicker]="pickerBirthday1"
+                     (ngModelChange)='onDate($event, "NGAY_SINH_VO")'
+                     [(ngModel)]="benhAnIVF.birthdayStringwife">
+              <mat-datepicker #pickerBirthday1></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-t-8 p-x-8' fxLayout='row'>
+        3. Tiền sử kinh nguyệt:
+      </div>
+      <div class='m-t-8'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>Tuổi có kinh lần đầu:</mat-label>
+              <input matInput [(ngModel)]='benhAnIVF.TUOI_CO_KINH_LAN_DAU' type='number' min='0'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' fxLayout='row' class='p-x-8'>
+          <div class='row boderMatRadioGR w-full'>
+            <label class='col-xl-6 col-12 label-left-center'>{{"ivf.chu_ky_kinh_nguyet_co_deu_khong"| translate}}:</label>
+            <div class='w-radio-container m-y-8 col-xl-6 col-12'>
+              <mat-radio-group fxLayout='row' [(ngModel)]="benhAnIVF.DOI_TUONG">
+                <mat-radio-button class='col-3 m-r-0' *ngFor='let ckkn of listChuKyKinhNguyet' [value]="ckkn.ID">{{ckkn.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-t-8'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>Chu kì kinh nguyệt bao nhiêu ngày:</mat-label>
+              <input matInput [(ngModel)]='benhAnIVF.SO_NGAY_CHU_KI_KINH_NGUYET' type='number' min='0'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>Số ngày có kinh:</mat-label>
+              <input matInput [(ngModel)]='benhAnIVF.SO_NGAY_CO_KINH' type='number' min='0'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-t-8'>
+        <div fxFlex.gt-sm='50' class='matero-col' >
+          <div class='boderMatRadioGR w-full'>
+            <div class='label-left-center p-l-8' fxFlex.gt-sm='40'>
+              Số lượng kinh nguyệt:
+            </div>
+            <div fxLayout='row' fxFlex.gt-sm='60'>
+              <mat-radio-group fxLayout='row' class='w-full' [(ngModel)]='benhAnIVF.SO_LUONG_KINH_NGUYET'>
+                <mat-radio-button *ngFor='let slkn of listSoLuongKinhNguyet; let i = index' [fxFlex.gt-sm]="i === 0 ? '32':(i === 1 ? '45' : (i === 2 ? '23' : 'default-value'))" style='float: left; margin: 5px 0' [value]="slkn.ID">{{slkn.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='boderMatRadioGR w-full'>
+            <div class='label-left-center p-l-8' fxFlex.gt-sm='30' >Đau bụng kinh:</div>
+            <div fxFlex.gt-sm='70' style='float: left; margin: 5px 0'>
+              <mat-radio-group fxLayout='row' [(ngModel)]="benhAnIVF.DAU_BUNG_KINH">
+                <mat-radio-button fxFlex='33'  [value]="1">Không</mat-radio-button>
+                <mat-radio-button fxFlex='25'  [value]="2">Ít</mat-radio-button>
+                <mat-radio-button fxFlex='42'  [value]="3">Nặng</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-t-8'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='boderMatRadioGR w-full'>
+            <div fxFlex.gt-sm='25' class='label-left-center p-l-8'>Vô kinh:</div>
+            <div fxFlex.gt-sm='75'>
+              <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.VO_KINH'>
+                <mat-radio-button fxFlex='50'  [value]="1">Nguyên phát</mat-radio-button>
+                <mat-radio-button fxFlex='50'  [value]="2">Thứ phát</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='boderMatRadioGR w-full'>
+            <div fxFlex.gt-sm='25' class='label-left-center p-l-8'>Vô sinh:</div>
+            <div  fxFlex.gt-sm='75'>
+              <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.VO_SINH_VO'>
+                <mat-radio-button fxFlex='50' [value]="1">Nguyên phát</mat-radio-button>
+                <mat-radio-button fxFlex='50' [value]="2">Thứ phát</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='row' class='m-t-8 p-x-8' >4. Tiền sử giao hợp:</div>
+      <div class='m-t-8'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>Mức độ sinh hoạt tình dục ( số lần/ tuần):</mat-label>
+              <input matInput [(ngModel)]='benhAnIVF.MUC_DO_SINH_HOAT_TD' type='number' min='0'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' fxLayout='row' class='p-x-8'>
+          <div class='row boderMatRadioGR w-full' fxLayout='row'>
+            <div fxFlex.gt-sm='65' class='label-left-center p-l-8'>Có đau khi sinh hoạt tình dục không:</div>
+            <div fxFlex.gt-sm='35' style='float: left; margin: 5px 0'>
+              <mat-radio-group fxLayout='row' [(ngModel)]="benhAnIVF.DAU_KHI_SINH_HOAT_TD">
+                <mat-radio-button fxFlex.gt-sm='60' [value]="1">Không</mat-radio-button>
+                <mat-radio-button fxFlex.gt-sm='40' [value]="2">Có</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8' style='padding-top: 15px;padding-bottom: 15px'>
+        <div class='m-r-8'>
+          <div fxLayout='row' class='m-8' style='font-size:15px'>5. Tiền sử sinh sản:</div>
+        </div>
+        <div class='p-l-8 common-table'>
+          <table style="width:100%">
+            <tr class="text-center">
+              <th style="width:30%;padding: 10px"></th>
+              <th style="width:35%;padding: 10px">Với chồng hiện nay</th>
+              <th style="width:35%;padding: 10px">Với lần kết hôn trước</th>
+            </tr>
+
+            <tr *ngFor='let item of listSoLan'  >
+              <td style="width: 30%" class="text-center">{{item.TEN}}</td>
+              <td style="width: 35%" class="text-center">
+                <mat-form-field appearance='outline' class='w-full'>
+                  <input matInput type="number" min='0' [value]='item' [(ngModel)]='item.SO_LUONG_1'>
+                </mat-form-field>
+              </td>
+              <td style="width: 35%" class="text-center" class='w-full'>
+                <mat-form-field appearance='outline'>
+                  <input matInput type="number" min='0' [value]='item' [(ngModel)]='item.SO_LUONG_2'>
+                </mat-form-field>
+              </td>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+
+      <div class='m-t-8'>
+        <div fxFlex.gt-sm='50' class='p-r-8'>
+          <div class='boderMatRadioGR w-full'>
+            <div fxFlex.gt-sm='20' class='label-left-center p-l-8'>GEU:</div>
+            <div fxFlex.gt-sm='80'>
+              <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.GEU_1'>
+                <mat-radio-button fxFlex='50' [value]="1">Có</mat-radio-button>
+                <mat-radio-button fxFlex='50' [value]="2">Không</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='p-l-8'>
+          <div class='boderMatRadioGR w-full'>
+            <div fxFlex.gt-sm='30' class='label-left-center p-l-8'>Chứa trứng:</div>
+            <div fxFlex.gt-sm='70'>
+              <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.CHUA_TRUNG'>
+                <mat-radio-button fxFlex='50' [value]="1">Có</mat-radio-button>
+                <mat-radio-button fxFlex='50' [value]="2">Không</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='m-t-8'>
+        <div class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label>6. Thời gian vô sinh (năm):</mat-label>
+            <input matInput placeholder='năm' [(ngModel)]='benhAnIVF.THOI_GIAN_VO_SINH_VO' type='number' min='0'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='p-x-8 m-t-8' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px'>
+        <div style='text-align: left'>7. Phương pháp đã được áp dụng để điều trị vô sinh:</div>
+        <div fxLayout='row' class='m-t-8'>
+          <div fxFlex='50'class='m-r-8'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.PP_DIEU_TRI_VO_SINH.ID' (click)="reset('PP_DIEU_TRI_VO_SINH')">
+              <mat-radio-button fxFlex='25' *ngFor='let ppdtvs of listPPDTriVoSinh' style='margin: 5px 0;' [value]="ppdtvs.ID">{{ppdtvs.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div fxFlex='50'class='m-r-8'>
+            <div *ngIf='benhAnIVF.PP_DIEU_TRI_VO_SINH.ID === "1"' class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>Số lần IUI</mat-label>
+                <input matInput [(ngModel)]='benhAnIVF.SO_LAN_IUI' type='number' min='0'>
+              </mat-form-field>
+            </div>
+            <div *ngIf='benhAnIVF.PP_DIEU_TRI_VO_SINH.ID === "2"' class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>Số lần IVF</mat-label>
+                <input matInput [(ngModel)]='benhAnIVF.SO_LAN_IVF' type='number' min='0'>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div fxLayout='row' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='25' style='text-align: left'>8. Các thăm dò trước đó:</div>
+          <div  fxFlex.gt-sm='75'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.CAC_THAM_DO_TRUOC_DO'>
+              <mat-radio-button fxFlex='25' [value]="1">Không</mat-radio-button>
+              <mat-radio-button fxFlex='25' [value]="2">Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='row' class='m-8' style='font-size:15px;padding-top: 15px'><i>*Chụp phim TC - VT cotte:</i></div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div fxLayout='row'>
+          <div fxFlex.gt-sm='25' style='text-align: left'>Tử cung:</div>
+          <div fxFlex.gt-sm='75'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.TU_CUNG_1' (click)="reset('TU_CUNG_1')">
+              <mat-radio-button fxFlex='25' [value]="0">Bình thường</mat-radio-button>
+              <mat-radio-button fxFlex='25' [value]="1">Bất thường</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class='m-r-8' *ngIf="benhAnIVF.TU_CUNG_1 === 1" style='margin-top: 10px'>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TU_CUNG_1.TU_CUNG_DOI' value="1" style='width: 20%'>Tử cung đôi</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TU_CUNG_1.TU_CUNG_2_SUNG' value="2" style='width: 25%'>Tử cung 2 sừng</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TU_CUNG_1.DINH' value="3" style='width: 15%'>Dính</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TU_CUNG_1.KHAC' value="4" style='width: 20%'>Khác</mat-checkbox>
+        </div>
+      </div>
+
+      <div>
+        <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 10px;margin-top: 15px'>
+          <div fxFlex.gt-sm='20' style='text-align: left'><strong><ins>VT phải:</ins></strong></div>
+          <div fxLayout='row' fxFlex.gt-sm='80'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.LIST_VT_PHAI_1'>
+              <mat-radio-button  *ngFor='let vtphai of listVT' style='width: 50%; margin: 5px 0;' [value]="vtphai.ID">{{vtphai.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='2'></div>
+        <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 10px;margin-top: 15px'>
+          <div fxFlex.gt-sm='20' style='text-align: left'><strong><ins>VT trái:</ins></strong></div>
+          <div fxLayout='row' fxFlex.gt-sm='80'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.LIST_VT_TRAI_1'>
+              <mat-radio-button  *ngFor='let vttrai of listVT' style='width: 50%; margin: 5px 0;' [value]="vttrai.ID">{{vttrai.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='row' class='m-8' style='font-size:15px;padding-top: 15px'><i>*Nội soi ổ bụng:</i></div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div fxLayout='row'>
+          <div fxFlex.gt-sm='25' style='text-align: left'>Tử cung</div>
+          <div fxFlex.gt-sm='75'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.TU_CUNG_2' (click)="reset('TU_CUNG_2')">
+              <mat-radio-button fxFlex='25' [value]="0">Bình thường</mat-radio-button>
+              <mat-radio-button fxFlex='25' [value]="1" >Bất thường</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class='m-r-8' *ngIf="benhAnIVF.TU_CUNG_2 === 1" style='margin-top: 10px' >
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TU_CUNG_2.TU_CUNG_DOI' value="1" style='width: 20%'>Tử cung đôi</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TU_CUNG_2.TU_CUNG_2_SUNG' value="2" style='width: 25%'>Tử cung 2 sừng</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TU_CUNG_2.DINH' value="3" style='width: 15%'>Dính</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TU_CUNG_2.KHAC' value="4" style='width: 20%'>Khác</mat-checkbox>
+        </div>
+      </div>
+
+      <div >
+        <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 10px;margin-top: 15px'>
+          <div fxFlex.gt-sm='20' style='text-align: left'><strong><ins>VT phải:</ins></strong></div>
+          <div fxLayout='row' fxFlex.gt-sm='80'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.LIST_VT_PHAI_2' >
+              <mat-radio-button  *ngFor='let vtphai of listVT' style='width: 50%; margin: 5px 0;' [value]="vtphai.ID">{{vtphai.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='2'></div>
+        <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 10px;margin-top: 15px'>
+          <div fxFlex.gt-sm='20' style='text-align: left'><strong><ins>VT trái:</ins></strong></div>
+          <div fxLayout='row' fxFlex.gt-sm='80'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.LIST_VT_TRAI_2'>
+              <mat-radio-button  *ngFor='let vttrai of listVT' style='width: 50%; margin: 5px 0;' [value]="vttrai.ID">{{vttrai.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='row' class='m-y-8' style='font-size:15px;padding-top: 15px'>9. Các yếu tố khác có thể ảnh hưởng tới sinh sản:</div>
+
+      <div>
+        <div fxFlex="49" fxFlex.lt-sm="100" fxLayout='row' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px'>
+          <label fxFlex.gt-sm='63' style='text-align: left'>Yếu tố môi trường và nghề nghiệp:</label>
+          <div fxFlex.gt-sm='37'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.YEU_TO_MOI_TRUONG_VA_NGHE_NGHIEP'>
+              <mat-radio-button fxFlex='50' [value]="1">Không</mat-radio-button>
+              <mat-radio-button fxFlex='50' [value]="2">Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxFlex="2"></div>
+        <div fxFlex="49" fxFlex.lt-sm="100" fxLayout='row' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px'>
+          <label fxFlex.gt-sm='55' style='text-align: left;'>Có sử dụng ma túy hoặc rượu:</label>
+          <div fxFlex.gt-sm='45'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.SU_DUNG_MA_TUY_RUOU'>
+              <mat-radio-button fxFlex='50' [value]="1">Không</mat-radio-button>
+              <mat-radio-button fxFlex='50' [value]="2">Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+     <div style='font-size:15px;padding-top: 15px'>
+       <label fxFlex.gt-sm='50'  style='text-align: left'>10. Tiền sử các bệnh có thể ảnh hưởng đến sinh sản:</label>
+       <div fxLayout='row' fxFlex.gt-sm='50' class='p-l-8'>
+         <mat-radio-group [(ngModel)]='benhAnIVF.TIEN_SU_CAC_BENH_ANH_HUONG_SINH_SAN_VO'>
+           <mat-radio-button  [value]="1">Không</mat-radio-button>
+           <mat-radio-button  [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+         </mat-radio-group>
+       </div>
+     </div>
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px;margin-top: 15px'>
+        <div class='row'>
+          <div fxFlex.gt-sm='50' style='text-align: left'>Các bệnh toàn thân:</div>
+          <div fxLayout='row' fxFlex.gt-sm='50' class='p-l-8'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.BENH_TOAN_THAN_VO' (click)="reset('BENH_TOAN_THAN_VO')">
+              <mat-radio-button  [value]="1">Không</mat-radio-button>
+              <mat-radio-button  [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class='m-r-8' *ngIf="benhAnIVF.BENH_TOAN_THAN_VO === 2" style='margin-top: 10px' >
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_TOAN_THAN_VO.DAI_DUONG' value="1" style='width: 20%'>Đái đường</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_TOAN_THAN_VO.LAO' value="2" style='width: 25%'>Lao</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_TOAN_THAN_VO.BENH_TUYEN_GIAP' value="3" style='width: 15%'>Bệnh tuyến giáp</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_TOAN_THAN_VO.BENH_KHAC' value="4" style='width: 20%'>Bệnh khác</mat-checkbox>
+        </div>
+      </div>
+
+      <div>
+        <div class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='50' style='text-align: left'>11. Tiền sử điều trị các bệnh nội khoa:</div>
+          <div fxLayout='row' fxFlex.gt-sm='50' class='p-l-8'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.TIEN_SU_DIEU_TRI_NOI_KHOA'>
+              <mat-radio-button  [value]="1">Không</mat-radio-button>
+              <mat-radio-button  [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div>
+          <div fxFlex.gt-sm='50' style='text-align: left'>12. Tiền sử ngoại khoa:</div>
+          <div fxLayout='row' fxFlex.gt-sm='50' class='p-l-8'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.TIEN_SU_NGOAI_KHOA'>
+              <mat-radio-button  [value]="1">Không</mat-radio-button>
+              <mat-radio-button  [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div  style='margin-top: 5px'>
+          <div fxFlex.gt-sm='50' class='matero-col'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>GEU:</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.GEU_2">
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='50' class='matero-col'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Cắt VT:</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.CAT_VT">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div fxFlex.gt-sm='50' class='matero-col'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Mở thông vòi:</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.MO_THONG_VOI">
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='50' class='matero-col'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Mổ đẻ:</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.MO_DE">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div fxFlex.gt-sm='50' class='matero-col'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Bóc tách u nang BT</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.BOC_TACH_U_NANG_BT">
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='50' class='matero-col'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Cắt u nang BT</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.CAT_U_NANG_BT">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div fxFlex.gt-sm='50' class='matero-col'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Bóc tách nhân xơ TC</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.BOC_TACH_NHAN_XO_TC">
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='50' class='matero-col'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>VRT</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.VRT">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='50' style='text-align: left'>13. Tiền sử các bệnh viêm chậu hông:</div>
+          <div fxLayout='row' fxFlex.gt-sm='50' class='p-l-8'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.TIEN_SU_VIEM_CHAU_HONG'>
+              <mat-radio-button  [value]="1">Không</mat-radio-button>
+              <mat-radio-button  [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div  style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+       <div>
+         <div fxFlex.gt-sm='50' style='text-align: left'>14. Tiền sử các bệnh lây truyền qua đường tình dục:</div>
+         <div fxLayout='row' fxFlex.gt-sm='50'  class='p-l-8'>
+           <mat-radio-group [(ngModel)]='benhAnIVF.BENH_LAY_QUA_DUONG_TD' (click)="reset('BENH_LAY_QUA_DUONG_TD')">
+             <mat-radio-button  [value]="1">Không</mat-radio-button>
+             <mat-radio-button  [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+           </mat-radio-group>
+         </div>
+       </div>
+        <div class='m-r-8' *ngIf="benhAnIVF.BENH_LAY_QUA_DUONG_TD === 2" style='margin-top: 10px'>
+          <div fxFlex.gt-sm='25'>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_LAY_TRUYEN_QUA_DUONG_TINH_DUC.LAU'>Lậu</mat-checkbox>
+          </div>
+          <div fxFlex.gt-sm='25'>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_LAY_TRUYEN_QUA_DUONG_TINH_DUC.VIEN_PHAN_PHU'>Viêm phần phụ</mat-checkbox>
+          </div>
+          <div fxFlex.gt-sm='25'>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_LAY_TRUYEN_QUA_DUONG_TINH_DUC.GIANG_MAI'>Giang mai</mat-checkbox>
+          </div>
+          <div fxFlex.gt-sm='25'>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_LAY_TRUYEN_QUA_DUONG_TINH_DUC.CHLAMYDIA'>Chlamydia</mat-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='50' style='text-align: left'>15. Tiền sử tiết dịch núm vú:</div>
+          <div fxLayout='row' fxFlex.gt-sm='50'  class='p-l-8'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.TIEN_SU_TIET_DICH_NUM_VU'>
+              <mat-radio-button  [value]="1">Không</mat-radio-button>
+              <mat-radio-button  [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='row' class='m-y-8' style='font-size:15px;padding-top: 10px'><strong>Khám thực thể</strong></div>
+      <div>
+        <div fxFlex.gt-sm='50' class='p-r-8'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>1. Chiều cao (cm):</mat-label>
+              <input matInput type='number' min='0' [(ngModel)]="benhAnIVF.CHIEU_CAO_VO">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='p-l-8'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>2. {{"st_can_nang" | translate}}:</mat-label>
+              <input matInput type='number' min='0' [(ngModel)]="benhAnIVF.CAN_NANG_VO">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div fxFlex.gt-sm='50' class='p-r-8'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>3. {{ "st_ha_tam_thu" | translate}}:</mat-label>
+              <input matInput type='number' min='0' [(ngModel)]="benhAnIVF.HUYET_AP_VO.TAM_THU">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='p-l-8'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{ "st_ha_tam_truong" | translate}}:</mat-label>
+              <input matInput type='number' min='0' [(ngModel)]="benhAnIVF.HUYET_AP_VO.TAM_TRUONG">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='34' style='text-align: left'>4. Khám toàn thân:</div>
+          <div fxFlex.gt-sm='66'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.KHAM_TOAN_THAN_VO'>
+              <mat-radio-button fxFlex='50' [value]="1">Bình thường</mat-radio-button>
+              <mat-radio-button fxFlex='50' [value]="2">Bất thường</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='2'></div>
+        <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='34' style='text-align: left'>5. Hệ thống lông:</div>
+          <div fxFlex.gt-sm='66'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.HE_THONG_LONG'>
+              <mat-radio-button fxFlex='50' [value]="1">Bình thường</mat-radio-button>
+              <mat-radio-button fxFlex='50' [value]="2">Bất thường</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='34' style='text-align: left'>6. Phát triển vú:</div>
+          <div fxFlex.gt-sm='66'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.PHAT_TRIEN_VU'>
+              <mat-radio-button fxFlex='50' [value]="1">Bình thường</mat-radio-button>
+              <mat-radio-button fxFlex='50' [value]="2">Bất thường</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='2'></div>
+        <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='34' style='text-align: left'>7. Tiết sữa:</div>
+          <div fxFlex.gt-sm='66'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.TIET_SUA'>
+              <mat-radio-button fxFlex='50' [value]="1">Không</mat-radio-button>
+              <mat-radio-button fxFlex='50' [value]="2" style='margin-left: 37px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='row' class='m-y-8' style='font-size:15px;padding-top: 10px'><strong>Khám chậu hông</strong></div>
+
+      <div>
+        <div class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px'>
+          <div fxFlex.gt-sm='25' style='text-align: left'>1. Bộ phận sinh dục ngoài:</div>
+          <div fxFlex.gt-sm='75'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.BO_PHAN_SINH_DUC_NGOAI'>
+              <mat-radio-button fxFlex='25' [value]="1">Bình thường</mat-radio-button>
+              <mat-radio-button fxFlex='25' [value]="2">Bất thường</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div fxFlex.gt-sm='25' style='text-align: left'>2. {{'hoi_benh_san_khoa.kham_benh.mang_trinh'|translate}}:</div>
+        <div fxFlex.gt-sm='75'>
+          <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.MANG_TRINH'>
+            <mat-radio-button fxFlex='25' [value]="1">Rách</mat-radio-button>
+            <mat-radio-button fxFlex='25' [value]="2">Còn nguyên</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div style='text-align: left;margin-bottom: 5px'>3. Bộ phận sinh dục trong:</div>
+        <div>
+          <div fxFlex.gt-sm='49'>
+            <div fxFlex.gt-sm='30' style='text-align: left;margin-top: 5px'>Âm đạo:</div>
+            <div fxFlex.gt-sm='70' style='float: left; margin: 5px 0'>
+              <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.AM_DAO'>
+                <mat-radio-button fxFlex='50' [value]="1">Bình thường</mat-radio-button>
+                <mat-radio-button fxFlex='50' [value]="2">Bất thường</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='2'></div>
+          <div fxFlex.gt-sm='49' class='matero-col'>
+            <div fxLayout='row'>
+              <div fxFlex.gt-sm='30' style='  text-align: left;margin-top: 5px'>Cổ tử cung:</div>
+              <div fxFlex.gt-sm='70' style='float: left; margin: 5px 0'>
+                <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.CO_TU_CUNG' (click)="reset('CO_TU_CUNG')">
+                  <mat-radio-button fxFlex='50' [value]="0">Bình thường</mat-radio-button>
+                  <mat-radio-button fxFlex='50' [value]="1">Bất thường</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+
+            <div class='m-r-8' *ngIf="benhAnIVF.CO_TU_CUNG === 1">
+              <mat-checkbox [(ngModel)]='benhAnIVF.LIST_CO_TU_CUNG.VIEM' style='width: 20%; margin: 5px 0;text-align: left'>Viêm</mat-checkbox>
+              <mat-checkbox [(ngModel)]='benhAnIVF.LIST_CO_TU_CUNG.LO_TUYEN' style='width: 25%; margin: 5px 0;text-align: left'>Lộ tuyến</mat-checkbox>
+              <mat-checkbox [(ngModel)]='benhAnIVF.LIST_CO_TU_CUNG.SUI' style='width: 15%; margin: 5px 0;text-align: left'>Sùi</mat-checkbox>
+              <mat-checkbox [(ngModel)]='benhAnIVF.LIST_CO_TU_CUNG.POLYP' style='width: 20%; margin: 5px 0;text-align: left'>Polyp</mat-checkbox>
+              <mat-checkbox [(ngModel)]='benhAnIVF.LIST_CO_TU_CUNG.HAI_CO_TC' style='width: 20%; margin: 5px 0;text-align: left'>Hai cổ TC</mat-checkbox>
+            </div>
+          </div>
+        </div>
+
+        <div class='m-r-8' style='text-align: left;margin-top: 5px'>Tử cung:</div>
+
+        <div style='margin-top: 5px'>
+          <div fxFlex.gt-sm='50' class='p-r-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Thể tích</mat-label>
+                <input matInput type='number' min='0' [(ngModel)]="benhAnIVF.THE_TICH">
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='50' class='p-l-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Mật độ</mat-label>
+                <input matInput type='number' min='0' [(ngModel)]="benhAnIVF.MAT_DO">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div style='margin-top: 5px'>
+          <div fxFlex.gt-sm='50' class='p-r-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Di động</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.DI_DONG">
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='50' class='p-l-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Tư thế TC</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.TU_THE_TC">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+            <div fxFlex.gt-sm='30' style='text-align: left'>Hai phần phụ:</div>
+            <div fxFlex.gt-sm='70'>
+              <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.HAI_PHAN_PHU'>
+                <mat-radio-button fxFlex='50' [value]="1">Bình thường</mat-radio-button>
+                <mat-radio-button fxFlex='50' [value]="2">Bất thường</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <div fxFlex.gt-sm='2'></div>
+
+          <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+            <div fxFlex.gt-sm='30' style='text-align: left'>Test catheter:</div>
+            <div fxFlex.gt-sm='70'>
+              <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.TEST_CATHETER'>
+                <mat-radio-button fxFlex='50' [value]="1">Dễ</mat-radio-button>
+                <mat-radio-button fxFlex='50' [value]="2">Khó*</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 fxLayout='row' class='m-y-8' style='font-size:20px;padding-top: 10px'><ins>Chồng:</ins></h3>
+
+      <div class='m-y-8'>
+        <div fxFlex.gt-sm='49'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>1. Ngày sinh</mat-label>
+              <input matInput [matDatepicker]="picker4"
+                     (ngModelChange)='onDate($event, "NGAY_SINH_CHONG")'
+                     [(ngModel)]="benhAnIVF.birthdayStringhusban">
+              <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+              <mat-datepicker #picker4></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='2'></div>
+
+        <div fxFlex.gt-sm='49' style='border: 1px solid #CCCCCC;border-radius: 5px;padding:8px'>
+          <div fxFlex.gt-sm='30' style='text-align: left'>2. Vô sinh:</div>
+          <div fxFlex.gt-sm='70'>
+            <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.VO_SINH_CHONG'>
+              <mat-radio-button fxFlex='50' [value]="1">Nguyên phát</mat-radio-button>
+              <mat-radio-button fxFlex='50' [value]="2" >Thứ phát</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-y-8' fxLayout='row'>
+        <div fxFlex='49'>
+          <mat-form-field appearance='outline' class='w-full'>
+            <mat-label>3. Thời gian vô sinh (năm):</mat-label>
+            <input matInput placeholder='năm' [(ngModel)]='benhAnIVF.THOI_GIAN_VO_SINH_CHONG' type='number' min='0'>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout='row' class='m-y-8' style='font-size:15px'>4. Tiền sử bệnh có thể ảnh hưởng tới sinh sản:</div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Tiền sử bệnh toàn thân:</div>
+          <div fxFlex.gt-sm='60' fxLayout='row'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.BENH_TOAN_THAN_CHONG' (click)="reset('BENH_TOAN_THAN_CHONG')">
+              <mat-radio-button [value]="1">Không</mat-radio-button>
+              <mat-radio-button [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class='m-r-8'>
+          <section *ngIf="benhAnIVF.BENH_TOAN_THAN_CHONG === 2">
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_TOAN_THAN_CHONG.DAI_DUONG' style='width: 25%; margin: 5px 0'>Đái đường</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_TOAN_THAN_CHONG.LAO' style='width: 25%; margin: 5px 0'>Lao</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_TOAN_THAN_CHONG.BENH_THAN_KINH' style='width: 25%; margin: 5px 0'>Bệnh thần kinh</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_TOAN_THAN_CHONG.BENH_KHAC' style='width: 25%; margin: 5px 0'>Bệnh khác</mat-checkbox>
+          </section>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Tiền sử điều trị nội khoa:</div>
+          <div fxLayout='row' fxFlex.gt-sm='60'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.BENH_NOI_KHOA'>
+              <mat-radio-button  [value]="1">Không</mat-radio-button>
+              <mat-radio-button  [value]="'2'" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Tiền sử phẫu thuật:</div>
+          <div fxLayout='row' fxFlex.gt-sm='60'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.TIEN_SU_PHAU_THUAT_CHONG' (click)="reset('TIEN_SU_PHAU_THUAT_CHONG')">
+              <mat-radio-button  [value]="0">Không</mat-radio-button>
+              <mat-radio-button  [value]="1" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <section *ngIf="benhAnIVF.TIEN_SU_PHAU_THUAT_CHONG === 1">
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_PHAU_THUAT_CHONG.HEP_NIEU_DAO' style='width: 16%; margin: 5px 0;text-align: left'>Hẹp niệu đạo</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_PHAU_THUAT_CHONG.LO_DAI_THAP' style='width: 15%; margin: 5px 0;text-align: left'>Lỗ đái thấp</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_PHAU_THUAT_CHONG.CAT_ONG_DAN_TINH' style='width: 22%; margin: 5px 0;text-align: left'>Cắt bỏ ống dẫn tinh</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_PHAU_THUAT_CHONG.THOAT_VI_BEN' style='width: 16%; margin: 5px 0;text-align: left'>Thoát vị bẹn</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_PHAU_THUAT_CHONG.CAT_BO_TINH_HOAN' style='width: 19%; margin: 5px 0;text-align: left'>Cắt bỏ tinh hoàn</mat-checkbox>
+          <mat-checkbox [(ngModel)]='benhAnIVF.LIST_PHAU_THUAT_CHONG.KHAC' style='width: 12%; margin: 5px 0;text-align: left'>Khác*</mat-checkbox>
+        </section>
+      </div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Tiền sử nhiễm trùng đường tiết niệu:</div>
+          <div fxLayout='row' fxFlex.gt-sm='60'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.TIEN_SU_NHIEM_TRUNG_DUONG_TIET_NIEU'>
+              <mat-radio-button  [value]="1">Không</mat-radio-button>
+              <mat-radio-button  [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Tiền sử bệnh lây truyền qua đường tình dục:</div>
+          <div fxLayout='row' fxFlex.gt-sm='60'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.TIEN_SU_BENH_LAY_TRUYEN_QUA_DUONG_TINH_DUC' (click)="reset('TIEN_SU_BENH_LAY_TRUYEN_QUA_DUONG_TINH_DUC')">
+              <mat-radio-button  [value]="0">Không</mat-radio-button>
+              <mat-radio-button  [value]="1" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class='m-r-8'>
+          <section *ngIf="benhAnIVF.TIEN_SU_BENH_LAY_TRUYEN_QUA_DUONG_TINH_DUC === 1">
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_LAY_QUA_DUONG_TD.GIANG_MAI' style='width: 25%; margin: 5px 0'>Giang mai</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_LAY_QUA_DUONG_TD.LAU' style='width: 25%; margin: 5px 0'>Lậu</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_LAY_QUA_DUONG_TD.CHLAMYDIA' style='width: 25%; margin: 5px 0'>Chlamydia</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_BENH_LAY_QUA_DUONG_TD.KHAC' style='width: 25%; margin: 5px 0'>Khác</mat-checkbox>
+          </section>
+        </div>
+      </div>
+
+      <div fxLayout='row' class='m-y-8' style='font-size:15px;padding-top: 10px'>5. Các yếu tố có thể ảnh hưởng đến sinh sản</div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Yếu tố môi trường và nghề nghiệp:</div>
+          <div fxLayout='row' fxFlex.gt-sm='60'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.YEU_TO_MOI_TRUONG'>
+              <mat-radio-button  [value]="1">Không</mat-radio-button>
+              <mat-radio-button  [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Dùng quá nhiều rượu:</div>
+          <div fxLayout='row' fxFlex.gt-sm='60'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.RUOU'>
+              <mat-radio-button  [value]="1">Không</mat-radio-button>
+              <mat-radio-button  [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Ma túy, hoặc thuốc lá:</div>
+          <div fxFlex.gt-sm='60'>
+            <mat-radio-group  fxLayout='row'  [(ngModel)]='benhAnIVF.MA_TUY_HOAC_THUOC_LA'>
+              <mat-radio-button  [value]="1">Không</mat-radio-button>
+              <mat-radio-button  [value]="2" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='row' class='m-y-8' style='font-size:15px;padding-top: 10px'>6. Khám thực thể</div>
+
+      <div>
+        <div fxFlex.gt-sm='50' class='p-r-8'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>Chiều cao (cm):</mat-label>
+              <input matInput type='number' min='0' [(ngModel)]="benhAnIVF.CHIEU_CAO_CHONG" >
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='p-l-8'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"st_can_nang" | translate}}:</mat-label>
+              <input matInput type='number' min='0' [(ngModel)]="benhAnIVF.CAN_NANG_CHONG">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div fxFlex.gt-sm='50' class='p-r-8'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{ "st_ha_tam_thu" | translate}}:</mat-label>
+              <input matInput type='number' min='0' [(ngModel)]="benhAnIVF.HUYET_AP_CHONG.TAM_THU">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='p-l-8'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{ "st_ha_tam_truong" | translate}}:</mat-label>
+              <input matInput type='number' min='0' [(ngModel)]="benhAnIVF.HUYET_AP_CHONG.TAM_TRUONG">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div fxFlex.gt-sm='40' style='text-align: left'>Khám toàn thân:</div>
+        <div fxFlex.gt-sm='60'>
+          <mat-radio-group fxLayout='row' [(ngModel)]='benhAnIVF.KHAM_TOAN_THAN_CHONG'>
+            <mat-radio-button  [value]="1">Bình thường</mat-radio-button>
+            <mat-radio-button  [value]="'2'" style='margin-left: 40px'>Không bình thường</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div fxLayout='row' class='m-y-8' style='font-size:15px;padding-top: 10px'>7. Khám đường niệu sinh dục</div>
+
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div clas='m-r-8'>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Dương vật:</div>
+          <div fxFlex.gt-sm='60'>
+            <mat-radio-group fxLayout='row'  [(ngModel)]='benhAnIVF.DUONG_VAT' (click)="reset('DUONG_VAT')">
+              <mat-radio-button [value]="0">Không</mat-radio-button>
+              <mat-radio-button [value]="1" style='margin-left: 80px'>Có</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class='m-r-8'>
+          <section *ngIf="benhAnIVF.DUONG_VAT === 1">
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_DUONG_VAT.SEO' style='width: 25%; margin: 5px 0'>Sẹo</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_DUONG_VAT.LO_DAI_THAP' style='width: 25%; margin: 5px 0'>Lỗ đái thấp</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_DUONG_VAT.MANG_BUA' style='width: 25%; margin: 5px 0'>Mảng bựa</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_DUONG_VAT.KHAC' style='width: 25%; margin: 5px 0'>Khác</mat-checkbox>
+          </section>
+        </div>
+      </div>
+      <div style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+        <div class='m-r-8'>
+          <div fxFlex.gt-sm='16' style='text-align: left;margin-top: 8px'>Tinh hoàn:</div>
+          <div fxFlex.gt-sm='82' class="text-left p-l-8">
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TINH_HOAN.S0_THAY_CA_2_BEN' style='width: 27%; margin: 5px 0'>Sờ thấy cả 2 bên</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TINH_HOAN.KHONG_SO_THAY' style='width: 24%; margin: 5px 0'>Không sờ thấy</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TINH_HOAN.HAI_BEN_BINH_THUONG' style='width: 29%; margin: 5px 0'>2 bên bình thường</mat-checkbox>
+            <mat-checkbox [(ngModel)]='benhAnIVF.LIST_TINH_HOAN.BAT_THUONG' style='width: 20%; margin: 5px 0'>Bất thường</mat-checkbox>
+          </div>
+        </div>
+
+        <div class='m-r-8'>
+          <div fxFlex.gt-sm='16' class='m-y-8' style='padding-top: 8px; text-align: left'>Thể tích</div>
+          <div fxFlex.gt-sm='42' class='matero-col'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Bên trái:</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.BEN_TRAI">
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex.gt-sm='42' class='p-l-8'>
+            <div class='form-field-full'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>Bên phải:</mat-label>
+                <input matInput type='text' [(ngModel)]="benhAnIVF.BEN_PHAI">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class='m-r-8' fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Mào tinh hoàn:</div>
+
+          <div fxLayout='row' fxFlex.gt-sm='60'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.MAO_TINH_HOAN'>
+              <mat-radio-button  [value]="1" style='width: 100%;margin: 0px 5px 5px'>2 bên bình thường</mat-radio-button>
+              <mat-radio-button  [value]="2" style='width: 100%;margin: 5px'>Dày</mat-radio-button>
+              <mat-radio-button  [value]="3" style='width: 100%;margin: 5px'>Mềm</mat-radio-button>
+              <mat-radio-button  [value]="4" style='width: 100%;margin: 5px'>U nang</mat-radio-button>
+              <mat-radio-button  [value]="5" style='width: 100%;margin: 5px'>Không sờ thấy</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='2'></div>
+        <div class='m-r-8' fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='55' style='text-align: left'>Động mạch tinh:</div>
+
+          <div fxLayout='row' fxFlex.gt-sm='45'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.DONG_MACH_TINH'>
+              <mat-radio-button  [value]="1" style='width: 100%;margin: 0px 5px 5px'>2 bên bình thường</mat-radio-button>
+              <mat-radio-button  [value]="2" style='width: 100%;margin: 5px'>Dày</mat-radio-button>
+              <mat-radio-button  [value]="3" style='width: 100%;margin: 5px'>Không sờ thấy</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div fxFlex.gt-sm='49' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Sưng bìu:</div>
+
+          <div fxLayout='row' fxFlex.gt-sm='60'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.SUNG_BIU'>
+              <mat-radio-button  [value]="1" style='width: 100%;margin: 0px 5px 5px'>Không</mat-radio-button>
+              <mat-radio-button  [value]="2" style='width: 100%;margin: 5px'>Tràn dịch tinh mạc</mat-radio-button>
+              <mat-radio-button  [value]="3" style='width: 100%;margin: 5px'>Thoát vị</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm='2'></div>
+        <div class='m-r-8' fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='55' style='text-align: left'>Giãn tĩnh mạch thừng tinh:</div>
+
+          <div fxLayout='row' fxFlex.gt-sm='45'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.GIAN_TINH_MACH_THUNG_TINH'>
+              <mat-radio-button  [value]="1" style='width: 100%;margin: 0px 5px 5px'>Không</mat-radio-button>
+              <mat-radio-button  [value]="2" style='width: 100%;margin: 5px'>Độ 3</mat-radio-button>
+              <mat-radio-button  [value]="3" style='width: 100%;margin: 5px'>Độ 2</mat-radio-button>
+              <mat-radio-button  [value]="4" style='width: 100%;margin: 5px'>Độ 1</mat-radio-button>
+              <mat-radio-button  [value]="5" style='width: 100%;margin: 5px'>Cận lâm sàng</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div >
+        <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='40' style='text-align: left'>Khám bẹn:</div>
+
+          <div fxLayout='row' fxFlex.gt-sm='60'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.KHAM_BEN'>
+              <mat-radio-button  [value]="1" style='width: 100%;margin: 0px 5px 5px'>Bình thường</mat-radio-button>
+              <mat-radio-button  [value]="2" style='width: 100%;margin: 5px'>Nổi hạch</mat-radio-button>
+              <mat-radio-button  [value]="3" style='width: 100%;margin: 5px'>Sẹo nhiễm trùng</mat-radio-button>
+              <mat-radio-button  [value]="4" style='width: 100%;margin: 5px'>Sẹo phẫu thuật</mat-radio-button>
+              <mat-radio-button  [value]="5" style='width: 100%;margin: 5px'>Thoát vị bẹn</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm='2'></div>
+        <div class='m-r-8' fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='55' style='text-align: left'>Thăm trực tràng:</div>
+
+          <div fxLayout='row' fxFlex.gt-sm='45'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.THAM_TRUC_TRANG'>
+              <mat-radio-button  [value]="1" style='width: 100%;margin: 0px 5px 5px'>Bình thường</mat-radio-button>
+              <mat-radio-button  [value]="2" style='width: 100%;margin: 5px'>Chưa thăm khám</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='40' style='text-align: left'>a. Tiền liệt tuyến:</div>
+
+          <div fxLayout='row' fxFlex.gt-sm='60'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.TIEN_LIET_TUYEN'>
+              <mat-radio-button  [value]="1" style='width: 100%;margin: 0px 5px 5px'>Sưng mềm</mat-radio-button>
+              <mat-radio-button  [value]="2" style='width: 100%;margin: 5px'>Sưng rắn</mat-radio-button>
+              <mat-radio-button  [value]="3" style='width: 100%;margin: 5px'>Mềm</mat-radio-button>
+              <mat-radio-button  [value]="4" style='width: 100%;margin: 5px'>Khác</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div fxFlex.gt-sm='2'></div>
+        <div class='m-r-8' fxFlex.gt-sm='49' class='matero-col' style='border: 1px solid #CCCCCC;border-radius: 5px;padding: 15px 8px;margin-top: 15px'>
+          <div fxFlex.gt-sm='55' style='text-align: left'>b. Túi tinh:</div>
+
+          <div fxLayout='row' fxFlex.gt-sm='45'>
+            <mat-radio-group [(ngModel)]='benhAnIVF.TUI_TINH'>
+              <mat-radio-button  [value]="1" style='width: 100%;margin:0px 5px 5px'>Sờ thấy</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

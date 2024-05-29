@@ -1,0 +1,92 @@
+p, strong {
+  font-size: 15px;
+}
+
+h1 {
+  font-size: 20px;
+}
+table, th, td {
+  border: 0.5px solid black;
+  border-collapse: collapse;
+  text-align: left;
+  padding-left: 5px;
+}
+th {
+  padding: 5px 0 5px 5px;
+}
+.xnlquan {
+  padding: 16px 0 17px 5px;
+}
+.xncl {
+  border-right: 0.25px solid black !important;
+  border-top: 0.25px solid black !important;
+  border-bottom: 0.25px solid black !important;
+  border-left: none;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
+/* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
+.bieu-hien-benh-ly ::ng-deep .mat-radio-label-content {
+  flex: 0 0 13em;
+}
+
+.toan-trang {
+  height: 100%;
+
+  ::ng-deep {
+    /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+    /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+    .mat-form-field-wrapper,
+    .mat-form-field-flex,
+    .mat-form-field-infix,
+    textarea {
+      height: 100%;
+    }
+    textarea {
+      min-height: 100%;
+    }
+  }
+}
+
+.bordered {
+  $border-grey: #CCCCCC;
+  border: 1px solid $border-grey;
+  border-radius: 5px;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 5px 0 0;
+}
+
+.radio-w-full ::ng-deep {
+  /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
+  /* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
+  .mat-radio-label-content {
+    flex: 1;
+  }
+}
+.tooth-icon {
+  transform: scale(3);
+  text-align: center;
+}
+.button-container{
+  position: relative;
+}
+.label-in-button {
+  position: absolute;
+  z-index: 1;
+  margin-left: 3px;
+}
+
+.has-template {
+  display: flex;
+  align-items: center;
+
+  & > app-field-template {
+    display: flex;
+    align-items: center;
+    margin: 0 8px 8px;
+  }
+  & > div:nth-child(2) {
+    flex: 1;
+  }
+}

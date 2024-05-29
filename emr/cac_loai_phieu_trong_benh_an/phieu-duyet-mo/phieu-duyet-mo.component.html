@@ -1,0 +1,116 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class='row w-full'>
+      <h1 class='f-s-20'>{{ 'phieu_duyet_mo.title_phieu_duyet_mo' | translate}}</h1>
+    </div>
+    <div class='row w-full'>
+      <div class='col-6'>
+        <div class='row'>
+          <div class='col-6'>
+            <mat-form-field class='full-width' appearance='outline'>
+              <mat-label><strong>{{ 'phieu_duyet_mo.ho_ten' | translate}}</strong></mat-label>
+
+              <input matInput type='text' [(ngModel)]='patientInfo.HO_TEN' readonly>
+            </mat-form-field>
+          </div>
+          <div class='col-6'>
+            <mat-form-field class='full-width' appearance='outline'>
+              <input matInput type='text' [(ngModel)]='patientInfo.patient_id' readonly>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class='col-3'>
+        <mat-form-field class='full-width' appearance='outline'>
+          <mat-label>{{ 'phieu_duyet_mo.tuoi' | translate}}</mat-label>
+          <input matInput type='text' [(ngModel)]='phieuDuyetMo.tuoi' required>
+        </mat-form-field>
+      </div>
+      <div class='col-3'>
+        <mat-form-field class='full-width' appearance='outline'>
+          <mat-label>{{ 'phieu_duyet_mo.gioi_tinh' | translate}}</mat-label>
+          <input matInput type='text' value='{{patientInfo.GIOI_TINH?.MO_TA}}' readonly>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class='row w-full'>
+      <div class='col-8'>
+        <mat-form-field class='full-width' appearance='outline'>
+          <mat-label>{{ 'phieu_duyet_mo.dia_chi' | translate}}</mat-label>
+          <input matInput type='text' [(ngModel)]='patientInfo.address1' readonly>
+        </mat-form-field>
+      </div>
+      <div class='col-4'>
+        <app-emr-date label='phieu_duyet_mo.hoi_chan_luc' mode='datetime'
+                      [(model)]=phieuDuyetMo.hoi_chan_luc></app-emr-date>
+      </div>
+    </div>
+    <div class='row'>
+      <h3 class='f-s-18'>{{ 'phieu_duyet_mo.title_tom_tat_qua_trinh' | translate}}</h3>
+    </div>
+    <div class='row w-full'>
+      <div class='col'>
+        <mat-form-field class='full-width' appearance='outline'>
+          <mat-label> +{{ 'phieu_duyet_mo.tom_tat_dien_bien' | translate}}</mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    [(ngModel)]='phieuDuyetMo.tom_tat_dien_bien'
+                    cdkAutosizeMinRows='1'
+                    cdkAutosizeMaxRows='5'>
+            </textarea>
+        </mat-form-field>
+
+      </div>
+    </div>
+    <div class='row w-full'>
+      <div class='col'>
+        <mat-form-field class='full-width' appearance='outline'>
+          <mat-label>+ {{ 'phieu_duyet_mo.cac_y_kien_hoi_chan' | translate}}</mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    [(ngModel)]='phieuDuyetMo.cac_y_kien_hoi_chan'
+                    cdkAutosizeMinRows='1'
+                    cdkAutosizeMaxRows='5'>
+            </textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class='row w-full'>
+      <div class='col-6'>
+        <mat-form-field class='full-width' appearance='outline'>
+          <mat-label><strong>{{ 'phieu_duyet_mo.kham_me_truoc_mo' | translate}}</strong></mat-label>
+          <input matInput type='text' [(ngModel)]='phieuDuyetMo.kham_me_truoc_mo'>
+        </mat-form-field>
+      </div>
+      <div class='col-6'>
+        <app-select label='phieu_duyet_mo.chan_doan' [(model)]='phieuDuyetMo.chan_doan'
+                    category='icd'></app-select>
+      </div>
+    </div>
+    <div class='row w-full'>
+      <div class='col-6'>
+        <app-select label='phieu_duyet_mo.phuong_phap_phau_thuat' [(model)]='phieuDuyetMo.phuong_phap_phau_thuat' bindLabel='anesthetic_method_name'
+                    category='pp_vo_cam'></app-select>
+      </div>
+      <div class='col-6'>
+        <app-select label='phieu_duyet_mo.phuong_phap_vo_cam' [(model)]='phieuDuyetMo.phuong_phap_vo_cam'
+                    bindLabel='anesthetic_method_name'
+                    category='pp_vo_cam'></app-select>
+      </div>
+    </div>
+    <div class='row w-full'>
+      <div class='col-6'>
+        <app-select label='phieu_duyet_mo.phau_thuat_vien' [(model)]='phieuDuyetMo.phau_thuat_vien'
+                    category='cbyt'></app-select>
+      </div>
+      <div class='col-6'>
+        <app-select label='phieu_duyet_mo.bac_sy_gay_me' [(model)]='phieuDuyetMo.bac_sy_gay_me'
+                    category='cbyt'></app-select>
+      </div>
+    </div>
+    <div class='row w-full'>
+      <div class='col-6'>
+        <app-select label='phieu_duyet_mo.pgd_phu_trach_ngoai' [(model)]='phieuDuyetMo.pgd_phu_trach_ngoai'
+                    category='cbyt'></app-select>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

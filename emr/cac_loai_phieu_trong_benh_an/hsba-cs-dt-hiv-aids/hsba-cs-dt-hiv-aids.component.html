@@ -1,0 +1,226 @@
+<app-menu-v3 [showButtons]="true" class='emr-menu'  [businessDropdownItems]="[{
+                    icon: '',
+                    labelKey: 'Đẩy XML đề án 06',
+                    click: handleSavePushXml06,
+                    isDisabled: !(patient)
+                  },{
+                    icon: '',
+                    labelKey: 'Tải file XML',
+                    click: downloadXml,
+                    isDisabled: !(patient)
+                  }]"></app-menu-v3>
+<div>
+<!--  <app-search-header-giay-to-bhyt [formName]='FORM_NAME' (patientChange)='patient = $event' (dataChange)='handleDataChange($event)'></app-search-header-giay-to-bhyt>-->
+  <mat-card appearance="outlined">
+    <mat-card-content>
+    <div fxLayout='row col-12'>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.ma_lk" | translate}}</mat-label>
+          <input matInput [(ngModel)]='patientInfo.reception_queue_id' readonly>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.ma_the_bhyt" | translate}}</mat-label>
+          <input matInput [(ngModel)]='chamSocDieuTriHIV.MA_THE_BHYT'>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"emr.identity_id"| translate}}</mat-label>
+          <input matInput [(ngModel)]='chamSocDieuTriHIV.SO_CCCD'>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.ngaykd_hiv' mode='date'
+                      [(model)]='chamSocDieuTriHIV.ngaykd_hiv'
+                      [(dmModel)]='chamSocDieuTriHIV.NGAYKD_HIV'
+                      placeholder='{{"cham_soc_dieu_tri_hiv_aids.th_dieu_tri_phoi_nhiem"| translate}}'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.bddt_arv' mode='date'
+                      [(model)]='chamSocDieuTriHIV.bddt_arv'
+                      [(dmModel)]='chamSocDieuTriHIV.BDDT_ARV'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.ma_phac_do_dieu_tri_bd" | translate}}</mat-label>
+          <input matInput [(ngModel)]='chamSocDieuTriHIV.MA_PHAC_DO_DIEU_TRI_BD'>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.ma_bac_phac_do_bd" | translate}}</mat-label>
+          <mtx-select [items]='MA_BAC_PHAC_DO' bindLabel='MO_TA'
+                      [(ngModel)]="chamSocDieuTriHIV.MA_BAC_PHAC_DO_BD"></mtx-select>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.ma_lydo_dtri" | translate}}</mat-label>
+          <mtx-select [items]='MA_LYDO_DTRI' bindLabel='MO_TA'
+                      [(ngModel)]="chamSocDieuTriHIV.MA_LYDO_DTRI"></mtx-select>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.loai_dtri_lao" | translate}}</mat-label>
+          <mtx-select [items]='LOAI_DTRI_LAO' bindLabel='MO_TA'
+                      [(ngModel)]="chamSocDieuTriHIV.LOAI_DTRI_LAO"></mtx-select>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.phacdo_dtri_lao" | translate}}</mat-label>
+          <mtx-select [items]='PHACDO_DTRI_LAO' bindLabel='MO_TA'
+                      [(ngModel)]="chamSocDieuTriHIV.PHACDO_DTRI_LAO"></mtx-select>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.ngaybd_dtri_lao' mode='date'
+                      [(model)]='chamSocDieuTriHIV.ngaybd_dtri_lao'
+                      [(dmModel)]='chamSocDieuTriHIV.NGAYBD_DTRI_LAO'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.ngaykt_dtri_lao' mode='date'
+                      [(model)]='chamSocDieuTriHIV.ngaykt_dtri_lao'
+                      [(dmModel)]='chamSocDieuTriHIV.NGAYKT_DTRI_LAO'
+                      placeholder='{{"cham_soc_dieu_tri_hiv_aids.th_dieu_tri_phoi_nhiem"| translate}}'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.ma_lydo_xntl_vr" | translate}}</mat-label>
+          <mtx-select [items]='MA_LYDO_XNTL_VR' bindLabel='MO_TA'
+                      [(ngModel)]="chamSocDieuTriHIV.MA_LYDO_XNTL_VR"></mtx-select>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.ngay_xn_tlvr' mode='date'
+                      [(model)]='chamSocDieuTriHIV.ngay_xn_tlvr'
+                      [(dmModel)]='chamSocDieuTriHIV.NGAY_XN_TLVR'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.kq_xntl_vr" | translate}}</mat-label>
+          <mtx-select [items]='KQ_XNTL_VR' bindLabel='MO_TA'
+                      [(ngModel)]="chamSocDieuTriHIV.KQ_XNTL_VR"></mtx-select>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.ngay_kq_xn_tlvr' mode='date'
+                      [(model)]='chamSocDieuTriHIV.ngay_kq_xn_tlvr'
+                      [(dmModel)]='chamSocDieuTriHIV.NGAY_KQ_XN_TLVR'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.ma_loai_bn" | translate}}</mat-label>
+          <mtx-select [items]='MA_LOAI_BN' bindLabel='MO_TA'
+                      [(ngModel)]="chamSocDieuTriHIV.MA_LOAI_BN"></mtx-select>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6 form-field-full'>
+        <app-multi-select
+          label='cham_soc_dieu_tri_hiv_aids.ma_tinh_trang_dk'
+          [items]='chamSocDieuTriHIV.MA_TINH_TRANG_DK'
+          category='mota'
+          [listItems]='MA_TINH_TRANG_DK'>
+        </app-multi-select>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.lan_xn_pcr" | translate}}</mat-label>
+          <mtx-select [items]='LAN_XN_PCR' bindLabel='MO_TA'
+                      [(ngModel)]="chamSocDieuTriHIV.LAN_XN_PCR"
+                      placeholder='{{"cham_soc_dieu_tri_hiv_aids.ap_dung_voi_tre_duoi_18"| translate}}'></mtx-select>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.ngay_xn_pcr' mode='date'
+                      [(model)]='chamSocDieuTriHIV.ngay_xn_pcr'
+                      [(dmModel)]='chamSocDieuTriHIV.NGAY_XN_PCR'
+                      placeholder='{{"cham_soc_dieu_tri_hiv_aids.ap_dung_voi_tre_duoi_18"| translate}}'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.ngay_kq_xn_pcr' mode='date'
+                      [(model)]='chamSocDieuTriHIV.ngay_kq_xn_pcr'
+                      [(dmModel)]='chamSocDieuTriHIV.NGAY_KQ_XN_PCR'
+                      placeholder='{{"cham_soc_dieu_tri_hiv_aids.ap_dung_voi_tre_duoi_18"| translate}}'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.ma_kq_xn_pcr" | translate}}</mat-label>
+          <mtx-select [items]='MA_KQ_XN_PCR' bindLabel='MO_TA'
+                      [(ngModel)]="chamSocDieuTriHIV.MA_KQ_XN_PCR"
+                      placeholder='{{"cham_soc_dieu_tri_hiv_aids.ap_dung_voi_tre_duoi_18"| translate}}'></mtx-select>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.ngay_nhan_tt_mang_thai' mode='date'
+                      [(model)]='chamSocDieuTriHIV.ngay_nhan_tt_mang_thai'
+                      [(dmModel)]='chamSocDieuTriHIV.NGAY_NHAN_TT_MANG_THAI'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.ngay_bat_dau_dt_ctx' mode='date'
+                      [(model)]='chamSocDieuTriHIV.ngay_bat_dau_dt_ctx'
+                      [(dmModel)]='chamSocDieuTriHIV.NGAY_BAT_DAU_DT_CTX'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6 form-field-full'>
+        <app-multi-select
+          label='cham_soc_dieu_tri_hiv_aids.ma_xu_tri'
+          [items]='chamSocDieuTriHIV.MA_XU_TRI'
+          category='mota'
+          [listItems]='MA_XU_TRI'>
+        </app-multi-select>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.ngay_bat_dau_xu_tri' mode='date'
+                      [(model)]='chamSocDieuTriHIV.ngay_bat_dau_xu_tri'
+                      [(dmModel)]='chamSocDieuTriHIV.NGAY_BAT_DAU_XU_TRI'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <app-emr-date label='cham_soc_dieu_tri_hiv_aids.ngay_ket_thuc_xu_tri' mode='date'
+                      [(model)]='chamSocDieuTriHIV.ngay_ket_thuc_xu_tri'
+                      [(dmModel)]='chamSocDieuTriHIV.NGAY_KET_THUC_XU_TRI'></app-emr-date>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.ma_phac_do_dieu_tri" | translate}}</mat-label>
+          <input matInput [(ngModel)]='chamSocDieuTriHIV.MA_PHAC_DO_DIEU_TRI'>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.ma_bac_phac_do" | translate}}</mat-label>
+          <mtx-select [items]='MA_BAC_PHAC_DO' bindLabel='MO_TA'
+                      [(ngModel)]="chamSocDieuTriHIV.MA_BAC_PHAC_DO"></mtx-select>
+        </mat-form-field>
+      </div>
+      <div class='col-lg-4 col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.so_ngay_cap_thuoc_arv" | translate}}</mat-label>
+          <input matInput [(ngModel)]='chamSocDieuTriHIV.SO_NGAY_CAP_THUOC_ARV' type='number'>
+          <div matSuffix class='m-t-16'>ngày</div>
+        </mat-form-field>
+      </div>
+      <div class='col-12'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"cham_soc_dieu_tri_hiv_aids.du_phong" | translate}}</mat-label>
+          <textarea matInput
+                    [(ngModel)]='chamSocDieuTriHIV.DU_PHONG'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+      </div>
+      <div class='col-12 text-right'>
+        <button mat-button class='bg-red-100'
+                *ngIf='selectGiayToLienQuan && selectGiayToLienQuan.id'
+                (click)='downloadXml()'>{{'nav.export_xml' | translate}}
+        </button>
+      </div>
+    </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+

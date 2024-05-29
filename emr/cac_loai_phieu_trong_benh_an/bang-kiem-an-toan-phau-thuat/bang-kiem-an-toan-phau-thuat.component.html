@@ -1,0 +1,220 @@
+<mat-card appearance="outlined" class='text-left'>
+  <mat-card-content>
+    <div class='row'>
+      <div class='col-12'>
+        <div class='row align-items-center'>
+          <div class='col'>
+              <div class='row'>
+                <div class='col'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>{{"label.phieu_pttt" | translate}}</mat-label>
+                    <mat-select [(ngModel)]='bangKiemAnToanPhauThuat.PHIEU_PHAU_THUAT_THU_THUAT' [compareWith]='comparePPTTT' (selectionChange)='loadDataFromSelectedPttt($event.value)'>
+                      <mat-option *ngFor="let item of listPttt" [value]="item" >
+                        {{item.operate_no}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+          </div>
+          <div class='col-12'>
+            <div class='row'>
+              <div class='col-6'>
+                <mat-form-field appearance='outline' class='full-width'>
+                  <mat-label>{{"label.chan_doan"| translate}}</mat-label>
+                  <textarea [(ngModel)]='bangKiemAnToanPhauThuat.CHAN_DOAN' matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                </mat-form-field>
+              </div>
+              <div class='col-3' *ngIf='showFields[siteName]?.EKIP_PHAU_THUAT === true'>
+                <mat-form-field appearance='outline' class='full-width'>
+                  <mat-label>{{"bang_kiem_an_toan_phau_thuat.ekip_pt"| translate}}</mat-label>
+                  <textarea [(ngModel)]='bangKiemAnToanPhauThuat.EKIP_PHAU_THUAT' matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                </mat-form-field>
+              </div>
+              <div class='col-1' *ngIf='showFields[siteName]?.TUOI === true'>
+                <mat-form-field appearance='outline' class='full-width'>
+                  <mat-label>{{"bang_kiem_an_toan_phau_thuat.tuoi"| translate}}</mat-label>
+                  <input [(ngModel)]='bangKiemAnToanPhauThuat.TUOI' matInput />
+                </mat-form-field>
+              </div>
+              <div class='col-2' *ngIf='showFields[siteName]?.GIOI_TINH === true' style='align-self: center'>
+                <mat-radio-group class='full-width' aria-label="Giới tính" [(ngModel)]="bangKiemAnToanPhauThuat.GIOI_TINH">
+                  <mat-radio-button value="1" [checked]='bangKiemAnToanPhauThuat.GIOI_TINH === "1"'>Nam</mat-radio-button>
+                  <mat-radio-button value="2" [checked]='bangKiemAnToanPhauThuat.GIOI_TINH === "0"'>Nữ</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"label.pp_phau_thuat"| translate}}</mat-label>
+              <textarea [(ngModel)]='bangKiemAnToanPhauThuat.PHUONG_PHAP_PHAU_THUAT' matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"label.pp_vo_cam"| translate}}</mat-label>
+              <textarea [(ngModel)]='bangKiemAnToanPhauThuat.PHUONG_PHAP_VO_CAM' matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+          <div [class.col-4]='showFields[siteName]?.CHE_DO_PHAU_THUAT' [class.col-8]='showFields[siteName]?.CHE_DO_PHAU_THUAT !== true'>
+            <div class='row' *ngIf='showFields[siteName]?.CHE_DO_PHAU_THUAT !== true'>
+              <mat-checkbox class='col m-0 p-b-4' *ngIf='showFields[siteName]?.PHAU_THUAT_PHIEN === true' [(ngModel)]='bangKiemAnToanPhauThuat.PHAU_THUAT_PHIEN'>
+                {{'phau_thuat_phien'|showForSite: siteName: showFields}}
+              </mat-checkbox>
+              <mat-checkbox class='col-6 col-lg m-0 p-b-4' *ngIf='showFields[siteName]?.PHAU_THUAT_THEO_CHUONG_TRINH !== false' [(ngModel)]='bangKiemAnToanPhauThuat.PHAU_THUAT_THEO_CHUONG_TRINH'>
+                {{'phau_thuat_theo_chuong_trinh'|showForSite: siteName: showFields}}
+              </mat-checkbox>
+              <mat-checkbox class='col m-0 p-b-4' [(ngModel)]='bangKiemAnToanPhauThuat.PHAU_THUAT_CAP_CUU'>
+                {{'phau_thuat_cap_cuu'|showForSite: siteName: showFields}}
+              </mat-checkbox>
+              <mat-checkbox class='col-5 col-lg m-0 p-b-4' *ngIf='showFields[siteName]?.PHAU_THUAT_THEO_YEU_CAU === true' [(ngModel)]='bangKiemAnToanPhauThuat.PHAU_THUAT_THEO_YEU_CAU'>
+                {{'phau_thuat_theo_yeu_cau'|showForSite: siteName: showFields}}
+              </mat-checkbox>
+            </div>
+            <div class='row' *ngIf='showFields[siteName]?.CHE_DO_PHAU_THUAT'>
+              <div class='col'>
+                <mat-form-field appearance='outline' class='full-width'>
+                  <mat-label>{{"bang_kiem_an_toan_phau_thuat.che_do_phau_thuat"| translate}}</mat-label>
+                  <textarea [(ngModel)]='bangKiemAnToanPhauThuat.CHE_DO_PHAU_THUAT' matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div [class.col-4]='showFields[siteName]?.CHE_DO_PHAU_THUAT !== true' [class.col-8]='showFields[siteName]?.CHE_DO_PHAU_THUAT'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"phan_loai_pt"|showForSite: siteName: showFields}}</mat-label>
+              <textarea [(ngModel)]='bangKiemAnToanPhauThuat.PHAN_LOAI_PT' matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class='col-12'>
+        <div class='row'>
+          <h1 class='col-12 text-center'>{{'bang_kiem_an_toan_phau_thuat.cac_giai_doan_phai_hoan_tat'|translate|uppercase}}</h1>
+          <div class='col-12 mat-tab-group-container'>
+            <mat-tab-group [disablePagination]='true' mat-stretch-tabs [dynamicHeight]='true'>
+              <mat-tab *ngFor='let tab of TABS_FOR_SITE[siteName]; index as i' [disabled]='
+               ( i === 0 && false ) ||
+               ( i === 1 && !bangKiemAnToanPhauThuat.stages?.[0]?.is_done ) ||
+               ( i === 2 && (!bangKiemAnToanPhauThuat.stages?.[0]?.is_done || !bangKiemAnToanPhauThuat.stages?.[1]?.is_done) ) ||
+               ( i === 3 && (!bangKiemAnToanPhauThuat.stages?.[0]?.is_done || !bangKiemAnToanPhauThuat.stages?.[1]?.is_done || !bangKiemAnToanPhauThuat.stages?.[2]?.is_done) )
+              '>
+                <ng-template mat-tab-label>
+                  <ng-container *ngTemplateOutlet='tabLabel; context: {label: tab, stage: i}'></ng-container>
+                </ng-template>
+                <div class='col p-t-4 p-b-8'>
+                  <div class='row align-items-center'>
+                    <ng-container *ngTemplateOutlet='forms; context: {data: bangKiemAnToanPhauThuat, group: tab}'></ng-container>
+                    <ng-container *ngTemplateOutlet='tabFooter; context: {stage: i}'></ng-container>
+                  </div>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #tabFooter let-stage=stage>
+  <div class='col-12 p-b-4'
+       fxLayout='column' fxLayoutAlign='start end' fxLayoutGap='8px'
+       fxLayout.gt-md='row' fxLayoutAlign.gt-md='end center'>
+    <div *ngIf='bangKiemAnToanPhauThuat.stages?.[stage] as stageData' ngClass.lt-lg='m-r-auto' [class.text-red]='stageData.is_done === false'>
+      {{ (stageData.is_done ? ('bang_kiem_an_toan_phau_thuat.done_by' | translate) : ('bang_kiem_an_toan_phau_thuat.cancel_done_by' | translate)) + ': ' + stageData.updated_by + ', '
+      + ('bang_kiem_an_toan_phau_thuat.updated_at' | translate) + ' ' + (stageData.updated_at | amFromUnix | amDateFormat: 'HH:mm DD/MM/YYYY') }}
+    </div>
+    <div fxLayout='row' fxLayoutGap='8px'>
+      <button mat-button class='bg-blue-700 text-white' (click)='endCurrentStage()' *ngIf="!tabGroup?.selectedIndex || tabGroup.selectedIndex != this.tabListLength - 1">
+        {{"Chuyển giai đoạn"}}
+      </button>
+      <button mat-button class='bg-yellow-700 text-white' (click)='endCurrentStage(true)'>
+        {{'bang_kiem_an_toan_phau_thuat.hoan_tat_giai_doan' | translate}}
+      </button>
+      <button mat-button class='bg-red-500 text-white' (click)='cancelEndCurrentStage()'>
+        {{'bang_kiem_an_toan_phau_thuat.cancel_hoan_tat_giai_doan' | translate}}
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #tabLabel let-label=label let-stage=stage>
+  <div fxLayoutAlign='center center' class='f-w-600'>
+    {{label | showForSite: siteName: showFields | uppercase}}
+    <mat-icon *ngIf='bangKiemAnToanPhauThuat.stages?.[stage]?.is_done' class='mat-icon-centered text-green-600 f-w-600 f-s-20 m-l-4'>done</mat-icon>
+  </div>
+</ng-template>
+
+<ng-template #forms let-group=group let-data=data>
+  <ng-container *ngFor='let field of $any(SCHEMAS)[group]'
+                [ngSwitch]='field.type[siteName] || field.type.default || field.type'>
+    <ng-container *ngIf='field.hide_for_sites?.[siteName] === true ? false : (field.hide_for_sites?.[siteName] !== true || field.hide_for_sites?.default !== true)'>
+      <ng-template #label let-field=field>
+        <div class='col-12 p-b-4'>{{(field.label?.[siteName] || field.label?.default || field.label) | translate}}</div>
+      </ng-template>
+
+      <div *ngSwitchCase='"datetime"' class='col-12 p-b-field mt-1'>
+        <app-emr-date label='emr.time' mode='datetime'
+                      [(model)]='$any(data)[group][field.key?.[siteName] || field.key?.default || field.key]'
+                      [(unixModel)]='$any(data)[group][field.key_unix?.[siteName] || field.key_unix?.default || field.key_unix]'></app-emr-date>
+      </div>
+      <mat-divider class='col-12 p-b-field' *ngSwitchCase='"divider"'></mat-divider>
+      <ng-container *ngSwitchCase='"checkbox"'>
+        <ng-container *ngTemplateOutlet='label; context: {field: field}'></ng-container>
+        <div class='col-8 p-b-field'><mat-checkbox [(ngModel)]='$any(data)[group][field.key?.[siteName] || field.key?.default || field.key]'>{{(field.true_label[siteName] || field.true_label.default || field.true_label) | translate}}</mat-checkbox></div>
+      </ng-container>
+      <ng-container *ngSwitchCase='"checkbox_with_text"'>
+        <ng-container *ngTemplateOutlet='label; context: {field: field}'></ng-container>
+        <div class='col-3 p-b-field'><mat-checkbox [(ngModel)]='$any(data)[group][field.key?.[siteName] || field.key?.default || field.key]'>{{(field.true_label[siteName] || field.true_label.default || field.true_label) | translate}}</mat-checkbox></div>
+        <div class='col' *ngIf='$any(data)[group][field.key?.[siteName] || field.key?.default || field.key]'>
+          <mat-form-field class='full-width'>
+            <mat-label>{{field.text_label}}</mat-label>
+            <textarea [(ngModel)]='$any(data)[group][field.key_text]' matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase='"radio"'>
+        <ng-container *ngTemplateOutlet='label; context: {field: field}'></ng-container>
+        <div class='col-12 p-b-field'>
+          <mat-radio-group [(ngModel)]='$any(data)[group][field.key?.[siteName] || field.key?.default || field.key]' class='row'>
+            <mat-radio-button class='m-0' [ngClass]='field.true_label_class?.[siteName] || "col-2 col-xl-1"' [value]="true">{{(field.true_label[siteName] || field.true_label.default || field.true_label) | translate}}</mat-radio-button>
+            <mat-radio-button class='m-0 col-1' [value]="false">{{(field.false_label?.[siteName] || field.false_label.default || field.false_label)|translate}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase='"radio_with_text"'>
+        <ng-container *ngTemplateOutlet='label; context: {field: field}'></ng-container>
+        <div class='col-12 p-b-field'>
+          <mat-radio-group [(ngModel)]='$any(data)[group][field.key?.[siteName] || field.key?.default || field.key]' class='row align-items-center'>
+            <mat-radio-button class='m-0 col-2 col-xl-1' [value]="false">{{(field.false_label[siteName] || field.false_label.default || field.false_label)|translate}}</mat-radio-button>
+            <mat-radio-button class='m-0 col-1' [value]="true">{{(field.true_label[siteName] || field.true_label.default || field.true_label) | translate}}</mat-radio-button>
+            <div class='col' *ngIf='$any(data)[group][field.key?.[siteName] || field.key?.default || field.key]'>
+              <mat-form-field class='full-width'>
+                <mat-label>{{field.text_label}}</mat-label>
+                <textarea [(ngModel)]='$any(data)[group][field.key_text]' matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </div>
+          </mat-radio-group>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase='"label"'>
+        <ng-container *ngTemplateOutlet='label; context: {field: field}'></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase='"cbyt"'>
+        <div [ngClass]='field.class || "col-12"' class='p-b-field'>
+          <app-select [label]='field.label'
+                      [(model)]='$any(data)[group][field.key]'
+                      category='cbyt' [resetTo]='null'></app-select>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase='"text"'>
+        <ng-container *ngTemplateOutlet='label; context: {field: field}'></ng-container>
+        <mat-form-field class='full-width' class='col-12'>
+          <textarea [(ngModel)]='$any(data)[group][field.key?.[siteName] || field.key?.default || field.key]' matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>

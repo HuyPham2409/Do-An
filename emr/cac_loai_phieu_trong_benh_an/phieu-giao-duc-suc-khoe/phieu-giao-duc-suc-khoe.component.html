@@ -1,0 +1,312 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <mat-form-field appearance='outline' class='col-6' style='padding-left: 0px'>
+        <mat-label>{{"laboratory.reception_queue_id_in_patient" | translate}}</mat-label>
+        <input matInput [(ngModel)]='patientInfo.reception_queue_id' readonly>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-6' style='padding-right: 0px'>
+        <mat-label>{{"chuan_bi_thuoc_ngoai_tru.so_phieu" | translate}}</mat-label>
+        <input matInput [(ngModel)]='phieuGDSKNB.code' readonly>
+      </mat-form-field>
+      <mat-form-field class='col-3' appearance='outline' style='padding-left: 0px'>
+        <mat-label>{{"giay_to_lien_quan.ho_ten_bn" | translate}}:</mat-label>
+        <input readonly matInput [(ngModel)]='patientInfo.HO_TEN'
+               placeholder='{{"giay_to_lien_quan.ho_ten_bn" | translate}}'>
+      </mat-form-field>
+      <mat-form-field class='col-3' appearance='outline'>
+        <mat-label>{{"patient.birthday" | translate}}:</mat-label>
+        <input readonly matInput [(ngModel)]="patientInfo.NGAY_SINH">
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-3'>
+        <mat-label>{{"emr.age" | translate}}:</mat-label>
+        <input matInput [(ngModel)]='patientInfo.DO_TUOI' readonly>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-3' style='padding-right: 0px'>
+        <mat-label>{{"giay_to_lien_quan.sex" | translate}}</mat-label>
+        <input matInput [(ngModel)]='patientInfo.GIOI_TINH.MO_TA' readonly>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-6' style='padding-left: 0px'>
+        <mat-label>{{"patient.patient_id" | translate}}</mat-label>
+        <input matInput [(ngModel)]="patientInfo.patient_id" readonly>
+      </mat-form-field>
+      <mat-form-field class='col-6' appearance='outline' style='padding-right: 0px'>
+        <mat-label>{{"phieu_gdsk.chan_doan" | translate}}:</mat-label>
+        <input matInput [(ngModel)]='patientInfo.examining_diagnosis' readonly>
+      </mat-form-field>
+      <mat-tab-group>
+        <mat-tab label='I. THÔNG TIN CHUNG'>
+          <div class='row' style='margin-top: 10px'>
+            <div class='col-xl-4 col-lg-12 col-12 p-x-0'>
+              <h3 fxLayout='row' class='m-8'><strong>1. {{"phieu_gdsk.doi_tuong_cung_cap_va_nhan_thong_tin_suc_khoe" | translate}}:</strong></h3>
+            </div>
+            <div class='col-xl-2 col-6' style='margin-top: 6px'>
+              <mat-radio-group [(ngModel)]='phieuGDSKNB.DOI_TUONG.ID'>
+                <mat-radio-button *ngFor='let listdt of listDoiTuong' style='float: left; margin: 5px' [value]="listdt.ID">{{listdt.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <mat-form-field class='col-6' appearance='outline'>
+              <mat-label>{{"phieu_gdsk.moi_quan_he_nguoi_benh" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='phieuGDSKNB.MOI_QUAN_HE_NGUOI_BENH'>
+            </mat-form-field>
+
+            <div class='col-12 p-x-0'>
+              <h3 fxLayout='row' class='m-8'><strong>2. {{"phieu_gdsk.danh_gia_ban_dau_kha_nang_tiep_nhan" | translate}}:</strong></h3>
+            </div>
+
+            <div class='col-xl-2 col-lg-2 col-4' style='margin-top: 5px'>- {{"phieu_gdsk.tri_giac" | translate}}:</div>
+            <div class='col-xl-4 col-lg-4 col-8' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='phieuGDSKNB.TRI_GIAC.ID'>
+                <mat-radio-button *ngFor='let listtrigiac of listTriGiac' style='float: left; margin: 5px;width: 45%' [value]="listtrigiac.ID">{{listtrigiac.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class='col-xl-2 col-lg-2 col-4' style='margin-top: 5px'>- {{"phieu_gdsk.kha_nang_nghe" | translate}}:</div>
+            <div class='col-xl-4 col-lg-4 col-8' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='phieuGDSKNB.KHA_NANG_NGHE.ID'>
+                <mat-radio-button *ngFor='let listnghe of listKhaNangNghe' style='float: left; margin: 5px;width: 45%' [value]="listnghe.ID">{{listnghe.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class='col-xl-2 col-lg-2 col-4' style='margin-top: 5px'>- {{"phieu_gdsk.trinh_do_van_hoa" | translate}}:</div>
+            <div class='col-xl-4 col-lg-4 col-8' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='phieuGDSKNB.TRINH_DO_VAN_HOA.ID'>
+                <mat-radio-button *ngFor='let listtdvh of listTrinhDoVanHoa' style='float: left; margin: 5px;width: 45%' [value]="listtdvh.ID">{{listtdvh.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class='col-xl-2 col-lg-2 col-4' style='margin-top: 5px'>- {{"phieu_gdsk.kha_nang_nhin" | translate}}:</div>
+            <div class='col-xl-4 col-lg-4 col-8' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='phieuGDSKNB.KHA_NANG_NHIN.ID'>
+                <mat-radio-button *ngFor='let listnhin of listKhaNangNhin' style='float: left; margin: 5px;width: 45%' [value]="listnhin.ID">{{listnhin.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class='col-xl-2 col-lg-2 col-4' style='margin-top: 5px'>- {{"phieu_gdsk.kha_nang_noi" | translate}}:</div>
+            <div class='col-xl-4 col-lg-4 col-8' style='text-align: left'>
+              <mat-radio-group [(ngModel)]='phieuGDSKNB.KHA_NANG_NOI.ID'>
+                <mat-radio-button *ngFor='let listnoi of listKhaNangNoi' style='float: left; margin: 5px;width: 45%' [value]="listnoi.ID">{{listnoi.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
+            <div class='col-12 p-x-0'>
+              <h3 fxLayout='row' class='m-8'><strong>3.{{"phieu_gdsk.danh_gia_ban_dau_cac_noi_dung_giao_duc" | translate}}:</strong></h3>
+            </div>
+            <div class='col-12 row' style='text-align: left'>
+              <mat-checkbox class='col-6 m-0' [(ngModel)]='phieuGDSKNB.KIEN_THUC_VE_BENH'>{{"phieu_gdsk.kien_thuc_ve_benh" | translate}}</mat-checkbox>
+              <mat-checkbox class='col-6 m-0 p-l-16' [(ngModel)]='phieuGDSKNB.CACH_DUNG_THUOC'>{{"phieu_gdsk.cach_dung_thuoc" | translate}}</mat-checkbox>
+              <mat-checkbox class='col-6 m-0' [(ngModel)]='phieuGDSKNB.CHAM_SOC_PHONG_BENH'>{{"phieu_gdsk.cham_soc_phong_benh" | translate}}</mat-checkbox>
+              <mat-checkbox class='col-6 m-0 p-l-16' [(ngModel)]='phieuGDSKNB.TU_VAN_DINH_DUONG'>{{"phieu_gdsk.tu_van_dinh_duong" | translate}}</mat-checkbox>
+              <mat-checkbox class='col-6 m-0' [(ngModel)]='phieuGDSKNB.THIET_BI_Y_TE_HO_TRO'>{{"phieu_gdsk.thiet_bi_ho_tro" | translate}}</mat-checkbox>
+              <mat-checkbox class='col-6 m-0 p-l-16' [(ngModel)]='phieuGDSKNB.CACH_TAP_VAN_DONG_PHCN'>{{"phieu_gdsk.cach_tap_van_dong_phcn" | translate}}</mat-checkbox>
+              <mat-checkbox class='col-xl-1 col-lg-2 col-2 m-0' [(ngModel)]='phieuGDSKNB.KHAC' (click)="reset('TEXT_KHAC')">{{"phieu_gdsk.khac" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.KHAC' appearance='outline' class='full-width col-xl-11 col-lg-10 col-10' style='padding-right: 0px !important;'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TEXT_KHAC'>
+              </mat-form-field>
+            </div>
+            <div class='col-12 row p-t-4'>
+              <div class='col-6'>
+                <app-emr-date label='phieu_gdsk.thoi_gian_danh_gia_ban_dau' mode='datetime'
+                              [(model)]='phieuGDSKNB.thoi_gian_danh_gia_ban_dau'
+                              [(dmModel)]='phieuGDSKNB.THOI_GIAN_DANH_GIA_BAN_DAU'
+                              [(unixModel)]='phieuGDSKNB.thoi_gian_danh_gia_ban_dau_unix'></app-emr-date>
+              </div>
+              <mat-form-field class='col-6' appearance='outline'>
+                <mat-label>{{"phieu_gdsk.ten_nguoi_danh_gia_ban_dau" | translate}}:</mat-label>
+                <input matInput [(ngModel)]='phieuGDSKNB.TEN_NGUOI_DANH_GIA_BAN_DAU'>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label='II. TIẾP NHẬN NHẬP VIỆN'>
+          <div style='margin-top: 10px'>
+            <div class='row'>
+              <mat-form-field class='col-6' appearance='outline'>
+                <mat-label>{{"phieu_gdsk.nguoi_tu_van" | translate}}:</mat-label>
+                <input readonly matInput [(ngModel)]='phieuGDSKNB.nguoi_tu_van_name'>
+              </mat-form-field>
+              <div class='col-6'>
+                <app-emr-date label='phieu_gdsk.thoi_gian_tu_van' mode='datetime'
+                              [(model)]='phieuGDSKNB.thoi_gian_tu_van'
+                              [(dmModel)]='phieuGDSKNB.THOI_GIAN_TU_VAN'
+                              [(unixModel)]='phieuGDSKNB.thoi_gian_tu_van_unix'
+                ></app-emr-date>
+              </div>
+            </div>
+            <div class='row'>
+              <label class='col-xl-4 col-lg-6 col-9' style='margin-top: 10px'>1. {{"phieu_gdsk.thu_tuc_nhap_vien" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.THU_TUC_NHAP_VIEN' (click)="reset('THU_TUC_NHAP_VIEN')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.KHI_TIEP_NHAN.THU_TUC_NHAP_VIEN' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.TEXT_THU_TUC_NHAP_VIEN'>
+              </mat-form-field>
+            </div>
+
+           <div class='row'>
+             <label class='col-xl-2 col-lg-6 col-5' style='margin-top: 10px'>2. {{"phieu_gdsk.noi_quy_benh_vien" | translate}}</label>
+             <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.NOI_QUY_BENH_VIEN' (click)="reset('NOI_QUY_BENH_VIEN')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+             <mat-form-field *ngIf='phieuGDSKNB.KHI_TIEP_NHAN.NOI_QUY_BENH_VIEN' appearance='outline' class='col-12'>
+               <input matInput [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.TEXT_NOI_QUY_BENH_VIEN'>
+             </mat-form-field>
+           </div>
+            <div class='row'>
+              <label class='col-xl-5 col-lg-8 col-10' style='margin-top: 10px'>3. {{"phieu_gdsk.su_dung_ttbyt" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.SU_DUNG_TTBYT' (click)="reset('SU_DUNG_TTBYT')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.KHI_TIEP_NHAN.SU_DUNG_TTBYT' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.TEXT_SU_DUNG_TTBYT'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-6 col-5' style='margin-top: 10px'>4. {{"phieu_gdsk.benh_ly_chuyen_khoa" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.BENH_LY_CHUYEN_KHOA' (click)="reset('BENH_LY_CHUYEN_KHOA_TIEP_NHAN')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.KHI_TIEP_NHAN.BENH_LY_CHUYEN_KHOA' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.TEXT_BENH_LY_CHUYEN_KHOA'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-6 col-5' style='margin-top: 10px'>5. {{"phieu_gdsk.che_do_dinh_duong" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.CHE_DO_DINH_DUONG' (click)="reset('CHE_DO_DINH_DUONG_TIEP_NHAN')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.KHI_TIEP_NHAN.CHE_DO_DINH_DUONG' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.TEXT_CHE_DO_DINH_DUONG'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-6 col-5' style='margin-top: 10px'>6. {{"phieu_gdsk.cach_dung_thuoc" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.CACH_DUNG_THUOC' (click)="reset('CACH_DUNG_THUOC_TIEP_NHAN')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.KHI_TIEP_NHAN.CACH_DUNG_THUOC' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.TEXT_CACH_DUNG_THUOC'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-6 col-5' style='margin-top: 10px'>7. {{"phieu_gdsk.cach_tap_van_dong_phcn" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.CACH_TAP_VAN_DONG_PHCN' (click)="reset('CACH_TAP_VAN_DONG_PHCN_TIEP_NHAN')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.KHI_TIEP_NHAN.CACH_TAP_VAN_DONG_PHCN' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.TEXT_CACH_TAP_VAN_DONG_PHCN'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-6 col-5' style='margin-top: 10px'>8. {{"phieu_gdsk.ve_sinh_ca_nhan" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.VE_SINH_CA_NHAN' (click)="reset('VE_SINH_CA_NHAN_TIEP_NHAN')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.KHI_TIEP_NHAN.VE_SINH_CA_NHAN' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.TEXT_VE_SINH_CA_NHAN'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-6 col-5' style='margin-top: 10px'>9. {{"phieu_gdsk.phong_loet_teo_co" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.PHONG_LOET_TEO_CO' (click)="reset('PHONG_LOET_TEO_CO_TIEP_NHAN')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.KHI_TIEP_NHAN.PHONG_LOET_TEO_CO' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.KHI_TIEP_NHAN.TEXT_PHONG_LOET_TEO_CO'>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label='III. NẰM ĐIỀU TRỊ'>
+          <div style='margin-top: 10px'>
+            <div class='row'>
+              <mat-form-field class='col-6' appearance='outline'>
+                <mat-label>{{"phieu_gdsk.nguoi_tu_van" | translate}}:</mat-label>
+                <input readonly matInput [(ngModel)]='phieuGDSKNB.nguoi_tu_van_name'>
+              </mat-form-field>
+              <div class='col-6'>
+                <app-emr-date label='phieu_gdsk.thoi_gian_tu_van' mode='datetime'
+                              [(model)]='phieuGDSKNB.thoi_gian_tu_van'
+                              [(dmModel)]='phieuGDSKNB.THOI_GIAN_TU_VAN'
+                              [(unixModel)]='phieuGDSKNB.thoi_gian_tu_van_unix'
+                ></app-emr-date>
+              </div>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-3 col-5' style='margin-top: 10px'>1. {{"phieu_gdsk.benh_ly_chuyen_khoa" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.BENH_LY_CHUYEN_KHOA' (click)="reset('BENH_LY_CHUYEN_KHOA_DIEU_TRI')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.TRONG_DIEU_TRI.BENH_LY_CHUYEN_KHOA' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.TEXT_BENH_LY_CHUYEN_KHOA'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-3 col-5' style='margin-top: 10px'>2. {{"phieu_gdsk.che_do_dinh_duong" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.CHE_DO_DINH_DUONG' (click)="reset('CHE_DO_DINH_DUONG_DIEU_TRI')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.TRONG_DIEU_TRI.CHE_DO_DINH_DUONG' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.TEXT_CHE_DO_DINH_DUONG'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-3 col-5' style='margin-top: 10px'>3. {{"phieu_gdsk.cach_dung_thuoc" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.CACH_DUNG_THUOC' (click)="reset('CACH_DUNG_THUOC_DIEU_TRI')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.TRONG_DIEU_TRI.CACH_DUNG_THUOC' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.TEXT_CACH_DUNG_THUOC'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-3 col-5' style='margin-top: 10px'>4. {{"phieu_gdsk.cach_tap_van_dong_phcn" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.CACH_TAP_VAN_DONG_PHCN' (click)="reset('CACH_TAP_VAN_DONG_PHCN_DIEU_TRI')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.TRONG_DIEU_TRI.CACH_TAP_VAN_DONG_PHCN' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.TEXT_CACH_TAP_VAN_DONG_PHCN'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-3 col-5' style='margin-top: 10px'>5. {{"phieu_gdsk.ve_sinh_ca_nhan" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.VE_SINH_CA_NHAN' (click)="reset('VE_SINH_CA_NHAN_DIEU_TRI')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.TRONG_DIEU_TRI.VE_SINH_CA_NHAN' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.TEXT_VE_SINH_CA_NHAN'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-3 col-5' style='margin-top: 10px'>6. {{"phieu_gdsk.phong_loet_teo_co" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.PHONG_LOET_TEO_CO' (click)="reset('PHONG_LOET_TEO_CO_DIEU_TRI')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.TRONG_DIEU_TRI.PHONG_LOET_TEO_CO' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TRONG_DIEU_TRI.TEXT_PHONG_LOET_TEO_CO'>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label='IV. TRƯỚC KHI RA VIỆN'>
+          <div style='margin-top: 10px'>
+            <div class='row'>
+              <mat-form-field class='col-6' appearance='outline'>
+                <mat-label>{{"phieu_gdsk.nguoi_tu_van" | translate}}:</mat-label>
+                <input readonly matInput [(ngModel)]='phieuGDSKNB.nguoi_tu_van_name'>
+              </mat-form-field>
+              <div class='col-6'>
+                <app-emr-date label='phieu_gdsk.thoi_gian_tu_van' mode='datetime'
+                              [(model)]='phieuGDSKNB.thoi_gian_tu_van'
+                              [(dmModel)]='phieuGDSKNB.THOI_GIAN_TU_VAN'
+                              [(unixModel)]='phieuGDSKNB.thoi_gian_tu_van_unix'
+                ></app-emr-date>
+              </div>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-3 col-5' style='margin-top: 10px'>1. {{"phieu_gdsk.thu_tuc_ra_vien" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.THU_TUC_RA_VIEN' (click)="reset('THU_TUC_RA_VIEN')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.THU_TUC_RA_VIEN' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TEXT_THU_TUC_RA_VIEN'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-3 col-5' style='margin-top: 10px'>2. {{"phieu_gdsk.don_thuoc_giay_ra_vien" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.DON_THUOC_GIAY_RA_VIEN' (click)="reset('DON_THUOC_GIAY_RA_VIEN')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.DON_THUOC_GIAY_RA_VIEN' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TEXT_DON_THUOC_GIAY_RA_VIEN'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-4 col-lg-6 col-8' style='margin-top: 10px'>3. {{"phieu_gdsk.che_do_dinh_duong_2" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.CHE_DO_DINH_DUONG_2' (click)="reset('CHE_DO_DINH_DUONG_2')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.CHE_DO_DINH_DUONG_2' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TEXT_CHE_DO_DINH_DUONG_2'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-2 col-lg-3 col-5' style='margin-top: 10px'>4. {{"phieu_gdsk.cach_cham_soc_phong_benh" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.CACH_CHAM_SOC_PHONG_BENH' (click)="reset('CACH_CHAM_SOC_PHONG_BENH')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.CACH_CHAM_SOC_PHONG_BENH' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TEXT_CACH_CHAM_SOC_PHONG_BENH'>
+              </mat-form-field>
+            </div>
+            <div class='row'>
+              <label class='col-xl-3 col-lg-3 col-8' style='margin-top: 10px'>5. {{"phieu_gdsk.kham_lai_theo_don" | translate}}</label>
+              <mat-checkbox class='col-1' style='margin-top: 6px' [(ngModel)]='phieuGDSKNB.KHAM_LAI_THEO_DON' (click)="reset('KHAM_LAI_THEO_DON')">{{"phieu_gdsk.co" | translate}}</mat-checkbox>
+              <mat-form-field *ngIf='phieuGDSKNB.KHAM_LAI_THEO_DON' appearance='outline' class='col-12'>
+                <input matInput [(ngModel)]='phieuGDSKNB.TEXT_KHAM_LAI_THEO_DON'>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

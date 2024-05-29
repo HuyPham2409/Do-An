@@ -1,0 +1,221 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <h2>{{"phieu_gay_me_hs.title" | translate}}</h2>
+      <div class='row align-items-center'>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"patient.patient_fullname" | translate}}</mat-label>
+          <input matInput [(ngModel)]='patientInfo.HO_TEN' readonly
+                 placeholder='{{"patient.patient_fullname" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-3' appearance='outline'>
+          <mat-label>{{"patient.birthday" | translate}}</mat-label>
+          <input readonly matInput [(ngModel)]="patientInfo.NGAY_SINH">
+        </mat-form-field>
+        <div class='col-sm-3 p-l-16' *ngIf='patientInfo.GIOI_TINH'>
+          <span>{{"patient.sex" | translate}}: </span>
+          <mat-radio-group readonly
+                           [(ngModel)]='patientInfo.GIOI_TINH.ID'>
+            <mat-radio-button [value]="'1'" > {{"emr.male"| translate}}</mat-radio-button>
+            <mat-radio-button [value]="'2'" > {{"emr.female"| translate}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <mat-form-field class='col-sm-3' appearance='outline'>
+          <mat-label>{{"patient.parent_name" | translate}}</mat-label>
+          <input matInput [(ngModel)]='patientInfo.parent_name' readonly
+                 placeholder='{{"patient.parent_name" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-3' appearance='outline'>
+          <mat-label>{{"patient.room_name" | translate}}</mat-label>
+          <input matInput [(ngModel)]='patientInfo.in_patient_room_name' readonly
+                 placeholder='{{"patient.room_name" | translate}}'>
+        </mat-form-field>
+        <div class='col-sm-3'>
+          <mat-form-field class='col-sm-6' style="padding-left: 0px" appearance='outline'>
+            <mat-label>{{"patient.height" | translate}}</mat-label>
+            <input matInput [(ngModel)]='phieuGMHS.CHIEU_CAO'
+                   placeholder='{{"patient.height" | translate}}'>
+          </mat-form-field>
+          <mat-form-field class='col-sm-6' style="padding-right: 0px" appearance='outline'>
+            <mat-label>{{"patient.weight" | translate}}</mat-label>
+            <input matInput [(ngModel)]='phieuGMHS.CAN_NANG'
+                   placeholder='{{"patient.weight" | translate}}'>
+          </mat-form-field>
+        </div>
+        <div class='col-sm-3'>
+          <mat-form-field class='col-sm-6' appearance='outline'>
+            <mat-label>{{"patient.nhom_mau" | translate}}</mat-label>
+            <input matInput [(ngModel)]='phieuGMHS.NHOM_MAU'
+                   placeholder='{{"patient.nhom_mau" | translate}}'>
+          </mat-form-field>
+          <mat-form-field class='col-sm-6' appearance='outline'>
+            <mat-label>{{"phieu_gay_me_hs.tu_the" | translate}}</mat-label>
+            <input matInput [(ngModel)]='phieuGMHS.TU_THE'
+                   placeholder='{{"phieu_gay_me_hs.tu_the" | translate}}'>
+          </mat-form-field>
+        </div>
+        <mat-form-field class='col-sm-12' appearance='outline'>
+          <mat-label>{{"label.chan_doan" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.CHAN_DOAN'
+                 placeholder='{{"label.chan_doan" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"label.pp_phau_thuat" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.PHUONG_PHAP_PHAU_THUAT'
+                 placeholder='{{"patient.pp_phau_thuat" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"label.pp_vo_cam" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.PHUONG_PHAP_VO_CAM'
+                 placeholder='{{"patient.pp_vo_cam" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-3' appearance='outline'>
+          <mat-label>{{"phieu_gay_me_hs.nkq_so" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.NKQ_SO'
+                 placeholder='{{"phieu_gay_me_hs.nkq_so" | translate}}'>
+        </mat-form-field>
+        <div class='col-sm-3' >
+          <mat-checkbox [(ngModel)]='phieuGMHS.NKQ_MUI'>{{"phieu_gay_me_hs.mui" | translate}}</mat-checkbox>
+          <mat-checkbox [(ngModel)]='phieuGMHS.MKQ_MIENG'>{{"phieu_gay_me_hs.mieng" | translate}}</mat-checkbox>
+          <mat-checkbox [(ngModel)]='phieuGMHS.NKQ_BONG_CHEN'>{{"phieu_gay_me_hs.bong_chen" | translate}}</mat-checkbox>
+        </div>
+        <div class='col-6'>
+          <app-select label='phieu_gay_me_hs.bs_phauthat' [(model)]='phieuGMHS.BAC_SI_PHAU_THUAT'
+                      category='cbyt'></app-select>
+        </div>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"phieu_gay_me_hs.nhom_gayme" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.BAC_SI_GAY_ME'
+                 placeholder='{{"phieu_gay_me_hs.nhom_gayme" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"phieu_gay_me_hs.nhom_dieu_duong" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.DIEU_DUONG'
+                 placeholder='{{"phieu_gay_me_hs.nhom_dieu_duong" | translate}}'>
+        </mat-form-field>
+        <div class='col-sm-2'>
+          <app-emr-date label='phieu_gay_me_hs.ngay_thuc_hien'
+                        [(model)]='phieuGMHS.ngay_thuc_hien'
+                        [(unixModel)]='phieuGMHS.time_todo'></app-emr-date>
+        </div>
+        <span class='col-sm-2' style="text-align: right">{{"phieu_gay_me_hs.sinh_ton_truoc_mo" | translate}}</span>
+        <mat-form-field class='col-sm-2' appearance='outline'>
+          <mat-label>{{"st_mach" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.st_tm_mach'
+                 placeholder='{{"st_mach" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-2' appearance='outline'>
+          <mat-label>{{"st_huyet_ap" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.st_tm_huyet_ap'
+                 placeholder='{{"st_huyet_ap" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-2' appearance='outline'>
+          <mat-label>{{"st_nhip_tho" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.st_tm_nhip_tho'
+                 placeholder='{{"st_nhip_tho" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-2' appearance='outline'>
+          <mat-label>{{"spo2" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.st_tm_spo2'
+                 placeholder='{{"spo2" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"phieu_gay_me_hs.tien_me" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.tien_me'
+                 placeholder='{{"phieu_gay_me_hs.tien_me" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"phieu_gay_me_hs.tac_dung" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.tac_dung'
+                 placeholder='{{"phieu_gay_me_hs.tac_dung" | translate}}'>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <h2>{{"phieu_gay_me_hs.title_danh_gia_truoc_mo" | translate}}</h2>
+      <div class='row align-items-center'>
+<!--        <mat-form-field appearance='outline' class="col-3">-->
+<!--          <mat-label>ASA</mat-label>-->
+<!--          <mat-select [(ngModel)]='phieuGMHS.danh_gia_asa'>-->
+<!--            <mat-option [value]='"1"'>{{"phieu_gay_me_hs.muc_1" | translate}}</mat-option>-->
+<!--            <mat-option [value]='"2"'>{{"phieu_gay_me_hs.muc_2" | translate}}</mat-option>-->
+<!--            <mat-option [value]='"3"'>{{"phieu_gay_me_hs.muc_3" | translate}}</mat-option>-->
+<!--            <mat-option [value]='"4"'>{{"phieu_gay_me_hs.muc_4" | translate}}</mat-option>-->
+<!--            <mat-option [value]='"5"'>{{"phieu_gay_me_hs.muc_5" | translate}}</mat-option>-->
+<!--          </mat-select>-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance='outline' class="col-3">-->
+<!--          <mat-label>{{"phieu_gay_me_hs.da_day_cap_cuu" | translate}}</mat-label>-->
+<!--          <mat-select [(ngModel)]='phieuGMHS.da_day_cap_cuu'>-->
+<!--            <mat-option [value]='"1"'>{{"phieu_gay_me_hs.da_day_day" | translate}}</mat-option>-->
+<!--            <mat-option [value]='"2"'>{{"phieu_gay_me_hs.cap_cuu" | translate}}</mat-option>-->
+<!--          </mat-select>-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance='outline' class="col-3">-->
+<!--          <mat-label>{{"phieu_gay_me_hs.mallampati" | translate}}</mat-label>-->
+<!--          <mat-select [(ngModel)]='phieuGMHS.mallampati'>-->
+<!--            <mat-option [value]='"1"'>{{"phieu_gay_me_hs.muc_1" | translate}}</mat-option>-->
+<!--            <mat-option [value]='"2"'>{{"phieu_gay_me_hs.muc_2" | translate}}</mat-option>-->
+<!--            <mat-option [value]='"3"'>{{"phieu_gay_me_hs.muc_3" | translate}}</mat-option>-->
+<!--            <mat-option [value]='"4"'>{{"phieu_gay_me_hs.muc_4" | translate}}</mat-option>-->
+<!--          </mat-select>-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance='outline' class="col-3">-->
+<!--          <mat-label>{{"phieu_gay_me_hs.di_ung" | translate}}</mat-label>-->
+<!--          <mat-select [(ngModel)]='phieuGMHS.di_ung'>-->
+<!--            <mat-option [value]='"0"'>{{"phieu_gay_me_hs.khong_di_ung" | translate}}</mat-option>-->
+<!--            <mat-option [value]='"1"'>{{"phieu_gay_me_hs.co_di_ung" | translate}}</mat-option>-->
+<!--          </mat-select>-->
+<!--        </mat-form-field>-->
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"phieu_gay_me_hs.tien_su_thuoc_gmhs" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.tien_su_thuoc_gmhs'
+                 placeholder='{{"phieu_gay_me_hs.tien_su_thuoc_gmhs" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"phieu_gay_me_hs.bat_thuong_gmhs" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.bat_thuong_gmhs'
+                 placeholder='{{"phieu_gay_me_hs.bat_thuong_gmhs" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-12' appearance='outline'>
+          <mat-label>{{"phieu_gay_me_hs.nhan_xet_ket_luan" | translate}}</mat-label>
+          <input matInput [(ngModel)]='phieuGMHS.nhan_xet_ket_luan'
+                 placeholder='{{"phieu_gay_me_hs.nhan_xet_ket_luan" | translate}}'>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <h2>{{"emr.huyet_ap" | translate}}</h2>
+      <div class='overflow-x-auto overflow-y-hidden' fxLayout='row' fxLayoutGap='5px'>
+        <div fxFlex='5em' *ngFor='let ha of phieuGMHS.result.blood_pressure; index as i' fxLayout='column' fxLayoutGap='5px' fxLayoutAlign='start center'>
+          <button type="button" (click)="phieuGMHS.result.blood_pressure.splice(i, 1)" mat-button class="btn-sm mat-red-hn"
+                  [title]="'tooltip.delete_huyet_ap' | translate">
+            <i class="fa fa-times"></i>
+          </button>
+          <mat-form-field>
+            <mat-label>{{'phieu_gay_me_hs.no_minute'|translate}}</mat-label>
+            <input matInput [(ngModel)]="ha.no_minute" type='number' autocomplete='off' min='0'/>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'phieu_gay_me_hs.mx'|translate}}</mat-label>
+            <input matInput [(ngModel)]="ha.mx" type='number' autocomplete='off' min='0'/>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'phieu_gay_me_hs.mn'|translate}}</mat-label>
+            <input matInput [(ngModel)]="ha.mn" type='number' autocomplete='off' min='0'/>
+          </mat-form-field>
+        </div>
+        <div fxFlex='3.5em' fxLayout='column' [fxLayoutAlign]='"start " + (phieuGMHS.result.blood_pressure.length ? "end" : "")'>
+          <button type="button" (click)="addHuyetAp()" mat-button class="btn-sm btn m-b-4 mat-blue-hn"
+                  [title]="'tooltip.add_huyet_ap' | translate">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

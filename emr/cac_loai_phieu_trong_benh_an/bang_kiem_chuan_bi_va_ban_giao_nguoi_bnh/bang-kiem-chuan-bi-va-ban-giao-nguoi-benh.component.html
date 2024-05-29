@@ -1,0 +1,371 @@
+<mat-card xmlns='http://www.w3.org/1999/html'>
+  <div class='content-container'>
+    <section class='patient-info-container'>
+      <div class='row'>
+        <div class='col-12'>
+          <app-select category='phieu_pttt' [params]='{
+          patient_id: patientInfo.patient_id,
+          reception_queue_id: patientInfo.reception_queue_id,
+          in_patient: patientInfo.in_patient
+          }' (modelChange)='loadDataFromSelectedPttt($event)' [model]='bang_kiem.PHIEU_PHAU_THUAT_THU_THUAT' label='"Chọn phiếu phẫu thuật thủ thuật"'></app-select>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-6'>
+          <div class='row input-container'>
+            <div class='col-2 input-title'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.ma_yt" | translate}}</div>
+            <div class='col-10'>
+              <mat-form-field class='w-full' appearance='outline'>
+                <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.ma_yt" | translate}}</mat-label>
+                <input matInput type='text' [ngModel]='bang_kiem.patient.patient_id' disabled/>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class='col-6'>
+          <div class='row input-container'>
+            <div class='col-2 input-title'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.khoa_dieu_tri" | translate}}</div>
+            <div class='col-10'>
+              <mat-form-field class='w-full' appearance='outline'>
+                <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.khoa_dieu_tri" | translate}}</mat-label>
+                <input matInput type='text' [(ngModel)]='bang_kiem.patient.khoa_dieu_tri' disabled/>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-6'>
+          <div class='row input-container'>
+            <div class='col-2 input-title'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.ho_ten_bn" | translate}}</div>
+            <div class='col-10'>
+              <mat-form-field class='w-full' appearance='outline'>
+                <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.ho_ten_bn" | translate}}</mat-label>
+                <input matInput type='text' [(ngModel)]='bang_kiem.patient.fullname' disabled/>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class='col-6'>
+          <div class='row input-container'>
+            <div class='col-2 input-title'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.chan_doan" | translate}}</div>
+            <div class='col-10'>
+              <mat-form-field class='w-full' appearance='outline'>
+                <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.chan_doan" | translate}}</mat-label>
+                <textarea matInput
+                          cdkTextareaAutosize
+                          [(ngModel)]='bang_kiem.patient.chanDoan'
+                          #autosize="cdkTextareaAutosize"
+                          cdkAutosizeMinRows="1"
+                          cdkAutosizeMaxRows="5" disabled></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-6'>
+          <div class='row input-container'>
+            <div class='col-2 input-title'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.ngay_sinh" | translate}}</div>
+            <div class='col-5'>
+              <mat-form-field class='w-full' appearance='outline'>
+                <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.ngay_sinh" | translate}}</mat-label>
+                <input matInput type='text' [ngModel]='bang_kiem.patient.birthday ? ((bang_kiem.patient.birthday *1000) | amDateFormat: "DD/MM/YYYY") : ""' disabled/>
+              </mat-form-field>
+            </div>
+            <div class='col-1 input-title'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.tuoi" | translate}}</div>
+            <div class='col-4'>
+              <mat-form-field class='w-full' appearance='outline'>
+                <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.tuoi" | translate}}</mat-label>
+                <input matInput type='text' [ngModel]='bang_kiem.patient.tuoi ? bang_kiem.patient.tuoi : ""' disabled/>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class='col-6'>
+          <div class='row input-container'>
+            <div class='col-2 input-title'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.hinh_thuc_mo" | translate}}</div>
+            <div class='col-10'>
+              <mat-form-field class='w-full' appearance='outline'>
+                <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.hinh_thuc_mo" | translate}}</mat-label>
+                <input matInput type='text' [(ngModel)]='bang_kiem.patient.hinh_thuc_mo' disabled/>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-6'>
+          <div class='row input-container'>
+            <div class='col-2 input-title'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.phong_mo_ct" | translate}}</div>
+            <div class='col-10'>
+              <mat-form-field class='w-full' appearance='outline'>
+                <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.phong_mo_ct" | translate}}</mat-label>
+                <input matInput type='text' [ngModel]='bang_kiem.patient.phong_mo_ct' disabled/>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class='col-6'>
+          <div class='row input-container'>
+            <div class='col-2 input-title'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.ngay_gio_ban_giao" | translate}}</div>
+            <div class='col-10'>
+              <app-emr-date [(unixModel)]='bang_kiem.patient.ngay_gio_ban_giao' mode='datetime' label='bang_kiem_chuan_bi_va_ban_giao_bn.ngay_gio_ban_giao'>
+
+              </app-emr-date>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-12'>
+          <div class='row input-container'>
+            <div class='col-1 input-title'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.luu_y" | translate}}</div>
+            <div class='col-11'>
+              <mat-form-field class='w-full' appearance='outline'>
+                <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.luu_y" | translate}}</mat-label>
+                <textarea matInput
+                          cdkTextareaAutosize
+                          [(ngModel)]='bang_kiem.patient.luu_y'
+                          #autosize="cdkTextareaAutosize"
+                          cdkAutosizeMinRows="1"
+                          cdkAutosizeMaxRows="5"
+                          maxlength="1000"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div style='margin-top: 1vh'>
+      <app-select category='ex_document' [params]='{
+          form_id: 5083,
+          patient_id: patientInfo.patient_id,
+          reception_queue_id: patientInfo.reception_queue_id
+          }' label='"Phiếu chức năng sống"' [model]='bang_kiem.PHIEU_CHUC_NANG_SONG' (modelChange)='loadChucNangSong($event)'></app-select>
+    </div>
+    <section class='thong-so'>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>{{"bang_kiem_chuan_bi_va_ban_giao_bn.cac_thong_so" | translate}}</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class='col-12 thong-so-container' >
+            <div class='row'>
+              <div class='col-6 row al-center'>
+                <div class='col-2 sub-thong-so-title'>
+                  {{"bang_kiem_chuan_bi_va_ban_giao_bn.mach" | translate}}
+                </div>
+                <div class='col-8'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.mach" | translate}}</mat-label>
+                    <input matInput type='text' [(ngModel)]='bang_kiem.patient.mach'/>
+                  </mat-form-field>
+                </div>
+                <div class='col-2'>
+                  {{"bang_kiem_chuan_bi_va_ban_giao_bn.lan_phut" | translate}}
+                </div>
+              </div>
+              <div class='col-6 row al-center'>
+                <div class='col-3 sub-thong-so-title'>
+                  {{"bang_kiem_chuan_bi_va_ban_giao_bn.chieu_cao" | translate}}
+                </div>
+                <div class='col-7'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.chieu_cao" | translate}}</mat-label>
+                    <input matInput type='text' [(ngModel)]='bang_kiem.patient.chieuCao'/>
+                  </mat-form-field>
+                </div>
+                <div class='col-2'>
+                  cm
+                </div>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-6 row al-center'>
+                <div class='col-2 sub-thong-so-title'>
+                  {{"bang_kiem_chuan_bi_va_ban_giao_bn.nhiet_do" | translate}}
+                </div>
+                <div class='col-8'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.nhiet_do" | translate}}</mat-label>
+                    <input matInput type='text' [(ngModel)]='bang_kiem.patient.nhietDo'/>
+                  </mat-form-field>
+                </div>
+                <div class='col-2'>
+                  ℃
+                </div>
+              </div>
+              <div class='col-6 row al-center'>
+                <div class='col-3 sub-thong-so-title'>
+                  {{"bang_kiem_chuan_bi_va_ban_giao_bn.can_nang" | translate}}
+                </div>
+                <div class='col-7'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.can_nang" | translate}}</mat-label>
+                    <input matInput type='text' [(ngModel)]='bang_kiem.patient.canNang'/>
+                  </mat-form-field>
+                </div>
+                <div class='col-2'>
+                  kg
+                </div>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-6 row al-center'>
+                <div class='col-2 sub-thong-so-title'>
+                  {{"bang_kiem_chuan_bi_va_ban_giao_bn.huyet_ap" | translate}}
+                </div>
+                <div class='col-8'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.huyet_ap" | translate}}</mat-label>
+                    <input matInput type='text' [(ngModel)]='bang_kiem.patient.huyetAp'/>
+                  </mat-form-field>
+                </div>
+                <div class='col-2'>
+                  mmHg
+                </div>
+              </div>
+              <div class='col-6 row al-center'>
+                <div class='col-3 sub-thong-so-title'>
+                  {{"bang_kiem_chuan_bi_va_ban_giao_bn.nhom_mau" | translate}}
+                </div>
+                <div class='col-7'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.nhom_mau" | translate}}</mat-label>
+                    <input matInput type='text' [(ngModel)]='bang_kiem.patient.nhomMau'/>
+                  </mat-form-field>
+                </div>
+                <div class='col-2'>
+                  MĐ MC
+                </div>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-6 row al-center'>
+                <div class='col-2 sub-thong-so-title'>
+                  {{"bang_kiem_chuan_bi_va_ban_giao_bn.nhip_tho" | translate}}
+                </div>
+                <div class='col-8'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>{{"bang_kiem_chuan_bi_va_ban_giao_bn.nhip_tho" | translate}}</mat-label>
+                    <input matInput type='text' [(ngModel)]='bang_kiem.patient.nhipTho'/>
+                  </mat-form-field>
+                </div>
+                <div class='col-2'>
+                  {{"bang_kiem_chuan_bi_va_ban_giao_bn.lan_phut" | translate}}
+                </div>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-6 row al-center'>
+                <div class='col-2 sub-thong-so-title'>
+                  U.S
+                </div>
+                <div class='col-8'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>U.S</mat-label>
+                    <input matInput type='text' [(ngModel)]='bang_kiem.patient.us'/>
+                  </mat-form-field>
+                </div>
+                <div class='col-2'>
+                </div>
+              </div>
+              <div class='col-6 row al-center'>
+                <div class='col-3 sub-thong-so-title'>
+                  HC
+                </div>
+                <div class='col-7'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>HC</mat-label>
+                    <input matInput type='text' [(ngModel)]='bang_kiem.patient.hc'/>
+                  </mat-form-field>
+                </div>
+                <div class='col-2'>
+                </div>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-6 row al-center'>
+                <div class='col-2 sub-thong-so-title'>
+                  HST
+                </div>
+                <div class='col-8'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>HST</mat-label>
+                    <input matInput type='text' [(ngModel)]='bang_kiem.patient.hst'/>
+                  </mat-form-field>
+                </div>
+                <div class='col-2'>
+                </div>
+              </div>
+              <div class='col-6 row al-center'>
+                <div class='col-3 sub-thong-so-title'>
+                  Test K.S
+                </div>
+                <div class='col-7'>
+                  <mat-form-field class='w-full' appearance='outline'>
+                    <mat-label>Test K.S</mat-label>
+                    <input matInput type='text' [(ngModel)]='bang_kiem.patient.test_ks'/>
+                  </mat-form-field>
+                </div>
+                <div class='col-2'>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="isShowThongSo = true"
+                             (closed)="isShowThongSo = false">
+        </mat-expansion-panel>
+      </mat-accordion>
+    </section>
+    <section class='main-content-container row'>
+      <div class='common-table col-12'>
+        <table>
+          <thead>
+          <tr>
+            <th rowspan='2' style='width: 72%; font-size: 14px !important;'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.nd_ban_giao" | translate}}</th>
+            <th colspan='3' style='width: 21%; font-size: 14px !important;'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.ward" | translate}}</th>
+            <th rowspan='2' style='width: 7%; font-size: 14px !important;'>{{"bang_kiem_chuan_bi_va_ban_giao_bn.ot" | translate}}</th>
+          </tr>
+          <tr>
+            <th style='width: 7%; font-size: 14px !important;'>Yes</th>
+            <th style='width: 7%; font-size: 14px !important;'>No</th>
+            <th style='border-right: 1px solid #B9B9B9; width: 7%; font-size: 14px !important;'>Na</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor='let item of nd_ban_giao; let index = index'>
+            <td>{{(index + 1) + '. ' + item.content}}
+            <ng-container *ngIf='item.value !== undefined'>
+              <mat-form-field class='w-full' appearance='outline'>
+                <input matInput type='text' [(ngModel)]='item.value'>
+              </mat-form-field>
+            </ng-container></td>
+            <td style='text-align: center'>
+              <mat-radio-group [(ngModel)]='item.isKhoa' (change)='changeUserLogged(1)'>
+                <mat-radio-button  class="check-box" [value]='1'></mat-radio-button>
+              </mat-radio-group>
+            </td>
+            <td style='text-align: center'>
+              <mat-radio-group [(ngModel)]='item.isKhoa' (change)='changeUserLogged(1)'>
+                <mat-radio-button  class="check-box" [value]='2'></mat-radio-button>
+              </mat-radio-group>
+            </td>
+            <td style='text-align: center'>
+              <mat-radio-group [(ngModel)]='item.isKhoa' (change)='changeUserLogged(1)'>
+                <mat-radio-button  class="check-box" [value]='3'></mat-radio-button>
+              </mat-radio-group>
+            </td>
+            <td style='text-align: center'><mat-checkbox [(ngModel)]='item.isOt' (change)='changeUserLogged(2)'></mat-checkbox></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</mat-card>

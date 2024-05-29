@@ -1,0 +1,163 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class='hanh-chinh-container'>
+      <div fxLayout='row'>
+        <h2>A. <strong>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.hanh_chinh" | translate}}</strong></h2>
+      </div>
+      <div fxLayout='row'>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.so_benh_an" | translate}}</mat-label>
+            <input matInput type='text' [(ngModel)]='patientInfo.reception_queue_id' readonly />
+          </mat-form-field>
+        </div>
+        <div class='col-6' *ngIf='giayCamKetNguoiBenhNamNoiChu.thongTin; else display'>
+          <app-emr-date label='giay_cam_ket_nguoi_benh_nam_noi_chu.ngay_gio' mode='datetime'
+                        [(model)]='giayCamKetNguoiBenhNamNoiChu.thongTin.ngay_gio' readonly
+          ></app-emr-date>
+        </div>
+        <ng-template #display>
+          <div class='col-6' *ngIf='giayCamKetNguoiBenhNamNoiChu.thongTin'>
+            <app-emr-date label='giay_cam_ket_nguoi_benh_nam_noi_chu.ngay_gio' mode='datetime'
+            ></app-emr-date>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <div class='noi-dung-container'>
+      <div fxLayout='row'>
+        <h2>B. <strong>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.noi_dung" | translate}}</strong></h2>
+      </div>
+      <div class='nd-hanh-chinh-container'>
+        <div fxLayout='row'>
+          <h3>1. <strong>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.hanh_chinh_nguoi_benh" | translate}}</strong></h3>
+        </div>
+        <div fxLayout='row'>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.ho_va_ten" | translate}}</mat-label>
+              <input matInput type='text' [(ngModel)]='patientInfo.HO_TEN' readonly>
+            </mat-form-field>
+          </div>
+          <div class='col-3'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.nam_sinh" | translate}}</mat-label>
+              <input matInput type='text' [(ngModel)]='patientInfo.NGAY_SINH' readonly>
+            </mat-form-field>
+          </div>
+          <div class='col-3'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.sex" | translate}}</mat-label>
+              <div *ngIf='patientInfo.GIOI_TINH'>
+               <input matInput type='text' value="{{patientInfo.GIOI_TINH.MO_TA}}" readonly>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row'>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.bhyt" | translate}}</mat-label>
+              <input matInput type='text' value='{{patientInfo.MA_THE_BHYT}}' readonly>
+            </mat-form-field>
+          </div>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.ma_y_te" | translate}}</mat-label>
+              <input matInput type='text' [(ngModel)]='patientInfo.patient_id' readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row'>
+          <div class='col-6' *ngIf='giayCamKetNguoiBenhNamNoiChu.thongTin; else display'>
+            <app-emr-date mode='date' label='giay_cam_ket_nguoi_benh_nam_noi_chu.ngay_vao_vien'
+                          [(model)]='giayCamKetNguoiBenhNamNoiChu.thongTin.VAO_VIEN_LUC'
+                          [(unixModel)]='giayCamKetNguoiBenhNamNoiChu.thongTin.vao_vien_luc'
+                          readonly
+            ></app-emr-date>
+          </div>
+          <ng-template #display>
+            <div class='col-6' *ngIf='giayCamKetNguoiBenhNamNoiChu.thongTin'>
+              <app-emr-date mode='date' label='giay_cam_ket_nguoi_benh_nam_noi_chu.ngay_vao_vien'
+              ></app-emr-date>
+            </div>
+          </ng-template>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.dia_chi" | translate}}</mat-label>
+              <input matInput type='text' [(ngModel)]='patientInfo.address1' readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row'>
+          <div class='col-6'>
+            <mat-form-field appearance='outline' class='full-width'>
+              <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.dieu_tri_addr" | translate}}</mat-label>
+              <input matInput type='text' [(ngModel)]='patientInfo.parent_name' readonly>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class='tt-can-nhap-container'>
+      <div fxLayout='row'>
+          <h3>2. <strong>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.tt_can_nhap" | translate}}</strong></h3>
+      </div>
+      <div fxLayout='row' class='objs'>
+        <div class='col-12'>
+          <span >{{"giay_cam_ket_nguoi_benh_nam_noi_chu.objs" | translate}}</span>
+          <mat-radio-group [(ngModel)]='giayCamKetNguoiBenhNamNoiChu.thongTinCanNhap.DOI_TUONG'>
+            <mat-radio-button *ngFor='let o of objs' style='margin-left: 5px' name='listObj' value='{{o.name}}' (click)='autofill(o.id)'>{{o.name}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div class='col-5'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.toi_ten_la" | translate}}</mat-label>
+            <input matInput type='text' [(ngModel)]='giayCamKetNguoiBenhNamNoiChu.thongTinCanNhap.TEN'>
+          </mat-form-field>
+        </div>
+        <div class='col-5'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.dia_chi" | translate}}</mat-label>
+            <input matInput type='text' [(ngModel)]='giayCamKetNguoiBenhNamNoiChu.thongTinCanNhap.DIA_CHI'>
+          </mat-form-field>
+        </div>
+        <div class='col-2' *ngIf='giayCamKetNguoiBenhNamNoiChu.thongTinCanNhap.DOI_TUONG != "Bệnh nhân"'>
+          <mat-form-field appearance='outline' class='w-full'>
+            <mat-label>Quan hệ với bệnh nhân:</mat-label>
+            <input matInput type='text' [(ngModel)]='giayCamKetNguoiBenhNamNoiChu.thongTinCanNhap.QUAN_HE'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='w-full'>
+            <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.dt" | translate}}</mat-label>
+            <input matInput type='text' name='dt' [(ngModel)]='giayCamKetNguoiBenhNamNoiChu.thongTinCanNhap.DT' pattern='[0-9]*' #dt=ngModel (ngModelChange)='validate(dt)'>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <app-emr-date label='giay_cam_ket_nguoi_benh_nam_noi_chu.ngay_sinh' mode='date'
+                        [(model)]='giayCamKetNguoiBenhNamNoiChu.thongTinCanNhap.NGAY_SINH'
+                        [(unixModel)]='giayCamKetNguoiBenhNamNoiChu.thongTinCanNhap.NGAY_SINH_unix'></app-emr-date>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div class='col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"giay_cam_ket_nguoi_benh_nam_noi_chu.cmtnd/cccd" | translate}}</mat-label>
+            <input matInput type='text' name='cmtnd' [(ngModel)]='giayCamKetNguoiBenhNamNoiChu.thongTinCanNhap.CMTND' pattern='[0-9]*' #cmntnd=ngModel (ngModelChange)='validate(cmntnd)'>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <app-emr-date label='giay_cam_ket_nguoi_benh_nam_noi_chu.ngay_cap' mode='date'
+                        [(unixModel)]='giayCamKetNguoiBenhNamNoiChu.thongTinCanNhap.ngay_cap'
+                        [(model)]='giayCamKetNguoiBenhNamNoiChu.thongTinCanNhap.NGAY_CAP'></app-emr-date>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,675 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div fxLayout='row'><strong>B/{{ "phieu_yhct_noi_tru.y_hoc_co_truyen" | translate}}:</strong></div>
+      <div fxLayout='row' style='margin: 5px 0'><strong>I/ {{ "phieu_yhct_noi_tru.vong_chan" | translate}}:</strong></div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px'>
+        <div fxLayout='row' style='text-align: left'><strong>1. {{ "phieu_yhct_noi_tru.hinh_thai" | translate}}:</strong></div>
+        <div fxLayout='row' style='text-align: left;margin-top: 5px'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.HINH_THAI.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lht of listHinhThai' class='radio-box' [value]="lht.ID">{{lht.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'><strong>2. {{ "phieu_yhct_noi_tru.than" | translate}}:</strong></div>
+        <div fxLayout='row' style='text-align: left;margin-top: 5px'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.THAN.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lt of listThan' class='radio-box' [value]="lt.ID">{{lt.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'><strong>3. {{ "phieu_yhct_noi_tru.sac" | translate}}:</strong></div>
+        <div fxLayout='row' style='text-align: left;margin-top: 5px'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.SAC.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let ls of listSac' class='radio-box' [value]="ls.ID">{{ls.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px' >
+        <div fxLayout='row' style='text-align: left'><strong>4. {{ "phieu_yhct_noi_tru.trach" | translate}}:</strong></div>
+        <div fxLayout='row'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.TRACH.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let ltrach of listTrach' class='radio-box' [value]="ltrach.ID">{{ltrach.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div fxLayout='row' style='margin: 5px 0 5px 5px'>
+        <label><strong>5. {{ "phieu_yhct_noi_tru.luoi" | translate}}:</strong></label>
+      </div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 5px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.chat_luoi" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.CHAT_LUOI.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lcl of listChatLuoi' class='radio-box' [value]="lcl.ID">{{lcl.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.sac_luoi" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.SAC_LUOI.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lsl of listSacLuoi' class='radio-box' [value]="lsl.ID">{{lsl.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.reu_luoi" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.REU_LUOI.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lrl of listReuLuoi' class='radio-box' [value]="lrl.ID">{{lrl.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class='form-field-full' style='margin-top: 5px'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{ "phieu_yhct_noi_tru.mo_ta_vong_chan" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.MO_TA_VONG_CHAN'>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout='row' style='margin: 5px 0'><strong>II/ {{ "phieu_yhct_noi_tru.van_chan" | translate}}:</strong></div>
+      <div fxLayout='row'><strong>1. {{ "phieu_yhct_noi_tru.am_thanh" | translate}}:</strong></div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 5px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.tieng_noi" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.TIENG_NOI.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let ltiengnoi of listTiengNoi' class='radio-box' [value]="ltiengnoi.ID">{{ltiengnoi.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.hoi_tho" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.HOI_THO.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lht of listHoiTho' class='radio-box' [value]="lht.ID">{{lht.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.ho" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.HO.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && (benhan_YHCT_noi_tru.KIEU_HO = resetDM)'>
+            <mat-radio-button *ngFor='let lho of listHo' class='radio-box' [value]="lho.ID">{{lho.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div *ngIf='benhan_YHCT_noi_tru.HO.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group class='radio-group' [(ngModel)]='benhan_YHCT_noi_tru.KIEU_HO.ID'>
+            <mat-radio-button *ngFor='let lkieuho of listKieuHo' class='radio-box' [value]="lkieuho.ID">{{lkieuho.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.o" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.O.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lo of listO' class='radio-box' [value]="lo.ID">{{lo.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.nac" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.NAC.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lnac of listNac' class='radio-box' [value]="lnac.ID">{{lnac.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div fxLayout='row' style='margin-top: 5px'><strong>2. {{ "phieu_yhct_noi_tru.muif" | translate}}:</strong></div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.mui_co_the" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.MUI_CO_THE.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && (benhan_YHCT_noi_tru.KIEU_MUI = resetDM)'>
+            <mat-radio-button *ngFor='let lmct of listMuiCoThe' class='radio-box' [value]="lmct.ID">{{lmct.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.MUI_CO_THE.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row'>
+          <mat-radio-group class='radio-group' [(ngModel)]='benhan_YHCT_noi_tru.KIEU_MUI.ID' >
+            <mat-radio-button *ngFor='let lkieumui of listKieuMui' class='radio-box' [value]="lkieumui.ID">{{lkieumui.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div  style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.chat_thai_bieu_hien_benh_ly" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.CHAT_THAI.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && (benhan_YHCT_noi_tru.KIEU_CHAT_THAI = resetDM)'>
+            <mat-radio-button *ngFor='let lctbhbl of listChatThaiBieuHienBenhLy' class='radio-box' [value]="lctbhbl.ID">{{lctbhbl.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.CHAT_THAI.ID === "1"' fxLayout='row' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <mat-radio-group class='radio-group' [(ngModel)]='benhan_YHCT_noi_tru.KIEU_CHAT_THAI.ID'>
+          <mat-radio-button class='radio-box' *ngFor='let lkct of listKieuChatThai' class='radio-box' [value]="lkct.ID">{{lkct.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div fxLayout='row' class='form-field-full' style='margin-top: 5px'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{ "phieu_yhct_noi_tru.mo_ta_vawn_chan" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.MO_TA_VAWN_CHAN'>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout='row' style='margin: 5px 0'><strong>III/ {{ "phieu_yhct_noi_tru.vaan_chan" | translate}}:</strong></div>
+      <div fxLayout='row'><strong>1. {{ "phieu_yhct_noi_tru.han_nhiet" | translate}}:</strong></div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.bieu_hien" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.BIEU_HIEN_HAN_NHIET.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && (benhan_YHCT_noi_tru.KIEU_HAN_NHIET = resetDM)'>
+            <mat-radio-button *ngFor='let lbhhn of listBieuHienHanNhiet' class='radio-box' [value]="lbhhn.ID">{{lbhhn.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.KIEU_HAN_NHIET.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lhn of listHanNhiet' class='radio-box' [value]="lhn.ID">{{lhn.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'><strong>2. {{ "phieu_yhct_noi_tru.mo_hoi" | translate}}:</strong></div>
+        <div fxLayout='row'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.MO_HOI.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lmohoi of listMoHoi' class='radio-box' [value]="lmohoi.ID">{{lmohoi.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div fxLayout='row' style='margin-top: 5px'><strong>3. {{ "phieu_yhct_noi_tru.dau_mat" | translate}}:</strong></div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.bieu_hien_benh_ly" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.DAU_MAT.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && reset_DAU_MAT()'>
+            <mat-radio-button *ngFor='let ldaumat of listDauMat' class='radio-box' [value]="ldaumat.ID">{{ldaumat.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div *ngIf='benhan_YHCT_noi_tru.DAU_MAT.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.dau_dau" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left;margin-top: 5px'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.KIEU_DAU_DAU.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let ldd of listDauDau' class='radio-box' [value]="ldd.ID">{{ldd.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div *ngIf='benhan_YHCT_noi_tru.DAU_MAT.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxF fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.mat" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.MAT.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lmat of listMat' class='radio-box' [value]="lmat.ID">{{lmat.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div *ngIf='benhan_YHCT_noi_tru.DAU_MAT.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.tai" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.TAI.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let ltai of listTai' class='radio-box' [value]="ltai.ID">{{ltai.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div *ngIf='benhan_YHCT_noi_tru.DAU_MAT.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.muix" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.MUI.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lmui of listMui' class='radio-box' [value]="lmui.ID">{{lmui.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.DAU_MAT.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.hong" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.HONG.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lhong of listHong' class='radio-box' [value]="lhong.ID">{{lhong.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div *ngIf='benhan_YHCT_noi_tru.DAU_MAT.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.co_vai" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.CO_VAI.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lcovai of listCoVai' class='radio-box' [value]="lcovai.ID">{{lcovai.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div fxLayout='row' style='margin-top: 5px'><strong>4. {{ "phieu_yhct_noi_tru.lung" | translate}}:</strong></div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.bieu_hien_benh_ly" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_LUNG.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && (benhan_YHCT_noi_tru.KIEU_DAU_LUNG = resetDM)'>
+            <mat-radio-button *ngFor='let llung of listLung' class='radio-box' [value]="llung.ID">{{llung.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div *ngIf='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_LUNG.ID === "1"' fxLayout='row' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <mat-radio-group style='text-align: left' [(ngModel)]='benhan_YHCT_noi_tru.KIEU_DAU_LUNG.ID' class='radio-group'>
+          <mat-radio-button *ngFor='let ldaulung of listDauLung' class='radio-box' [value]="ldaulung.ID">{{ldaulung.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div fxLayout='row' style='margin-top: 5px'><strong>5. {{ "phieu_yhct_noi_tru.bung_nguc" | translate}}:</strong></div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.bieu_hien_benh_ly" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_NGUC.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && (benhan_YHCT_noi_tru.KIEU_DAU_NGUC = resetDM)'>
+            <mat-radio-button *ngFor='let lbungnguc of listBHBLBungNguc' class='radio-box' [value]="lbungnguc.ID">{{lbungnguc.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div *ngIf='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_NGUC.ID === "1"' fxLayout='row' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <mat-radio-group style='text-align: left' [(ngModel)]='benhan_YHCT_noi_tru.KIEU_DAU_NGUC.ID' class='radio-group'>
+          <mat-radio-button *ngFor='let lbn of listKieuDauNguc' class='radio-box' [value]="lbn.ID">{{lbn.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div fxLayout='row' style='margin-top: 5px'><strong>6. {{ "phieu_yhct_noi_tru.chan_tay" | translate}}:</strong></div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.bieu_hien_benh_ly" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_CHAN_TAY.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lchantay of listChanTay' class='radio-box' [value]="lchantay.ID">{{lchantay.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div fxLayout='row' style='margin-top: 5px'><strong>7. {{ "phieu_yhct_noi_tru.an" | translate}}:</strong></div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.bieu_hien_benh_ly" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_AN.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && (benhan_YHCT_noi_tru.KIEU_AN = resetDM)'>
+            <mat-radio-button *ngFor='let lan of listBHBLAn' class='radio-box' [value]="lan.ID">{{lan.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_AN.ID === "1"' fxLayout='row' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <mat-radio-group style='text-align: left' [(ngModel)]='benhan_YHCT_noi_tru.KIEU_AN.ID' class='radio-group'>
+          <mat-radio-button *ngFor='let la of listAn' class='radio-box' [value]="la.ID">{{la.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div fxLayout='row' style='margin-top: 5px'><strong>8. {{ "phieu_yhct_noi_tru.uong" | translate}}:</strong></div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.bieu_hien_benh_ly" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_UONG.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && (benhan_YHCT_noi_tru.KIEU_UONG = resetDM)'>
+            <mat-radio-button *ngFor='let luong of listUong' class='radio-box' [value]="luong.ID">{{luong.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_UONG.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>{{ "phieu_yhct_noi_tru.thich_uong" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.KIEU_UONG.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lkieuuong of listKieuUong' class='radio-box' [value]="lkieuuong.ID">{{lkieuuong.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div fxLayout='row' style='margin-top: 5px'><strong>9. {{ "phieu_yhct_noi_tru.dai_tieu_tien" | translate}}:</strong></div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.bieu_hien_benh_ly" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_DAI_TIEU_TIEN.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && reset_DAI_TIEU_TIEN()'>
+            <mat-radio-button *ngFor='let ldtt of listDaiTieuTien' class='radio-box' [value]="ldtt.ID">{{ldtt.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_DAI_TIEU_TIEN.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.tieu_tien" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.TIEU_TIEN.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let ltt of listTieuTien' class='radio-box' [value]="ltt.ID">{{ltt.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_DAI_TIEU_TIEN.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.dai_tien" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.DAI_TIEN.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let ldt of listDaiTien' class='radio-box' [value]="ldt.ID">{{ldt.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div fxLayout='row' style='margin-top: 5px'><strong>10. {{ "phieu_yhct_noi_tru.ngu" | translate}}:</strong></div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.bieu_hien_benh_ly" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_NGU.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && (benhan_YHCT_noi_tru.KIEU_NGU = resetDM)'>
+            <mat-radio-button *ngFor='let lngu of listNgu' class='radio-box' [value]="lngu.ID">{{lngu.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_NGU.ID === "1"' fxLayout='row' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <mat-radio-group style='text-align: left' [(ngModel)]='benhan_YHCT_noi_tru.KIEU_NGU.ID' class='radio-group'>
+          <mat-radio-button *ngFor='let lkieungu of listKieuNgu' class='radio-box' [value]="lkieungu.ID">{{lkieungu.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div fxLayout='row' style='margin-top: 5px'><strong>11. {{ "phieu_yhct_noi_tru.kinh_nguyet_sinh_duc" | translate}}:</strong></div>
+      <div fxLayout='row' style='margin-top: 5px'><strong><i>- {{ "phieu_yhct_noi_tru.kinh_nguyet" | translate}}:</i></strong></div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.bieu_hien_benh_ly" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_KINH_NGUYET.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && reset_KINH_NGUYET()'>
+            <mat-radio-button *ngFor='let lkinhnguyet of listKinhNguyet' class='radio-box' [value]="lkinhnguyet.ID">{{lkinhnguyet.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_KINH_NGUYET.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row'>+ {{ "phieu_yhct_noi_tru.roi_loan_kinh_nguyet" | translate}}:</div>
+        <div style='margin-top: 5px'>
+          <div fxLayout='row'>
+            <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.ROI_LOAN_KINH_NGUYET.ID' class='radio-group'>
+              <mat-radio-button *ngFor='let lrlkn of listRoiLoanKinhNguyet' class='radio-box' [value]="lrlkn.ID">{{lrlkn.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_KINH_NGUYET.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>+ {{ "phieu_yhct_noi_tru.thong_kinh" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.THONG_KINH.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lthongkinh of listThongKinh' class='radio-box' [value]="lthongkinh.ID">{{lthongkinh.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.BIEU_HIEN_BENH_LY_KINH_NGUYET.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>+ {{ "phieu_yhct_noi_tru.doi_ha" | translate}}:</div>
+        <div fxLayout='row'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.DOI_HA.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let ldoiha of listDoiHa' class='radio-box' [value]="ldoiha.ID">{{ldoiha.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'><strong><i>- {{ "phieu_yhct_noi_tru.roi_loan_kha_nang_sinh_duc" | translate}}:</i></strong></div>
+        <div fxLayout='row'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.ROI_LOAN_KHA_NANG_SINH_DUC.ID' class='radio-group'
+                           (ngModelChangeDebounced)='($event === "2") && reset_ROI_LOAN_KHA_NANG_SINH_DUC()'>
+            <mat-radio-button *ngFor='let lrlknsd of listRoiLoanKhaNangSinhDuc' class='radio-box' [value]="lrlknsd.ID">{{lrlknsd.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.ROI_LOAN_KHA_NANG_SINH_DUC.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row'>+ {{ "phieu_yhct_noi_tru.nam" | translate}}:</div>
+        <div fxLayout='row' style='margin-top: 5px'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.NAM.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lnam of listNam' class='radio-box' [value]="lnam.ID">{{lnam.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div *ngIf='benhan_YHCT_noi_tru.ROI_LOAN_KHA_NANG_SINH_DUC.ID === "1"' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row'>+ {{ "phieu_yhct_noi_tru.nu" | translate}}:</div>
+        <div fxLayout='row' style='margin-top: 5px'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.NU.ID' class='radio-group' s>
+            <mat-radio-button *ngFor='let lnu of listNu' class='radio-box' [value]="lnu.ID">{{lnu.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'><strong>12. {{ "phieu_yhct_noi_tru.dieu_kien_xuat_hien_benh" | translate}}:</strong></div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.DIEU_KIEN_XUAT_HIEN_BENH.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let ldkxhb of listDieuKienXuatHienBenh' class='radio-box' [value]="ldkxhb.ID">{{ldkxhb.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class='form-field-full' style='margin-top: 5px'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{ "phieu_yhct_noi_tru.mo_ta_van_chan" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.MO_TA_VAAN_CHAN'>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout='row' style='margin: 5px 0'><strong>IV/ {{ "phieu_yhct_noi_tru.thiet_chan" | translate}}:</strong></div>
+      <div fxLayout='row'><strong>1. {{ "phieu_yhct_noi_tru.xuc_chan" | translate}}:</strong></div>
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'><strong>- {{ "phieu_yhct_noi_tru.da" | translate}}:</strong></div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.DA.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lda of listDa' class='radio-box' [value]="lda.ID">{{lda.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left'>- {{ "phieu_yhct_noi_tru.mo_hoi" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.MO_HOI_THIET_CHAN.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lmohoitc of listMoHoiThietChan' class='radio-box' [value]="lmohoitc.ID">{{lmohoitc.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left;margin-top: 5px'>- {{ "phieu_yhct_noi_tru.co_xuong_khop" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.CO_XUONG_KHOP.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lcxk of listCoXuongKhop' class='radio-box' [value]="lcxk.ID">{{lcxk.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left;margin-top: 5px'>- {{ "phieu_yhct_noi_tru.bung" | translate}}:</div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.BUNG.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lb of listBung' class='radio-box' [value]="lb.ID">{{lb.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxLayout='row' style='text-align: left;margin-top: 5px'><strong>2. {{ "phieu_yhct_noi_tru.mach_chan" | translate}}:</strong></div>
+        <div fxLayout='row' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.MACH_CHAN.ID' class='radio-group'>
+            <mat-radio-button *ngFor='let lmc of listMachChan' class='radio-box' [value]="lmc.ID">{{lmc.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div fxLayout='row' style='margin-top: 5px'>- {{ "phieu_yhct_noi_tru.tong_khan" | translate}}:</div>
+
+      <div fxLayout='row'>
+        <div fxFlex.gt-sm='49' class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{ "phieu_yhct_noi_tru.ben_phai" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='benhan_YHCT_noi_tru.TONG_KHAN_PHAI'>
+          </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm='2'></div>
+        <div fxFlex.gt-sm='49' class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{ "phieu_yhct_noi_tru.ben_trai" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='benhan_YHCT_noi_tru.TONG_KHAN_TRAI'>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout='row' style='margin-top: 5px'>- {{ "phieu_yhct_noi_tru.vi_khan" | translate}}:</div>
+      <div fxLayout='row'>
+        <div fxFlex.gt-sm='49' class='form-field-full'>
+          <div fxLayout='row' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+            <div fxFlex.gt-sm='30'>+ {{ "phieu_yhct_noi_tru.mach_tay_trai" | translate}}:</div>
+            <div fxFlex.gt-sm='70'>
+              <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.VI_KHAN_TRAI.ID' style='display: flex; justify-content: space-around'>
+                <mat-radio-button *ngFor='let lvkt of listViKhanTrai' style='float: left' [value]="lvkt.ID">{{lvkt.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='2'></div>
+        <div fxFlex.gt-sm='49' class='form-field-full'>
+          <div fxLayout='row' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+            <div fxFlex.gt-sm='30'>+ {{ "phieu_yhct_noi_tru.mach_tay_phai" | translate}}:</div>
+            <div fxFlex.gt-sm='70'>
+              <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.VI_KHAN_PHAI.ID' style='display: flex; justify-content: space-around'>
+                <mat-radio-button *ngFor='let lvkp of listViKhanPhai' style=' float: left' [value]="lvkp.ID">{{lvkp.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='form-field-full' style='margin-top: 5px'>
+        <mat-form-field appearance='outline'>
+          <mat-label>- {{ "phieu_yhct_noi_tru.mo_ta_thiet_chan" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.MO_TA_THIET_CHAN'>
+        </mat-form-field>
+      </div>
+      <div fxLayout='row'><strong>V.{{ "phieu_yhct_noi_tru.tom_tat_tu_chan" | translate}}:</strong></div>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label></mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.TOM_TAT_TU_CHAN'>
+        </mat-form-field>
+      </div>
+      <div fxLayout='row'><strong>V.{{ "phieu_yhct_noi_tru.bien_chung_luan_tri" | translate}}:</strong></div>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label></mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.BIEN_CHUNG_LUAN_TRI'>
+        </mat-form-field>
+      </div>
+      <div fxLayout='row'><strong>V.{{ "phieu_yhct_noi_tru.chan_doan" | translate}}:</strong></div>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{ "phieu_yhct_noi_tru.benh_danh" | translate}}</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.BENH_DANH'>
+        </mat-form-field>
+      </div>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{ "phieu_yhct_noi_tru.bat_cuong" | translate}}</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.BAT_CUONG'>
+        </mat-form-field>
+      </div>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{ "phieu_yhct_noi_tru.tang_phu_kinh_lac" | translate}}</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.TANG_PHU_KINH_LAC'>
+        </mat-form-field>
+      </div>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>{{ "phieu_yhct_noi_tru.nguyen_nhan" | translate}}</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.TEXT_NGUYEN_NHAN'>
+        </mat-form-field>
+      </div>
+      <div fxLayout='row'><strong>C. {{ "phieu_yhct_noi_tru.dieu_tri" | translate}}:</strong></div>
+      <div fxLayout='row' style='margin: 5px 0'>
+        <strong>I. {{ "phieu_yhct_noi_tru.dieu_tri_don_thuan_YHCT" | translate}}:</strong>
+        <mat-checkbox class='m-l-8' [(ngModel)]='benhan_YHCT_noi_tru.CHECK_BOX_DIEU_TRI_DON_THUAT_YHCT'></mat-checkbox>
+      </div>
+      <div class='form-field-full' style='margin-top: 5px'>
+        <mat-form-field appearance='outline'>
+          <mat-label>1. {{ "phieu_yhct_noi_tru.phap_dieu_tri" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.PHAP_DIEU_TRI'>
+        </mat-form-field>
+      </div>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>2. {{ "phieu_yhct_noi_tru.phuong_thuoc" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.PHUONG_THUOC'>
+        </mat-form-field>
+      </div>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>3. {{ "phieu_yhct_noi_tru.phuong_huyet" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.PHUONG_HUYET'>
+        </mat-form-field>
+      </div>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>4. {{ "phieu_yhct_noi_tru.xoa_bop_bam_huyet" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.XOA_BOP_BAM_HUYET'>
+        </mat-form-field>
+      </div>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label>5. {{"khac" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.KHAC'>
+        </mat-form-field>
+      </div>
+      <div fxLayout='row' style='margin: 5px 0'>
+        <strong>II. {{ "phieu_yhct_noi_tru.dieu_tri_ket_hop_yhhd" | translate}}:</strong>
+        <mat-checkbox class='m-l-8' [(ngModel)]='benhan_YHCT_noi_tru.CHECK_BOX_DIEU_TRI_KET_HOP_YHHD'></mat-checkbox>
+      </div>
+      <div class='form-field-full'>
+        <mat-form-field appearance='outline'>
+          <mat-label></mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.DIEU_TRI_KET_HOP_VOI_YHHD'>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout='row' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px'>
+        <div fxFlex.gt-sm=25 style='text-align: left'><strong>III. {{ "phieu_yhct_noi_tru.che_do_dinh_duong" | translate}}:</strong></div>
+        <div fxFlex.gt-sm='75' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.CHE_DO_DINH_DUONG.ID' class='dieu-tri_radio-group'>
+            <mat-radio-button *ngFor='let lcddd of listCheDoDinhDuong' class='dieu-tri_radio-box' [value]="lcddd.ID">{{lcddd.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div fxLayout='row' style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 10px'>
+        <div fxFlex.gt-sm=25 style='text-align: left'><strong>IV. {{ "phieu_yhct_noi_tru.che_do_cham_soc" | translate}}:</strong></div>
+        <div fxFlex.gt-sm='75' style='text-align: left'>
+          <mat-radio-group [(ngModel)]='benhan_YHCT_noi_tru.CHE_DO_CHAM_SOC.ID' class='dieu-tri_radio-group'>
+            <mat-radio-button *ngFor='let lcdcs of listCheDoChamSoc' class='dieu-tri_radio-box' [value]="lcdcs.ID">{{lcdcs.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class='form-field-full' style='margin-top: 10px'>
+        <mat-form-field appearance='outline'>
+          <mat-label><strong>IX. {{ "phieu_yhct_noi_tru.du_hau" | translate}}:</strong></mat-label>
+          <input matInput [(ngModel)]='benhan_YHCT_noi_tru.DU_HAU'>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+

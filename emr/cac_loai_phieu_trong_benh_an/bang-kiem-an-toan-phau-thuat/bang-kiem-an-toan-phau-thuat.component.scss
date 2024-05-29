@@ -1,0 +1,49 @@
+
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
+.mat-tab-group-container {
+  min-height: 60em;
+}
+:host ::ng-deep {
+  /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
+  /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
+  .mat-tab-label {
+    opacity: 1;
+    font-size: min(1em, 1vw);
+    padding: 5px;
+  }
+}
+
+.mat-mdc-checkbox {
+  width: 100%;
+}
+:host ::ng-deep {
+  /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+  /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+  .mat-checkbox-layout {
+    width: 100%;
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+  /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+  .mat-checkbox-inner-container {
+    margin-left: 0;
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+  /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+  .mat-checkbox-label {
+    text-wrap: wrap;
+    line-height: 1.2em;
+  }
+
+  .p-b-field {
+    padding-bottom: 6px;
+  }
+
+  .mt-1 {
+    margin-top: 1vh;
+  }
+}
+
+button {
+  min-width: 12em;
+}

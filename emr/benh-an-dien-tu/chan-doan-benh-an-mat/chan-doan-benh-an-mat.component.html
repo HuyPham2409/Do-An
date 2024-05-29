@@ -1,0 +1,63 @@
+<div class='matero-row kham-mat-glocom' fxLayout='row'>
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div fxLayout='column'>
+          <div  fxLayout='row' class='m-t-4'>
+            <h1><strong>IX. {{"title.chan_doan" | translate}}:</strong></h1>
+          </div>
+          <div fxLayout='row'>
+            <strong>1.{{"title.benh_chinh" | translate}}:</strong>
+          </div>
+          <div class='col-12 p-x-0'>
+            <mat-form-field appearance='outline' class='full-width '>
+              <mat-label>- {{'kham_mat.mat_phai'|translate}}</mat-label>
+              <textarea matInput [(ngModel)]='chanDoanMat.MAT_PHAI.BENH_CHINH'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12 p-x-0'>
+            <mat-form-field appearance='outline' class='full-width '>
+              <mat-label>- {{'kham_mat.mat_trai'|translate}}</mat-label>
+              <textarea matInput [(ngModel)]='chanDoanMat.MAT_TRAI.BENH_CHINH'></textarea>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout='row'>
+            <strong>2.{{"title.benh_kem_theo" | translate}}:</strong>
+          </div>
+          <div class='col-12 p-x-0'>
+            <mat-form-field appearance='outline' class='full-width '>
+              <mat-label>- {{'kham_mat.mat_phai'|translate}}</mat-label>
+              <textarea matInput [(ngModel)]='chanDoanMat.MAT_PHAI.BENH_KEM_THEO'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-12 p-x-0'>
+            <mat-form-field appearance='outline' class='full-width '>
+              <mat-label>- {{'kham_mat.mat_trai'|translate}}</mat-label>
+              <textarea matInput [(ngModel)]='chanDoanMat.MAT_TRAI.BENH_KEM_THEO'></textarea>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout='row'>
+            <strong>3.{{"title.benh_toan_than" | translate}}:</strong>
+          </div>
+          <mat-form-field appearance='outline'>
+            <input matInput
+                   [matAutocomplete]="position"
+                   [(ngModel)]="chanDoanMat.BENH_TOAN_THAN"
+                   (focus)="filterICD('')"
+                   (ngModelChange)="filterICD(chanDoanMat.BENH_TOAN_THAN)">
+            <mat-autocomplete [displayWith]="displayDMICD" #position="matAutocomplete">
+              <mat-option *ngFor="let icd of filteredICDs" [value]="icd">
+                <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+              </mat-option>
+            </mat-autocomplete>
+            <button type="button" mat-button *ngIf="chanDoanMat.BENH_TOAN_THAN" matSuffix mat-icon-button aria-label="Clear" (click)="chanDoanMat.BENH_TOAN_THAN = resetDM">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

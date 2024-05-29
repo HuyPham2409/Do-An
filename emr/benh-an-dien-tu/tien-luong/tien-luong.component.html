@@ -1,0 +1,137 @@
+<div class='matero-row hanh-chinh' fxLayout='row wrap'>
+
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100' *ngIf='showField?.MUC_TIEN_LUONG !== false'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div *ngIf='showField?.TIEN_LUONG !== false'>
+          <ul class="p-l-0 m-b-0">
+            <li class="m-l-16">
+          <h3 style="font-size:18px; font-family: Arial, Helvetica, sans-serif; font-weight: 600;text-transform: uppercase;" fxLayout='row'>{{"title.tien_luong" | translate}}:<app-field-template form_id='6033' [(model)]='benhAn.TIEN_LUONG' name='Tiên lượng'></app-field-template></h3>
+        </li>
+      </ul>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5"
+                      [(ngModel)]='benhAn.TIEN_LUONG'>
+            </textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div *ngIf='showField?.HUONG_DIEU_TRI !== false'>
+          <ul class="p-l-0 m-b-0">
+            <li class="m-l-16">
+          <h3  style="font-size:18px; font-family: Arial, Helvetica, sans-serif; font-weight: 600;text-transform: uppercase;" fxLayout='row'>{{"title.huong_dieu_tri" | translate}}:<app-field-template form_id='6034' [(model)]='benhAn.HUONG_DIEU_TRI' name='Hướng điều trị'></app-field-template></h3>
+        </li>
+      </ul>
+          <div *ngIf='showField?.BENH_AN_CHAN_TAY_MIENG === true' style='text-align: left'>
+            <mat-checkbox class='m-r-32' [(ngModel)]='benhAn.OXY'>{{"hoi_benh_chan_tay_mieng.oxy" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='benhAn.CHONG_SOC'>{{"hoi_benh_chan_tay_mieng.chong_soc" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='benhAn.DIEU_TRI_CAO_HA'>{{"hoi_benh_chan_tay_mieng.dieu_tri_cao_ha" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='benhAn.AN_THAN'>{{"hoi_benh_chan_tay_mieng.an_than" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='benhAn.Y_GLOBULIN'>{{"hoi_benh_chan_tay_mieng.γ_globulin" | translate}}</mat-checkbox>
+            <mat-checkbox class='m-r-32' [(ngModel)]='benhAn.NHAP_ICU'>{{"hoi_benh_chan_tay_mieng.nhap_icu" | translate}}</mat-checkbox>
+          </div>
+          <div fxLayout='row' class='form-field-full' *ngIf='showField?.TEXT_HUONG_DIEU_TRI !== false'>
+            <mat-form-field appearance='outline'>
+              <mat-label *ngIf='showField?.BENH_AN_CHAN_TAY_MIENG === true'>{{"khac" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"
+                        [(ngModel)]='benhAn.HUONG_DIEU_TRI'>
+            </textarea>
+            </mat-form-field>
+          </div>
+          <div>
+            <div *ngIf='showField?.PHUONG_PHAP_CHINH === true' class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{"hoi_benh_san_khoa.kham_benh.phuong_phap_chinh" | translate}}:</mat-label>
+                <input matInput [(ngModel)]='benhAn.PHUONG_PHAP_CHINH'>
+              </mat-form-field>
+            </div>
+            <ng-container *ngIf='showField?.HUONG_DIEU_TRI_BA_MAT_LAC_SUP_MI === true'>
+              <div fxLayout='row' class='form-field-full'>
+                <mat-form-field appearance='outline'>
+                  <mat-label>- {{"phieu_yhct_noi_tru.che_do_an_uong" | translate}}:</mat-label>
+                  <input matInput [(ngModel)]='benhAn.CHE_DO_AN_UONG'>
+                </mat-form-field>
+              </div>
+              <div fxLayout='row' class='form-field-full'>
+              <mat-form-field appearance='outline'>
+                <mat-label>- {{"phieu_yhct_noi_tru.che_do_cham_soc" | translate}}:</mat-label>
+                <input matInput [(ngModel)]='benhAn.CHE_DO_CHAM_SOC'>
+              </mat-form-field>
+            </div>
+            </ng-container>
+          </div>
+        </div>
+        <div fxLayout='row' *ngIf="isBenhAnNoiKhoa === true">
+          <app-select label='{{"hoi_benh_noi_khoa.kham_benh.bs_lam_benh_an" | translate}}' [(model)]='benhAn.BAC_SI_LAM_BENH_AN'
+                        category='cbyt' [resetTo]='null'></app-select>
+        </div>
+
+        <div *ngIf='showField?.CAC_VAN_DE_KHIEM_KHUYET ===true'>
+          <h2 fxLayout='row'>{{"title.cac_van_de_khiem_khuyet" | translate}}:</h2>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5"
+                      [(ngModel)]='benhAn.CAC_VAN_DE_KHIEM_KHUYET'>
+            </textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div *ngIf='showField?.MUC_DICH_DIEU_TRI_PHCN ===true'>
+          <h2 fxLayout='row'>{{"title.muc_dich_dieu_tri_phcn" | translate}}:</h2>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+            <textarea matInput cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5"
+                      [(ngModel)]='benhAn.MUC_DICH_DIEU_TRI_PHCN'>
+            </textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row' *ngIf="showField?.TRUYEN_MAU === true">
+          <table style='width: 100%;margin: 5px 0'>
+            <tr>
+              <th>Truyền máu</th>
+              <th>Số lần</th>
+            </tr>
+            <tr *ngFor='let item of listTruyenMau; index as i'>
+              <td style="width: 70%;text-align: left">{{item.TEN}}</td>
+              <td style="width: 30%">
+                <mat-form-field appearance='outline'>
+                  <input matInput type="number" [(ngModel)]='item.SO_LAN' min='0' autocomplete='off'>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div fxLayout='row'>
+          <div fxFlex='33'>
+            <mat-checkbox labelPosition='before' style='float: left' *ngIf="showField?.PHAN_UNG_KHI_TRUYEN_MAU === true"
+                          [(ngModel)]='benhAn.CAC_PHAN_UNG_KHI_TRUYEN_MAU'
+                          (ngModelChangeDebounced)="handle($event)">Các phản ứng khi truyền máu</mat-checkbox>
+          </div>
+          <div fxFlex='67' *ngIf="benhAn.CAC_PHAN_UNG_KHI_TRUYEN_MAU === true">
+            <div fxFlex='8' style='margin-top: 4px'>Loại:</div>
+            <div fxFlex='92' style='text-align: left'>
+              <mat-checkbox labelPosition='before' [(ngModel)]='benhAn.MAN_NGUA'><i>1. Mẩn ngứa</i></mat-checkbox>
+              <mat-checkbox labelPosition='before' [(ngModel)]='benhAn.SOT_RET_RUN'><i>2. Sốt rét run</i></mat-checkbox>
+              <mat-checkbox labelPosition='before' [(ngModel)]='benhAn.CHOANG_PHAN_VE'><i>3. Choáng phản vệ</i></mat-checkbox>
+              <mat-checkbox labelPosition='before' [(ngModel)]='benhAn.KHAC'><i>4. Khác</i></mat-checkbox>
+            </div>
+          </div>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,145 @@
+<mat-card appearance="outlined">
+<!--  <form [formGroup]="pharmaTestForm" fxLayout="column" fxLayoutGap="24px" class="ivf-prescription-listing">-->
+  <div class="table-container" style="overflow: auto;">
+    <table>
+      <tr>
+        <th style="width:3%"></th>
+        <th style="width:3%">{{'nav.print'|translate}}</th>
+        <th style="width:13%">{{ 'phieu_thu_phan_ung_thuoc.thoi_diem_thu' | translate }}</th>
+        <th style="width:13%">{{ 'phieu_thu_phan_ung_thuoc.hc_thuoc_hl_dv' | translate }}</th>
+        <th style="width:8%">{{ 'phieu_thu_phan_ung_thuoc.so_lo' | translate }}</th>
+        <th style="width:8%">{{ 'phieu_thu_phan_ung_thuoc.phuong_phap_thu' | translate }}</th>
+        <th style="width:8%">{{ 'phieu_thu_phan_ung_thuoc.nguoi_thu' | translate }}</th>
+        <th style="width:8%">{{ 'phieu_thu_phan_ung_thuoc.bs_doc_kq' | translate }}</th>
+        <th style="width:13%">{{ 'phieu_thu_phan_ung_thuoc.thoi_diem_doc' | translate }}</th>
+        <th style="width:8%">{{ 'phieu_thu_phan_ung_thuoc.ket_qua' | translate }}</th>
+        <th style="width:8%">{{ 'phieu_thu_phan_ung_thuoc.chan_doan' | translate }}</th>
+        <th style="width:3%"><!-- actions --></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="{{ 'phieu_thu_phan_ung_thuoc.thoi_diem_thu' | translate }}"
+                   [(ngModel)]="newTestControl.start_date">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)">
+            </mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+          </mat-form-field>
+        </td>
+        <td>
+          <app-select [(model)]='newTestControl.pharma'
+                      category='pharma' [resetTo]='null'></app-select>
+        </td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   [(ngModel)]="newTestControl.so_lo">
+          </mat-form-field>
+        </td>
+        <td>
+          <app-select [(model)]='newTestControl.phuongphap'
+                      category='way_to_use' [resetTo]='null'></app-select>
+        </td>
+        <td>
+          <app-select [(model)]='newTestControl.nguoithu'
+                      category='cbyt' [resetTo]='null'></app-select>
+        </td>
+        <td>
+          <app-select [(model)]='newTestControl.doctor'
+                      category='cbyt' [resetTo]='null'></app-select>
+        </td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input matInput [ngxMatDatetimePicker]="pickerEnd" placeholder="{{ 'phieu_thu_phan_ung_thuoc.thoi_diem_doc' | translate }}"
+                   [(ngModel)]="newTestControl.end_date">
+            <mat-datepicker-toggle matSuffix [for]="$any(pickerEnd)">
+            </mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #pickerEnd></ngx-mat-datetime-picker>
+          </mat-form-field>
+        </td>
+        <td>
+          <app-select [(model)]='newTestControl.result'
+                      [useAPI]='false'
+                      [listItems]='listResult' [resetTo]='null'></app-select>
+        </td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   [(ngModel)]="newTestControl.chan_doan">
+          </mat-form-field>
+        </td>
+        <td class="button-container">
+          <button type="button" (click)="addPharmaTest()" mat-button class=" add btn mat-blue-hn"
+                  [title]="'tooltip.add_pharma_test' | translate">
+            <i class="fa fa-plus"></i>
+          </button>
+        </td>
+      </tr>
+      <tr *ngFor="let pharmaTest of pharmaTestList; let index = index">
+        <td>{{index+1}}</td>
+        <td class='text-center'><mat-checkbox class='m-r-0'
+                                              [(ngModel)]='indexesToPrint[index]'></mat-checkbox></td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="{{ 'phieu_thu_phan_ung_thuoc.thoi_diem_thu' | translate }}"
+                   [(ngModel)]="pharmaTest.start_date">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)">
+            </mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+          </mat-form-field>
+        </td>
+        <td>
+          <app-select [(model)]='pharmaTest.pharma'
+                      category='pharma' [resetTo]='null'></app-select>
+        </td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   [(ngModel)]="pharmaTest.so_lo">
+          </mat-form-field>
+        </td>
+        <td>
+          <app-select [(model)]='pharmaTest.phuongphap'
+                      category='way_to_use' [resetTo]='null'></app-select>
+        </td>
+        <td>
+          <app-select [(model)]='pharmaTest.nguoithu'
+                      category='cbyt' [resetTo]='null'></app-select>
+        </td>
+        <td>
+          <app-select [(model)]='pharmaTest.doctor'
+                      category='cbyt' [resetTo]='null'></app-select>
+        </td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input matInput [ngxMatDatetimePicker]="pickerEnd" placeholder="{{ 'phieu_thu_phan_ung_thuoc.thoi_diem_doc' | translate }}"
+                   [(ngModel)]="pharmaTest.end_date">
+            <mat-datepicker-toggle matSuffix [for]="$any(pickerEnd)">
+            </mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #pickerEnd></ngx-mat-datetime-picker>
+          </mat-form-field>
+        </td>
+        <td>
+          <app-select [(model)]='pharmaTest.result'
+                      [useAPI]='false'
+                      [listItems]='listResult' [resetTo]='null'></app-select>
+        </td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   [(ngModel)]="pharmaTest.chan_doan">
+          </mat-form-field>
+        </td>
+        <td class="button-container">
+          <button type="button" (click)="deletePharmaTest(index)" mat-button class="delete btn mat-red-hn"
+                  [title]="'tooltip.delete_pharma_test' | translate">
+            <i  class="fa fa-times"></i>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</mat-card>
+

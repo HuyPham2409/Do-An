@@ -1,0 +1,82 @@
+<div class='matero-row ly-do-vao-vien' fxLayout='row'>
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div fxLayout='column'>
+          <h2 class="m-b-4" *ngIf='showField?.TITLE_BENH_AN !== false' fxLayout='row'>{{counter_benhAn}}{{"emr.exam" | translate}}</h2>
+          <ul class="p-l-0">
+            <li class="m-l-16" *ngIf="ID_BENH_AN !== 27">
+            <h3 style=" text-transform: uppercase;" class="m-b-0" style="font-size:18px; font-family: Arial, Helvetica, sans-serif; font-weight: 600;" *ngIf='showField?.TITLE_LY_DO_VAO_VIEN !== false && ID_BENH_AN !== 27'>{{'hoi_benh_noi_khoa.kham_benh.ly_do_vao_vien'|translate}}</h3>
+            <h3 *ngIf='showField?.TITLE_LY_DO_DI_KHAM === true'>{{'hoi_benh_noi_khoa.kham_benh.ly_do_di_kham'|translate}}</h3>
+            <h3 *ngIf='showField?.TITLE_LY_DO_VAO_TRAM === true'>{{'hoi_benh_noi_khoa.kham_benh.ly_do_vao_tram'|translate}}</h3>
+            <h3 *ngIf='showField?.TITLE_LY_DO_VV_NT === true'>{{'benh_an_ngoai_tru_ham_mat.ly_do_vao_vien'|translate}}</h3>
+            </li>
+          </ul>
+          <h3 style=" text-transform: uppercase;" class="m-b-4" *ngIf='showField?.TITLE_LY_DO_VAO_VIEN !== false && ID_BENH_AN === 27' fxLayout='row'>II. Lý do vào viện</h3>
+          <div class='row' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+            <div class='col' *ngIf='showField?.LY_DO_VAO_VIEN !== false'>
+              <mat-form-field class='full-width' appearance='outline'>
+                <mat-label></mat-label>
+                <input matInput [(ngModel)]='ldvv.LY_DO_VAO_VIEN'>
+              </mat-form-field>
+            </div>
+            <div class='col-3' *ngIf='showField?.VAO_VIEN_THEO_NGAY_BENH === true'>
+              <mat-form-field class='full-width' appearance='outline'>
+                <mat-label>{{'hoi_benh_noi_khoa.kham_benh.vao_ngay_thu' | translate}}</mat-label>
+                <input matInput [(ngModel)]='ldvv.VAO_VIEN_THEO_NGAY_BENH' type='number' min='0'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout='row' *ngIf='showField?.LY_DO_VAO_VIEN_BA_MAT === true'>
+            <mat-checkbox labelPosition='before' [(ngModel)]='ldvv.LAC'>Lác</mat-checkbox>
+            <mat-checkbox labelPosition='before' [(ngModel)]='ldvv.SUP_MI'>Sụp mi</mat-checkbox>
+            <mat-checkbox labelPosition='before' [(ngModel)]='ldvv.KHAC'>Khác</mat-checkbox>
+          </div>
+          <div class='row' *ngIf='showField?.NGUYEN_NHAN === true'>
+            <label class='col-3'>- {{'emr.nguyen_nhan'|translate}}:</label>
+            <div class='col-4 matero-col'>
+              <mat-radio-group class='row' [(ngModel)]="ldvv.NGUYEN_NHAN_VV" (click)="reset('MAC_PHAI')">
+                <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.bam_sinh'|translate}}</mat-radio-button>
+                <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.mac_phai'|translate}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div *ngIf='ldvv.NGUYEN_NHAN_VV === 1' class='col-5'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.tu_bao_gio"| translate}}:</mat-label>
+                <input matInput [matDatepicker]="picker"
+                       (ngModelChange)="onDate($event,'THOI_GIAN_MAC_BENH')"
+                       [(ngModel)]="ldvv.THOI_GIAN_MAC_BENH">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='row' *ngIf='showField?.TRIEU_CHUNG_CHINH === true'>
+            <label class='col-3'>- {{'emr.trieu_chung_chinh'|translate}}:</label>
+            <div class='col-8'>
+              <mat-radio-group class='row' [(ngModel)]="ldvv.TRIEU_CHUNG_CHINH" >
+                <mat-radio-button class='col-3' *ngFor='let ttc of listTrieuChung' style='width: 30%; float: left; margin: 5px 0' [value]="ttc.ID ">{{ttc.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class='row' *ngIf="showField?.CHECKBOX_DIEU_TRI === true">
+            <label class='col-3'>- {{'emr.da_dieu_tri'|translate}}:</label>
+            <div class='col-4 m-y-8'>
+              <div class='checkbox-group row'>
+                <mat-checkbox *ngIf="showField?.CHECK_BOX_NOI_KHOA !== false" class="col-6 m-r-0 d-flex example-margin" [(ngModel)]="ldvv.CHECK_BOX_NOI_KHOA">{{'emr.noi_khoa'|translate}}</mat-checkbox>
+                <mat-checkbox *ngIf="showField?.CHECK_BOX_PHAU_THUAT !== false" class="col-6 m-r-0 d-flex example-margin" [(ngModel)]="ldvv.CHECK_BOX_PHAU_THUAT" (click)="reset('PHAU_THUAT')">{{'so_ket_dieu_tri.phau_thuat'|translate}}</mat-checkbox>
+              </div>
+            </div>
+            <div *ngIf="ldvv.CHECK_BOX_PHAU_THUAT === true" class='col-5'>
+              <mat-form-field class='full-width' appearance='outline'>
+                <mat-label>{{'so_ket_dieu_tri.ten_phau_thuat' | translate}}:</mat-label>
+                <input matInput [(ngModel)]='ldvv.TEN_PHAU_THUAT'>
+              </mat-form-field>
+            </div>
+          </div>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

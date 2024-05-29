@@ -1,0 +1,1008 @@
+<div class='matero-row kham-mat-tre-em' fxLayout='row'>
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div fxLayout='column'>
+          <div  fxLayout='row' class='m-t-4'>
+            <h1>X. {{"hoi_benh_noi_khoa.kham_benh.title" | translate}}:</h1>
+          </div>
+          <h1 class='col-12 row m-8'>
+            <strong>1. {{'hoi_benh_noi_khoa.kham_benh.benh_chuyen_khoa'|translate}}:</strong>
+          </h1>
+          <app-thi-luc class='col-12 p-x-0'
+                       [patientInfo]='patientInfo'
+                       [tenBenhAn]='tenBenhAn'
+          ></app-thi-luc>
+
+          <div class='row' >
+            <label class='col-3 p-t-8 p-l-16 text-left'>- {{'kham_mat.van_nhan_ngoai_lai'|translate}}:</label>
+            <div class='col-9'>
+              <div class='col-12 row'>
+                <label class='col-1  p-t-8'>{{'kham_mat.mp'|translate}}:</label>
+                <div class='col-5 matero-col'>
+                  <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.VAN_NHAN_NGOAI_LAI.BENH_LY">
+                    <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0' (click)='resetBenhLy("ngoaiLaiMatPhai")'>{{'emr.binh_thuong'|translate}}</mat-radio-button>
+                    <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.benh_ly'|translate}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngIf='matTreEm.MAT_PHAI.VAN_NHAN_NGOAI_LAI.BENH_LY === 1' class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.VAN_NHAN_NGOAI_LAI.TEN_BENH_LY'></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class='col-12 row'>
+                <label class='col-1  p-t-8'>{{'kham_mat.mt'|translate}}:</label>
+                <div class='col-5 matero-col'>
+                  <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.VAN_NHAN_NGOAI_LAI.BENH_LY">
+                    <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0' (click)='resetBenhLy("ngoaiLaiMatTrai")'>{{'emr.binh_thuong'|translate}}</mat-radio-button>
+                    <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.benh_ly'|translate}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngIf='matTreEm.MAT_TRAI.VAN_NHAN_NGOAI_LAI.BENH_LY === 1' class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.VAN_NHAN_NGOAI_LAI.TEN_BENH_LY'></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='row' >
+            <label class='col-3 p-t-8 p-l-16 text-left'>- {{'kham_mat.van_nhan_noi_tai'|translate}}:</label>
+            <div class='col-9'>
+              <div class='col-12 row'>
+                <label class='col-1 p-t-8'>{{'kham_mat.mp'|translate}}:</label>
+                <div class='col-5 matero-col'>
+                  <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.VAN_NHAN_NOI_TAI.BENH_LY">
+                    <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0' (click)='resetBenhLy("noiTaiMatPhai")'>{{'emr.binh_thuong'|translate}}</mat-radio-button>
+                    <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.benh_ly'|translate}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngIf='matTreEm.MAT_PHAI.VAN_NHAN_NOI_TAI.BENH_LY === 1' class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.VAN_NHAN_NOI_TAI.TEN_BENH_LY'></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class='col-12 row'>
+                <label class='col-1 p-t-8'>{{'kham_mat.mt'|translate}}:</label>
+                <div class='col-5 matero-col'>
+                  <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.VAN_NHAN_NOI_TAI.BENH_LY">
+                    <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0' (click)='resetBenhLy("noiTaiMatTrai")'>{{'emr.binh_thuong'|translate}}</mat-radio-button>
+                    <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.benh_ly'|translate}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngIf='matTreEm.MAT_TRAI.VAN_NHAN_NOI_TAI.BENH_LY === 1' class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.VAN_NHAN_NOI_TAI.TEN_BENH_LY'></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='row'>
+            <label class='col-3 p-t-8 p-l-16 text-left'>- {{'kham_mat.rung_giat_nhan_cau'|translate}}:</label>
+            <div class='col-9'>
+              <div class='col-12 row'>
+                <div class='col-1'></div>
+                <div class='col-5 matero-col'>
+                  <mat-radio-group class='row' [(ngModel)]="matTreEm.RUNG_GIAT_NHAN_CAU.BENH_LY">
+                    <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0' (click)='resetBenhLy("rungGiatNhanCau")'>{{'emr.khong'|translate}}</mat-radio-button>
+                    <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngIf='matTreEm.RUNG_GIAT_NHAN_CAU.BENH_LY === 1' class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                    <textarea matInput [(ngModel)]='matTreEm.RUNG_GIAT_NHAN_CAU.TEN_BENH_LY'></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='table m-t-8'>
+            <table class='col-12'>
+              <tr>
+                <th></th>
+                <th>{{'kham_mat.mat_phai'|translate}}</th>
+                <th>{{'kham_mat.mat_trai'|translate}}</th>
+              </tr>
+
+<!--              Mi mắt-->
+              <tr>
+                <td class='left-text'><strong>1.{{'kham_mat.mi_mat'|translate}}</strong></td>
+                <td style='width: 35%'></td>
+                <td style='width: 35%'></td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.quam'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.MI_MAT.QUAM">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.MI_MAT.QUAM">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.epicanthus'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.MI_MAT.EPICANTHUS">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.MI_MAT.EPICANTHUS">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.sup_mi'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.MI_MAT.SUP_MI">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.MI_MAT.SUP_MI">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.u'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.MI_MAT.U">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.MI_MAT.U">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.khac'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.MI_MAT.KHAC'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.MI_MAT.KHAC'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+<!--              Lệ đạo-->
+              <tr>
+                <td class='left-text'><strong>2.{{'kham_mat.le_dao'|translate}}</strong></td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.LE_DAO'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.LE_DAO'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+<!--              Kết mạc-->
+              <tr>
+                <td class='left-text'><strong>3.{{'kham_mat.ket_mac'|translate}}</strong></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.cuong_tu'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.KET_MAC.CUONG_TU">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.KET_MAC.CUONG_TU">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.xuat_huyet'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.KET_MAC.XUAT_HUYET">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.KET_MAC.XUAT_HUYET">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.xuat_tiet'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.KET_MAC.XUAT_TIET">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.KET_MAC.XUAT_TIET">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.u'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.KET_MAC.U">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.KET_MAC.U">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.khac'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.KET_MAC.KHAC'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.KET_MAC.KHAC'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+<!--              Giác mạc-->
+              <tr>
+                <td class='left-text'><strong>4.{{'kham_mat.giac_mac'|translate}}</strong></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.tinh_trang_trong_suot'|translate}}</td>
+                <td>
+                  <div>
+                    <mat-radio-group [(ngModel)]="matTreEm.MAT_PHAI.GIAC_MAC.TINH_TRANG_TRONG_SUOT">
+                      <mat-radio-button class='col-12' [value]="0" style=' margin: 5px 0' (click)='resetBenhLy("giacMacPhaiTrong")'>{{'kham_mat.trong'|translate}}</mat-radio-button>
+                      <div class='col-12 row'>
+                        <mat-radio-button class='col-5' [value]="1" style=' margin: 5px 0' (click)='resetBenhLy("giacMacPhaiSeo")'>{{'kham_mat.seo'|translate}}</mat-radio-button>
+                        <div *ngIf='matTreEm.MAT_PHAI.GIAC_MAC.TINH_TRANG_TRONG_SUOT === 1' class='col-7'>
+                          <mat-form-field appearance='outline' class='full-width'>
+                            <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.GIAC_MAC.CHI_TIET_TINH_TRANG_TRONG_SUOT.CHI_TIET_SEO'></textarea>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class='col-12 row'>
+                        <mat-radio-button class='col-5' [value]="2" style=' margin: 5px 0' (click)='resetBenhLy("giacMacPhaiLoanDuong")'>{{'kham_mat.loan_duong'|translate}}</mat-radio-button>
+                        <div *ngIf='matTreEm.MAT_PHAI.GIAC_MAC.TINH_TRANG_TRONG_SUOT === 2' class='col-7'>
+                          <mat-form-field appearance='outline' class='full-width'>
+                            <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.GIAC_MAC.CHI_TIET_TINH_TRANG_TRONG_SUOT.CHI_TIET_LOAN_DUONG'></textarea>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class='col-12 row'>
+                        <mat-radio-button class='col-5' [value]="3" style=' margin: 5px 0' (click)='resetBenhLy("giacMacPhaiThaiHoa")'>{{'kham_mat.thai_hoa'|translate}}</mat-radio-button>
+                        <div *ngIf='matTreEm.MAT_PHAI.GIAC_MAC.TINH_TRANG_TRONG_SUOT === 3' class='col-7'>
+                          <mat-form-field appearance='outline' class='full-width'>
+                            <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.GIAC_MAC.CHI_TIET_TINH_TRANG_TRONG_SUOT.CHI_TIET_THOAI_HOA'></textarea>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <mat-radio-group [(ngModel)]="matTreEm.MAT_TRAI.GIAC_MAC.TINH_TRANG_TRONG_SUOT">
+                      <mat-radio-button class='col-12' [value]="0" style=' margin: 5px 0' (click)='resetBenhLy("giacMacTraiTrong")'>{{'kham_mat.trong'|translate}}</mat-radio-button>
+                      <div class='col-12 row'>
+                        <mat-radio-button class='col-5' [value]="1" style=' margin: 5px 0' (click)='resetBenhLy("giacMacTraiSeo")'>{{'kham_mat.seo'|translate}}</mat-radio-button>
+                        <div *ngIf='matTreEm.MAT_TRAI.GIAC_MAC.TINH_TRANG_TRONG_SUOT === 1' class='col-7'>
+                          <mat-form-field appearance='outline' class='full-width'>
+                            <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.GIAC_MAC.CHI_TIET_TINH_TRANG_TRONG_SUOT.CHI_TIET_SEO'></textarea>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class='col-12 row'>
+                        <mat-radio-button class='col-5' [value]="2" style=' margin: 5px 0' (click)='resetBenhLy("giacMacTraiLoanDuong")'>{{'kham_mat.loan_duong'|translate}}</mat-radio-button>
+                        <div *ngIf='matTreEm.MAT_TRAI.GIAC_MAC.TINH_TRANG_TRONG_SUOT === 2' class='col-7'>
+                          <mat-form-field appearance='outline' class='full-width'>
+                            <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.GIAC_MAC.CHI_TIET_TINH_TRANG_TRONG_SUOT.CHI_TIET_LOAN_DUONG'></textarea>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class='col-12 row'>
+                        <mat-radio-button class='col-5' [value]="3" style=' margin: 5px 0' (click)='resetBenhLy("giacMacTraiThoaiHoa")'>{{'kham_mat.thai_hoa'|translate}}</mat-radio-button>
+                        <div *ngIf='matTreEm.MAT_TRAI.GIAC_MAC.TINH_TRANG_TRONG_SUOT === 3' class='col-7'>
+                          <mat-form-field appearance='outline' class='full-width'>
+                            <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.GIAC_MAC.CHI_TIET_TINH_TRANG_TRONG_SUOT.CHI_TIET_THOAI_HOA'></textarea>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.phu_ne_bong_bieu_mo'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.GIAC_MAC.PHU_NE_BONG_BIEU_MO'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.GIAC_MAC.PHU_NE_BONG_BIEU_MO'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.u_vi_tri_kick_thuoc'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.GIAC_MAC.U'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.GIAC_MAC.U'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.tua_sl_vt'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.GIAC_MAC.TUA'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.GIAC_MAC.TUA'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.loet_kt_hd'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.GIAC_MAC.LOET'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.GIAC_MAC.LOET'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.di_tat'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.GIAC_MAC.DI_TAT'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.GIAC_MAC.DI_TAT'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.duong_kinh_gm'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.GIAC_MAC.DUONG_KINH'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.GIAC_MAC.DUONG_KINH'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.vung_ria'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.GIAC_MAC.VUNG_RIA'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.GIAC_MAC.VUNG_RIA'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.khac'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.GIAC_MAC.KHAC'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.GIAC_MAC.KHAC'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+<!--              Củng mạc-->
+              <tr>
+                <td class='left-text'><strong>5.{{'kham_mat.cung_mac'|translate}}</strong></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.dan_loi'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.CUNG_MAC.DAN_LOI">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.CUNG_MAC.DAN_LOI">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.seo_mo'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.CUNG_MAC.SEO_MO">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.CUNG_MAC.SEO_MO">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.cuong_tu'|translate}} ({{'kham_mat.toa_lan_khu_tru'|translate}})</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.CUNG_MAC.CUONG_TU'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.CUNG_MAC.CUONG_TU'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.viem'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.CUNG_MAC.VIEM'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.CUNG_MAC.VIEM'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.khac'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.CUNG_MAC.KHAC'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.CUNG_MAC.KHAC'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+<!--              Tiền phòng-->
+              <tr>
+                <td class='left-text'><strong>6.{{'kham_mat.tien_phong'|translate}}</strong></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.do_sau'|translate}} ({{'kham_mat.p_p_smith'|translate}})</td>
+                <td>
+                  <mat-form-field appearance='outline' class='row full-width p-x-8'>
+                    <input matInput [(ngModel)]='matTreEm.MAT_PHAI.TIEN_PHONG.DO_SAU'>
+                    <div>mm</div>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='row full-width p-x-8'>
+                    <input matInput [(ngModel)]='matTreEm.MAT_TRAI.TIEN_PHONG.DO_SAU'>
+                    <div>mm</div>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.tyndall'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.TIEN_PHONG.TYNDALL'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.TIEN_PHONG.TYNDALL'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.mu'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.TIEN_PHONG.MU">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.TIEN_PHONG.MU">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.mau'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.TIEN_PHONG.MAU">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.TIEN_PHONG.MAU">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.khac'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.TIEN_PHONG.GOC_TIEN_PHONG'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.TIEN_PHONG.GOC_TIEN_PHONG'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+<!--              Móng mát, thể mi-->
+              <tr>
+                <td class='left-text'><strong>7.{{'kham_mat.mong_mat_the_mi'|translate}}</strong></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'emr.mau_sac'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.MONG_MAT_THE_MI.MAU_SAC'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.MONG_MAT_THE_MI.MAU_SAC'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.tinh_trang_thai_hoa'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.MONG_MAT_THE_MI.TINH_TRANG_THAI_HOA">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.MONG_MAT_THE_MI.TINH_TRANG_THAI_HOA">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.tan_mach'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.MONG_MAT_THE_MI.TAN_MACH">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.MONG_MAT_THE_MI.TAN_MACH">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.cam_giac_the_mi'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.MONG_MAT_THE_MI.CAM_GIAC_THE_MI">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.MONG_MAT_THE_MI.CAM_GIAC_THE_MI">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.u'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.MONG_MAT_THE_MI.U">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.MONG_MAT_THE_MI.U">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.di_dang'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.MONG_MAT_THE_MI.DI_DANG">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.MONG_MAT_THE_MI.DI_DANG">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.co'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.khong'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+
+<!--              Đồng tử-->
+              <tr>
+                <td class='left-text'><strong>8.{{'kham_mat.dong_tu'|translate}}</strong></td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.DONG_TU.HINH_DANG_DONG_TU">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'kham_mat.tron'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'kham_mat.meo'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.DONG_TU.HINH_DANG_DONG_TU">
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'kham_mat.tron'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'kham_mat.meo'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.duong_kinh'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.DONG_TU.DUONG_KINH'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.DONG_TU.DUONG_KINH'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.vien_sac_to'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.DONG_TU.VIEN_SAC_TO'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.DONG_TU.VIEN_SAC_TO'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.phan_xa'|translate}}</td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.DONG_TU.PHAN_XA.ID">
+                      <mat-radio-button *ngFor='let px of phanXa; let i = index' [ngClass]='{"col-5": i===0, "col-4": i===1, "col-3": i===2}' [value]="px.ID"  style=' margin: 5px 0'>{{px.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.DONG_TU.PHAN_XA.ID">
+                      <mat-radio-button *ngFor='let px of phanXa; let i = index' [ngClass]='{"col-5": i===0, "col-4": i===1, "col-3": i===2}' [value]="px.ID" style=' margin: 5px 0'>{{px.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.di_dang'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.DONG_TU.DI_DANG'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.DONG_TU.DI_DANG'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+<!--              Thể thủy tinh-->
+              <tr>
+                <td class='left-text'><strong>9.{{'kham_mat.the_tinh_thuy'|translate}}</strong></td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.THE_THUY_TINH.ID">
+                      <mat-radio-button class='col-6' *ngFor='let ttt of tinhTrangTheTT' [value]="ttt.ID" style=' margin: 5px 0'>{{ttt.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.THE_THUY_TINH.ID">
+                      <mat-radio-button class='col-6' *ngFor='let ttt of tinhTrangTheTT' [value]="ttt.ID" style=' margin: 5px 0'>{{ttt.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+
+<!--              Dịch kính-->
+              <tr>
+                <td class='left-text'><strong>10.{{'kham_mat.dich_kich'|translate}}</strong></td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.DICH_KINH.BENH_LY">
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.binh_thuong'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.benh_ly'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  <div *ngIf='matTreEm.MAT_PHAI.DICH_KINH.BENH_LY === 1' class='col-12'>
+                    <mat-form-field appearance='outline' class='full-width'>
+                      <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                      <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.DICH_KINH.TEN_BENH_LY'></textarea>
+                    </mat-form-field>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.DICH_KINH.BENH_LY">
+                      <mat-radio-button class='col-6' [value]="0" style=' margin: 5px 0'>{{'emr.binh_thuong'|translate}}</mat-radio-button>
+                      <mat-radio-button class='col-6' [value]="1" style=' margin: 5px 0'>{{'emr.benh_ly'|translate}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  <div *ngIf='matTreEm.MAT_TRAI.DICH_KINH.BENH_LY === 1' class='col-12'>
+                    <mat-form-field appearance='outline' class='full-width'>
+                      <mat-label>{{"emr.ten_benh_ly"| translate}}:</mat-label>
+                      <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.DICH_KINH.TEN_BENH_LY'></textarea>
+                    </mat-form-field>
+                  </div>
+                </td>
+              </tr>
+
+<!--              Đáy mắt-->
+              <tr>
+                <td class='left-text'><strong>11.{{'kham_mat.day_mat'|translate}}</strong></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.vong_mac'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.DAY_MAT.VONG_MAC'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.DAY_MAT.VONG_MAC'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.hoang_diem'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.DAY_MAT.HOANG_DIEM'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.DAY_MAT.HOANG_DIEM'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.mach_mau'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.DAY_MAT.MACH_MAU'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.DAY_MAT.MACH_MAU'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.dia_thi'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.DAY_MAT.DIA_THI'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.DAY_MAT.DIA_THI'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class='left-text'>- {{'kham_mat.u'|translate}}</td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_PHAI.DAY_MAT.U'></textarea>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance='outline' class='full-width p-x-8'>
+                    <textarea matInput [(ngModel)]='matTreEm.MAT_TRAI.DAY_MAT.U'></textarea>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+<!--              Nhãn cầu-->
+              <tr>
+                <td class='left-text'><strong>12.{{'kham_mat.nhan_cau'|translate}}</strong></td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_PHAI.NHAN_CAU.ID">
+                      <mat-radio-button class='col-4' *ngFor='let ttnc of tinhTrangNhanCau' [value]="ttnc.ID" style=' margin: 5px 0'>{{ttnc.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+                <td>
+                  <div class='matero-col'>
+                    <mat-radio-group class='row' [(ngModel)]="matTreEm.MAT_TRAI.NHAN_CAU.ID">
+                      <mat-radio-button class='col-4' *ngFor='let ttnc of tinhTrangNhanCau' [value]="ttnc.ID" style=' margin: 5px 0'>{{ttnc.MO_TA}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

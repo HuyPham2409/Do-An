@@ -1,0 +1,195 @@
+<div>
+  <mat-card>
+    <mat-card-content *ngIf='patientInfo'>
+      <div class='row'>
+        <div class='col-6'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.ho_ten_nguoi_benh" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.HO_TEN}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3' >
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.tuoi" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.DO_TUOI}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3' >
+          <mat-form-field class='w-full' *ngIf='patientInfo.GIOI_TINH'>
+            <mat-label>{{ "so_ket_dieu_tri.gioi_tinh" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.GIOI_TINH.MO_TA }}" readonly>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-6'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.khoa" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.parent_name}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.buong" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.room_name}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.giuong" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.in_patient_bed_name}}" readonly>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-12'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "so_ket_dieu_tri.chan_doan" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.examining_diagnosis}}" readonly>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-divider style='margin: 10px 0'></mat-divider>
+  <div class='row'>
+    <div class='col-12 col-lg-4'>
+      <mat-card>
+        <mat-card-content>
+          <h2>{{"bang_theo_doi_benh_nhan_ecmo.list" | translate}}</h2>
+          <div class='scroll-container w-full'>
+            <table class='v1-table list w-full'>
+              <tr>
+                <th>{{'tiem_chung.template.number'|translate}}</th>
+                <th>{{'emr.created_at'|translate}}</th>
+                <th>{{'emr.created_by'|translate}}</th>
+                <th>
+                  <div fxLayoutAlign='center center'>
+                    <button type="button" (click)="addEcmo()" mat-button class="btn-xs mat-blue-hn"
+                            [title]="'tooltip.add_tdcns' | translate">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                  </div>
+                </th>
+              </tr>
+              <tr *ngFor='let cs of ecmo.LIST_ECMO; index as i'
+                  [class.bg-success]='ecmoSelect.isSelected(cs.id)'
+                  (click)='selectEcmo(cs.id)'>
+                <td>{{ i+1}}</td>
+                <td>{{cs.time_moment ? (cs.time_moment | amDateFormat: 'DD/MM/YYYY HH:mm:ss') : ''}}</td>
+                <td>{{cs.created_by}}</td>
+                <td>
+                  <div fxLayoutAlign='center center'>
+                    <button type="button" (click)="removeEcmo(cs.id)" mat-button class="btn-xs mat-red-hn"
+                            [title]="'tooltip.delete_tdcns' | translate">
+                      <i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class='col'>
+      <mat-card [class.disabled]='!newEcmo.id'>
+        <mat-card-content>
+          <h2>{{"bang_theo_doi_benh_nhan_ecmo.phieu_theo_doi" | translate}}</h2>
+          <div class='row'>
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.dieu_duong" | translate}}</mat-label>
+                <input matInput [disabled]='ecmo.DIEU_DUONG.dieu_duong.length > 0' [(ngModel)]='ecmo.DIEU_DUONG.dieu_duong'>
+              </mat-form-field>
+            </div>
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"emr.ngay_gio_1" | translate}}</mat-label>
+                <input matInput [value]='(newEcmo.time_moment | amDateFormat: "DD/MM/YYYY HH:mm:ss")' disabled>
+              </mat-form-field>
+            </div>
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"bang_theo_doi_benh_nhan_ecmo.ci" | translate}}</mat-label>
+                <input matInput [(ngModel)]='newEcmo.CI'>
+              </mat-form-field>
+            </div>
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"bang_theo_doi_benh_nhan_ecmo.co" | translate}}</mat-label>
+                <input matInput [(ngModel)]='newEcmo.CO'>
+              </mat-form-field>
+            </div>
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"bang_theo_doi_benh_nhan_ecmo.luu_luong" | translate}}</mat-label>
+                <input matInput [(ngModel)]='newEcmo.LUU_LUONG'>
+              </mat-form-field>
+            </div>
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"bang_theo_doi_benh_nhan_ecmo.fio2" | translate}}</mat-label>
+                <input matInput [(ngModel)]='newEcmo.FIO2'>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class='row'>
+            <div class='col-6' style='margin-bottom: 5px'>{{"bang_theo_doi_benh_nhan_ecmo.vong_cang_chan" | translate}}:</div>
+            <div class='col-6' style='margin-bottom: 5px'>{{"bang_theo_doi_benh_nhan_ecmo.vong_dui" | translate}}:</div>
+            <div class='col-3'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"bang_theo_doi_benh_nhan_ecmo.phai" | translate}}</mat-label>
+                <input matInput [(ngModel)]='newEcmo.VONG_CANG_CHAN_PHAI' type='number' min='0'>
+                <div matSuffix class='m-t-16'>cm</div>
+              </mat-form-field>
+            </div>
+            <div class='col-3'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"bang_theo_doi_benh_nhan_ecmo.trai" | translate}}</mat-label>
+                <input matInput [(ngModel)]='newEcmo.VONG_CANG_CHAN_TRAI' type='number' min='0'>
+                <div matSuffix class='m-t-16'>cm</div>
+              </mat-form-field>
+            </div>
+            <div class='col-3'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"bang_theo_doi_benh_nhan_ecmo.phai" | translate}}</mat-label>
+                <input matInput [(ngModel)]='newEcmo.VONG_DUI_PHAI' type='number' min='0'>
+                <div matSuffix class='m-t-16'>cm</div>
+              </mat-form-field>
+            </div>
+            <div class='col-3'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"bang_theo_doi_benh_nhan_ecmo.trai" | translate}}</mat-label>
+                <input matInput [(ngModel)]='newEcmo.VONG_DUI_TRAI' type='number' min='0'>
+                <div matSuffix class='m-t-16'>cm</div>
+              </mat-form-field>
+            </div>
+            <div class='col-6'>{{"giay_to_lien_quan.trieu_chung_bien_chung.chay_mau" | translate}}:</div>
+            <div class='col-6'>{{"bang_theo_doi_benh_nhan_ecmo.tinh_trang_duong_nuoi" | translate}}:</div>
+            <div class='col-3'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"kham_benh_mat.vi_tri" | translate}}</mat-label>
+                <input matInput [(ngModel)]='newEcmo.VI_TRI_CHAY_MAU'>
+              </mat-form-field>
+            </div>
+            <div class='col-3'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <mat-label>{{"tiem_chung.so_luong" | translate}}</mat-label>
+                <input matInput [(ngModel)]='newEcmo.SO_LUONG_CHAY_MAU'>
+              </mat-form-field>
+            </div>
+            <div class='col-6'>
+              <mat-form-field appearance='outline' class='full-width'>
+                <textarea matInput [(ngModel)]='newEcmo.TINH_TRANG_DUONG_NUOI'
+                          cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          cdkAutosizeMaxRows="3"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

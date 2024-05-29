@@ -1,0 +1,26 @@
+
+$background-header-table : #e3e3e3;
+h1, p {
+  font-size: 15px;
+}
+
+button{
+  height: 24px;
+  position: relative;
+  top: 0.16em;
+  .fa{
+      position: relative;
+      bottom:0.165em
+  }
+}
+.text{
+  text-align: center;
+}
+.cnpttt{
+  mat-form-field{
+    width: 100%;
+  }
+  .header-table{
+    background: $background-header-table;
+  }
+}

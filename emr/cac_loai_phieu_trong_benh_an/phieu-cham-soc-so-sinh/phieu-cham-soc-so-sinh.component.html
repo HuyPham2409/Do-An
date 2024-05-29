@@ -1,0 +1,219 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <h2>{{"phieu_cham_soc_so_sinh.title" | translate}}</h2>
+      <div fxLayout='row col-12'>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.ho_ten_me_con" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='PHIEU_CHAM_SOC_SO_SINH.HO_TEN_ME_CON'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6 p-b-8 m-t-4' >
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.sex" | translate}}:</mat-label>
+            <input matInput type='text' value="{{patientInfo.GIOI_TINH.MO_TA}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <app-emr-date label='patient.ngay_gio_de'
+                        [(model)]='PHIEU_CHAM_SOC_SO_SINH.ngau_gio_de'
+                        [(dmModel)]='PHIEU_CHAM_SOC_SO_SINH.NGAY_GIO_DE'></app-emr-date>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.buong" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='patientInfo.in_patient_room_name'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.bed" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='patientInfo.in_patient_bed_name'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"title.chan_doan" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='patientInfo.examining_diagnosis'>
+          </mat-form-field>
+        </div>
+        <div class='col-lg-4 col-6'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"patient.msba" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='patientInfo.reception_queue_id'>
+          </mat-form-field>
+        </div>
+
+      </div>
+      <mat-divider style='margin: 10px 0'></mat-divider>
+      <div class='row'>
+        <div class='col-12 col-lg-4'>
+          <mat-card appearance="outlined">
+            <mat-card-content>
+              <h2>{{"phieu_cham_soc_so_sinh.list" | translate}}</h2>
+              <div class='scroll-container w-full'>
+                <table class='v1-table list w-full'>
+                  <tr>
+                    <th>{{'phieu_cham_soc_so_sinh.stt'|translate}}</th>
+                    <th>{{'phieu_cham_soc_so_sinh.thoi_gian_tao'|translate}}</th>
+                    <th>{{'emr.created_by'|translate}}</th>
+                    <th>
+                      <div fxLayoutAlign='center center'>
+                        <button type="button" (click)="addChamsoc()" mat-button class="btn-xs mat-blue-hn"
+                                [title]="'tooltip.add_csss' | translate">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                    </th>
+                  </tr>
+                  <tr *ngFor='let cs of PHIEU_CHAM_SOC_SO_SINH.LIST_CHAM_SOC_SO_SINH; index as i'
+                      [class.bg-success]='chamSocSelect.isSelected(cs.id)'
+                      (click)='selectChamSoc(cs.id)'>
+                    <td>{{ i+1}}</td>
+                    <td>{{cs.time_moment ? (cs.time_moment | amDateFormat: 'DD/MM/YYYY HH:mm:ss') : ''}}</td>
+                    <td>{{cs.created_by}}</td>
+                    <td>
+                      <div fxLayoutAlign='center center'>
+                        <button type="button" (click)="removeChamSoc(cs.id)" mat-button class="btn-xs mat-red-hn"
+                                [title]="'tooltip.delete_tdcns' | translate">
+                          <i class="fa fa-times"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class='col'>
+          <mat-card appearance="outlined" [class.disabled]='!newChamSoc.id'>
+            <mat-card-content>
+              <h2>{{"phieu_cham_soc_so_sinh.thong_tin_cham_soc" | translate}}</h2>
+              <div class='row p-x-8'>
+                <div class='col-6'>
+                  <app-emr-date label='emr.time'
+                                [(model)]='newChamSoc.time_moment'
+                                [(dmModel)]='newChamSoc.THOI_GIAN'></app-emr-date>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.toan_trang" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.TOAN_TRANG'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.da_niem_mac" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.DA_NIEM_MAC'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.nhip_tho" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.NHIP_THO' type='number' min='0'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.nhiet_do" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.NHIET_DO' type='number' min='0'>
+                    <div matSuffix class='m-t-5'>°C </div>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.phan_xa" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.PHAN_XA'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.truong_luc_co" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.TRUONG_LUC_CO'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.bu_me" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.BU_ME'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.non_tro" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.NON_TRO'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.phan_xu" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.PHAN_XU'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.nuoc_tieu" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.NUOC_TIEU'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.thuoc" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.THUOC'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.truyen_dich" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.TRUYEN_DICH'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.cham_soc_khac" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.CHAM_SOC_KHAC'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.bs_dieu_tri" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.BAC_SI_DIEU_TRI' readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout='row'>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.danh_gia" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.DANH_GIA'>
+                  </mat-form-field>
+                </div>
+                <div class='col-6'>
+                  <mat-form-field appearance='outline' class='full-width'>
+                    <mat-label>{{"phieu_cham_soc_so_sinh.ten_dd_hs" | translate}}</mat-label>
+                    <input matInput [(ngModel)]='newChamSoc.TEN_DD_HS' readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<!--<div class='col-lg-4 col-6'></div>-->

@@ -1,0 +1,120 @@
+<div class='matero-row hoi-benh-so-sinh' fxLayout='row'>
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <h1 fxLayout="row" class='m-8 w-full'><strong>II. {{"title.hoi_benh" | translate}}</strong></h1>
+        <div  class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label><i> ({{"benh_an_so_sinh.dien_bien_benh_cua_so_sinh" | translate}})</i></mat-label>
+            <input matInput [(ngModel)]='hoiBenhSoSinh.HOI_BENH'>
+          </mat-form-field>
+        </div>
+        <div fxLayout='row' style='margin-bottom: 5px'><strong>a. {{"benh_an_so_sinh.tinh_hinh_san_phu_trong_khi_de" | translate}}:</strong></div>
+        <div fxLayout='row'>
+          <div fxFlex="49.5" fxFlex.lt-sm="30" class="form-field-full">
+            <app-emr-date label='benh_an_so_sinh.oi_vo'
+                          [(model)]= 'hoiBenhSoSinh.oi_vo_moment'
+                          [(dmModel)]='hoiBenhSoSinh.OI_VO_MOMENT'></app-emr-date>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex="49.5" fxFlex.lt-sm="30" class="form-field-full">
+            <mat-form-field appearance='outline'>
+              <mat-label>- {{"laboratory.semen_chart_form.color" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='hoiBenhSoSinh.MAU_SAC'>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxLayout='row'>
+          <div fxFlex='49.5' style='margin-top: 14px'>
+            <div fxFlex='25' style='margin-top: 1px;text-align: left'>{{"benh_an_so_sinh.cach_de" | translate}}:</div>
+            <div fxFlex='75'>
+              <mat-radio-group [(ngModel)]='hoiBenhSoSinh.CACH_DE.ID'>
+                <mat-radio-button *ngFor='let cd of listCachDe' style='float: left' [value]="cd.ID">{{cd.MO_TA}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <app-emr-date label='benh_an_so_sinh.luc'
+                          [(model)]= 'hoiBenhSoSinh.thoi_gian_de'
+                          [(dmModel)]='hoiBenhSoSinh.THOI_GIAN_DE'></app-emr-date>
+          </div>
+        </div>
+
+        <div fxLayout='row' class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{"benh_an_so_sinh.ly_do_can_thiep" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='hoiBenhSoSinh.LY_DO_CAN_THIEP'>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout='row' style='margin: 5px 0'>
+          <div fxFlex='30' style='text-align: left'><strong>b. {{"benh_an_so_sinh.tinh_trang_so_sinh_khi_ra_doi" | translate}}:</strong></div>
+          <div fxFlex='70'>
+            <mat-radio-group [(ngModel)]='hoiBenhSoSinh.TINH_TRANG_RA_DOI.ID' >
+              <mat-radio-button *ngFor='let ttsskrd of listTinhTrangKhiRaDoi' style='float: left' [value]="ttsskrd.ID">{{ttsskrd.MO_TA}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div fxLayout='row' class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label>{{"benh_an_so_sinh.ho_ten_nguoi_pt" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='hoiBenhSoSinh.HO_TEN_NGUOI_PT'>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout='row'>
+          <div fxFlex='32.67' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"benh_an_so_sinh.apgar_1" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='hoiBenhSoSinh.MOT_PHUT'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='32.67' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"benh_an_so_sinh.apgar_5" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='hoiBenhSoSinh.NAM_PHUT'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='32.67' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"benh_an_so_sinh.apgar_10" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='hoiBenhSoSinh.MUOI_PHUT'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout='row'>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"patient.weight" | translate}} (g):</mat-label>
+              <input matInput [(ngModel)]='hoiBenhSoSinh.CAN_NANG' type='number' min='0'>
+            </mat-form-field>
+          </div>
+          <div fxFlex='1'></div>
+          <div fxFlex='49.5' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"benh_an_so_sinh.tinh_trang_dinh_duong_sau_sinh" | translate}}:</mat-label>
+              <input matInput [(ngModel)]='hoiBenhSoSinh.TINH_TRANG_DINH_DUONG_SAU_SINH'>
+            </mat-form-field>
+          </div>
+        </div>
+        <div style='border: 1px solid #dddddd;border-radius: 5px;padding: 5px 0 5px 5px;margin-top: 5px'>
+          <div fxLayout='row' style='margin-bottom: 5px'><strong>c. {{"benh_an_so_sinh.phuong_phap_hoi_sinh_sau_de" | translate}}:</strong></div>
+          <div fxLayout='row'>
+            <mat-checkbox [(ngModel)]='hoiBenhSoSinh.HUT_DICH' style='width: 10%;text-align:left'>Hút dịch</mat-checkbox>
+            <mat-checkbox [(ngModel)]='hoiBenhSoSinh.XOA_BOP_TIM' style='width: 20%'>Xoa bóp tim</mat-checkbox>
+            <mat-checkbox [(ngModel)]='hoiBenhSoSinh.THO_OXI' style='width: 15%'>Thở Oxi</mat-checkbox>
+            <mat-checkbox [(ngModel)]='hoiBenhSoSinh.DAT_NOI_KHI_QUAN' style='width: 25%'>Đặt nội khí quản</mat-checkbox>
+            <mat-checkbox [(ngModel)]='hoiBenhSoSinh.BOP_BONG_OXI' style='width: 15%'>Bóp bóng Oxi</mat-checkbox>
+            <mat-checkbox [(ngModel)]='hoiBenhSoSinh.KHAC' style='width: 15%'>Khác</mat-checkbox>
+          </div>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

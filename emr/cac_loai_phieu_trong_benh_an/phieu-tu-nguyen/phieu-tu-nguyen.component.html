@@ -1,0 +1,64 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class='row col-12'>
+        <div class='col-6'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "phieu_tu_nguyen.fullname" | translate}}</mat-label>
+            <input matInput value="{{patientInfo?.HO_TEN}}" disabled>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{ "so_ket_dieu_tri.tuoi" | translate}}</mat-label>
+            <input matInput [(ngModel)]='patientInfo.DO_TUOI' disabled>
+          </mat-form-field>
+        </div>
+        <div class='col-3'>
+          <mat-form-field class='w-full' *ngIf='patientInfo.GIOI_TINH'>
+            <mat-label>{{ "so_ket_dieu_tri.gioi_tinh" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.GIOI_TINH.MO_TA}}" disabled>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "patient.address" | translate}}</mat-label>
+            <input matInput value="{{patientInfo?.address1}}" disabled>
+          </mat-form-field>
+        </div>
+        <div class='col-6'>
+          <mat-form-field class='w-full'>
+            <mat-label>{{ "emr.bhyt_number" | translate}}</mat-label>
+            <input matInput value="{{patientInfo?.MA_THE_BHYT}}" disabled>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='row col-12' style='align-items: center'>
+        <div class='col-md-4 col-sm-8' style='align-items: center'>Sau khi nghe Bác sỹ giải thích về bệnh tật của tôi cần phải làm kỹ thuật:</div>
+        <div class='col-md-8 col-sm'>
+          <mat-form-field class='w-full'>
+            <input matInput placeholder='Kỹ thuật' [(ngModel)]='phieuTuNguyen.KY_THUAT' type='text'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='row col-12' style='align-items: center'>
+        <div class='col-md-7 col-sm-12' style='align-items: center'>Để phục vụ tốt cho công tác khám và điều trị cho người bệnh, tôi xin tự nguyện đóng tiền chênh lệch giá (phần BHYT không chi trả). Số tiền chênh lệch là:</div>
+        <div class='col-md-5 col-sm-12'>
+          <mat-form-field class='w-full'>
+            <input matInput placeholder='Số tiền' [(ngModel)]='phieuTuNguyen.SO_TIEN'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='row col-12'>
+        <div class='col-6'>
+          <app-select label='phieu_tu_nguyen.y_ta_hc' [(model)]='phieuTuNguyen.Y_TA_HC'
+                      category='cbyt' [resetTo]='null'></app-select>
+        </div>
+        <div class='col-6'>
+          <app-select label='phieu_tu_nguyen.dd_truc' [(model)]='phieuTuNguyen.DD_TRUC'
+                      category='cbyt' [resetTo]='null'></app-select>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

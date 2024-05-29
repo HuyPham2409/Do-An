@@ -1,0 +1,128 @@
+<app-hanh-chinh
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [patientInfoHis]='patientInfoHis'></app-hanh-chinh>
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class='col-12 p-x-0' style='text-align: left'><strong>{{"benh_an_nao_pha_thai.ly_do_pha_thai" | translate}}:</strong></div>
+      <div fxLayout='row' class='col-12 p-x-0'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label></mat-label>
+          <input matInput [(ngModel)]='BENH_AN_NAO_PHA_THAI.LY_DO_PHA_THAI'>
+        </mat-form-field>
+      </div>
+      <div class='col-12 p-x-0' style='margin-bottom: 5px;text-align: left'><strong>{{"benh_an_nao_pha_thai.tien_su" | translate}}:</strong></div>
+      <div class='col-12 p-x-0' style='text-align: left'><strong>1. {{"title.tien_su_san_phu_khoa" | translate}}:</strong></div>
+      <div class='col-12 m-y-8 p-x-0'>
+        <app-tien-thai-para [tienthaiPara]='BENH_AN_NAO_PHA_THAI.PARA'></app-tien-thai-para>
+      </div>
+     <div fxLayout='row'>
+       <div class='col-4 form-field-full p-l-0'>
+         <mat-form-field appearance='outline'>
+           <mat-label>{{"benh_an_nao_pha_thai.so_con_hien_co" | translate}}:</mat-label>
+           <input matInput [(ngModel)]='BENH_AN_NAO_PHA_THAI.SO_CON_HIEN_CO' type='number' min='0'>
+         </mat-form-field>
+       </div>
+       <div class='col-4 form-field-full'>
+         <mat-form-field appearance='outline'>
+           <mat-label>{{"benh_an_nao_pha_thai.trai" | translate}}:</mat-label>
+           <input matInput [(ngModel)]='BENH_AN_NAO_PHA_THAI.CON_TRAI' type='number' min='0'>
+         </mat-form-field>
+       </div>
+       <div class='col-4 form-field-full p-r-0'>
+         <mat-form-field appearance='outline'>
+           <mat-label>{{"benh_an_nao_pha_thai.gai" | translate}}:</mat-label>
+           <input matInput [(ngModel)]='BENH_AN_NAO_PHA_THAI.CON_GAI' type='number' min='0'>
+         </mat-form-field>
+       </div>
+     </div>
+     <div fxLayout='row'>
+       <div class='col-6 p-l-0'>
+         <mat-form-field appearance='outline' class='full-width'>
+           <mat-label>{{"benh_an_nao_pha_thai.da_phau_thuat_lay_thai" | translate}}:</mat-label>
+           <input matInput [(ngModel)]='BENH_AN_NAO_PHA_THAI.SO_LAN_PHAU_THUAT_LAY_THAI' type='number' min='0'>
+           <div matSuffix class='m-t-16'>lần</div>
+         </mat-form-field>
+       </div>
+       <div class='col-6 p-r-0'>
+         <mat-form-field appearance='outline' class='full-width'>
+           <mat-label>{{"benh_an_nao_pha_thai.nam_phau_thuat_lan_cuoi" | translate}}:</mat-label>
+           <input matInput [(ngModel)]='BENH_AN_NAO_PHA_THAI.NAM_PHAU_THUAT_LAN_CUOI' type='number' min='0'>
+         </mat-form-field>
+       </div>
+     </div>
+      <div fxLayout='row'>
+        <div class='col-4 p-l-0'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"benh_an_nao_pha_thai.cac_phau_thuat_tc_khac" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='BENH_AN_NAO_PHA_THAI.CAC_PHAU_THUAT_TC_KHAC'>
+          </mat-form-field>
+        </div>
+        <div class='col-2'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"year" | translate}}</mat-label>
+            <input matInput [(ngModel)]='BENH_AN_NAO_PHA_THAI.NAM' type='number' min='0'>
+          </mat-form-field>
+        </div>
+        <div class='col-6 p-r-0'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"benh_an_nao_pha_thai.so_lan_da_pha_thai" | translate}}:</mat-label>
+            <input matInput [(ngModel)]='BENH_AN_NAO_PHA_THAI.SO_LAN_DA_PHA_THAI' type='number' min='0'>
+            <div matSuffix class='m-t-16'>lần</div>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout='row' class='col-6 p-l-0'>
+        <app-emr-date class='full-width' label='benh_an_nao_pha_thai.lan_pha_thai_gan_nhat' mode='date'
+          [(model)]='BENH_AN_NAO_PHA_THAI.lan_pha_thai_gan_nhat'
+          [(dmModel)]='BENH_AN_NAO_PHA_THAI.LAN_PHA_THAI_GAN_NHAT'></app-emr-date>
+      </div>
+      <div class='col-12 p-x-0' style='text-align: left'><strong>{{"benh_an_nao_pha_thai.bien_phap_tt_dang_su_dung" | translate}}:</strong></div>
+      <div fxLayout='row' style="width: 100%">
+        <mat-radio-group class="col-12 p-l-0" style='float: left;width: 100%; padding: 0px' [(ngModel)]='BENH_AN_NAO_PHA_THAI.LIST_BIEN_PHAP_TT.ID'>
+          <mat-radio-button class="col-3" *ngFor='let listbptt of listBienPhapTT' style='float: left; margin: 5px 0 5px 5px' [value]="listbptt.ID">{{listbptt.MO_TA}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class='col-12 p-x-0' style='text-align: left;margin-top: 5px'><strong>2. {{"phieu_khai_thac_tien_su_dung_thuoc.tien_su_benh" | translate}}</strong> {{"benh_an_nao_pha_thai.benh_tam_than_tuan_hoan_ho_hap_tieu_hoa_tiet_nieu_di_ung" | translate}}:</div>
+      <div fxLayout='row' class='col-12 p-x-0'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label></mat-label>
+          <input matInput [(ngModel)]='BENH_AN_NAO_PHA_THAI.TIEN_SU_BENH'>
+        </mat-form-field>
+      </div>
+      <div fxLayout='row'>
+        <div class='col-3 p-l-0' style='text-align: left;margin-top: 5px; align-content: center'><strong>3. {{"benh_an_nao_pha_thai.tinh_trang_hon_nhan" | translate}}:</strong></div>
+        <div class='col-9' style='margin-left: 10px'>
+          <mat-radio-group class='row' [(ngModel)]='BENH_AN_NAO_PHA_THAI.LIST_TINH_TRANG_HON_NHAN.ID'>
+            <mat-radio-button class='col-4' *ngFor='let listtthn of listTinhTrangHonNhan' [value]="listtthn.ID">{{listtthn.MO_TA}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<app-kham-benh
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [ketquakb]='ketquakb'></app-kham-benh>
+
+<app-quan-ly-nguoi-benh
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [quanLyNguoiBenh]='quanLyNguoiBenh'></app-quan-ly-nguoi-benh>
+
+<app-chan-doan
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [chanDoan]='chanDoan'></app-chan-doan>
+
+<app-tinh-trang-ra-vien
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'></app-tinh-trang-ra-vien>
+
+<app-tong-ket-benh-an
+  [patientInfo]='patientInfo'
+  [tenBenhAn]='tenBenhAn'
+  [ketquaCLS]='ketquaCLS'></app-tong-ket-benh-an>

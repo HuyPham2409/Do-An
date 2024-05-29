@@ -1,0 +1,78 @@
+<div class='matero-row tien-su-benh' fxLayout='row'>
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div fxLayout='column'>
+          <div class='col-12' style="border: 1px solid #949494; margin: 14px 0">
+            <div class='row m-y-8'>
+              <div class='col-3'>
+<!--                <mat-form-field appearance='outline' class='full-width' style='min-height: 3.8em;'>-->
+<!--                  <mat-label>{{'emr.ngay_gio'|translate}}</mat-label>-->
+<!--                  <input matInput [ngxMatDatetimePicker]="picker_new_time"-->
+<!--                            [(ngModel)]='newBenh.NGAY_GIO'>-->
+<!--                  <mat-datepicker-toggle matSuffix [for]="$any(picker_new_time)">-->
+<!--                  </mat-datepicker-toggle>-->
+<!--                  <ngx-mat-datetime-picker #picker_new_time></ngx-mat-datetime-picker>-->
+<!--                </mat-form-field>-->
+                <app-emr-date label='emr.ngay_gio'
+                              [(model)]='newBenh.ngay_gio'
+                              [(dmModel)]='newBenh.NGAY_GIO'></app-emr-date>
+              </div>
+              <div class='col-5'>
+                <mat-form-field appearance='outline' class='full-width' >
+                  <mat-label>{{'emr.dien_bien_benh'|translate}}</mat-label>
+                  <textarea matInput [(ngModel)]='newBenh.DIEN_BIEN_BENH'></textarea>
+                </mat-form-field>
+              </div>
+              <div class='col-3'>
+                <mat-form-field appearance='outline' class='full-width' >
+                  <mat-label>{{'emr.y_lenh'|translate}}</mat-label>
+                  <textarea matInput [(ngModel)]='newBenh.Y_LENH'></textarea>
+                </mat-form-field>
+              </div>
+              <div class='col-1' fxLayoutAlign='center center'>
+                <button type="button" (click)="addBenh()" mat-button class="btn-sm m-b-8 mat-blue-hn"
+                        [title]="'tooltip.add_pttt' | translate">
+                  <i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class='row m-y-8' *ngFor="let item of listBenh; let i = index">
+              <div class='col-3'>
+<!--                <mat-form-field appearance='outline' class='full-width'>-->
+<!--                  <mat-label>{{'emr.ngay_gio'|translate}}</mat-label>-->
+<!--                  <input matInput [ngxMatDatetimePicker]="picker_time"-->
+<!--                            [(ngModel)]='item.NGAY_GIO'>-->
+<!--                  <mat-datepicker-toggle matSuffix [for]="$any(picker_time)">-->
+<!--                  </mat-datepicker-toggle>-->
+<!--                  <ngx-mat-datetime-picker #picker_time></ngx-mat-datetime-picker>-->
+<!--                </mat-form-field>-->
+                <app-emr-date label='emr.ngay_gio'
+                              [(model)]='item.ngay_gio'
+                              [(dmModel)]='item.NGAY_GIO'></app-emr-date>
+              </div>
+              <div class='col-5'>
+                <mat-form-field appearance='outline' class='full-width'>
+                  <mat-label>{{'emr.dien_bien_benh'|translate}}</mat-label>
+                  <textarea matInput [(ngModel)]='item.DIEN_BIEN_BENH' ></textarea>
+                </mat-form-field>
+              </div>
+              <div class='col-3'>
+                <mat-form-field appearance='outline' class='full-width'>
+                  <mat-label>{{'emr.y_lenh'|translate}}</mat-label>
+                  <textarea matInput [(ngModel)]='item.Y_LENH' ></textarea>
+                </mat-form-field>
+              </div>
+              <div class='col-1' fxLayoutAlign='center center'>
+                <button type="button" (click)="removeBenh(i)" mat-button class="btn-sm m-b-8 mat-red-hn"
+                        [title]="'tooltip.delete_pttt' | translate">
+                  <i class="fa fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

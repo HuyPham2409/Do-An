@@ -1,0 +1,343 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class='row align-items-center m-t-8'>
+      <span class='f-w-600 col-sm-12'>{{"Thông tin bệnh nhân"}}</span>
+    </div>
+    <div class='row align-items-center'>
+
+      <mat-form-field class='col-sm-6' appearance='outline'>
+        <mat-label>{{"patient.patient_fullname" | translate}}</mat-label>
+        <input matInput [(ngModel)]='patientInfo.HO_TEN' readonly
+               placeholder='{{"patient.patient_fullname" | translate}}'>
+      </mat-form-field>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"patient.parent_name" | translate}}</mat-label>
+        <input matInput [(ngModel)]='khai_thac_tien_su_di_ung_thuoc.parent_name'
+               placeholder='{{"patient.parent_name" | translate}}'>
+      </mat-form-field>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"patient.room_name" | translate}}</mat-label>
+        <input matInput [(ngModel)]='khai_thac_tien_su_di_ung_thuoc.room_name'
+               placeholder='{{"patient.room_name" | translate}}'>
+      </mat-form-field>
+      <div class='col-sm-3'>
+        <div class='row align-items-center'>
+          <mat-form-field class='col-sm-6' appearance='outline'>
+            <mat-label>{{"patient.age" | translate}}</mat-label>
+            <input matInput [(ngModel)]='patientInfo.DO_TUOI' readonly
+                   placeholder='{{"patient.age" | translate}}'>
+          </mat-form-field>
+          <div class='col-sm-6'>
+            <span>{{"patient.sex" | translate}}: </span>
+            <mat-radio-group disabled
+                             [(ngModel)]='patientInfo.GIOI_TINH.ID'>
+              <mat-radio-button [value]="'1'" *ngIf='patientInfo.GIOI_TINH.ID == "1"'> {{"emr.male"| translate}}</mat-radio-button>
+              <mat-radio-button [value]="'2'" *ngIf='patientInfo.GIOI_TINH.ID == "2"'> {{"emr.female"| translate}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div class='col-sm-6'>
+        <div class='row'>
+          <mat-form-field class='col-sm-6' appearance='outline'>
+            <mat-label>{{"patient.height" | translate}}</mat-label>
+            <input matInput [(ngModel)]='khai_thac_tien_su_di_ung_thuoc.chieu_cao'
+                   type='number' min='0' placeholder='{{"patient.height" | translate}}'>
+            <div matSuffix class='m-t-16'>cm</div>
+          </mat-form-field>
+          <mat-form-field class='col-sm-6' appearance='outline'>
+            <mat-label>{{"patient.weight" | translate}}</mat-label>
+            <input matInput [(ngModel)]='khai_thac_tien_su_di_ung_thuoc.can_nang'
+                   type='number' min='0' placeholder='{{"patient.weight" | translate}}'>
+            <div matSuffix class='m-t-16'>kg</div>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"patient.ngay_vao_vien" | translate}}</mat-label>
+        <input matInput [matDatepicker]='picker_ngay_vao_vien'
+               [(ngModel)]='ngay_vao_vien'
+               (ngModelChange)="onDate($event,'ngay_vao_vien')"
+               placeholder='{{"patient.ngay_vao_vien" | translate}}'
+        >
+        <mat-datepicker-toggle matSuffix [for]="picker_ngay_vao_vien"></mat-datepicker-toggle>
+        <mat-datepicker #picker_ngay_vao_vien></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class='row align-items-center m-t-8'>
+      <span class='f-w-600 col-sm-12'>{{"phieu_khai_thac_tien_su_dung_thuoc.thong_tin_di_ung" | translate}} - ADR</span>
+    </div>
+    <div class='row'>
+      <mat-form-field appearance='outline' class='col-sm-3'>
+        <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.tac_nhan" | translate}}</mat-label>
+        <input matInput [(ngModel)]='thong_tin_di_ung.tac_nhan'
+               placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.tac_nhan" | translate}}'>
+      </mat-form-field>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.thoi_gian_xay_ra" | translate}}</mat-label>
+        <input matInput [matDatepicker]='picker_thoi_gian_xay_ra'
+               [(ngModel)]='thong_tin_di_ung.thoi_gian_xay_ra'
+               (ngModelChange)="onDate($event,'thoi_gian_xay_ra')"
+               placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.thoi_gian_xay_ra" | translate}}'
+        >
+        <mat-datepicker-toggle matSuffix [for]="picker_thoi_gian_xay_ra"></mat-datepicker-toggle>
+        <mat-datepicker #picker_thoi_gian_xay_ra></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-sm-5'>
+        <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.mo_ta_phan_ung" | translate}}</mat-label>
+        <input matInput [(ngModel)]='thong_tin_di_ung.mo_ta_phan_ung'
+               placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.mo_ta_phan_ung" | translate}}'>
+      </mat-form-field>
+      <div class='col-sm-1 text-center'>
+        <button mat-icon-button class='btn-xs btn mat-blue-hn' style="margin-top:6px" (click)='createDiUng(thong_tin_di_ung)'>
+          <i class="fa fa-plus"></i>
+        </button>
+      </div>
+    </div>
+    <div class='row align-items-center'
+         *ngFor='let diung of khai_thac_tien_su_di_ung_thuoc.thong_tin_di_ung; let indexOfelement = index;'>
+      <mat-form-field appearance='outline' class='col-sm-3'>
+        <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.tac_nhan" | translate}}</mat-label>
+        <input matInput [(ngModel)]='diung.tac_nhan'
+               placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.tac_nhan" | translate}}'>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-sm-3'>
+        <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.thoi_gian_xay_ra" | translate}}</mat-label>
+        <input matInput [matDatepicker]='thoi_gian_xay_ra' readonly
+               [(ngModel)]='diung.thoi_gian_xay_ra'
+               (ngModelChange)="onDate($event,'thoi_gian_xay_ra', indexOfelement)"
+               placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.thoi_gian_xay_ra" | translate}}'
+        >
+        <mat-datepicker-toggle matSuffix  [for]="$any(thoi_gian_xay_ra)"></mat-datepicker-toggle>
+        <mat-datepicker #thoi_gian_xay_ra></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-sm-5'>
+        <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.mo_ta_phan_ung" | translate}}</mat-label>
+        <input matInput [(ngModel)]='diung.mo_ta_phan_ung'
+               placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.mo_ta_phan_ung" | translate}}'>
+      </mat-form-field>
+      <div class='col-sm-1 text-center'>
+        <button mat-icon-button class='btn-xs btn mat-red-hn m-t-4' (click)='removeDiUng(indexOfelement)'>
+          <i class="fa fa-remove"></i>
+        </button>
+      </div>
+    </div>
+    <div class='row'>
+      <mat-form-field appearance='outline' class='col-sm-6'>
+        <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.ly_do_vao_vien" | translate}}</mat-label>
+        <textarea matInput [(ngModel)]='khai_thac_tien_su_di_ung_thuoc.ly_do_vao_vien'
+                  placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.ly_do_vao_vien" | translate}}'></textarea>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-sm-6'>
+        <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.tien_su_benh" | translate}}</mat-label>
+        <textarea matInput [(ngModel)]='khai_thac_tien_su_di_ung_thuoc.tien_su_benh'
+                  placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.tien_su_benh" | translate}}'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='row align-items-center m-t-8'>
+      <span class='f-w-600 col-sm-3'>{{"phieu_khai_thac_tien_su_dung_thuoc.tien_su_ruou_thuoc_la" | translate}}</span>
+      <div class='col-sm-9'>
+        <section>
+          <mat-checkbox [(ngModel)]="khai_thac_tien_su_di_ung_thuoc.nghien_ruou">{{"phieu_khai_thac_tien_su_dung_thuoc.nghien_ruou" | translate}}</mat-checkbox>
+          <mat-checkbox  [(ngModel)]="khai_thac_tien_su_di_ung_thuoc.nghien_thuoc_la" class='m-l-24'>
+            {{"phieu_khai_thac_tien_su_dung_thuoc.nghien_thuoc_la" | translate}}
+          </mat-checkbox>
+        </section>
+      </div>
+    </div>
+    <div class='row align-items-center m-t-8'>
+      <span class='f-w-600 col-sm-3'>{{"phieu_khai_thac_tien_su_dung_thuoc.tien_su_dung_thuoc" | translate}}</span>
+      <span class='f-w-600 col-sm-3'>
+        <span class='row'>
+           <span class='f-w-600 col-sm-6'>
+             {{"phieu_khai_thac_tien_su_dung_thuoc.lieu_luong_cach_dung" | translate}}
+           </span>
+          <span class='f-w-600 col-sm-6'>
+             {{"phieu_khai_thac_tien_su_dung_thuoc.thoi_gan_dung_lieu_cuoi" | translate}}
+           </span>
+        </span>
+      </span>
+      <span class='f-w-600 col-sm-5'>
+        <span class='row'>
+           <span class='f-w-600 col-sm-4'>
+             {{"phieu_khai_thac_tien_su_dung_thuoc.huong_can_nhac_ke_don" | translate}}(a)
+           </span>
+          <span class='f-w-600 col-sm-4'>
+             {{"phieu_khai_thac_tien_su_dung_thuoc.tuan_thu_cua_bn" | translate}}(b)
+           </span>
+           <span class='f-w-600 col-sm-4'>
+             {{"phieu_khai_thac_tien_su_dung_thuoc.nguon" | translate}}(c)
+           </span>
+        </span>
+      </span>
+    </div>
+    <div class='row'>
+      <div class='col-sm-3'>
+        <app-search-pharma [(data)]='pharmaSelected' [supply_id]='supply_id'></app-search-pharma>
+      </div>
+      <div class='col-sm-3'>
+        <div class='row'>
+          <mat-form-field appearance='outline' class='col-sm-6'>
+            <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.lieu_luong_cach_dung" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pharmaSelected.lieu_luong_cach_dung'
+                   placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.lieu_luong_cach_dung" | translate}}'>
+          </mat-form-field>
+          <mat-form-field appearance='outline' class='col-sm-6'>
+            <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.thoi_gan_dung_lieu_cuoi" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pharmaSelected.thoi_gan_dung_lieu_cuoi'
+                   placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.thoi_gan_dung_lieu_cuoi" | translate}}'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='col-sm-5'>
+        <div class='row'>
+          <mat-form-field appearance='outline' class='col-sm-4'>
+            <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.huong_can_nhac_ke_don" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pharmaSelected.huong_can_nhac_ke_don' type='number' min='0'
+                   placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.huong_can_nhac_ke_don" | translate}}'>
+          </mat-form-field>
+          <mat-form-field appearance='outline' class='col-sm-4'>
+            <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.tuan_thu_cua_bn" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pharmaSelected.tuan_thu_cua_bn' type='number' min='0'
+                   placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.tuan_thu_cua_bn" | translate}}'>
+          </mat-form-field>
+          <mat-form-field appearance='outline' class='col-sm-4'>
+            <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.nguon" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pharmaSelected.nguon' type='number' min='0'
+                   placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.nguon" | translate}}'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='col-sm-1 text-center m-t-8'>
+        <button mat-icon-button class='btn-xs btn mat-blue-hn' (click)='createThuoc(pharmaSelected)'>
+          <i class="fa fa-plus"></i>
+        </button>
+      </div>
+    </div>
+    <div class='row align-items-center m-t-8'
+         *ngFor='let pharma of khai_thac_tien_su_di_ung_thuoc.tien_su_dung_thuoc; let indexOfelement = index;'>
+      <mat-form-field appearance='outline' class='col-sm-3'>
+        <mat-label>{{"medicament.pharma_name_and_dosage" | translate}}</mat-label>
+        <input matInput [value]='displayFn(pharma)'
+               placeholder='{{"medicament.pharma_name_and_dosage" | translate}}' readonly>
+      </mat-form-field>
+      <div class='col-sm-3'>
+        <div class='row'>
+          <mat-form-field appearance='outline' class='col-sm-6'>
+            <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.lieu_luong_cach_dung" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pharma.lieu_luong_cach_dung'
+                   placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.lieu_luong_cach_dung" | translate}}'>
+          </mat-form-field>
+          <mat-form-field appearance='outline' class='col-sm-6'>
+            <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.thoi_gan_dung_lieu_cuoi" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pharma.thoi_gan_dung_lieu_cuoi'
+                   placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.thoi_gan_dung_lieu_cuoi" | translate}}'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='col-sm-5'>
+        <div class='row'>
+          <mat-form-field appearance='outline' class='col-sm-4'>
+            <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.huong_can_nhac_ke_don" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pharma.huong_can_nhac_ke_don' type='number'
+                   placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.huong_can_nhac_ke_don" | translate}}'>
+          </mat-form-field>
+          <mat-form-field appearance='outline' class='col-sm-4'>
+            <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.tuan_thu_cua_bn" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pharma.tuan_thu_cua_bn' type='number'
+                   placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.tuan_thu_cua_bn" | translate}}'>
+          </mat-form-field>
+          <mat-form-field appearance='outline' class='col-sm-4'>
+            <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.nguon" | translate}}</mat-label>
+            <input matInput [(ngModel)]='pharma.nguon' type='number'
+                   placeholder='{{"phieu_khai_thac_tien_su_dung_thuoc.nguon" | translate}}'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='col-sm-1 text-center m-t-8'>
+        <button mat-icon-button class='btn-xs btn mat-red-hn ' (click)='removeThuoc(indexOfelement)'>
+          <i class="fa fa-remove"></i>
+        </button>
+      </div>
+    </div>
+    <div class='row align-items-center'>
+      <span class='col-sm-12' *ngFor='let note of KHAITHAC_TIENSU_DUNGTHUOC.note'>{{note.note_name}}</span>
+    </div>
+    <div class='row align-items-center m-t-8'>
+      <span class='col-sm-3 f-w-600'>{{"phieu_khai_thac_tien_su_dung_thuoc.kha_nang_tuan_thu_dieu_tri" | translate}}</span>
+      <div class='col-sm-9'>
+        <section >
+          <mat-checkbox *ngFor='let khanang of KHAITHAC_TIENSU_DUNGTHUOC.khannang_tuanthu_dt'
+                        [(ngModel)]="khanang.checked">
+            {{khanang.khannang_tuanthu_dt_name}}
+          </mat-checkbox>
+        </section>
+      </div>
+    </div>
+    <div class='row align-items-center m-t-8'>
+      <span class='col-sm-3 f-w-600'>{{"phieu_khai_thac_tien_su_dung_thuoc.tan_suat_quan_ly_ngoai_tru" | translate}}</span>
+      <div class='col-sm-9'>
+        <section >
+          <mat-checkbox *ngFor='let tansuat of KHAITHAC_TIENSU_DUNGTHUOC.tansuat_quanly_ngoaitru'
+                        [(ngModel)]="tansuat.checked">
+            {{tansuat.tansuat_quanly_ngoaitru_name}}
+          </mat-checkbox>
+        </section>
+      </div>
+    </div>
+    <div class='row'>
+      <mat-form-field appearance='outline' class='col-sm-3'>
+        <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.duoc_si" | translate}}</mat-label>
+        <input matInput
+               [matAutocomplete]='position3'
+               [(ngModel)]='khai_thac_tien_su_di_ung_thuoc.duoc_si'
+               (focus)="filterUser('', 0)"
+               (ngModelChange)='filterUser(khai_thac_tien_su_di_ung_thuoc.duoc_si, 0)'>
+        <mat-autocomplete [displayWith]='displayUser'
+                          #position3='matAutocomplete'
+                          class='box-search-user'
+                          classList='box-search-user'>
+          <mat-option *ngFor='let user of filteredUsers' [value]='user'>
+            <span>{{ user?.TEN }}</span>
+          </mat-option>
+        </mat-autocomplete>
+        <button type='button' mat-button *ngIf='khai_thac_tien_su_di_ung_thuoc.duoc_si'
+                matSuffix mat-icon-button aria-label='Clear'
+                (click)='khai_thac_tien_su_di_ung_thuoc.duoc_si = resetUser'>
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field appearance='outline' class='col-sm-3'>
+        <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.bac_si" | translate}}</mat-label>
+        <input matInput
+               [matAutocomplete]='position3'
+               [(ngModel)]='khai_thac_tien_su_di_ung_thuoc.bac_si'
+               (focus)="filterUser('', 0)"
+               (ngModelChange)='filterUser(khai_thac_tien_su_di_ung_thuoc.bac_si, 0)'>
+        <mat-autocomplete [displayWith]='displayUser'
+                          #position3='matAutocomplete'
+                          class='box-search-user'
+                          classList='box-search-user'>
+          <mat-option *ngFor='let user of filteredUsers' [value]='user'>
+            <span>{{ user?.TEN }}</span>
+          </mat-option>
+        </mat-autocomplete>
+        <button type='button' mat-button *ngIf='khai_thac_tien_su_di_ung_thuoc.bac_si'
+                matSuffix mat-icon-button aria-label='Clear'
+                (click)='khai_thac_tien_su_di_ung_thuoc.bac_si = resetUser'>
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field class='col-sm-3' appearance='outline'>
+        <mat-label>{{"phieu_khai_thac_tien_su_dung_thuoc.ngay_thuc_hien" | translate}}</mat-label>
+        <input matInput [matDatepicker]='picker_ngay_thuc_hien'
+               [(ngModel)]='ngay_thuc_hien'
+               (ngModelChange)="onDate($event,'ngay_thuc_hien')"
+               placeholder='{{"khai_thac_tien_su_di_ung_thuoc.ngay_thuc_hien" | translate}}'
+        >
+        <mat-datepicker-toggle matSuffix [for]="picker_ngay_thuc_hien"></mat-datepicker-toggle>
+        <mat-datepicker #picker_ngay_thuc_hien></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,311 @@
+<mat-card appearance="outlined" class='m-b-16'>
+  <mat-card-content class='input_form_field kham-tien-me'>
+    <div class='row'>
+      <div class='col-1 input-title'>
+        {{ "kham_tien_me.nhom_mau" | translate}}
+      </div>
+      <mat-form-field  class='col-2'>
+        <mat-label>{{ "kham_tien_me.nhom_mau" | translate}}</mat-label>
+        <input matInput  [(ngModel)]="GiayTienMe.nhom_mau" type='text'>
+      </mat-form-field>
+      <div class='col-1 input-title'>
+        {{ "kham_tien_me.can_nang" | translate}}
+      </div>
+      <mat-form-field  class='col-2'>
+        <mat-label>{{ "kham_tien_me.can_nang" | translate}}</mat-label>
+        <input matInput  [(ngModel)]="GiayTienMe.can_nang" type='number'>
+      </mat-form-field>
+      <div class='col-1 input-title'>
+        {{ "kham_tien_me.chieu_cao" | translate}}
+      </div>
+      <mat-form-field  class='col-2'>
+        <mat-label>{{ "kham_tien_me.chieu_cao" | translate}}</mat-label>
+        <input matInput  [(ngModel)]="GiayTienMe.chieu_cao" type='number'>
+      </mat-form-field>
+    </div>
+    <div class='row'>
+      <div class='col-1 input-title'>
+        {{ "kham_tien_me.asa" | translate}}
+      </div>
+      <mat-form-field  class='col-2'>
+        <mat-label>{{ "kham_tien_me.asa" | translate}}</mat-label>
+        <input matInput [(ngModel)]="GiayTienMe.asa">
+      </mat-form-field>
+      <div class='col-1 input-title'>
+        {{ "kham_tien_me.mallampati" | translate}}
+      </div>
+      <mat-form-field  class='col-2'>
+        <mat-label>{{ "kham_tien_me.mallampati" | translate}}</mat-label>
+        <input matInput  [(ngModel)]="GiayTienMe.mallampati">
+      </mat-form-field>
+      <div class='col-1 input-title'>
+        {{ "kham_tien_me.kc_cam_giap" | translate}}
+      </div>
+      <mat-form-field  class='col-2'>
+        <mat-label>{{ "kham_tien_me.kc_cam_giap" | translate}}</mat-label>
+        <input matInput  [(ngModel)]="GiayTienMe.kc_cam_giap">
+      </mat-form-field>
+      <div class='col-1 input-title'>
+        {{ "kham_tien_me.ha_mieng" | translate}}
+      </div>
+      <mat-form-field  class='col-2'>
+        <mat-label>{{ "kham_tien_me.ha_mieng" | translate}}</mat-label>
+        <input matInput  [(ngModel)]="GiayTienMe.ha_mieng">
+      </mat-form-field>
+    </div>
+    <div class='row'>
+
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.bua_an_truoc_mo" | translate}}
+      </div>
+      <mat-form-field  class='col-1'>
+        <mat-label>{{ "kham_tien_me.bua_an_truoc_mo" | translate}}</mat-label>
+        <input matInput [(ngModel)]="GiayTienMe.bua_an_truoc_mo">
+      </mat-form-field>
+      <section class='col-3'>
+        <label class='m-r-12'>{{ "kham_tien_me.loai_thuc_an" | translate}}</label>
+        <mat-radio-group [(ngModel)]="GiayTienMe.loai_thuc_an">
+          <mat-radio-button value="1">{{ "kham_tien_me.loai_thuc_an_cap_cuu" | translate}}</mat-radio-button>
+          <mat-radio-button value="2">{{ "kham_tien_me.loai_thuc_an_da_day_day" | translate}}</mat-radio-button>
+        </mat-radio-group>
+      </section>
+      <section class='col-6'>
+        <label class='m-r-12'>{{ "kham_tien_me.rang_gia" | translate}}</label>
+        <mat-radio-group [(ngModel)]="GiayTienMe.rang_gia">
+          <mat-radio-button value="{{rang.id}}" *ngFor='let rang of listRangGia'>
+            {{rang.name}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </section>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.chan_doan" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput [(ngModel)]="GiayTienMe.chan_doan" placeholder='{{ "kham_tien_me.chan_doan" | translate}}'></textarea>
+      </mat-form-field>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.huong_xu_tri" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput  [(ngModel)]="GiayTienMe.huong_xu_tri" placeholder='{{ "kham_tien_me.huong_xu_tri" | translate}}'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='row'>
+      <label class='f-w-600 m-l-8'>{{ "kham_tien_me.tien_su" | translate}}</label>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.noi_khoa" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput [(ngModel)]="GiayTienMe.tien_su_noi_khoa" placeholder='{{ "kham_tien_me.tien_su_noi_khoa" | translate}}'></textarea>
+      </mat-form-field>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.ngoai_khoa" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput  [(ngModel)]="GiayTienMe.tien_su_ngoai_khoa" placeholder='{{ "kham_tien_me.tien_su_ngoai_khoa" | translate}}'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.gay_me_gay_te" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput [(ngModel)]="GiayTienMe.tien_su_gay_me" placeholder='{{ "kham_tien_me.tien_su_gay_me" | translate}}'></textarea>
+      </mat-form-field>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.di_ung" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput  [(ngModel)]="GiayTienMe.di_ung" placeholder='{{ "kham_tien_me.di_ung" | translate}}'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.nghien" | translate}}
+      </div>
+      <section class='col-4'>
+        <mtx-checkbox-group [items]="listNghien"
+                            bindLabel="name"
+                            bindValue="id"
+                            [(ngModel)]="GiayTienMe.nghien">
+        </mtx-checkbox-group>
+      </section>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.benh_lay_nhiem" | translate}}
+      </div>
+      <mat-form-field  class='col-4'>
+        <mat-label>{{ "kham_tien_me.benh_lay_nhiem" | translate}}</mat-label>
+        <input matInput [(ngModel)]="GiayTienMe.benh_lay_nhiem">
+      </mat-form-field>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.thuoc_dang_dieu_tri" | translate}}
+      </div>
+      <mat-form-field class='col-10'>
+        <textarea matInput [(ngModel)]="GiayTienMe.thuoc_dang_dieu_tri" placeholder='{{ "kham_tien_me.thuoc_dang_dieu_tri" | translate}}'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.kham_lam_sang" | translate}}
+      </div>
+      <mat-form-field class='col-10'>
+        <textarea matInput [(ngModel)]="GiayTienMe.kham_lam_sang"
+                  placeholder='{{ "kham_tien_me.kham_lam_sang" | translate}}'></textarea>
+      </mat-form-field>
+
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.tuan_hoan" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput [(ngModel)]="GiayTienMe.tuan_hoan"
+                  placeholder='{{ "kham_tien_me.tuan_hoan" | translate}}'></textarea>
+      </mat-form-field>
+      <div class='col-1 input-title'>
+        {{ "kham_tien_me.mach" | translate}}
+      </div>
+      <mat-form-field  class='col-2'>
+        <mat-label>{{ "kham_tien_me.mach" | translate}}</mat-label>
+        <input matInput [(ngModel)]="GiayTienMe.mach" type='number'>
+      </mat-form-field>
+      <div class='col-1 input-title'>
+        {{ "kham_tien_me.huyet_ap" | translate}}
+      </div>
+      <mat-form-field  class='col-2'>
+        <mat-label>{{ "kham_tien_me.huyet_ap" | translate}}</mat-label>
+        <input matInput [(ngModel)]="GiayTienMe.huyet_ap">
+      </mat-form-field>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.ho_hap" | translate}}
+      </div>
+      <mat-form-field class='col-10'>
+        <textarea matInput [(ngModel)]="GiayTienMe.ho_hap"
+                  placeholder='{{ "kham_tien_me.ho_hap" | translate}}'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.than_kinh" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput [(ngModel)]="GiayTienMe.than_kinh"
+                  placeholder='{{ "kham_tien_me.than_kinh" | translate}}'></textarea>
+      </mat-form-field>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.cot_song" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput [(ngModel)]="GiayTienMe.cot_song"
+                  placeholder='{{ "kham_tien_me.cot_song" | translate}}'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.xet_nghiem_bat_thuong" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput [(ngModel)]="GiayTienMe.xet_nghiem_bat_thuong"
+                  placeholder='{{ "kham_tien_me.xet_nghiem_bat_thuong" | translate}}'></textarea>
+      </mat-form-field>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.yeu_cau_bo_xung" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput [(ngModel)]="GiayTienMe.yeu_cau_bo_xung"
+                  placeholder='{{ "kham_tien_me.yeu_cau_bo_xung" | translate}}'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='row f-w-600'>
+
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.cach_va_thuoc_vo_cam" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput [(ngModel)]="GiayTienMe.cach_va_thuoc_vo_cam"
+                  placeholder='{{ "kham_tien_me.cach_va_thuoc_vo_cam" | translate}}'></textarea>
+      </mat-form-field>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.giam_dau_sau_mo" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput [(ngModel)]="GiayTienMe.giam_dau_sau_mo"
+                  placeholder='{{ "kham_tien_me.giam_dau_sau_mo" | translate}}'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.truoc_mo_va_sau_mo" | translate}}
+      </div>
+      <mat-form-field class='col-4'>
+        <textarea matInput [(ngModel)]="GiayTienMe.truoc_mo_va_sau_mo"
+                  placeholder='{{ "kham_tien_me.truoc_mo_va_sau_mo" | translate}}'></textarea>
+      </mat-form-field>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.dieu_duong_thuc_hien" | translate}}
+      </div>
+      <div class='col-4'>
+        <app-select [(model)]='GiayTienMe.dieu_duong_thuc_hien'
+                    category='user' [resetTo]='null'
+                    label='{{ "kham_tien_me.dieu_duong_thuc_hien" | translate}}'
+                    bindLabel='user_name'
+                    [reSearch]='true'>
+        </app-select>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.ngay_kham" | translate}}
+      </div>
+      <div class='col-4'>
+        <app-emr-date label='kham_tien_me.ngay_kham' mode='date'
+                      [(model)]='GiayTienMe.ngay_kham'
+                      [(unixModel)]='GiayTienMe.ngay_kham_unix'></app-emr-date>
+      </div>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.ngay_tham_lai_truoc_mo" | translate}}
+      </div>
+      <div class='col-4'>
+        <app-emr-date label='kham_tien_me.ngay_tham_lai_truoc_mo' mode='date'
+                      [(model)]='GiayTienMe.ngay_tham_lai_truoc_mo'
+                      [(unixModel)]='GiayTienMe.ngay_tham_lai_truoc_mo_unix'></app-emr-date>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.bac_si_kham_gmhs" | translate}}
+      </div>
+      <div class='col-4'>
+        <app-select [(model)]='GiayTienMe.bac_si_kham_gmhs'
+                    category='user' [resetTo]='null'
+                    label='{{ "kham_tien_me.bac_si_kham_gmhs" | translate}}'
+                    bindLabel='user_name'
+                    [reSearch]='true'>
+        </app-select>
+      </div>
+      <div class='col-2 input-title'>
+        {{ "kham_tien_me.bac_si_kham_lai_gmhs" | translate}}
+      </div>
+      <div class='col-4'>
+        <app-select [(model)]='GiayTienMe.bac_si_kham_lai_gmhs'
+                    category='user' [resetTo]='null'
+                    label='{{ "kham_tien_me.bac_si_kham_lai_gmhs" | translate}}'
+                    bindLabel='user_name'
+                    [reSearch]='true'>
+        </app-select>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

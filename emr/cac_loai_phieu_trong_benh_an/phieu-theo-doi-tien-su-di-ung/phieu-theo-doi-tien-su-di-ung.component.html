@@ -1,0 +1,118 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div>{{"phieu_ts_di_ung.loai_thuoc_gay_di_ung" | translate}}</div>
+      <div class='row col-12' style='padding: 0px'>
+<!--        <div class='col-5'>-->
+<!--          <app-multi-select-->
+<!--            label='{{"phieu_ts_di_ung.ten_thuoc_di_nguyen" | translate}}'-->
+<!--            [items]='phieuTheoDoiTienSuDiUng.THUOC_DI_UNG.TEN'-->
+<!--            category='pharma'>-->
+<!--          </app-multi-select>-->
+<!--        </div>-->
+        <mat-form-field class='col-5' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.ten_thuoc_di_nguyen" | translate}}</mat-label>
+          <input matInput [(ngModel)]="phieuTheoDoiTienSuDiUng.THUOC_DI_UNG.TEN">
+        </mat-form-field>
+        <mat-form-field class='col-2' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.so_lan_di_ung" | translate}}</mat-label>
+          <input matInput type='number' [(ngModel)]="phieuTheoDoiTienSuDiUng.THUOC_DI_UNG.SO_LAN" min='0' max='9999999999'>
+        </mat-form-field>
+        <mat-form-field class='col-5' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.bieu_hien_lam_sang" | translate}}</mat-label>
+          <input matInput type='text' [(ngModel)]="phieuTheoDoiTienSuDiUng.THUOC_DI_UNG.BIEU_HIEN_LAM_SANG">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div>{{"phieu_ts_di_ung.di_ung_con_trung" | translate}}</div>
+      <div class='row col-12' style='padding: 0px'>
+        <mat-form-field class='col-5' appearance='outline'>
+          <input matInput [(ngModel)]="phieuTheoDoiTienSuDiUng.CON_TRUNG_DI_UNG.TEN">
+        </mat-form-field>
+        <mat-form-field class='col-2' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.so_lan_di_ung" | translate}}</mat-label>
+          <input matInput type='number' [(ngModel)]="phieuTheoDoiTienSuDiUng.CON_TRUNG_DI_UNG.SO_LAN" min='0' max='9999999999'>
+        </mat-form-field>
+        <mat-form-field class='col-5' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.bieu_hien_lam_sang" | translate}}</mat-label>
+          <input matInput type='text' [(ngModel)]="phieuTheoDoiTienSuDiUng.CON_TRUNG_DI_UNG.BIEU_HIEN_LAM_SANG">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div>{{"phieu_ts_di_ung.di_ung_voi_thuc_pham" | translate}}</div>
+      <div class='row col-12' style='padding: 0px'>
+        <mat-form-field class='col-5' appearance='outline'>
+          <input matInput [(ngModel)]="phieuTheoDoiTienSuDiUng.THUC_PHAM_DI_UNG.TEN">
+        </mat-form-field>
+        <mat-form-field class='col-2' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.so_lan_di_ung" | translate}}</mat-label>
+          <input matInput type='number' [(ngModel)]="phieuTheoDoiTienSuDiUng.THUC_PHAM_DI_UNG.SO_LAN" min='0' max='9999999999'>
+        </mat-form-field>
+        <mat-form-field class='col-5' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.bieu_hien_lam_sang" | translate}}</mat-label>
+          <input matInput type='text' [(ngModel)]="phieuTheoDoiTienSuDiUng.THUC_PHAM_DI_UNG.BIEU_HIEN_LAM_SANG">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div>{{"phieu_ts_di_ung.di_ung_tac_nhan_khac" | translate}}</div>
+      <div class='row col-12' style='padding: 0px'>
+        <mat-form-field class='col-5' appearance='outline'>
+          <input matInput [(ngModel)]="phieuTheoDoiTienSuDiUng.TAC_NHAN_DI_UNG.TEN">
+        </mat-form-field>
+        <mat-form-field class='col-2' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.so_lan_di_ung" | translate}}</mat-label>
+          <input matInput type='number' [(ngModel)]="phieuTheoDoiTienSuDiUng.TAC_NHAN_DI_UNG.SO_LAN" min='0' max='9999999999'>
+        </mat-form-field>
+        <mat-form-field class='col-5' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.bieu_hien_lam_sang" | translate}}</mat-label>
+          <input matInput type='text' [(ngModel)]="phieuTheoDoiTienSuDiUng.TAC_NHAN_DI_UNG.BIEU_HIEN_LAM_SANG">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div>{{"phieu_ts_di_ung.tien_su_di_ung_ca_nhan" | translate}}</div>
+      <div class='row col-12' style='padding: 0px'>
+        <mat-form-field class='col-5' appearance='outline'>
+          <input matInput [(ngModel)]="phieuTheoDoiTienSuDiUng.TIEU_SU_DI_UNG.TEN">
+        </mat-form-field>
+        <mat-form-field class='col-2' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.so_lan_di_ung" | translate}}</mat-label>
+          <input matInput type='number' [(ngModel)]="phieuTheoDoiTienSuDiUng.TIEU_SU_DI_UNG.SO_LAN" min='0' max='9999999999'>
+        </mat-form-field>
+        <mat-form-field class='col-5' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.bieu_hien_lam_sang" | translate}}</mat-label>
+          <input matInput type='text' [(ngModel)]="phieuTheoDoiTienSuDiUng.TIEU_SU_DI_UNG.BIEU_HIEN_LAM_SANG">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div>{{"phieu_ts_di_ung.tien_su_di_ung_gia_dinh" | translate}}</div>
+      <div class='row col-12' style='padding: 0px'>
+        <mat-form-field class='col-5' appearance='outline'>
+          <input matInput [(ngModel)]="phieuTheoDoiTienSuDiUng.GIA_DINH_DI_UNG.TEN">
+        </mat-form-field>
+        <mat-form-field class='col-2' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.so_lan_di_ung" | translate}}</mat-label>
+          <input matInput type='number' [(ngModel)]="phieuTheoDoiTienSuDiUng.GIA_DINH_DI_UNG.SO_LAN" min='0' max='9999999999'>
+        </mat-form-field>
+        <mat-form-field class='col-5' appearance='outline'>
+          <mat-label>{{"phieu_ts_di_ung.bieu_hien_lam_sang" | translate}}</mat-label>
+          <input matInput type='text' [(ngModel)]="phieuTheoDoiTienSuDiUng.GIA_DINH_DI_UNG.BIEU_HIEN_LAM_SANG">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

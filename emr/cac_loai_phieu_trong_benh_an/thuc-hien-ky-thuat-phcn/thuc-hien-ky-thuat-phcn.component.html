@@ -1,0 +1,64 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class='form-field-full'>
+        <mat-form-field>
+          <mat-label>{{ "emr.diagnose" | translate }}</mat-label>
+          <textarea matInput
+                    [(ngModel)]='thucHienKyThuatPHCN.CHAN_DOAN'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+
+      <table mat-table [dataSource]='thucHienKyThuatPHCN.THUC_HIEN' class='mat-elevation-z8 w-full'>
+
+        <ng-container *ngFor='let columnName of formColumns' [matColumnDef]="columnName">
+          <th mat-header-cell *matHeaderCellDef>{{('thuc_hien_ky_thuat_phcn.' + columnName) | translate}}</th>
+          <td mat-cell *matCellDef="let element">
+            <div class='form-field-full'>
+              <mat-form-field *ngIf="columnName === 'NGAY_GIO'">
+                <mat-label>Ngày giờ</mat-label>
+                <input matInput
+                       [(ngModel)]='element.date_phauthuat_moment'
+                       (ngModelChange)='onDate($event, element)'
+                       [ngxMatDatetimePicker]='picker1'>
+                <mat-datepicker-toggle matSuffix [for]="$any(picker1)"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+              </mat-form-field>
+
+              <mat-form-field *ngIf="columnName !== 'NGAY_GIO'">
+                <textarea matInput
+                          [(ngModel)]='element[columnName]'
+                          cdkTextareaAutosize
+                          cdkAutosizeMinRows="1"
+                          cdkAutosizeMaxRows="3"></textarea>
+              </mat-form-field>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef='actions'>
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td style="text-align: center !important;" mat-cell *matCellDef="let element; index as i">
+            <ng-container *ngIf='i === ROW_INDEX_FOR_CREATE; else existing' >
+              <button  mat-icon-button (click)='addTH()' class=" btn-sm btn mat-blue-hn">
+                <i class="fa fa-plus"></i>
+              </button>
+            </ng-container>
+            <ng-template #existing>
+              <button mat-icon-button (click)='removeTH(i)' class=" btn-sm btn mat-red-hn">
+                <i class="fa fa-times"></i>
+              </button>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+        <tr mat-row *matRowDef='let row; columns: displayedColumns;'></tr>
+      </table>
+
+    </mat-card-content>
+  </mat-card>
+</div>

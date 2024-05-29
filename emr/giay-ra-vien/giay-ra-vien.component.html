@@ -1,0 +1,351 @@
+<div>
+    <mat-card appearance="outlined">
+        <div>
+            <mat-card appearance="outlined">
+                <div>
+                    <strong>Thông tin ra viện:</strong>
+
+                    <div>
+                        <div fxFlex="45" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Trưởng khoa:</p>
+                            </div>
+
+                            <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                                <form class="form-field-full">
+                                    <mat-form-field class="m-r-8">
+                                        <mat-label>Trưởng khoa</mat-label>
+                                        <mat-select>
+                                            <mat-option>-- None --</mat-option>
+                                            <mat-option value="1"></mat-option>
+                                            <mat-option value="2"></mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div fxFlex="5" fxFlex.lt-sm="100" class="matero-col"></div>
+
+                        <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="39" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Thời điểm ra viện:</p>
+                            </div>
+
+                            <div fxFlex="61" fxFlex.lt-sm="100" class="matero-col">
+                                <div fxFlex="47" fxFlex.lt-sm="100" class="matero-col">
+                                    <mat-form-field class="m-r-8">
+                                      <mat-label></mat-label>
+                                      <input matInput [matDatepicker]="picker1">
+                                    </mat-form-field>
+                                   </div>
+
+                                   <div fxFlex="5" fxFlex.lt-sm="100" class="matero-col">
+                                     <div class="button">
+                                       <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                                       <mat-datepicker #picker1></mat-datepicker>
+                                     </div>
+                                   </div>
+                            </div>
+                        </div>
+
+                        <div fxFlex="20" fxFlex.lt-sm="100" class="matero-col"></div>
+                    </div>
+
+                    <div>
+                        <div fxFlex="2" fxFlex.lt-sm="100" class="matero-col"></div>
+
+                        <div fxFlex="10" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="60" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Ngày hẹn</p>
+                            </div>
+
+                            <div fxFlex="40" fxFlex.lt-sm="100" class="matero-col">
+                                <section class="button">
+                                    <mat-checkbox></mat-checkbox>
+                                  </section>
+                            </div>
+                        </div>
+
+                        <div fxFlex="38" fxFlex.lt-sm="100" class="matero-col"></div>
+
+                        <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="40" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Tổng số ngày điều trị:</p>
+                            </div>
+
+                            <div fxFlex="40" fxFlex.lt-sm="100" class="matero-col">
+                                <form class="form-field-full">
+                                    <mat-form-field class="m-r-8">
+                                        <input matInput>
+                                    </mat-form-field>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div fxFlex="45" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Lý do ra viện:</p>
+                            </div>
+
+                            <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                                <form class="form-field-full">
+                                    <mat-form-field class="m-r-8">
+                                        <mat-label>Lý do ra viện</mat-label>
+                                        <mat-select>
+                                            <mat-option>-- None --</mat-option>
+                                            <mat-option value="1"></mat-option>
+                                            <mat-option value="2"></mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div fxFlex="80" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="16.5" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Diễn giải:</p>
+                            </div>
+
+                            <div fxFlex="83.5" fxFlex.lt-sm="100" class="matero-col">
+                                <form class="form-field-full">
+                                    <mat-form-field class="m-r-8">
+                                        <mat-label>Diễn giải</mat-label>
+                                        <textarea matInput></textarea>
+                                    </mat-form-field>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div fxFlex="10" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Phẫu thuật:</p>
+                            </div>
+
+                            <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                                <section class="button">
+                                    <mat-checkbox></mat-checkbox>
+                                  </section>
+                            </div>
+                        </div>
+
+                        <div fxFlex="10" fxFlex.lt-sm="100" class="matero-col"></div>
+
+                        <div fxFlex="80" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="10" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Nội dung:</p>
+                            </div>
+
+                            <div fxFlex="90" fxFlex.lt-sm="100" class="matero-col">
+                                <form class="form-field-full">
+                                    <mat-form-field class="m-r-8">
+                                        <mat-label>Nội dung</mat-label>
+                                        <textarea matInput></textarea>
+                                    </mat-form-field>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div>
+                        <div fxFlex="10" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="70" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Thủ thuật:</p>
+                            </div>
+
+                            <div fxFlex="30" fxFlex.lt-sm="100" class="matero-col">
+                                <section class="button">
+                                    <mat-checkbox></mat-checkbox>
+                                  </section>
+                            </div>
+                        </div>
+
+                        <div fxFlex="10" fxFlex.lt-sm="100" class="matero-col"></div>
+
+                        <div fxFlex="80" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="10" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Nội dung:</p>
+                            </div>
+
+                            <div fxFlex="90" fxFlex.lt-sm="100" class="matero-col">
+                                <form class="form-field-full">
+                                    <mat-form-field class="m-r-8">
+                                        <mat-label>Nội dung</mat-label>
+                                        <textarea matInput></textarea>
+                                    </mat-form-field>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </mat-card>
+        </div>
+
+        <div>
+            <mat-card appearance="outlined">
+                <div>
+                    <strong>Chẩn đoán khi ra viện:</strong>
+
+                    <div>
+                        <form class="form-field-full">
+                            <mat-form-field class="m-r-8">
+                                <mat-label>Chẩn đoán khi ra viện</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+                        </form>
+                    </div>
+
+                    <div>
+                        <div fxFlex="5" fxFlex.lt-sm="100" class="matero-col"></div>
+
+                        <div fxFlex="41" fxFlex.lt-sm="100" class="matero-col">
+                            <form class="form-field-full">
+                                <mat-form-field class="m-r-8">
+                                    <mat-label>Mã ICD</mat-label>
+                                    <mat-select>
+                                        <mat-option>-- None --</mat-option>
+                                        <mat-option value="1"></mat-option>
+                                        <mat-option value="2"></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </form>
+                        </div>
+
+                        <div fxFlex="3" fxFlex.lt-sm="100" class="matero-col"></div>
+
+                        <div fxFlex="41" fxFlex.lt-sm="100" class="matero-col">
+                            <form class="form-field-full">
+                                <mat-form-field class="m-r-8">
+                                    <mat-label>Tên ICD</mat-label>
+                                    <mat-select>
+                                        <mat-option>-- None --</mat-option>
+                                        <mat-option value="1"></mat-option>
+                                        <mat-option value="2"></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </form>
+                        </div>
+
+                        <div fxFlex="4" fxFlex.lt-sm="100" class="matero-col"></div>
+                        <div fxFlex="5" fxFlex.lt-sm="100" class="matero-col">
+                            <div class="button">
+                                <button mat-raised>
+                                    <mat-icon>arrow_downward</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+
+        <div>
+            <mat-card appearance="outlined">
+                <div>
+                    <strong>Tình trạng ra viện:</strong>
+
+                    <div>
+                        <div fxFlex="40" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="40" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Kết quả điều trị:</p>
+                            </div>
+
+                            <div fxFlex="60" fxFlex.lt-sm="100" class="matero-col">
+                                <form class="form-field-full">
+                                    <mat-form-field class="m-r-8">
+                                        <mat-label class="text">Chọn kết quả điều trị</mat-label>
+                                        <mat-select>
+                                            <mat-option>-- None --</mat-option>
+                                            <mat-option value="1"></mat-option>
+                                            <mat-option value="2"></mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div fxFlex="40" fxFlex.lt-sm="100" class="matero-col">
+                            <div fxFlex="40" fxFlex.lt-sm="100" class="matero-col">
+                                <p>Giải phẫu bệnh:</p>
+                            </div>
+
+                            <div fxFlex="60" fxFlex.lt-sm="100" class="matero-col">
+                                <form class="form-field-full">
+                                    <mat-form-field class="m-r-8">
+                                        <mat-label class="text">Chọn giải phẫu bệnh</mat-label>
+                                        <mat-select>
+                                            <mat-option>-- None --</mat-option>
+                                            <mat-option value="1"></mat-option>
+                                            <mat-option value="2"></mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-card>
+        </div>
+
+        <div>
+            <mat-card appearance="outlined">
+                <div>
+                    <strong>Phương pháp điều trị:</strong>
+
+                    <form class="form-field-full">
+                        <mat-form-field class="m-r-8">
+                            <mat-label>Phương pháp điều trị để in ra trên phiếu ra viện của BN</mat-label>
+                            <textarea matInput></textarea>
+                        </mat-form-field>
+                    </form>
+                </div>
+            </mat-card>
+        </div>
+
+        <div>
+            <mat-card appearance="outlined">
+                <div>
+                    <strong>Dặn dò ra viện:</strong>
+
+                    <form class="form-field-full">
+                        <mat-form-field class="m-r-8">
+                            <mat-label>Lời dặn để in ra trên phiếu ra viện của BN</mat-label>
+                            <textarea matInput></textarea>
+                        </mat-form-field>
+                    </form>
+                </div>
+            </mat-card>
+        </div>
+
+        <div>
+            <div fxFlex="77" fxFlex.lt-sm="100" class="matero-col"></div>
+
+            <div fxFlex="23" fxFlex.lt-sm="100" class="matero-col">
+                <section>
+                    <div>
+                      <button mat-raised-button color="basic">Sửa thông tin</button>
+                      <button mat-raised-button color="basic">Lưu thông tin</button>
+                      <button mat-raised-button color="accent">Giấy ra viện</button>
+                      <button mat-raised-button color="warn">Ra viện</button>
+                    </div>
+                  </section>
+            </div>
+        </div>
+
+    </mat-card>
+</div>

@@ -1,0 +1,67 @@
+<div class='matero-row chan-doan-khi-vao-dieu-tri' fxLayout='row wrap'>
+  <div class='matero-col' fxFlex.gt-sm='100' fxFlex.gt-xs='100' fxFlex='100'>
+    <mat-card appearance="outlined">
+      <mat-card-content class="m-x-8">
+        <div class='m-t-4' fxLayout='column'>
+          <div fxLayout='row' fxFlex='100' class='m-t-4'>
+            <ul class="p-l-0 m-b-0">
+              <li class="m-l-16">
+            <h3 style="font-size:18px; font-family: Arial, Helvetica, sans-serif; font-weight: 600; text-transform: uppercase;" *ngIf='showField?.TITLE_CHAN_DOAN_KHI_VAO_KHOA_DIEU_TRI !== false'>{{"hoi_benh_noi_khoa.chan_doan_khi_vao_khoa_dieu_tri.title" | translate}}:</h3>
+            <h3 style="font-size:18px; font-family: Arial, Helvetica, sans-serif; font-weight: 600; text-transform: uppercase;" *ngIf='showField?.TITLE_CHAN_DOAN_KHI_VAO_TRAM === true'>{{"hoi_benh_noi_khoa.chan_doan_khi_vao_khoa_dieu_tri.chan_doan_khi_vao_tram" | translate}}:</h3>
+            <h3 style="font-size:18px; font-family: Arial, Helvetica, sans-serif; font-weight: 600; text-transform: uppercase;" *ngIf='showField?.TITLE_CHAN_DOAN === true'>{{"hoi_benh_noi_khoa.chan_doan_khi_vao_khoa_dieu_tri.chan_doan" | translate}}:</h3>
+              </li>
+          </ul>
+          </div>
+          <div fxFlex='100' fxFlex.gt-sm='100' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>+ Bệnh chính: </mat-label>
+              <input matInput
+                     [matAutocomplete]="position"
+                     [(ngModel)]="chanDoanDieuTri.CHAN_DOAN_BENH_CHINH"
+                     (focus)="filterICD('')"
+                     (ngModelChange)="filterICD(chanDoanDieuTri.CHAN_DOAN_BENH_CHINH)">
+              <mat-autocomplete [displayWith]="displayDMICD" #position="matAutocomplete">
+                <mat-option *ngFor="let icd of filteredICDs" [value]="icd">
+                  <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="chanDoanDieuTri.CHAN_DOAN_BENH_CHINH" matSuffix mat-icon-button aria-label="Clear" (click)="chanDoanDieuTri.CHAN_DOAN_BENH_CHINH = resetDM">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <app-t-m-n-giai-doan *ngIf='showField?.TMN_GIAI_DOAN === true' [TNMGiaiDoan]='chanDoanDieuTri.TNM_GIAI_DOAN'>
+          </app-t-m-n-giai-doan>
+          <div fxFlex='100' fxFlex.gt-sm='100' class='form-field-full' *ngIf='showField?.CHAN_DOAN_BENH_KEM_THEO !== false'>
+            <app-multi-select
+              label='+ {{"hoi_benh_san_khoa.kham_benh.benh_phu.placeholder"|translate}}'
+              [items]='chanDoanDieuTri.CHAN_DOAN_BENH_KEM_THEO'
+              category='icd'
+              (itemsChange)="handleChangeBenhPhu($event)"
+              [displayWith]='displayDMICD'
+            ></app-multi-select>
+          </div>
+          <div *ngIf='showField?.PHAN_BIET !== false' fxFlex='100' fxFlex.gt-sm='100' class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>+ {{"hoi_benh_san_khoa.kham_benh.phan_biet" | translate}}:</mat-label>
+              <input matInput
+                     [matAutocomplete]="cdpb"
+                     [(ngModel)]="chanDoanDieuTri.CHAN_DOAN_PHAN_BIET"
+                     (focus)="filterICD('')"
+                     (ngModelChange)="filterICD(chanDoanDieuTri.CHAN_DOAN_PHAN_BIET)">
+              <mat-autocomplete [displayWith]="displayDMICD" #cdpb="matAutocomplete">
+                <mat-option *ngFor="let icd of filteredICDs" [value]="icd">
+                  <span>{{ icd?.MA }} - {{ icd?.MO_TA }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="chanDoanDieuTri.CHAN_DOAN_PHAN_BIET" matSuffix mat-icon-button aria-label="Clear" (click)="chanDoanDieuTri.CHAN_DOAN_PHAN_BIET = resetDM">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>

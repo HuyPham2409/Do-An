@@ -1,0 +1,80 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class='col-12' fxLayout='row' style='margin-bottom: 5px'><strong>{{ "luong_gia_chuc_nang_va_su_tham_gia.hoat_dong_chuc_nang" | translate }}</strong></div>
+      <div class='col-12'>
+        <div fxLayout='row'>{{ "luong_gia_chuc_nang_va_su_tham_gia.van_dong_va_di_chuyen" | translate }}</div>
+        <mat-form-field appearance='outline' class='full-width'>
+          <textarea matInput
+                    [(ngModel)]='luongGiaChucNangVaSuThamGia.VAN_DONG_VA_DI_CHUYEN'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+      <div class='col-12'>
+        <div fxLayout='row'>{{ "luong_gia_chuc_nang_va_su_tham_gia.chuc_nang_sinh_hoat_hang_ngay" | translate }}</div>
+        <mat-form-field appearance='outline' class='full-width'>
+          <textarea matInput
+                    [(ngModel)]='luongGiaChucNangVaSuThamGia.CHUC_NANG_SINH_HOAT_HANG_NGAY'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+      <div class='col-12'>
+        <div fxLayout='row'>{{ "luong_gia_chuc_nang_va_su_tham_gia.nhan_thuc_giao_tiep" | translate }}</div>
+        <mat-form-field appearance='outline' class='full-width'>
+          <textarea matInput
+                    [(ngModel)]='luongGiaChucNangVaSuThamGia.NHAN_THUC_GIAO_TIEP'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+      <div class='col-12'>
+        <div fxLayout='row'>{{ "luong_gia_chuc_nang_va_su_tham_gia.cac_chuc_nang_khac" | translate }}</div>
+        <mat-form-field appearance='outline' class='full-width'>
+          <textarea matInput
+                    [(ngModel)]='luongGiaChucNangVaSuThamGia.CAC_CHUC_NANG_KHAC'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+      <div class='col-12' fxLayout='row' style='margin-top: 5px'><strong>{{ "luong_gia_chuc_nang_va_su_tham_gia.su_tham_gia_cac_hoat_dong_trong_gia_dinh_va_xa_hoi" | translate }}</strong></div>
+      <div class='col-12'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{ "luong_gia_chuc_nang_va_su_tham_gia.su_tham_gia_cac_hoat_dong_trong_gia_dinh_va_xa_hoi.subtitle" | translate }}</mat-label>
+          <textarea matInput
+                    [(ngModel)]='luongGiaChucNangVaSuThamGia.SU_THAM_GIA_CAC_HOAT_DONG_TRONG_GIA_DINH_VA_XA_HOI'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+      <div class='col-12' fxLayout='row' style='margin-top: 5px'><strong>{{ "luong_gia_chuc_nang_va_su_tham_gia.yeu_to_moi_truong" | translate }}</strong></div>
+      <div class='col-12'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{ "luong_gia_chuc_nang_va_su_tham_gia.yeu_to_moi_truong.subtitle" | translate }}</mat-label>
+          <textarea matInput
+                    [(ngModel)]='luongGiaChucNangVaSuThamGia.YEU_TO_MOI_TRUONG'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+      <div class='col-12' fxLayout='row' style='margin-top: 5px'><strong>{{ "luong_gia_chuc_nang_va_su_tham_gia.yeu_to_ca_nhan" | translate }}</strong></div>
+      <div class='col-12'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{ "luong_gia_chuc_nang_va_su_tham_gia.yeu_to_ca_nhan.subtitle" | translate }}</mat-label>
+          <textarea matInput
+                    [(ngModel)]='luongGiaChucNangVaSuThamGia.YEU_TO_CA_NHAN'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="3"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,322 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <h2 fxLayout='row'>{{"giay_chung_nhan_thuong_tich.giay_chung_nhan_thuong_tich" | translate}}</h2>
+      <div class='m-r-8'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chung_nhan_thuong_tich.giam_doc_benh_vien" | translate}}</mat-label>
+              <input matInput
+                     [matAutocomplete]="position"
+                     [(ngModel)]="giayChungNhanThuongTich.GIAM_DOC_BENH_VIEN"
+                     (focus)="filterUser('', 0)"
+                     (ngModelChange)="filterUser(giayChungNhanThuongTich.GIAM_DOC_BENH_VIEN, 0)">
+              <mat-autocomplete [displayWith]="displayDMICD" #position="matAutocomplete">
+                <mat-option *ngFor="let user of filteredUsers" [value]="user">
+                  <span>{{ user?.TEN }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="giayChungNhanThuongTich.GIAM_DOC_BENH_VIEN" matSuffix mat-icon-button aria-label="Clear" (click)="giayChungNhanThuongTich.GIAM_DOC_BENH_VIEN = resetUser">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chung_nhan_thuong_tich.chung_nhan" | translate}}</mat-label>
+              <input matInput [(ngModel)]='giayChungNhanThuongTich.CHUNG_NHAN'>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+<!--      <div class='m-r-8'>-->
+<!--        <div fxFlex.gt-sm='50' class='matero-col'>-->
+<!--          <div class='form-field-full'>-->
+<!--            <mat-form-field class='full-width'>-->
+<!--              <mat-label>{{"patient.patient_fullname" | translate}}</mat-label>-->
+<!--              <input matInput type='text' [(ngModel)]="giayChungNhanThuongTich.HO_TEN">-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div fxFlex.gt-sm='30' class='matero-col'>-->
+<!--          <div class='form-field-full'>-->
+<!--            <mat-form-field>-->
+<!--              <mat-label>{{"emr.birthday" | translate}}</mat-label>-->
+<!--              <input matInput [matDatepicker]="pickerBirthday"-->
+<!--                     (ngModelChange)='onDate($event, "NGAY_SINH", undefined)'-->
+<!--                     [(ngModel)]="giayChungNhanThuongTich.birthdayString">-->
+<!--              <mat-datepicker-toggle matSuffix [for]="pickerBirthday"></mat-datepicker-toggle>-->
+<!--              <mat-datepicker #pickerBirthday></mat-datepicker>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div fxFlex.gt-sm='20' class='matero-col' style='margin-top: 15px'>-->
+<!--          <mat-radio-group-->
+<!--            (ngModelChange)='changeRadioSex($event)'-->
+<!--            [(ngModel)]='giayChungNhanThuongTich.GIOI_TINH.ID'>-->
+<!--            <mat-radio-button  [value]="'1'"> {{"emr.male"| translate}}</mat-radio-button>-->
+<!--            <mat-radio-button  [value]="'2'"> {{"emr.female"| translate}}</mat-radio-button>-->
+<!--          </mat-radio-group>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class='m-r-8'>-->
+<!--        <div fxFlex.gt-sm='50' class='matero-col'>-->
+<!--          <div class='form-field-full'>-->
+<!--            <mat-form-field class='full-width'>-->
+<!--              <mat-label>{{"emr.job"| translate}}</mat-label>-->
+<!--              <input matInput-->
+<!--                     [matAutocomplete]="position"-->
+<!--                     [(ngModel)]="giayChungNhanThuongTich.NGHE_NGHIEP"-->
+<!--                     (focus)="filterPosition('')"-->
+<!--                     (ngModelChange)="filterPosition(giayChungNhanThuongTich.NGHE_NGHIEP)">-->
+<!--              <mat-autocomplete [displayWith]="displayDM" #position="matAutocomplete">-->
+<!--                <mat-option *ngFor="let position of filteredPositions" [value]="position">-->
+<!--                  <span>{{ position?.MO_TA }}</span>-->
+<!--                </mat-option>-->
+<!--              </mat-autocomplete>-->
+<!--              <button type="button" mat-button *ngIf="giayChungNhanThuongTich.NGHE_NGHIEP" matSuffix mat-icon-button aria-label="Clear" (click)="giayChungNhanThuongTich.NGHE_NGHIEP = resetDM">-->
+<!--                <mat-icon>close</mat-icon>-->
+<!--              </button>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div fxFlex.gt-sm='50' class='matero-col'>-->
+<!--          <div class='form-field-full'>-->
+<!--            <mat-form-field class='full-width'>-->
+<!--              <mat-label>{{"emr.work_address"| translate}}</mat-label>-->
+<!--              <input matInput [(ngModel)]='giayChungNhanThuongTich.NOI_CONG_TAC'>-->
+<!--              <button type="button" mat-button *ngIf="giayChungNhanThuongTich.NOI_CONG_TAC" matSuffix mat-icon-button aria-label="Clear" (click)="giayChungNhanThuongTich.NOI_CONG_TAC = ''">-->
+<!--                <mat-icon>close</mat-icon>-->
+<!--              </button>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class='m-r-8'>-->
+<!--        <div fxFlex.gt-sm='50' class='matero-col'>-->
+<!--          <div class='form-field-full'>-->
+<!--            <mat-form-field>-->
+<!--              <mat-label>{{ "ivf.address" | translate}}</mat-label>-->
+<!--              <input matInput [(ngModel)]='giayChungNhanThuongTich.DIA_CHI'>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div fxFlex.gt-sm='50' class='matero-col'>-->
+<!--          <div class='form-field-full'>-->
+<!--            <mat-form-field>-->
+<!--              <mat-label>{{"giay_chung_nhan_thuong_tich.so_cmnd" | translate}}</mat-label>-->
+<!--              <input matInput [(ngModel)]='giayChungNhanThuongTich.SO_CMND_HO_KHAU'>-->
+<!--              <button type="button" mat-button *ngIf="giayChungNhanThuongTich.SO_CMND_HO_KHAU" matSuffix mat-icon-button aria-label="Clear" (click)="giayChungNhanThuongTich.SO_CMND_HO_KHAU = ''">-->
+<!--                <mat-icon>close</mat-icon>-->
+<!--              </button>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class='m-r-8'>-->
+<!--        <div fxFlex.gt-sm='50' class='matero-col'>-->
+<!--          <div class='form-field-full'>-->
+<!--            <mat-form-field>-->
+<!--              <mat-label>{{"giay_chung_nhan_thuong_tich.ngay_cap" | translate}}</mat-label>-->
+<!--              <input matInput [matDatepicker]="picker1"-->
+<!--                     (ngModelChange)='onDate($event, "NGAY_CAP", undefined)'-->
+<!--                     [(ngModel)]="giayChungNhanThuongTich.NGAY_CAP">-->
+<!--              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
+<!--              <mat-datepicker #picker1></mat-datepicker>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div fxFlex.gt-sm='50' class='matero-col'>-->
+<!--          <div class='form-field-full'>-->
+<!--            <mat-form-field>-->
+<!--              <mat-label>{{"giay_chung_nhan_thuong_tich.noi_cap" | translate}}</mat-label>-->
+<!--              <input matInput [(ngModel)]='giayChungNhanThuongTich.NOI_CAP'>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class='m-r-8'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{ "bien_ban_kiem_diem_tu_vong.vao_vien_luc" | translate}}</mat-label>
+              <input matInput
+                     [(ngModel)]='giayChungNhanThuongTich.VAO_VIEN_LUC'
+                     (ngModelChange)='onDate($event, "VAO_VIEN_LUC", undefined)'
+                     [ngxMatDatetimePicker]='picker2'>
+              <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker2></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chung_nhan_thuong_tich.ra_vien_luc" | translate}}</mat-label>
+              <input matInput
+                     [(ngModel)]='giayChungNhanThuongTich.RA_VIEN_LUC'
+                     (ngModelChange)='onDate($event, "RA_VIEN_LUC", undefined)'
+                     [ngxMatDatetimePicker]='picker3'>
+              <mat-datepicker-toggle matSuffix [for]="$any(picker3)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker3></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{ "hoi_benh_noi_khoa.kham_benh.ly_do_vao_vien" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='giayChungNhanThuongTich.LY_DO_VAO_VIEN'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{ "emr.diagnose" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='giayChungNhanThuongTich.CHAN_DOAN'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chung_nhan_thuong_tich.dieu_tri" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='giayChungNhanThuongTich.DIEU_TRI'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8'>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chung_nhan_thuong_tich.tinh_trang_thuong_tich_luc_vao_vien" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='giayChungNhanThuongTich.TINH_TRANG_THUONG_TICH_LUC_VAO_VIEN'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex.gt-sm='50' class='matero-col'>
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chung_nhan_thuong_tich.tinh_trang_thuong_tich_luc_ra_vien" | translate}}</mat-label>
+              <textarea matInput cdkTextareaAutosize
+                        [(ngModel)]='giayChungNhanThuongTich.TINH_TRANG_THUONG_TICH_LUC_RA_VIEN'
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+<!--      <div class='m-r-8'>-->
+<!--        <div fxFlex="50"></div>-->
+<!--        <div fxFlex="50" fxFlex.lt-sm="100" class="matero-col">-->
+<!--          <div class='form-field-full'>-->
+<!--            <mat-form-field>-->
+<!--              <mat-label>{{ "bien_ban_kiem_diem_tu_vong.ngay_thang_nam" | translate}}</mat-label>-->
+<!--              <input matInput [(ngModel)]='giayChungNhanThuongTich.DATE'-->
+<!--                     (ngModelChange)='onDate($event, "DATE", undefined)'-->
+<!--                     [matDatepicker]='picker4'>-->
+<!--              <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>-->
+<!--              <mat-datepicker #picker4></mat-datepicker>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class='m-r-8' style='margin-top: 10px'>
+        <div fxFlex="33.33" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chung_nhan_thuong_tich.giam_doc_benh_vien" | translate}}</mat-label>
+              <input matInput
+                     [matAutocomplete]="position"
+                     [(ngModel)]="giayChungNhanThuongTich.GIAM_DOC_BENH_VIEN"
+                     (focus)="filterUser('', 0)"
+                     (ngModelChange)="filterUser(giayChungNhanThuongTich.GIAM_DOC_BENH_VIEN, 0)">
+              <mat-autocomplete [displayWith]="displayDMICD" #position="matAutocomplete">
+                <mat-option *ngFor="let user of filteredUsers" [value]="user">
+                  <span>{{ user?.TEN }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="giayChungNhanThuongTich.GIAM_DOC_BENH_VIEN" matSuffix mat-icon-button aria-label="Clear" (click)="giayChungNhanThuongTich.GIAM_DOC_BENH_VIEN = resetUser">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="33.33" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chung_nhan_thuong_tich.truong_khoa" | translate}}</mat-label>
+              <input matInput
+                     [matAutocomplete]="position"
+                     [(ngModel)]="giayChungNhanThuongTich.TRUONG_KHOA"
+                     (focus)="filterUser('', 0)"
+                     (ngModelChange)="filterUser(giayChungNhanThuongTich.TRUONG_KHOA, 0)">
+              <mat-autocomplete [displayWith]="displayDMICD" #position="matAutocomplete">
+                <mat-option *ngFor="let user of filteredUsers" [value]="user">
+                  <span>{{ user?.TEN }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="giayChungNhanThuongTich.TRUONG_KHOA" matSuffix mat-icon-button aria-label="Clear" (click)="giayChungNhanThuongTich.TRUONG_KHOA = resetUser">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="33.33" fxFlex.lt-sm="100" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{"giay_chung_nhan_thuong_tich.bac_si_dieu_tri" | translate}}</mat-label>
+              <input matInput
+                     [matAutocomplete]="position"
+                     [(ngModel)]="giayChungNhanThuongTich.BAC_SI_DIEU_TRI"
+                     (focus)="filterUser('', 0)"
+                     (ngModelChange)="filterUser(giayChungNhanThuongTich.BAC_SI_DIEU_TRI, 0)">
+              <mat-autocomplete [displayWith]="displayDMICD" #position="matAutocomplete">
+                <mat-option *ngFor="let user of filteredUsers" [value]="user">
+                  <span>{{ user?.TEN }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <button type="button" mat-button *ngIf="giayChungNhanThuongTich.BAC_SI_DIEU_TRI" matSuffix mat-icon-button aria-label="Clear" (click)="giayChungNhanThuongTich.BAC_SI_DIEU_TRI = resetUser">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

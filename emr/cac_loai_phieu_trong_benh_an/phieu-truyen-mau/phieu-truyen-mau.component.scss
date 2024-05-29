@@ -1,0 +1,40 @@
+h1, p {
+  font-size: 15px;
+}
+
+button{
+  border-radius: 5px;
+  height: 24px;
+  position: relative;
+
+  // top: 0.16em;
+  min-width: unset;
+  .fa{
+      position: relative;
+      bottom:0.165em
+  }
+}
+.mat-mdc-form-field.mat-mdc-form-field-appearance-outline .mat-icon, .mat-form-field.mat-form-field-appearance-outline .mat-datepicker-toggle{
+  padding-top: 0px !important;
+}
+
+.dynamic-dien-bien {
+  .row {
+    flex-wrap: nowrap;
+  }
+  .field-DATE_DIEN_BIEN, .field-TOC_DO {
+    min-width: 13em;
+  }
+  .field-SAC_MAT, .field-DIEN_BIEN_TRONG_KHI_TRUYEN {
+    min-width: 12em;
+  }
+  .field-NHIP_THO, .field-MACH, .field-HUYET_AP {
+    min-width: 10em;
+  }
+  .field-NHIET_DO {
+    min-width: 9em;
+  }
+  .fields {
+    display: flex;
+  }
+}

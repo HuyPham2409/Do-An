@@ -1,0 +1,136 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class='row'>
+      <div class='col-12'>
+        <mat-form-field class='w-full' appearance='outline'>
+          <mat-label>{{"label.phieu_pttt" | translate}}</mat-label>
+          <mat-select [(ngModel)]='phieuDemGac.PHIEU_PHAU_THUAT_THU_THUAT' [compareWith]='comparePPTTT' (selectionChange)='loadDataFromSelectedPttt($event.value)'>
+            <mat-option *ngFor="let item of listPttt" [value]="item" >
+              {{item.operate_no}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class='col-3'>
+        <app-select label='emr.pt_vien' [(model)]='phieuDemGac.PHAU_THUAT_VIEN'
+                    category='cbyt'></app-select>
+      </div>
+      <div class='col-3'>
+        <app-select label='emr.dung_cu_vien' [(model)]='phieuDemGac.DUNG_CU_VIEN'
+                    category='cbyt'></app-select>
+      </div>
+      <div class='col-3'>
+        <app-select label='emr.phong_mo' [(model)]='phieuDemGac.PHONG_MO'
+                    category='kdt'></app-select>
+      </div>
+      <div class='col-3'>
+        <app-emr-date label='emr.ngay_danh_gia' mode='date'
+                      [(model)]='phieuDemGac.ngay_danh_gia'
+                      [(dmModel)]='phieuDemGac.NGAY_DANH_GIA'></app-emr-date>
+      </div>
+      <div class='col-6'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"emr.cach_thuc_phau_thuat"| translate}}:</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                    [(ngModel)]='phieuDemGac.CACH_THUC_PHAU_THUAT'></textarea>
+        </mat-form-field>
+      </div>
+      <div class='col-2'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"patient.weight" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='phieuDemGac.CAN_NANG' type='number' min='0' max='999' autocomplete='off'
+                 (ngModelChangeDebounced)='calcBMI($event, phieuDemGac.CHIEU_CAO)'>
+          <div matSuffix class='m-t-8'>{{'kg'|translate}}</div>
+        </mat-form-field>
+      </div>
+      <div class='col-2'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"patient.height" | translate}}:</mat-label>
+          <input matInput [(ngModel)]='phieuDemGac.CHIEU_CAO' type='number' min='0' max='999' autocomplete='off'
+                 (ngModelChangeDebounced)='calcBMI(phieuDemGac.CAN_NANG, $event)'>
+          <div matSuffix class='m-t-8'>{{'cm'|translate}}</div>
+        </mat-form-field>
+      </div>
+      <div class='col-2' fxLayoutAlign='start center'>{{ 'patient.bmi' | translate }}: {{ phieuDemGac.BMI }}</div>
+      <div class='col-12'>
+        <mat-form-field appearance='outline' class='full-width'>
+          <mat-label>{{"emr.diagnose"| translate}}:</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                    [(ngModel)]='phieuDemGac.CHAN_DOAN'></textarea>
+        </mat-form-field>
+      </div>
+      <div class='col-12 p-b-8'>
+        <strong><u>{{'dem_gac.gac'|translate}}</u></strong>
+      </div>
+      <div class='col-12'>
+        <table>
+          <tr>
+            <th class="p-x-8">{{ 'dem_gac.#' | translate }}</th>
+            <th>{{ 'dem_gac.loai_gac' | translate }}</th>
+            <th>{{ 'dem_gac.xuat' | translate }}</th>
+            <th>{{ 'dem_gac.thu' | translate }}</th>
+            <th>{{ 'dem_gac.ket_luan' | translate }}</th>
+          </tr>
+          <tr *ngFor='let gac of phieuDemGac.DANH_SACH_GAC; index as i'>
+            <td>{{ i+1 }}</td>
+            <td>{{ gac.LOAI_GAC }}</td>
+            <td>
+              <mat-form-field appearance='outline' class='full-width'>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                          [(ngModel)]='gac.XUAT'></textarea>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance='outline' class='full-width'>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                          [(ngModel)]='gac.THU_VE'></textarea>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance='outline' class='full-width'>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                          [(ngModel)]='gac.KET_LUAN'></textarea>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class='col-12 p-b-8' style='margin-top: 5px'>
+        <strong><u>{{'dem_gac.dung_cu'|translate}}</u></strong>
+      </div>
+      <div class='col-12'>
+        <table>
+          <tr>
+            <th class="p-x-8">{{ 'dem_gac.#' | translate }}</th>
+            <th></th>
+            <th>{{ 'dem_gac.xuat' | translate }}</th>
+            <th>{{ 'dem_gac.thu' | translate }}</th>
+            <th>{{ 'dem_gac.ket_luan' | translate }}</th>
+          </tr>
+          <tr *ngFor='let dungcu of phieuDemGac.DANH_SACH_DUNG_CU; index as i'>
+            <td>{{ i+1 }}</td>
+            <td>{{ dungcu.LOAI_DUNG_CU }}</td>
+            <td>
+              <mat-form-field appearance='outline' class='full-width'>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                          [(ngModel)]='dungcu.XUAT'></textarea>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance='outline' class='full-width'>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                          [(ngModel)]='dungcu.THU_VE'></textarea>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance='outline' class='full-width'>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                          [(ngModel)]='dungcu.KET_LUAN'></textarea>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

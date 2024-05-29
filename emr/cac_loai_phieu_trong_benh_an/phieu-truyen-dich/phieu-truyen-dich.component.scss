@@ -1,0 +1,50 @@
+.line-break{
+  width: 100%;
+  height: 0.1px;
+  border:  1px solid #85A0C0;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+.icon{
+::ng-deep .mat-icon{
+  position: relative;
+  bottom:7px
+}}
+button{
+    height: 23px;
+    position: relative;
+    min-width: unset !important;
+    border-radius: 5px;
+    padding: 0 10px;
+    // top: 0.16em;
+    .fa{
+        position: relative;
+        top:0.165em
+    }
+}
+.xem_phieu_dieu_tri_btn{
+  background-color: #dddddd;
+  width: max-content;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.xem_phieu_dieu_tri_btn:active{
+  background-color: #83b25c;
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+.view-pdt-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.mat-mdc-form-field.mat-mdc-form-field-appearance-outline .mat-icon, .mat-form-field.mat-form-field-appearance-outline .mat-datepicker-toggle{
+  padding-top: 0px !important;
+}
+
+::ng-deep .max-height-pharma .ng-value-label {
+  white-space: normal !important;
+}
+

@@ -1,0 +1,242 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div fxLayout='row'>
+        <div class='col-8'>
+          <mat-form-field class='full-width'>
+            <mat-label *ngIf='selectBBHC.results.thu_moi_hc'>
+              {{
+                  (selectBBHC.results.thu_moi_hc
+                ? (
+                  selectBBHC.results.thu_moi_hc.results.ten +
+                  (selectBBHC.results.thu_moi_hc.results.tg_hc
+                    ? ' - Thời gian hội chẩn: ' +
+                    (selectBBHC.results.thu_moi_hc.results.tg_hc | amFromUnix | amDateFormat: 'hh:mm DD/MM/YYYY')
+                    : '')
+                )
+                : ('bien_ban_hoi_chan.thu_moi_hoi_chan' | translate))
+              }}
+              </mat-label>
+            <mat-label *ngIf='!selectBBHC.results.thu_moi_hc'>
+              {{
+             'bien_ban_hoi_chan.thu_moi_hoi_chan' | translate
+              }}
+            </mat-label>
+            <mat-select (valueChange)="selectConsultation($event)" [(ngModel)]='selectBBHC.results.thu_moi_hc'>
+              <span *ngIf='listThuMoi.length === 0'>
+                <mat-option>
+                Không có dữ liệu trả về
+              </mat-option></span>
+              <span *ngIf='listThuMoi.length > 0'>
+              <mat-option *ngFor="let option of listThuMoi" [value]='option' >
+                {{option.results.ten}} <span *ngIf='option.results.tg_hc'>- Thời gian hội chẩn: {{option.results.tg_hc | amFromUnix | amDateFormat: 'hh:mm DD/MM/YYYY'}}</span>
+              </mat-option>
+                </span>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div class="col-8">
+          <mat-form-field *ngIf='selectBBHC && selectBBHC.results' appearance='outline' class='full-width'>
+            <mat-label>{{"bien_ban_hoi_chan.bien_ban_hoi_chan"| translate}}:</mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      [(ngModel)]="selectBBHC.results.bien_ban_hoi_chan"
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field>
+        </div>
+        <div class='col-4'>
+          <mat-form-field appearance='outline' class='full-width'>
+            <mat-label>{{"bien_ban_hoi_chan.loai_bien_ban_hoi_chan" | translate}}</mat-label>
+            <mtx-select [items]='LOAI_HOI_CHAN' bindLabel='MO_TA'
+                        [(ngModel)]="selectBBHC.LOAI_HOI_CHAN"
+                        [disabled]='siteName === "app_67" && loaiGiayToLienQuan.ID === ID_FORM_BBHCKS'></mtx-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout='row'>
+        <div class='col-4'>
+          <app-emr-date label='bien_ban_hoi_chan.hoi_chan_luc' mode='datetime'
+                        [(model)]='selectBBHC.hoi_chan_luc_moment'
+                        [(unixModel)]='selectBBHC.hoi_chan_luc'></app-emr-date>
+        </div>
+        <div class='col-4'>
+          <app-emr-date label='bien_ban_hoi_chan.dieu_tri_tu_ngay' mode='date'
+                        [(model)]='selectBBHC.from_date_moment'
+                        [(unixModel)]='selectBBHC.from_date'></app-emr-date>
+        </div>
+        <div class='col-4'>
+          <app-emr-date label='bien_ban_hoi_chan.den_ngay' mode='date'
+                        [(model)]='selectBBHC.to_date_moment'
+                        [(unixModel)]='selectBBHC.to_date'></app-emr-date>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div class='col-4'>
+          <mat-form-field *ngIf='selectBBHC && selectBBHC.patient_info' appearance='outline' class='full-width'>
+            <mat-label>{{"bien_ban_hoi_chan.tai_so_giuong"| translate}}:</mat-label>
+            <input matInput  [(ngModel)]="selectBBHC.patient_info.in_patient_bed_name">
+          </mat-form-field>
+        </div>
+        <div class='col-4'>
+          <mat-form-field *ngIf='selectBBHC && selectBBHC.patient_info' appearance='outline' class='full-width'>
+            <mat-label>{{"ivf.room"| translate}}:</mat-label>
+            <input matInput  [(ngModel)]="selectBBHC.patient_info.in_patient_room_name">
+            <button type="button" mat-button *ngIf="selectBBHC && selectBBHC.patient_info && selectBBHC.patient_info.in_patient_room_name" matSuffix mat-icon-button aria-label="Clear" (click)="selectBBHC.patient_info.in_patient_room_name = ''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class='col-4'>
+          <mat-form-field *ngIf='selectBBHC && selectBBHC.patient_info' appearance='outline' class='full-width'>
+            <mat-label>{{"bien_ban_hoi_chan.khoa"| translate}}:</mat-label>
+            <input matInput  [(ngModel)]="selectBBHC.patient_info.parent_name">
+            <button type="button" mat-button *ngIf="selectBBHC && selectBBHC.patient_info && selectBBHC.patient_info.parent_name" matSuffix mat-icon-button aria-label="Clear" (click)="selectBBHC.patient_info.parent_name = ''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout='row'>
+        <div class='col-4'>
+          <!-- <mat-form-field *ngIf='selectBBHC && selectBBHC.results' appearance='outline' class='full-width'>
+            <mat-label>{{"emr.diagnose"| translate}}:</mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      [(ngModel)]="selectBBHC.results.chan_doan"
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="3"></textarea>
+          </mat-form-field> -->
+          <app-multi-select
+                            label='Chẩn đoán'
+                            category='icd'
+                            [items]="selectBBHC.results.chan_doan"
+                            (itemsChange)="handleChangeListChanDoan()"
+                            [displayWith]='displayDMICD'></app-multi-select>
+        </div>
+        <div class='col-4'>
+          <app-select [label]='showFields[siteName] && "bien_ban_hoi_chan.chu_toa"|showForSite:siteName:showFields'
+                      [(model)]='selectBBHC.results.chu_toa'
+                      category='cbyt' [resetTo]='null'></app-select>
+        </div>
+        <div class='col-4' *ngIf='showFields[siteName] && showFields[siteName]?.THU_KY !== false'>
+          <app-select label='bien_ban_hoi_chan.thu_ky' [(model)]='selectBBHC.results.thu_ky'
+                      category='cbyt' [resetTo]='null'></app-select>
+        </div>
+      </div>
+      <div class='col-12'>
+        <app-multi-select
+          *ngIf='showFields[siteName]?.THANH_VIEN_THAM_GIA !== false'
+          [label]='showFields[siteName] && "bien_ban_hoi_chan.thanh_vien_tham_gia"|showForSite:siteName:showFields'
+          [items]='selectBBHC.results.thanh_vien_tham_gia'
+          category='bs'>
+        </app-multi-select>
+        <app-select
+          *ngIf='showFields[siteName]?.BAC_SI_DIEU_TRI'
+          [label]='showFields[siteName] && "bien_ban_hoi_chan.bac_si_dieu_tri"|showForSite:siteName:showFields'
+          [(model)]='selectBBHC.results.bac_si_dieu_tri'
+          category='cbyt' [resetTo]='null'></app-select>
+      </div>
+
+      <!--#BVCKG-2334_tungvs: Nếu là biên bản hội chẩn thì thêm nút tổng hợp cls-->
+      <div class='row m-l-8' *ngIf='loaiGiayToLienQuan?.ID == ID_FORM_BBHC'>
+        <span>{{showFields[siteName] && ("bien_ban_hoi_chan.tom_tat_qua_trinh_dien_bien_benh"|showForSite:siteName:showFields|translate) + ':'}}</span>
+        <span><i class='btn btn-warning btn-sm fas fa-sigma' style='max-height: 25px; margin-left: 15px; font-size: 10px' (click)='openSyntheticCls()'></i></span>
+      </div>
+
+      <div class='col-12'>
+        <mat-form-field *ngIf='selectBBHC && selectBBHC.results' appearance='outline' class='full-width'>
+          <mat-label *ngIf='loaiGiayToLienQuan?.ID != ID_FORM_BBHC'><strong>{{showFields[siteName] && ("bien_ban_hoi_chan.tom_tat_qua_trinh_dien_bien_benh"|showForSite:siteName:showFields|translate) + ':'}}</strong></mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    [(ngModel)]='selectBBHC.results.tom_tat_dbb'>
+              </textarea>
+        </mat-form-field>
+      </div>
+      <div class='col-12' *ngIf='loaiGiayToLienQuan.ID === ID_FORM_BBHCKS'>
+        <mat-form-field *ngIf='selectBBHC && selectBBHC.results' appearance='outline' class='full-width'>
+          <mat-label><strong>{{"bien_ban_hoi_chan.chan_doan_benh_hien_tai"| translate}}:</strong></mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    [(ngModel)]='selectBBHC.results.chan_doan_benh_hien_tai'>
+              </textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12" *ngIf='selectBBHC && selectBBHC.results && loaiGiayToLienQuan.ID === ID_FORM_BBHCKS'>
+        <div fxLayout='row'>
+          <div fxFlex='50' class='form-field-full'>
+            <app-select [label]='showFields[siteName] && ("bien_ban_hoi_chan.pharma"|showForSite:siteName:showFields)'
+                        [(model)]='selectBBHC.newPharma'
+                        category='pharma' [resetTo]='null'></app-select>
+          </div>
+          <div fxFlex='15' class='m-l-16 m-t-4'>
+            <button mat-icon-button class="btn btn-sm mat-blue-hn" style='margin-top: 5px' (click)='createPharma(selectBBHC.newPharma)'><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <div fxLayout='row' class='b-b-1' *ngFor='let pharma of selectBBHC.pharmas; let indexOfelement = index;'>
+          <div fxFlex='50' class='text-center form-field-full'>
+            <app-select [(model)]='selectBBHC.pharmas[indexOfelement]'
+                        category='pharma' [resetTo]='null'></app-select>
+          </div>
+          <div fxFlex='15' class='m-l-16 m-t-8'>
+            <button mat-icon-button color="" class="btn btn-sm mat-red-hn" (click)='removePharma(indexOfelement)'><i class="fa fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+      <!--(BVCKG-1967) Đức Giang (app_67) sửa mục này thành default. -->
+      <div class="col-12" *ngIf='selectBBHC && selectBBHC.results' style='margin-top: 5px'>
+        <!-- <mat-form-field *ngIf='selectBBHC && selectBBHC.results' appearance='outline' class='full-width'>
+          <mat-label><strong>{{"bien_ban_hoi_chan.ket_luan_ks"| showForSite: siteName: showFields}}:</strong></mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    [(ngModel)]='selectBBHC.results.ket_luan'>
+              </textarea>
+        </mat-form-field> -->
+        <app-multi-select
+                          label="{{'bien_ban_hoi_chan.ket_luan_ks'| showForSite: siteName: showFields}}"
+                          category='icd'
+                          [items]="selectBBHC.results.ket_luan"
+                          (itemsChange)="handleChangeListKetLuan()"
+                          [displayWith]='displayDMICD'></app-multi-select>
+      </div>
+      <!--(BVCKG-1967) Đức Giang (app_67) sửa mục này thành default. -->
+      <div class="col-12" *ngIf='loaiGiayToLienQuan.ID === ID_FORM_BBHC'>
+        <mat-form-field  *ngIf='selectBBHC && selectBBHC.results' appearance='outline' class='full-width'>
+          <mat-label><strong>{{"bien_ban_hoi_chan.huong_dieu_tri_tiep" | showForSite: siteName: showFields}}:</strong></mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    [(ngModel)]='selectBBHC.results.huong_dieu_tri'>
+              </textarea>
+        </mat-form-field>
+      </div>
+
+<!--(BVCKG-1967) Đức Giang (app_67) bỏ mục này. -->
+      <div class="col-12" *ngIf='loaiGiayToLienQuan.ID === ID_FORM_BBHC && siteName != "app_67"'>
+        <mat-form-field  *ngIf='selectBBHC && selectBBHC.results' appearance='outline' class='full-width'>
+          <mat-label><strong>{{"HDSD"}}:</strong></mat-label>
+          <textarea matInput cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    [(ngModel)]='selectBBHC.results.hdsd'>
+              </textarea>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout='row'>
+        <div class='col-4'>
+          <app-emr-date label='bien_ban_hoi_chan.ngay_ky' mode='date'
+                        [(model)]='selectBBHC.date_ky_moment'
+                        [(unixModel)]='selectBBHC.date_ky'></app-emr-date>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+

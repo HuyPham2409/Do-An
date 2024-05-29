@@ -1,0 +1,25 @@
+<mat-form-field appearance='outline' class='w-full' *ngIf='mode === "datetime"'>
+  <mat-label>{{label | translate}}</mat-label>
+  <!-- <input matInput [ngxMatDatetimePicker]="picker" [placeholder]="placeholder | translate"
+         [(ngModel)]='model'
+         (ngModelChange)='onDate($event)'/> -->
+  <input matInput [ngxMatDatetimePicker]="picker" [placeholder]="placeholder | translate"
+  [(ngModel)]='model' (blur)='onInputChange($event)'/>
+  <mat-datepicker-toggle matSuffix [for]="$any(picker)">
+  </mat-datepicker-toggle>
+  <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+</mat-form-field>
+<mat-form-field appearance='outline' class='w-full' *ngIf='mode === "date"'>
+  <mat-label>{{label | translate}}</mat-label>
+  <!-- <input matInput [matDatepicker]="picker" [placeholder]="placeholder | translate"
+         [(ngModel)]='model' [disabled]="isDisabled"
+         (ngModelChange)='onDate($event)'/> -->
+  <input matInput [matDatepicker]="picker" [placeholder]="placeholder | translate"
+  [(ngModel)]='model' [disabled]="isDisabled" (blur)='onInputChange($event)'/>
+  <mat-datepicker-toggle matSuffix [for]="$any(picker)">
+  </mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<ng-container *ngIf='mode === "time"'>
+  <ngx-mat-timepicker [(ngModel)]="model" [disabled]="isDisabled" (ngModelChange)='onDate($event)'></ngx-mat-timepicker>
+</ng-container>

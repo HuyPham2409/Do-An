@@ -1,0 +1,259 @@
+<div>
+  <mat-card appearance="outlined" *ngIf='!is_template'>
+    <mat-card-content>
+      <h2>{{"phieu_cham_soc_y_ta.title" | translate}}</h2>
+      <div class='row align-items-center'>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"patient.patient_fullname" | translate}}</mat-label>
+          <input matInput [(ngModel)]='patientInfo.HO_TEN' disabled
+                 placeholder='{{"patient.patient_fullname" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-3' appearance='outline'>
+          <mat-label>{{"patient.birthday" | translate}}</mat-label>
+          <input disabled  matInput [(ngModel)]="patientInfo.NGAY_SINH">
+        </mat-form-field>
+        <div class='col-sm-3'>
+          <mat-form-field class='w-full' *ngIf='patientInfo.GIOI_TINH'>
+            <mat-label>{{ "so_ket_dieu_tri.gioi_tinh" | translate}}</mat-label>
+            <input matInput value="{{patientInfo.GIOI_TINH.MO_TA}}" disabled>
+          </mat-form-field>
+        </div>
+        <mat-form-field class='col-sm-3' appearance='outline'>
+          <mat-label>{{"patient.parent_name" | translate}}</mat-label>
+          <input matInput [(ngModel)]='patientInfo.parent_name' disabled
+                 placeholder='{{"patient.parent_name" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-3' appearance='outline'>
+          <mat-label>{{"patient.room_name" | translate}}</mat-label>
+          <input matInput [(ngModel)]='patientInfo.in_patient_room_name' disabled
+                 placeholder='{{"patient.room_name" | translate}}'>
+        </mat-form-field>
+        <mat-form-field class='col-sm-6' appearance='outline'>
+          <mat-label>{{"label.chan_doan" | translate}}</mat-label>
+          <textarea matInput [(ngModel)]='patientInfo.examining_diagnosis'
+                    placeholder='{{"label.chan_doan" | translate}}'></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong>{{"bang_kiem_chuan_bi_va_ban_giao_bn.cac_thong_so" | translate}}</strong>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class='row col-12'>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'emr.mach' | translate }}:</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="phieuCSYT?.chiSo.MACH" type='number' min='0' max='999' autocomplete='off'>
+              <div matSuffix class='m-t-16'>lần/phút</div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'emr.nhiet_do' | translate }}:</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="phieuCSYT?.chiSo.NHIET_DO" type='number' min='0' max='999' autocomplete='off'>
+              <div matSuffix class='m-t-16'>°C</div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'emr.huyet_ap' | translate }}:</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="phieuCSYT?.chiSo.HUYET_AP_TAM_THU" type='number' min='0' max='999' autocomplete='off'>
+            </mat-form-field>
+          </div>
+          <div>/</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="phieuCSYT?.chiSo.HUYET_AP_TAM_TRUONG" type='number' min='0' max='999' autocomplete='off'>
+            </mat-form-field>
+          </div>
+          <div class='unit'>{{'mmHg'|translate}}</div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'emr.nhip_tho' | translate }}:</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="phieuCSYT?.chiSo.NHIP_THO" type='number' min='0' max='999' autocomplete='off'>
+              <div matSuffix class='m-t-16'>{{'bpm'|translate}}</div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'patient.height' | translate }}:</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="phieuCSYT?.chiSo.CHIEU_CAO" type='number' min='0' max='999' autocomplete='off'
+                     (ngModelChangeDebounced)='calBMI(phieuCSYT.chiSo.CAN_NANG, $event)'>
+              <div matSuffix class='m-t-16'>{{'cm'|translate}}</div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'patient.weight' | translate }}:</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="phieuCSYT?.chiSo.CAN_NANG" type='number' min='0' max='999' autocomplete='off'
+                     (ngModelChangeDebounced)='calBMI($event, phieuCSYT?.chiSo.CHIEU_CAO)'>
+              <div matSuffix class='m-t-16'>{{'kg'|translate}}</div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'patient.bmi' | translate }}:</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [value]='phieuCSYT?.chiSo.BMI' readonly>
+              <div matSuffix class='m-t-16'>kg/m3</div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class='col-lg-4 col-6' fxLayoutAlign='start center'>
+          <div class='title'>{{ 'emr.spo2' | translate }}:</div>
+          <div class='col form-field-full'>
+            <mat-form-field>
+              <input matInput [(ngModel)]="phieuCSYT?.chiSo.SPO2" type='number' min='0' max='100' autocomplete='off'>
+              <div matSuffix class='m-t-16'>{{'%'|translate}}</div>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="isShowThongSo = true"
+                         (closed)="isShowThongSo = false">
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <h4><strong>{{"phieu_cham_soc_y_ta.title_thong_tin_cham_soc" | translate}}</strong></h4>
+      <div class='table-container'>
+        <table>
+          <tr>
+            <th>{{ 'phieu_cham_soc_y_ta.thoi_gian' | translate }}</th>
+            <th>{{ 'phieu_cham_soc_y_ta.dien_bien' | translate }}</th>
+            <th>{{ 'phieu_cham_soc_y_ta.y_lenh' | translate }}</th>
+            <th>{{ 'phieu_cham_soc_y_ta.nguoi_thuc_hien' | translate }}</th>
+            <th><!-- actions --></th>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class='full-width' appearance='outline'
+                              *ngIf='!is_template && listYLenh.length > 0 && site != "ehos"'>
+                <mat-label>{{ 'phieu_cham_soc_y_ta.y_lenh_pdt' | translate }}</mat-label>
+                <mtx-select [items]='listYLenh' bindLabel='examination_prescription_code'
+                            [(ngModel)]="ylenh"
+                            (change)='changeGetYLenh($event)'
+                >
+                  <ng-template ng-option-tmp let-item="item">
+                    {{ 'phieu_cham_soc_y_ta.y_lenh_pdt' | translate }}
+                    {{item.examination_prescription_code}}
+                    ({{item.used_at_action*1000 | date:'HH:mm dd/MM/yyyy'}})
+                  </ng-template>
+                </mtx-select>
+              </mat-form-field>
+              <mat-form-field class='full-width' appearance='outline'>
+                <mat-label><strong>{{ 'phieu_cham_soc_y_ta.thoi_gian' | translate }}</strong></mat-label>
+                <input [disabled]='isDisabled' matInput
+                       [(ngModel)]="newFieldControl.THOI_GIAN"
+                       [ngxMatDatetimePicker]='picker_NGAY_VAO' />
+                <ngx-mat-datetime-picker #picker_NGAY_VAO
+                                         [panelClass]='"ivf-datetime"'></ngx-mat-datetime-picker>
+                <button *ngIf='newFieldControl.THOI_GIAN' matSuffix mat-icon-button type='button' class='danger'
+                        (click)='newFieldControl.THOI_GIAN = undefined'>
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-datepicker-toggle matSuffix [for]='$any(picker_NGAY_VAO)'></mat-datepicker-toggle>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance='outline'>
+                <textarea matInput [disabled]='isDisabled'
+                          cdkTextareaAutosize
+                          [(ngModel)]='newFieldControl.DIEN_BIEN'
+                          cdkAutosizeMinRows="2"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance='outline'>
+                <textarea matInput [disabled]='isDisabled'
+                          cdkTextareaAutosize
+                          [(ngModel)]='newFieldControl.Y_LENH'
+                          cdkAutosizeMinRows="2"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </td>
+            <td>
+              <div class='form-field-full'>
+                <app-select label='phieu_cham_soc_y_ta.nguoi_thuc_hien' [(model)]='newFieldControl.NGUOI_THUC_HIEN'
+                            category='cbyt'></app-select>
+              </div>
+            </td>
+
+            <td class="button-container add">
+              <div fxLayout="row" fxLayoutAlign="center">
+                <button type="button" [disabled]='isDisabled' mat-icon-button class="action-add" (click)="addReport();">
+                  <mat-icon class="add_item_icon">add_box</mat-icon>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngFor="let report of phieuCSYT.result.schedule; let index = index">
+            <td>
+              <mat-form-field class='full-width' appearance='outline'>
+                <mat-label><strong>{{ 'phieu_cham_soc_y_ta.thoi_gian' | translate }}</strong></mat-label>
+                <input [disabled]='isDisabled' matInput
+                       [(ngModel)]="report.THOI_GIAN"
+                       [ngxMatDatetimePicker]='picker_NGAY_VAO' />
+                <ngx-mat-datetime-picker #picker_NGAY_VAO
+                                         [panelClass]='"ivf-datetime"'></ngx-mat-datetime-picker>
+                <button *ngIf='report.THOI_GIAN' matSuffix mat-icon-button type='button' class='danger'
+                        (click)='report.THOI_GIAN = undefined'>
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-datepicker-toggle matSuffix [for]='$any(picker_NGAY_VAO)'></mat-datepicker-toggle>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance='outline'>
+                <textarea matInput [disabled]='isDisabled'
+                          cdkTextareaAutosize
+                          [(ngModel)]='report.DIEN_BIEN'
+                          cdkAutosizeMinRows="2"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance='outline'>
+                <textarea matInput [disabled]='isDisabled'
+                          cdkTextareaAutosize
+                          [(ngModel)]='report.Y_LENH'
+                          cdkAutosizeMinRows="2"
+                          cdkAutosizeMaxRows="5"></textarea>
+              </mat-form-field>
+            </td>
+            <td>
+              <app-select label='phieu_cham_soc_y_ta.nguoi_thuc_hien' [(model)]='report.NGUOI_THUC_HIEN'
+                          category='cbyt'></app-select>
+            </td>
+            <td class="button-container add">
+              <div fxLayout="row" fxLayoutAlign="center">
+                <button [disabled]='isDisabled' type="button" mat-icon-button class="action-delete" (click)="deleteReport(index);">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

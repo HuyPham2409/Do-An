@@ -1,0 +1,106 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class='m-r-8'>
+        <div fxFlex="50" fxFlex.lt-sm="30" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{ "bien_ban_kiem_diem_tu_vong.vao_vien_luc" | translate}}</mat-label>
+              <input matInput
+                     [(ngModel)]='bienBanKiemDiemTuVong.VAO_VIEN_LUC'
+                     (ngModelChange)='onDate($event, "DATE_VAO_VIEN")'
+                     [ngxMatDatetimePicker]='picker1'>
+              <mat-datepicker-toggle matSuffix [for]="$any(picker1)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="30" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{ "bien_ban_kiem_diem_tu_vong.tu_vong_luc" | translate}}</mat-label>
+              <input matInput
+                     [(ngModel)]='bienBanKiemDiemTuVong.TU_VONG_LUC'
+                     (ngModelChange)='onDate($event, "DATE_TU_VONG")'
+                     [ngxMatDatetimePicker]='picker2'>
+              <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker2></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8'>
+        <div fxFlex="50" fxFlex.lt-sm="30" class="matero-col">
+          <div class='form-field-full'>
+            <app-select label='bien_ban_kiem_diem_tu_vong.tai_khoa'
+                        category='khoa'
+                        [(model)]='bienBanKiemDiemTuVong.TAI_KHOA'>
+            </app-select>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="30" class="matero-col">
+          <div class='form-field-full'>
+            <mat-form-field appearance='outline'>
+              <mat-label>{{ "bien_ban_kiem_diem_tu_vong.kiem_diem_tu_vong_luc" | translate}}</mat-label>
+              <input matInput
+                     [(ngModel)]='bienBanKiemDiemTuVong.KIEM_DIEM_TU_VONG_LUC'
+                     (ngModelChange)='onDate($event, "DATE_KIEM_DIEM_TU_VONG")'
+                     [ngxMatDatetimePicker]='picker3'>
+              <mat-datepicker-toggle matSuffix [for]="$any(picker3)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker3></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8'>
+        <div fxFlex="50" fxFlex.lt-sm="30" class="matero-col">
+          <div class='form-field-full'>
+            <app-select label='bien_ban_hoi_chan.chu_toa' [(model)]='bienBanKiemDiemTuVong.CHU_TOA'
+                        category='cbyt' [resetTo]='null'></app-select>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.lt-sm="30" class="matero-col">
+          <div class='form-field-full'>
+            <app-select label='bien_ban_hoi_chan.thu_ky' [(model)]='bienBanKiemDiemTuVong.THU_KY'
+                        category='cbyt' [resetTo]='null'></app-select>
+          </div>
+        </div>
+      </div>
+
+      <div class='m-r-8' style='padding-left: 7px;padding-right: 7px;'>
+        <div class='form-field-full'>
+          <app-multi-select
+            label='{{"bien_ban_hoi_chan.thanh_vien_tham_gia" | translate}}'
+            [items]='bienBanKiemDiemTuVong.THANH_VIEN_THAM_GIA'
+            category='bs'>
+          </app-multi-select>
+        </div>
+      </div>
+      <div class='m-r-8' style='padding-left: 7px;padding-right: 7px;'>
+        <div class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label><strong>{{ "bien_ban_kiem_diem_tu_vong.tom_tat_qua_trinh_dien_bien_benh" | translate}}:</strong></mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      [(ngModel)]='bienBanKiemDiemTuVong.TOM_TAT_QUA_TRINH_DIEN_BIEN_BENH'
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class='m-r-8' style='padding-left: 7px;padding-right: 7px;'>
+        <div class='form-field-full'>
+          <mat-form-field appearance='outline'>
+            <mat-label><strong><i>{{"laboratory.semen_chart_form.diagnosis" | translate}}:</i></strong></mat-label>
+            <textarea matInput cdkTextareaAutosize
+                      [(ngModel)]='bienBanKiemDiemTuVong.KET_LUAN'
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
